@@ -56,6 +56,8 @@ To deploy: push to a GitHub repo, enable Pages on the `main` branch, share the U
 - **Slide grid** at the bottom of the screen — hover the bottom 38px to reveal a horizontally-scrolling thumbnail strip of every slide. Click any thumb to jump. Active slide auto-scrolls into view.
 - **Map slide** — every section appears as a node on a circle; click any node to jump to that lesson
 - **Home / End** — first / last slide
+- **`H` key** — toggle **presentation mode**: hides every UI chrome element (counter, brand, nav arrows, slide grid, annotate/move toggles, panels) so the projector shows only the slide content. Press `H` again to bring everything back.
+- **URL hash routing** — append `#5` to any URL to drop a viewer directly on slide 5. Share `https://your-site/#10` and the audience lands on slide 10. The URL hash auto-updates as you navigate so any slide is bookmarkable.
 
 ### Annotation system (the differentiator)
 
@@ -67,11 +69,16 @@ Spatial Deck includes two collaboration modes for working with an AI agent on th
 - Click "📋 Copy All" → exports as markdown ready to paste into Claude/ChatGPT/Cursor
 - The agent reads the markdown, finds the element in the source, makes the change
 
-**✋ Move Mode** (toggle with `M` or the orange button)
-- Drag any element to physically reposition it on the page
-- The pixel delta is captured as a structured annotation: `MOVE by Δ(+30px, -20px)`
+**✋ Move Mode** (toggle with `M` or the orange button) — full transform engine
+- **Drag** any element to translate it
+- **Shift + drag** to scale (drag away from element center to grow, toward to shrink)
+- **Alt/Option + drag** to rotate (drag in a circle around element center)
+- Works on **SVG paths and lines too** — paths transform via standard CSS so the same controls work on any visual element
+- **Undo / Redo** — `Cmd/Ctrl + Z` to undo, `Cmd/Ctrl + Shift + Z` to redo. Onscreen Undo/Redo buttons in the move-mode HUD next to the toggle.
+- 50-action history stack with standard editor semantics (new action clears the redo branch)
+- Each annotation captures the full transform: `TRANSFORM translate Δ(+30px, -20px) · scale ×1.20 · rotate 15°`
 - The element stays where you put it so you can see your layout
-- Perfect for "the monocle should be 30px to the left and 20px up" feedback that's faster to *do* than to describe
+- Perfect for "the monocle should be 30px to the left, scaled up 20%" feedback that's faster to *do* than to describe
 
 The export workflow is just clipboard markdown — no API key, no MCP server, no React. Works on plain HTML by design.
 

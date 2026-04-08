@@ -217,6 +217,23 @@ canvas#stars{position:absolute;inset:0}
 .nav-btn:hover{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.3);color:var(--teal)}
 
 @keyframes fistPump{0%{transform:translateY(0)}30%{transform:translateY(-14px) scale(1.15)}50%{transform:translateY(-18px) scale(1.2)}70%{transform:translateY(-14px) scale(1.15)}100%{transform:translateY(0)}}
+
+/* Presentation mode — H key hides every UI element so the projector
+   shows only the slide content. Toggle off again with H. */
+body.presentation-mode #counter,
+body.presentation-mode #brand,
+body.presentation-mode .nav-arrows,
+body.presentation-mode #tracker,
+body.presentation-mode #slide-grid,
+body.presentation-mode #slide-grid-zone,
+body.presentation-mode #anno-toggle,
+body.presentation-mode #move-toggle,
+body.presentation-mode #anno-panel,
+body.presentation-mode #move-hud,
+body.presentation-mode #anno-prompt {
+  display: none !important;
+}
+
 @media(max-width:900px){.case-slide{flex-direction:column;text-align:center}.case-image{flex:none;width:85%;max-width:none;margin:0 auto}.case-bl li{text-align:left}}
 
 /* ── Annotation overlay ── */
@@ -368,6 +385,8 @@ function goTo(n){
   nx.classList.add('active');
   current=n;updateHUD();
   if(allSlides[current].dataset.type==='map')setTimeout(startMap,400);
+  // Update URL hash so the slide is shareable / re-navigable
+  if(history.replaceState) history.replaceState(null, '', '#' + (current + 1));
   setTimeout(()=>{animating=false},520);
 }
 document.getElementById('btn-prev').addEventListener('click',()=>goTo(current-1));
@@ -375,13 +394,25 @@ document.getElementById('btn-next').addEventListener('click',()=>goTo(current+1)
 document.addEventListener('keydown',e=>{
   // Don't intercept keys when typing in inputs (annotation textarea)
   if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
-  // Forward: arrows, space, PageDown, N, period (most clickers send PageDown)
+  // Forward: arrows, space, PageDown, N (most clickers send PageDown)
   if(['ArrowRight','ArrowDown',' ','PageDown','n','N'].includes(e.key)){e.preventDefault();goTo(current+1)}
   // Backward: arrows, PageUp, P
   if(['ArrowLeft','ArrowUp','PageUp','p','P'].includes(e.key)){e.preventDefault();goTo(current-1)}
   if(e.key==='Home'){e.preventDefault();goTo(0)}
   if(e.key==='End'){e.preventDefault();goTo(total-1)}
+  // H = toggle presentation mode (hide all UI chrome for projector display)
+  if(e.key==='h'||e.key==='H'){ e.preventDefault(); document.body.classList.toggle('presentation-mode'); }
 });
+
+// Hash routing — let the URL drive which slide we land on. Share
+// https://your-site/#5 to drop a viewer on slide 5 directly.
+function goToFromHash() {
+  const m = (location.hash || '').match(/^#(\d+)$/);
+  if (!m) return;
+  const target = Math.max(0, Math.min(total - 1, parseInt(m[1], 10) - 1));
+  if (target !== current) goTo(target);
+}
+window.addEventListener('hashchange', goToFromHash);
 
 // ── Slide jump grid ──
 const sgEl=document.getElementById('slide-grid');
@@ -488,6 +519,8 @@ function updateTracker(){
   }
 }
 updateHUD();
+// Honor the URL hash on initial load (e.g. /#5 → drops on slide 5)
+goToFromHash();
 
 // ── Map animation ──
 // Constellation map geometry. Auto-derived from N_SECTIONS so the visualization
