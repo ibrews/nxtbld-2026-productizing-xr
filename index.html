@@ -369,6 +369,32 @@ const total=allSlides.length;let current=0;const counterEl=document.getElementBy
 
 // ── Nav ──
 function updateHUD(){counterEl.textContent=`${String(current+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;updateTracker()}
+// ── Tally count-up ──
+function animateTally(el){
+  const orig = el.dataset.tally || el.textContent.trim();
+  el.dataset.tally = orig;
+  const m = orig.match(/^(\d+)(\+?)$/);
+  if (!m) return;
+  const target = parseInt(m[1],10);
+  const suffix = m[2] || '';
+  const dur = 1000;
+  const start = performance.now();
+  el.style.display = 'inline-block';
+  el.style.willChange = 'transform';
+  function frame(t){
+    const k = Math.min(1, (t-start)/dur);
+    const eased = 1 - Math.pow(1-k, 3);
+    el.textContent = Math.round(eased*target) + (k>=1?suffix:'');
+    let y = 0, sx = 1, sy = 1;
+    if (k < 0.85) { y = -Math.sin((k/0.85)*Math.PI) * 14; }
+    else { const lk = (k-0.85)/0.15; sy = 1 - 0.12*Math.sin(lk*Math.PI); sx = 1 + 0.12*Math.sin(lk*Math.PI); }
+    el.style.transform = `translateY(${y.toFixed(2)}px) scale(${sx.toFixed(3)}, ${sy.toFixed(3)})`;
+    if (k<1) requestAnimationFrame(frame); else el.style.transform = '';
+  }
+  requestAnimationFrame(frame);
+}
+function playTallies(slide){ if(!slide)return; slide.querySelectorAll('.num').forEach(animateTally); }
+
 let animating=false;
 function goTo(n){
   if(n<0||n>=total||n===current||animating)return;
@@ -385,6 +411,7 @@ function goTo(n){
   nx.classList.add('active');
   current=n;updateHUD();
   if(allSlides[current].dataset.type==='map')setTimeout(startMap,400);
+  setTimeout(()=>playTallies(nx), 400);
   // Update URL hash so the slide is shareable / re-navigable
   if(history.replaceState) history.replaceState(null, '', '#' + (current + 1));
   setTimeout(()=>{animating=false},520);
@@ -849,12 +876,60 @@ function moveModeToggle(on){
   document.body.classList.toggle('move-mode', moveMode);
   document.getElementById('move-toggle').classList.toggle('active', moveMode);
   document.getElementById('move-toggle').textContent = moveMode ? '✕ Exit Move' : '✋ Move Mode';
+  if (window.scrubShow) window.scrubShow(moveMode);
   if(moveMode){
     annoToast('Move mode: drag any element. Release to save offset as annotation.');
   } else if(elDeltas.size>0){
     annoToast('Move mode off. Drags saved as annotations. Refresh to reset positions.');
   }
 }
+
+// ── Move-mode timeline scrubber ──
+(function buildScrubber(){
+  const bar = document.createElement('div');
+  bar.id = 'anim-scrub-bar';
+  bar.style.cssText = 'position:fixed;bottom:72px;left:50%;transform:translateX(-50%);z-index:1100;display:none;align-items:center;gap:10px;background:rgba(6,8,16,.92);border:1px solid rgba(245,158,11,.4);border-radius:10px;padding:10px 14px;backdrop-filter:blur(10px);font-family:var(--font);font-size:.7rem;color:var(--amber);letter-spacing:.1em;text-transform:uppercase';
+  bar.innerHTML = `
+    <button id="scrub-replay" style="background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.4);border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer">↻ Replay</button>
+    <button id="scrub-playpause" style="background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.4);border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer;width:70px">⏸ Pause</button>
+    <input id="scrub-range" type="range" min="0" max="5000" value="0" step="10" style="width:360px;accent-color:var(--amber)">
+    <span id="scrub-time" style="min-width:60px;text-align:right;color:rgba(245,158,11,.8)">0 ms</span>
+  `;
+  document.body.appendChild(bar);
+  const range = bar.querySelector('#scrub-range');
+  const timeLbl = bar.querySelector('#scrub-time');
+  const pp = bar.querySelector('#scrub-playpause');
+  const replay = bar.querySelector('#scrub-replay');
+  let paused = false;
+  function slideAnims(){ const s = allSlides[current]; return (s && s.getAnimations) ? s.getAnimations({subtree:true}) : []; }
+  function maxDur(){
+    let m = 2000;
+    slideAnims().forEach(a=>{
+      const t = a.effect?.getComputedTiming?.();
+      const d = (t?.delay||0) + (t?.duration||0) * (t?.iterations||1);
+      if (isFinite(d) && d > m) m = d;
+    });
+    return Math.ceil(m);
+  }
+  range.addEventListener('input', ()=>{
+    paused = true; pp.textContent = '▶ Play';
+    const v = +range.value; timeLbl.textContent = v + ' ms';
+    slideAnims().forEach(a=>{ a.pause(); try { a.currentTime = Math.min(v, (a.effect?.getComputedTiming?.().endTime) || v); } catch(e){} });
+  });
+  pp.addEventListener('click', ()=>{
+    paused = !paused;
+    if (paused) { slideAnims().forEach(a=>a.pause()); pp.textContent='▶ Play'; }
+    else { slideAnims().forEach(a=>a.play()); pp.textContent='⏸ Pause'; }
+  });
+  replay.addEventListener('click', ()=>{
+    paused = false; pp.textContent='⏸ Pause';
+    const n = current;
+    if (n > 0) { goTo(n-1); setTimeout(()=>goTo(n), 560); }
+    else if (total > 1) { goTo(n+1); setTimeout(()=>goTo(n), 560); }
+    setTimeout(()=>{ range.max = maxDur(); }, 1200);
+  });
+  window.scrubShow = (on)=>{ bar.style.display = on ? 'flex' : 'none'; if (on) setTimeout(()=>{ range.max = maxDur(); },100); };
+})();
 
 document.getElementById('move-toggle').addEventListener('click',()=>moveModeToggle());
 
