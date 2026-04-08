@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spatial Deck — Interactive Presentation Starter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   PRESENTATION CONFIG — EDIT THIS SECTION TO CHANGE CONTENT
+   ═══════════════════════════════════════════════════════════════════════
+   Each SECTION represents a chapter of your talk. Each section has:
+
+     year      — anchors the chapter on a timeline (use any string label)
+     accent    — color theme: 'teal' | 'purple' | 'amber' | 'rose'
+     cases     — 1–3 case study slides shown BEFORE the lesson slide
+                 (each has title, subtitle, img, bullets[])
+     lesson    — the takeaway slide that closes the chapter
+                 (title with \n for line break, tagline, optional tags)
+
+   The engine generates all slides from this config. Add/remove/reorder
+   sections freely. The slide grid, monocle map, and tracker auto-update.
+
+   IMG TIPS:
+     - Use absolute URLs (any image host)
+     - Ideal aspect ratio: 16:10
+     - Empty string ("") shows a gradient placeholder
+   ═══════════════════════════════════════════════════════════════════════ */
+const SECTIONS = [
+  {
+    year: 'CH 1', accent: 'teal',
+    cases: [
+      { title:'Your First Case Study',
+        subtitle:'Short hook line that frames the example',
+        img:'',
+        bullets:[
+          'A specific, concrete observation from this project',
+          'A second beat that builds on the first',
+          'The detail that earns you the right to make the lesson land',
+        ] },
+      { title:'Optional Second Case',
+        subtitle:'A different angle on the same theme',
+        img:'',
+        bullets:[
+          'Another concrete project moment',
+          'Something the audience can picture in their head',
+          'The pivot that points toward your takeaway',
+        ] },
+    ],
+    lesson: {
+      title:'Your First Lesson Title.\nUse \\n for a Line Break.',
+      tagline:'One paragraph that distills what you learned. Keep it specific to your experience — abstract advice is forgettable, lived advice is not. The case studies above earn this slide the right to exist.',
+      tags:'Optional · References · Or · Project · Names',
+    },
+  },
+  {
+    year: 'CH 2', accent: 'purple',
+    cases: [
+      { title:'Another Case Study',
+        subtitle:'Different chapter, different texture',
+        img:'',
+        bullets:[
+          'Each chapter is one of your major themes',
+          'Cycle accent colors so each chapter has its own look',
+          'Aim for 1–3 case studies per lesson',
+        ] },
+    ],
+    lesson: {
+      title:'Your Second Lesson.',
+      tagline:'Tell stories first. Land the lesson second. Your audience will remember the spike-tape moment, not the bullet point.',
+      tags:'',
+    },
+  },
+  {
+    year: 'CH 3', accent: 'amber',
+    cases: [
+      { title:'A Third Case Study',
+        subtitle:'Build the rhythm of case → case → lesson',
+        img:'',
+        bullets:[
+          'Three sections is enough to show the pattern',
+          'Add as many more as your talk needs — engine handles arbitrary length',
+          'The slide grid at the bottom of the screen makes navigation easy at any size',
+        ] },
+    ],
+    lesson: {
+      title:'Your Third Lesson.',
+      tagline:'When you finish editing this config, the deck regenerates automatically — no build step. Open this file in any browser. Press M to drag elements around. Press A to leave annotations on any element you click.',
+      tags:'',
+    },
+  },
+];
+
+// Bonus chapter — appears after the main sections, before the closing slide.
+// Set to null to omit.
+const BONUS = {
+  year: 'BONUS',
+  title: 'A Light, Memorable Closer.\nLeave Them Smiling.',
+  tagline: 'Your bonus slide is the punchline. Self-deprecating works. A specific image works. Generalities do not. Make this one count — it is the last thing they see before "Thank You."'
+};
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#060810;--teal:#00d4ff;--purple:#a78bfa;--amber:#f59e0b;--rose:#f43f5e;--text:#f0f4ff;--dim:rgba(240,244,255,.45);--font:'Space Grotesk',system-ui,sans-serif}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--font)}
+
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+.bg-gradient{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 15% 50%,rgba(124,58,237,.18) 0%,transparent 55%),radial-gradient(ellipse 60% 70% at 85% 20%,rgba(0,212,255,.12) 0%,transparent 55%),linear-gradient(180deg,#060810 0%,#0b0820 50%,#060810 100%)}
+canvas#stars{position:absolute;inset:0}
+
+#deck{position:relative;z-index:1;width:100%;height:100%;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(40px,5vw,80px);text-align:center;opacity:0;pointer-events:none}
+.slide.active{opacity:1;pointer-events:all}
+@keyframes slideInFwd{from{opacity:0;transform:translateX(6%) scale(.97)}to{opacity:1;transform:none}}
+@keyframes slideInBwd{from{opacity:0;transform:translateX(-6%) scale(.97)}to{opacity:1;transform:none}}
+@keyframes slideOutFwd{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-6%) scale(.97)}}
+@keyframes slideOutBwd{from{opacity:1;transform:none}to{opacity:0;transform:translateX(6%) scale(.97)}}
+
+/* Cover */
+.event-tag{font-size:clamp(.7rem,1.4vw,1.05rem);font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:36px;opacity:.85}
+.talk-title{font-size:clamp(3.2rem,8vw,8.5rem);font-weight:700;line-height:1;letter-spacing:-.03em;background:linear-gradient(130deg,#fff 20%,#a5d8ff 55%,#9b8cff 85%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px}
+.talk-subtitle{font-size:clamp(1.1rem,2.4vw,1.9rem);font-weight:400;color:var(--dim);margin-bottom:64px}
+.speaker-card{display:flex;align-items:center;gap:24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:80px;padding:18px 40px;backdrop-filter:blur(12px)}
+.speaker-name{font-size:clamp(1rem,1.4vw,1.4rem);font-weight:600}.speaker-co{font-size:clamp(.78rem,1.1vw,1.05rem);color:var(--dim);margin-top:3px}
+.card-sep{width:1px;height:48px;background:rgba(255,255,255,.15)}
+.event-detail{font-size:clamp(.78rem,1.1vw,1.05rem);color:var(--dim);line-height:1.6}
+
+/* Case study — sized for 1920×1080 projector */
+.case-slide{flex-direction:row;gap:clamp(36px,4.5vw,90px);text-align:left;padding:clamp(50px,5vw,110px) clamp(80px,9vw,180px)}
+.case-image{flex:0 0 44%;max-width:780px;aspect-ratio:16/10;border-radius:18px;overflow:hidden}
+.case-image img{width:100%;height:100%;object-fit:cover;display:block}
+.case-image .ph{width:100%;height:100%;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(124,58,237,.12));display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.12);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+.case-content{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.case-ytag{font-size:clamp(.65rem,.95vw,.95rem);font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);opacity:.6}
+.case-title{font-size:clamp(1.8rem,3.6vw,3.8rem);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.case-sub{font-size:clamp(.95rem,1.4vw,1.4rem);color:var(--dim);margin-bottom:14px}
+.case-bl{list-style:none;display:flex;flex-direction:column;gap:14px}
+.case-bl li{font-size:clamp(.92rem,1.3vw,1.3rem);color:rgba(240,244,255,.7);line-height:1.55;padding-left:24px;position:relative}
+.case-bl li::before{content:'';position:absolute;left:0;top:.65em;width:7px;height:7px;border-radius:50%;background:var(--teal);opacity:.6}
+.accent-purple .case-ytag{color:var(--purple)}.accent-purple .case-bl li::before{background:var(--purple)}
+.accent-amber .case-ytag{color:var(--amber)}.accent-amber .case-bl li::before{background:var(--amber)}
+.accent-rose .case-ytag{color:var(--rose)}.accent-rose .case-bl li::before{background:var(--rose)}
+
+/* Lesson — sized for 1920×1080 projector */
+.slide-lesson{padding-bottom:clamp(80px,10vh,140px)}
+.year-ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(10rem,24vw,26rem);font-weight:700;letter-spacing:-.06em;line-height:1;color:rgba(255,255,255,.028);pointer-events:none;user-select:none}
+.lesson-ey{display:flex;align-items:center;justify-content:center;gap:14px;font-size:clamp(.7rem,1.1vw,1rem);font-weight:600;letter-spacing:.26em;text-transform:uppercase;margin-bottom:30px}
+.ey-yr{color:rgba(255,255,255,.4)}.ey-sep{color:rgba(255,255,255,.15)}.ey-badge{color:var(--teal)}
+.lesson-title{font-size:clamp(2.4rem,5.8vw,6.2rem);font-weight:700;letter-spacing:-.025em;line-height:1.06;max-width:1300px;margin-bottom:32px;white-space:pre-line}
+.lesson-tagline{font-size:clamp(1rem,1.7vw,1.6rem);color:var(--dim);max-width:880px;line-height:1.7}
+.lesson-rule{width:64px;height:4px;border-radius:2px;background:var(--teal);margin:32px auto 0;opacity:.7}
+.lesson-tags{margin-top:18px;font-size:clamp(.6rem,.9vw,.85rem);font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+.accent-purple .ey-badge{color:var(--purple)}.accent-purple .lesson-rule{background:var(--purple)}
+.accent-amber .ey-badge{color:var(--amber)}.accent-amber .lesson-rule{background:var(--amber)}
+.accent-rose .ey-badge{color:var(--rose)}.accent-rose .lesson-rule{background:var(--rose)}
+.slide-bonus .ey-badge{color:var(--amber)}.slide-bonus .lesson-rule{background:var(--amber)}.slide-bonus .year-ghost{color:rgba(245,158,11,.04)}
+
+/* Monocle tracker */
+#tracker{position:fixed;bottom:24px;right:24px;z-index:25;width:clamp(120px,9vw,170px);height:clamp(120px,9vw,170px);opacity:0;transition:opacity .4s;pointer-events:none}
+#tracker.visible{opacity:1}
+#tracker svg{width:100%;height:100%}
+
+/* Map */
+.slide-map{padding:clamp(20px,2.5vw,48px)}
+.map-label{font-size:clamp(.7rem,1.1vw,1rem);font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px}
+#map-svg{width:100%;height:100%;max-height:84vh}
+.recap-pill{cursor:pointer}
+.recap-pill:hover circle:first-child{fill:rgba(0,212,255,.12)!important}
+
+/* Slide grid (jump-to-slide hover strip) */
+#slide-grid-zone{position:fixed;bottom:0;left:0;right:0;height:38px;z-index:35;pointer-events:auto}
+#slide-grid{position:fixed;bottom:0;left:0;right:0;z-index:36;padding:14px 24px 18px;background:linear-gradient(180deg,transparent 0%,rgba(6,8,16,.92) 50%,rgba(6,8,16,.98) 100%);backdrop-filter:blur(10px);display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;justify-content:flex-start;flex-wrap:nowrap;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);scrollbar-width:thin}
+#slide-grid.visible{transform:translateY(0)}
+#slide-grid::-webkit-scrollbar{height:4px}
+#slide-grid::-webkit-scrollbar-thumb{background:rgba(0,212,255,.3);border-radius:2px}
+.sg-thumb{flex:0 0 auto;min-width:64px;height:46px;border:1px solid rgba(255,255,255,.12);border-radius:6px;background:rgba(255,255,255,.03);padding:5px 8px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;font-family:var(--font);transition:all .15s;position:relative}
+.sg-thumb:hover{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.4);transform:translateY(-2px)}
+.sg-thumb.active{background:rgba(0,212,255,.18);border-color:var(--teal);box-shadow:0 0 12px rgba(0,212,255,.3)}
+.sg-num{font-size:.62rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.05em}
+.sg-thumb.active .sg-num{color:var(--teal)}
+.sg-label{font-size:.52rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.sg-thumb.active .sg-label{color:rgba(0,212,255,.7)}
+.sg-thumb.sg-cover{background:rgba(124,58,237,.06);border-color:rgba(124,58,237,.2)}
+.sg-thumb.sg-bonus{background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.2)}
+.sg-thumb.sg-bonus.active{background:rgba(245,158,11,.18);border-color:var(--amber);box-shadow:0 0 12px rgba(245,158,11,.3)}
+.sg-thumb.sg-bonus.active .sg-num,.sg-thumb.sg-bonus.active .sg-label{color:var(--amber)}
+.sg-thumb.sg-map{background:rgba(167,139,250,.06);border-color:rgba(167,139,250,.2)}
+.sg-thumb.sg-close{background:rgba(244,63,94,.06);border-color:rgba(244,63,94,.2)}
+
+/* Close — sized for 1920×1080 projector */
+.close-ey{font-size:clamp(.7rem,1.4vw,1.05rem);font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:36px;opacity:.85}
+.close-title{font-size:clamp(3.2rem,7.5vw,7.5rem);font-weight:700;letter-spacing:-.03em;line-height:1;background:linear-gradient(130deg,#fff 20%,#fde68a 60%,#f59e0b 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:28px}
+.close-sub{font-size:clamp(1.1rem,2vw,1.7rem);color:var(--dim);margin-bottom:56px}
+.contact-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.contact-pill{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:48px;padding:14px 28px;font-size:clamp(.95rem,1.3vw,1.2rem)}
+.contact-pill .lbl{opacity:.4;font-size:clamp(.65rem,.9vw,.85rem);text-transform:uppercase;letter-spacing:.1em}
+
+/* HUD */
+#counter{position:fixed;top:32px;right:48px;z-index:20;font-size:clamp(.72rem,1vw,.95rem);font-weight:500;letter-spacing:.12em;color:rgba(255,255,255,.25)}
+#brand{position:fixed;bottom:28px;left:48px;z-index:20;font-size:clamp(.68rem,.95vw,.9rem);font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+.nav-arrows{position:fixed;bottom:24px;right:160px;z-index:20;display:flex;gap:10px}
+.nav-btn{width:46px;height:46px;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:rgba(255,255,255,.03);color:rgba(255,255,255,.5);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;backdrop-filter:blur(8px)}
+.nav-btn:hover{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.3);color:var(--teal)}
+
+@keyframes fistPump{0%{transform:translateY(0)}30%{transform:translateY(-14px) scale(1.15)}50%{transform:translateY(-18px) scale(1.2)}70%{transform:translateY(-14px) scale(1.15)}100%{transform:translateY(0)}}
+@media(max-width:900px){.case-slide{flex-direction:column;text-align:center}.case-image{flex:none;width:85%;max-width:none;margin:0 auto}.case-bl li{text-align:left}}
+
+/* ── Annotation overlay ── */
+#anno-toggle,#move-toggle{position:fixed;top:24px;z-index:1000;border:1px solid rgba(0,212,255,.4);color:var(--teal);font-family:var(--font);font-size:.66rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:8px 14px;border-radius:6px;cursor:pointer;backdrop-filter:blur(8px);transition:all .2s;background:rgba(0,212,255,.1)}
+#anno-toggle{left:24px}
+#move-toggle{left:148px;border-color:rgba(245,158,11,.4);color:var(--amber);background:rgba(245,158,11,.1)}
+#anno-toggle:hover{background:rgba(0,212,255,.2)}
+#move-toggle:hover{background:rgba(245,158,11,.2)}
+#anno-toggle.active{background:var(--amber);color:#060810;border-color:var(--amber)}
+#move-toggle.active{background:var(--rose);color:#060810;border-color:var(--rose)}
+body.annotate-mode *:not(#anno-panel):not(#anno-panel *):not(#anno-toggle):not(#move-toggle):not(#slide-grid):not(#slide-grid *):not(#slide-grid-zone):hover{outline:2px dashed var(--teal)!important;outline-offset:2px;cursor:crosshair!important}
+body.move-mode .slide.active *:not(#anno-toggle):not(#move-toggle):hover{outline:2px dashed var(--amber)!important;outline-offset:2px;cursor:move!important}
+body.move-mode .slide.active *{user-select:none}
+.dragging{opacity:.85!important;outline:2px solid var(--amber)!important}
+#anno-panel{position:fixed;top:70px;left:24px;z-index:1001;width:320px;max-height:70vh;background:rgba(10,12,24,.96);border:1px solid rgba(0,212,255,.3);border-radius:10px;padding:16px;font-family:var(--font);font-size:.78rem;color:var(--text);backdrop-filter:blur(12px);overflow-y:auto;display:none}
+#anno-panel.visible{display:block}
+#anno-panel h3{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+#anno-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;max-height:300px;overflow-y:auto}
+.anno-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:8px 10px;font-size:.72rem;line-height:1.4}
+.anno-item .anno-meta{font-size:.6rem;color:var(--dim);margin-bottom:4px;font-weight:500}
+.anno-item .anno-rm{float:right;color:var(--rose);cursor:pointer;font-size:.68rem;opacity:.6;margin-left:6px}
+.anno-item .anno-rm:hover{opacity:1}
+.anno-actions{display:flex;gap:8px}
+.anno-btn{flex:1;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--teal);font-family:var(--font);font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:8px;border-radius:5px;cursor:pointer;transition:all .15s}
+.anno-btn:hover{background:rgba(0,212,255,.2)}
+.anno-btn.danger{color:var(--rose);border-color:rgba(244,63,94,.3);background:rgba(244,63,94,.06)}
+.anno-btn.danger:hover{background:rgba(244,63,94,.15)}
+#anno-prompt{position:fixed;z-index:1002;background:rgba(10,12,24,.98);border:1px solid var(--teal);border-radius:8px;padding:12px;display:none;flex-direction:column;gap:8px;width:280px;backdrop-filter:blur(12px)}
+#anno-prompt.visible{display:flex}
+#anno-prompt .anno-target{font-size:.62rem;color:var(--dim);font-family:monospace;word-break:break-all}
+#anno-prompt textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--text);font-family:var(--font);font-size:.78rem;padding:8px;border-radius:5px;resize:vertical;min-height:60px;outline:none}
+#anno-prompt textarea:focus{border-color:var(--teal)}
+#anno-prompt .anno-prompt-actions{display:flex;gap:6px;justify-content:flex-end}
+#anno-empty{color:var(--dim);font-size:.7rem;font-style:italic;text-align:center;padding:14px 0}
+#anno-toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--teal);color:#060810;padding:10px 18px;border-radius:6px;font-size:.72rem;font-weight:600;letter-spacing:.05em;z-index:1003;opacity:0;transition:opacity .3s;pointer-events:none}
+#anno-toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="bg"><div class="bg-gradient"></div><canvas id="stars"></canvas></div>
+<div id="deck"></div>
+<div id="tracker"><svg id="tracker-svg" viewBox="0 0 120 120"></svg></div>
+<div id="counter"></div>
+<div id="brand">Spatial Deck</div>
+<div class="nav-arrows"><button class="nav-btn" id="btn-prev">←</button><button class="nav-btn" id="btn-next">→</button></div>
+
+<!-- Slide jump grid (hover bottom of screen to reveal) -->
+<div id="slide-grid-zone"></div>
+<div id="slide-grid"></div>
+
+<!-- Annotation overlay -->
+<button id="anno-toggle" title="Toggle annotation mode (A)">📝 Annotate</button>
+<button id="move-toggle" title="Toggle move mode (M) — drag elements to reposition them">✋ Move Mode</button>
+<div id="anno-panel">
+  <h3>Annotations</h3>
+  <div id="anno-list"></div>
+  <div class="anno-actions">
+    <button class="anno-btn" id="anno-export">📋 Copy All</button>
+    <button class="anno-btn danger" id="anno-clear">Clear</button>
+  </div>
+</div>
+<div id="anno-prompt">
+  <div class="anno-target" id="anno-target-text"></div>
+  <textarea id="anno-text" placeholder="What should change?"></textarea>
+  <div class="anno-prompt-actions">
+    <button class="anno-btn" id="anno-cancel" style="flex:0">Cancel</button>
+    <button class="anno-btn" id="anno-save" style="flex:0">Save</button>
+  </div>
+</div>
+<div id="anno-toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   ENGINE — slide generation, navigation, monocle tracker, map animation
+   ═══════════════════════════════════════════════════════════════════════ */
+
+// Stars
+const cv=document.getElementById('stars'),sc=cv.getContext('2d');let st=[];
+function initS(){cv.width=innerWidth;cv.height=innerHeight;st=Array.from({length:110},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height*.6,r:Math.random()*1.2+.2,o:Math.random()*.4+.05,d:(Math.random()-.5)*.013}))}
+function drawS(){sc.clearRect(0,0,cv.width,cv.height);st.forEach(s=>{sc.beginPath();sc.arc(s.x,s.y,s.r,0,Math.PI*2);sc.fillStyle=`rgba(210,225,255,${s.o})`;sc.fill();s.o+=s.d;if(s.o<.04||s.o>.55)s.d*=-1});requestAnimationFrame(drawS)}
+initS();drawS();addEventListener('resize',initS);
+
+const deck=document.getElementById('deck'),allSlides=[],lessonIdxs=[];
+
+// ── Build cover ──
+const cov=document.createElement('div');cov.className='slide active';cov.dataset.type='cover';
+cov.innerHTML=`<div class="event-tag">Venue · Date · Tagline</div>
+<h1 class="talk-title">Spatial Deck<br>Demo</h1>
+<p class="talk-subtitle">A self-contained presentation framework for live talks</p>
+<div class="speaker-card"><div><div class="speaker-name">Your Name Here</div><div class="speaker-co">Your Title · Company</div></div><div class="card-sep"></div><div class="event-detail">Talk Title<br>Venue · Date</div></div>`;
+deck.appendChild(cov);allSlides.push(cov);
+
+// ── Build sections ──
+SECTIONS.forEach((sec,si)=>{
+  const ac=sec.accent!=='teal'?` accent-${sec.accent}`:'';
+  sec.cases.forEach((c,ci)=>{
+    const s=document.createElement('div');s.className=`slide case-slide${ac}`;s.dataset.type='case';s.dataset.year=sec.year;s.dataset.section=si;
+    const img=c.img?`<img src="${c.img}" alt="${c.title}" loading="lazy">`:`<div class="ph">Image TBD</div>`;
+    s.innerHTML=`<div class="case-image">${img}</div><div class="case-content">
+      <div class="case-ytag">${sec.year} · Case Study ${ci+1}/${sec.cases.length}</div>
+      <h2 class="case-title">${c.title}</h2><p class="case-sub">${c.subtitle}</p>
+      <ul class="case-bl">${c.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div>`;
+    deck.appendChild(s);allSlides.push(s);
+  });
+  const ls=document.createElement('div');ls.className=`slide slide-lesson${ac}`;ls.dataset.type='lesson';ls.dataset.year=sec.year;ls.dataset.section=si;ls.dataset.ln=si+1;
+  ls.innerHTML=`<div class="year-ghost">${sec.year}</div>
+    <div class="lesson-ey"><span class="ey-yr">${sec.year}</span><span class="ey-sep">·</span><span class="ey-badge">Lesson ${String(si+1).padStart(2,'0')} / 10</span></div>
+    <h2 class="lesson-title">${sec.lesson.title}</h2><p class="lesson-tagline">${sec.lesson.tagline}</p>
+    ${sec.lesson.tags?`<div class="lesson-tags">${sec.lesson.tags}</div>`:''}<div class="lesson-rule"></div>`;
+  deck.appendChild(ls);allSlides.push(ls);lessonIdxs.push(allSlides.length-1);
+});
+
+// ── Bonus (only if BONUS is defined) ──
+if (BONUS) {
+  const bon=document.createElement('div');bon.className='slide slide-lesson slide-bonus';bon.dataset.type='bonus';bon.dataset.year=BONUS.year;
+  bon.innerHTML=`<div class="year-ghost">${BONUS.year}</div><div class="lesson-ey"><span class="ey-yr">${BONUS.year}</span><span class="ey-sep">·</span><span class="ey-badge" style="color:var(--amber)">BONUS</span></div>
+<h2 class="lesson-title">${BONUS.title}</h2><p class="lesson-tagline">${BONUS.tagline}</p><div class="lesson-rule" style="background:var(--amber)"></div>`;
+  deck.appendChild(bon);allSlides.push(bon);
+}
+
+// ── Map ──
+const mapS=document.createElement('div');mapS.className='slide slide-map';mapS.dataset.type='map';
+mapS.innerHTML=`<div class="map-label">The Journey, Mapped</div><svg id="map-svg" viewBox="0 0 1000 600"></svg>`;
+deck.appendChild(mapS);allSlides.push(mapS);
+
+// ── Close ──
+const cls=document.createElement('div');cls.className='slide';cls.dataset.type='close';
+cls.innerHTML=`<div class="close-ey">Thank You</div><h2 class="close-title">Let's Talk.</h2><p class="close-sub">Replace this with your closing message.</p>
+<div class="contact-row"><div class="contact-pill"><span class="lbl">Site</span>example.com</div><div class="contact-pill"><span class="lbl">Email</span>hi@example.com</div><div class="contact-pill"><span class="lbl">Social</span>@yourhandle</div></div>`;
+deck.appendChild(cls);allSlides.push(cls);
+
+const total=allSlides.length;let current=0;const counterEl=document.getElementById('counter');
+
+// ── Nav ──
+function updateHUD(){counterEl.textContent=`${String(current+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;updateTracker()}
+let animating=false;
+function goTo(n){
+  if(n<0||n>=total||n===current||animating)return;
+  animating=true;const fwd=n>current;
+  const p=allSlides[current],nx=allSlides[n];
+  // Ensure no stale active slides
+  allSlides.forEach(s=>{if(s!==p&&s!==nx){s.classList.remove('active');s.style.animation='';s.style.cssText=''}});
+  // Exit previous
+  p.classList.remove('active');
+  p.style.animation=(fwd?'slideOutFwd':'slideOutBwd')+' .45s cubic-bezier(.4,0,.2,1) forwards';
+  setTimeout(()=>{p.style.animation='';p.style.cssText=''},500);
+  // Enter next
+  nx.style.animation=(fwd?'slideInFwd':'slideInBwd')+' .5s cubic-bezier(.4,0,.2,1) forwards';
+  nx.classList.add('active');
+  current=n;updateHUD();
+  if(allSlides[current].dataset.type==='map')setTimeout(startMap,400);
+  setTimeout(()=>{animating=false},520);
+}
+document.getElementById('btn-prev').addEventListener('click',()=>goTo(current-1));
+document.getElementById('btn-next').addEventListener('click',()=>goTo(current+1));
+document.addEventListener('keydown',e=>{
+  // Don't intercept keys when typing in inputs (annotation textarea)
+  if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
+  // Forward: arrows, space, PageDown, N, period (most clickers send PageDown)
+  if(['ArrowRight','ArrowDown',' ','PageDown','n','N'].includes(e.key)){e.preventDefault();goTo(current+1)}
+  // Backward: arrows, PageUp, P
+  if(['ArrowLeft','ArrowUp','PageUp','p','P'].includes(e.key)){e.preventDefault();goTo(current-1)}
+  if(e.key==='Home'){e.preventDefault();goTo(0)}
+  if(e.key==='End'){e.preventDefault();goTo(total-1)}
+});
+
+// ── Slide jump grid ──
+const sgEl=document.getElementById('slide-grid');
+const sgZone=document.getElementById('slide-grid-zone');
+allSlides.forEach((s,i)=>{
+  const t=document.createElement('div');
+  const type=s.dataset.type;
+  t.className='sg-thumb sg-'+type;
+  t.dataset.idx=i;
+  let label='';
+  if(type==='cover')label='Cover';
+  else if(type==='case')label=s.dataset.year+' ▸';
+  else if(type==='lesson')label='L'+s.dataset.ln+' '+s.dataset.year;
+  else if(type==='bonus')label='★ Bonus';
+  else if(type==='map')label='Map';
+  else if(type==='close')label='Thank You';
+  t.innerHTML=`<div class="sg-num">${String(i+1).padStart(2,'0')}</div><div class="sg-label">${label}</div>`;
+  t.addEventListener('click',()=>goTo(i));
+  sgEl.appendChild(t);
+});
+
+// Reveal grid on hover at bottom of screen
+let sgHideTimer;
+function sgShow(){clearTimeout(sgHideTimer);sgEl.classList.add('visible')}
+function sgHide(){sgHideTimer=setTimeout(()=>sgEl.classList.remove('visible'),300)}
+sgZone.addEventListener('mouseenter',sgShow);
+sgEl.addEventListener('mouseenter',sgShow);
+sgEl.addEventListener('mouseleave',sgHide);
+sgZone.addEventListener('mouseleave',sgHide);
+
+// Keep active thumb highlighted (hook into updateHUD).
+// Don't call updateHUD() here — trackerEl (used by updateTracker) is declared
+// later in this script, so calling it now would throw a TDZ error and halt
+// the rest of the script. The original updateHUD() call below (after the
+// monocle tracker setup) initializes everything safely.
+const _origUpdateHUD=updateHUD;
+updateHUD=function(){
+  _origUpdateHUD();
+  sgEl.querySelectorAll('.sg-thumb').forEach((t,i)=>t.classList.toggle('active',i===current));
+  // Auto-scroll active thumb into view
+  const active=sgEl.querySelector('.sg-thumb.active');
+  if(active&&sgEl.classList.contains('visible'))active.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+};
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)goTo(current+(dx<0?1:-1))},{passive:true});
+
+// ── Monocle tracker ──
+const trackerEl=document.getElementById('tracker'),tsvg=document.getElementById('tracker-svg');
+const TCX=54,TCY=50,TR=34;
+function svgE(t,a){const e=document.createElementNS('http://www.w3.org/2000/svg',t);if(a)Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v));return e}
+
+// Number of sections drives the geometry of the tracker, the constellation map,
+// and how nodes are positioned around the circle. Auto-derived from SECTIONS.
+const N_SECTIONS = SECTIONS.length;
+const SECTION_ANGLE_DEG = 360 / N_SECTIONS;
+
+(function buildTracker(){
+  tsvg.appendChild(svgE('circle',{cx:TCX,cy:TCY,r:TR,fill:'none',stroke:'rgba(255,255,255,.08)','stroke-width':'1.5'}));
+  // Bonus pip — only drawn if BONUS exists
+  if (BONUS) {
+    const cordEnd={x:TCX+TR+14,y:TCY+TR+16};
+    tsvg.appendChild(svgE('path',{d:`M${TCX+TR} ${TCY} Q${TCX+TR+9} ${TCY+TR*.6} ${cordEnd.x} ${cordEnd.y}`,fill:'none',stroke:'rgba(245,158,11,.15)','stroke-width':'1.5','stroke-linecap':'round'}));
+    tsvg.appendChild(svgE('circle',{cx:cordEnd.x,cy:cordEnd.y,r:'3',fill:'none',stroke:'rgba(245,158,11,.3)','stroke-width':'1',id:'tb'}));
+  }
+  for(let i=0;i<N_SECTIONS;i++){
+    const a=(-90+i*SECTION_ANGLE_DEG)*Math.PI/180;
+    tsvg.appendChild(svgE('circle',{cx:TCX+TR*Math.cos(a),cy:TCY+TR*Math.sin(a),r:'2.5',fill:'rgba(255,255,255,.12)',id:`td${i}`}));
+  }
+  // walker dot
+  tsvg.appendChild(svgE('circle',{cx:TCX,cy:TCY-TR,r:'4',fill:'var(--teal)',id:'tav','opacity':'0.9'}));
+})();
+
+function updateTracker(){
+  const type=allSlides[current].dataset.type;
+  const show=type==='case'||type==='lesson'||type==='bonus';
+  trackerEl.classList.toggle('visible',show);if(!show)return;
+  const si=parseInt(allSlides[current].dataset.section??-1);
+  const isBonus=type==='bonus';
+  // lesson dots
+  for(let i=0;i<N_SECTIONS;i++){
+    const d=document.getElementById(`td${i}`);
+    if(!d)continue;
+    const past=i<si||(i===si&&type==='lesson')||isBonus;
+    d.setAttribute('fill',past?'rgba(0,212,255,.65)':i===si?'rgba(0,212,255,.35)':'rgba(255,255,255,.12)');
+    d.setAttribute('r',i===si&&!isBonus?'3.5':'2.5');
+  }
+  const tb=document.getElementById('tb');
+  if(tb) tb.setAttribute('fill',isBonus?'rgba(245,158,11,.7)':'none');
+  // walker position
+  const av=document.getElementById('tav');
+  if(av){
+    if(isBonus){
+      av.setAttribute('cx', TCX+TR+14);
+      av.setAttribute('cy', TCY+TR+10);
+      av.setAttribute('fill','var(--amber)');
+    } else {
+      const idx=Math.max(0,Math.min(si,N_SECTIONS-1));
+      const a=(-90+idx*SECTION_ANGLE_DEG)*Math.PI/180;
+      av.setAttribute('cx', TCX+TR*Math.cos(a));
+      av.setAttribute('cy', TCY+TR*Math.sin(a));
+      av.setAttribute('fill','var(--teal)');
+    }
+  }
+}
+updateHUD();
+
+// ── Map animation ──
+// Constellation map geometry. Auto-derived from N_SECTIONS so the visualization
+// scales to however many SECTIONS you defined above.
+const LSHORT=SECTIONS.map(s=>s.lesson.title.replace('\n',' '));
+const MX=460,MY=290,MR=200;
+// Cord attaches at ~5 o'clock on the ring (only used if BONUS exists)
+const CORD_ANGLE=55*Math.PI/180;
+const CORD_A={x:MX+MR*Math.cos(CORD_ANGLE), y:MY+MR*Math.sin(CORD_ANGLE)};
+const CORD_B={x:CORD_A.x+95, y:CORD_A.y+100};
+function mPos(i){const a=(-90+i*SECTION_ANGLE_DEG)*Math.PI/180;return{x:MX+MR*Math.cos(a),y:MY+MR*Math.sin(a)}}
+
+// Constellation lines connect each node to the one ⌊N/3⌋ steps ahead, creating
+// a star pattern. Auto-generates from N_SECTIONS.
+const CONSTELLATION_LINES = (function(){
+  const skip = Math.max(2, Math.floor(N_SECTIONS / 3));
+  const out = [];
+  for (let i = 0; i < N_SECTIONS; i++) out.push([i, (i + skip) % N_SECTIONS]);
+  return out;
+})();
+
+// Optional logo overlay — point LOGO_URL at a transparent PNG of your brand mark
+// to have it fade in at the center of the constellation map at the end of the
+// animation. Set LOGO_URL to '' to disable. The image is positioned and scaled
+// via LOGO_W/H/X/Y in viewBox units (the SVG viewBox is 1000×600).
+const LOGO_URL = '';
+const LOGO_W = 480, LOGO_H = 480;
+const LOGO_X = MX - LOGO_W/2, LOGO_Y = MY - LOGO_H/2;
+
+let mapDone=false;
+function startMap(){
+  if(mapDone)return;mapDone=true;
+  const svg=document.getElementById('map-svg');svg.innerHTML='';
+  const CIRC=2*Math.PI*MR;
+
+  // defs
+  const defs=svgE('defs');
+  const f=svgE('filter',{id:'gl',x:'-40%',y:'-40%',width:'180%',height:'180%'});
+  f.appendChild(svgE('feGaussianBlur',{stdDeviation:'3',result:'b'}));
+  const mg=svgE('feMerge');mg.appendChild(svgE('feMergeNode',{in:'b'}));mg.appendChild(svgE('feMergeNode',{in:'SourceGraphic'}));
+  f.appendChild(mg);defs.appendChild(f);
+  // softer glow for constellation lines
+  const f2=svgE('filter',{id:'gl2',x:'-50%',y:'-50%',width:'200%',height:'200%'});
+  f2.appendChild(svgE('feGaussianBlur',{stdDeviation:'1.5',result:'b2'}));
+  const mg2=svgE('feMerge');mg2.appendChild(svgE('feMergeNode',{in:'b2'}));mg2.appendChild(svgE('feMergeNode',{in:'SourceGraphic'}));
+  f2.appendChild(mg2);defs.appendChild(f2);
+  svg.appendChild(defs);
+
+  // Optional logo overlay (opt-in via LOGO_URL above)
+  let logoImg = null;
+  if (LOGO_URL) {
+    logoImg = svgE('image', {href: LOGO_URL, x: LOGO_X, y: LOGO_Y, width: LOGO_W, height: LOGO_H, opacity: '0'});
+    logoImg.style.transition = 'opacity 1.8s ease-in';
+    svg.appendChild(logoImg);
+  }
+
+  // Faint guide circle
+  svg.appendChild(svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(0,212,255,.05)','stroke-width':'1'}));
+
+  // Constellation lines (thin, connecting non-adjacent nodes — appear with a delay)
+  const constLines=[];
+  CONSTELLATION_LINES.forEach(([a,b])=>{
+    const pa=mPos(a),pb=mPos(b);
+    const line=svgE('line',{x1:pa.x,y1:pa.y,x2:pb.x,y2:pb.y,stroke:'rgba(0,212,255,.06)','stroke-width':'0.5',filter:'url(#gl2)',opacity:'0'});
+    line.style.transition='opacity .6s';
+    svg.appendChild(line);
+    constLines.push(line);
+  });
+
+  // Animated ring (draws clockwise from top)
+  const ring=svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(0,212,255,.55)','stroke-width':'1.8',
+    'stroke-dasharray':CIRC,'stroke-dashoffset':CIRC,'stroke-linecap':'round',
+    transform:`rotate(-90 ${MX} ${MY})`,filter:'url(#gl)'});
+  svg.appendChild(ring);
+
+  // Cord path (from ~5 o'clock on ring to bonus eyepiece)
+  const cordCtrl={x:CORD_A.x+55,y:CORD_A.y+60};
+  const cord=svgE('path',{d:`M${CORD_A.x} ${CORD_A.y} Q${cordCtrl.x} ${cordCtrl.y} ${CORD_B.x} ${CORD_B.y}`,
+    fill:'none',stroke:'rgba(245,158,11,.55)','stroke-width':'1.8',
+    'stroke-dasharray':'200','stroke-dashoffset':'200','stroke-linecap':'round',filter:'url(#gl)'});
+  svg.appendChild(cord);
+
+  // Section nodes (on the ring) — auto-scales to N_SECTIONS
+  const nEls=[];
+  for(let i=0;i<N_SECTIONS;i++){
+    const p=mPos(i),dx=p.x-MX,dy=p.y-MY,len=Math.hypot(dx,dy);
+    const lx=p.x+(dx/len)*34,ly=p.y+(dy/len)*34;
+    const anc=p.x>MX+20?'start':p.x<MX-20?'end':'middle';
+    const g=svgE('g',{opacity:'0',class:'recap-pill'});g.style.transition='opacity .4s';g.dataset.lesson=i;
+    // star glow
+    g.appendChild(svgE('circle',{cx:p.x,cy:p.y,r:'16',fill:'rgba(0,212,255,.02)',stroke:'rgba(0,212,255,.08)','stroke-width':'0.5'}));
+    // center star
+    g.appendChild(svgE('circle',{cx:p.x,cy:p.y,r:'4.5',fill:'rgba(0,212,255,.15)',stroke:'rgba(0,212,255,.65)','stroke-width':'1.5'}));
+    // year/chapter label
+    const yr=svgE('text',{x:lx,y:ly-(p.y<MY?12:0),'text-anchor':anc,fill:'rgba(0,212,255,.8)',
+      'font-family':'Space Grotesk,sans-serif','font-size':'10.5','font-weight':'600','letter-spacing':'1.2'});
+    yr.textContent=String(SECTIONS[i].year);g.appendChild(yr);
+    // lesson label
+    const tt=svgE('text',{x:lx,y:ly+(p.y<MY?3:14),'text-anchor':anc,fill:'rgba(255,255,255,.38)',
+      'font-family':'Space Grotesk,sans-serif','font-size':'8','font-weight':'400'});
+    tt.textContent=LSHORT[i];g.appendChild(tt);
+    g.addEventListener('click',()=>{if(lessonIdxs[i]!==undefined)goTo(lessonIdxs[i])});
+    svg.appendChild(g);nEls.push(g);
+  }
+
+  // Bonus node (only if BONUS exists)
+  let bG = null;
+  if (BONUS) {
+    bG=svgE('g',{opacity:'0'});bG.style.transition='opacity .5s';
+    bG.appendChild(svgE('circle',{cx:CORD_B.x,cy:CORD_B.y,r:'18',fill:'rgba(245,158,11,.02)',stroke:'rgba(245,158,11,.1)','stroke-width':'0.5'}));
+    bG.appendChild(svgE('circle',{cx:CORD_B.x,cy:CORD_B.y,r:'6',fill:'rgba(245,158,11,.15)',stroke:'rgba(245,158,11,.65)','stroke-width':'1.5'}));
+    const bYr=svgE('text',{x:CORD_B.x+22,y:CORD_B.y-5,'text-anchor':'start',fill:'rgba(245,158,11,.85)',
+      'font-family':'Space Grotesk,sans-serif','font-size':'10.5','font-weight':'600','letter-spacing':'1.2'});
+    bYr.textContent=String(BONUS.year);bG.appendChild(bYr);
+    const bTt=svgE('text',{x:CORD_B.x+22,y:CORD_B.y+10,'text-anchor':'start',fill:'rgba(255,255,255,.35)',
+      'font-family':'Space Grotesk,sans-serif','font-size':'8'});
+    bTt.textContent=BONUS.title.replace('\n',' ');bG.appendChild(bTt);
+    svg.appendChild(bG);
+  }
+
+  // Center text — uses #brand text content as the headline
+  const brandText = (document.getElementById('brand')?.textContent || 'YOUR DECK').toUpperCase();
+  const cL=svgE('text',{x:MX,y:MY-4,'text-anchor':'middle','dominant-baseline':'middle',fill:'rgba(255,255,255,0)',
+    'font-family':'Space Grotesk,sans-serif','font-size':'20','font-weight':'600','letter-spacing':'4'});
+  cL.textContent=brandText;svg.appendChild(cL);
+  const cS=svgE('text',{x:MX,y:MY+20,'text-anchor':'middle','dominant-baseline':'middle',fill:'rgba(255,255,255,0)',
+    'font-family':'Space Grotesk,sans-serif','font-size':'10','font-weight':'400','letter-spacing':'2.5'});
+  const yearRange = `${SECTIONS[0]?.year ?? ''} – ${BONUS?.year ?? SECTIONS[N_SECTIONS-1]?.year ?? ''}`;
+  cS.textContent=yearRange;svg.appendChild(cS);
+
+  // ── Animation sequence ──
+  const DLY=300, CDUR=3200, STP=CDUR/N_SECTIONS;
+
+  // 1. Ring draws (0.3s – 3.5s)
+  let rs=null;
+  function aR(ts){if(!rs)rs=ts;const p=Math.min((ts-rs)/CDUR,1);const e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;ring.setAttribute('stroke-dashoffset',CIRC*(1-e));if(p<1)requestAnimationFrame(aR)}
+  setTimeout(()=>requestAnimationFrame(aR),DLY);
+
+  // 2. Nodes appear as ring passes through (star by star)
+  nEls.forEach((g,i)=>setTimeout(()=>{g.style.opacity='1'},DLY+i*STP+80));
+
+  // 3. Constellation lines fade in after their nodes appear
+  constLines.forEach((line,i)=>{
+    const [a,b]=CONSTELLATION_LINES[i];
+    const t=DLY+Math.max(a,b)*STP+200;
+    setTimeout(()=>{line.style.opacity='1'},t);
+  });
+
+  // 4. Cord draws after ring completes
+  const cStart=DLY+CDUR+250;
+  let cs2=null;
+  function aC(ts){if(!cs2)cs2=ts;const p=Math.min((ts-cs2)/800,1);cord.setAttribute('stroke-dashoffset',200*(1-p));if(p<1)requestAnimationFrame(aC)}
+  setTimeout(()=>requestAnimationFrame(aC),cStart);
+
+  // 5. Bonus node appears (if BONUS is defined)
+  if (bG) setTimeout(()=>{bG.style.opacity='1'},cStart+800);
+
+  // 6. Center text fades in
+  setTimeout(()=>{
+    cL.setAttribute('fill','rgba(255,255,255,.65)');cL.style.transition='fill 1s';
+    cS.setAttribute('fill','rgba(255,255,255,.22)');cS.style.transition='fill 1s';
+  },cStart+1100);
+
+  // 7. Optional logo fades in (if LOGO_URL was set)
+  if (logoImg) setTimeout(()=>{ logoImg.style.opacity='0.12'; },cStart+1500);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANNOTATION OVERLAY — click elements to leave notes, export as markdown
+   ═══════════════════════════════════════════════════════════════════════ */
+const ANNO_KEY = 'hxr-keynote-annotations';
+let annoMode = false;
+let pendingTarget = null;
+
+function annoLoad(){ try{return JSON.parse(localStorage.getItem(ANNO_KEY)||'[]')}catch(e){return []} }
+function annoSave(arr){ localStorage.setItem(ANNO_KEY, JSON.stringify(arr)) }
+
+function annoToast(msg){
+  const t=document.getElementById('anno-toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+// Build a stable selector for an element
+function annoSelector(el){
+  if(el.id) return '#'+el.id;
+  const path=[];
+  let cur=el, depth=0;
+  while(cur && cur!==document.body && depth<5){
+    let part=cur.tagName.toLowerCase();
+    if(cur.id){ part='#'+cur.id; path.unshift(part); break; }
+    if(cur.classList.length){
+      const cls=Array.from(cur.classList).filter(c=>!['active','exit-fwd','exit-bwd'].includes(c)).slice(0,2).join('.');
+      if(cls) part+='.'+cls;
+    }
+    // nth-of-type if siblings exist
+    const sibs=Array.from(cur.parentNode?.children||[]).filter(s=>s.tagName===cur.tagName);
+    if(sibs.length>1){ part+=':nth-of-type('+(sibs.indexOf(cur)+1)+')'; }
+    path.unshift(part);
+    cur=cur.parentElement; depth++;
+  }
+  return path.join(' > ');
+}
+
+// Get slide context (year/type) for the element if it lives inside a slide
+function annoContext(el){
+  const slide=el.closest('.slide');
+  if(!slide) return null;
+  const type=slide.dataset.type||'?';
+  const year=slide.dataset.year||'';
+  return year ? `${type} ${year}` : type;
+}
+
+function annoRender(){
+  const list=document.getElementById('anno-list');
+  const items=annoLoad();
+  if(items.length===0){
+    list.innerHTML='<div id="anno-empty">No annotations yet.<br>Click any element on the page.</div>';
+    return;
+  }
+  list.innerHTML=items.map((a,i)=>`
+    <div class="anno-item">
+      <span class="anno-rm" data-i="${i}">×</span>
+      <div class="anno-meta">${a.context||'—'} · <code>${a.selector}</code></div>
+      <div>${a.text.replace(/</g,'&lt;')}</div>
+    </div>`).join('');
+  list.querySelectorAll('.anno-rm').forEach(b=>b.addEventListener('click',e=>{
+    const i=+e.target.dataset.i;
+    const arr=annoLoad(); arr.splice(i,1); annoSave(arr); annoRender();
+  }));
+}
+
+function annoToggleMode(on){
+  annoMode = on===undefined ? !annoMode : on;
+  document.body.classList.toggle('annotate-mode',annoMode);
+  document.getElementById('anno-toggle').classList.toggle('active',annoMode);
+  document.getElementById('anno-toggle').textContent=annoMode?'✕ Exit Annotate':'📝 Annotate';
+  document.getElementById('anno-panel').classList.toggle('visible',annoMode);
+  if(annoMode) annoRender();
+  if(!annoMode) document.getElementById('anno-prompt').classList.remove('visible');
+}
+
+document.getElementById('anno-toggle').addEventListener('click',()=>annoToggleMode());
+
+// Keyboard shortcut: A toggles annotate mode
+document.addEventListener('keydown',e=>{
+  if(e.key==='a'||e.key==='A'){
+    if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
+    e.preventDefault(); annoToggleMode();
+  }
+});
+
+// Click handler in annotate mode
+document.addEventListener('click',e=>{
+  if(!annoMode)return;
+  // Ignore clicks on the annotation UI itself
+  if(e.target.closest('#anno-toggle')||e.target.closest('#anno-panel')||e.target.closest('#anno-prompt')||e.target.closest('#anno-toast'))return;
+  e.preventDefault(); e.stopPropagation();
+  pendingTarget=e.target;
+  const sel=annoSelector(e.target);
+  const ctx=annoContext(e.target);
+  document.getElementById('anno-target-text').textContent=(ctx?ctx+' → ':'')+sel;
+  const prompt=document.getElementById('anno-prompt');
+  // Position prompt near click
+  const x=Math.min(e.clientX+10, innerWidth-300);
+  const y=Math.min(e.clientY+10, innerHeight-200);
+  prompt.style.left=x+'px'; prompt.style.top=y+'px';
+  prompt.classList.add('visible');
+  document.getElementById('anno-text').value='';
+  setTimeout(()=>document.getElementById('anno-text').focus(),50);
+},true);
+
+document.getElementById('anno-cancel').addEventListener('click',()=>{
+  document.getElementById('anno-prompt').classList.remove('visible');
+  pendingTarget=null;
+});
+
+document.getElementById('anno-save').addEventListener('click',()=>{
+  const text=document.getElementById('anno-text').value.trim();
+  if(!text||!pendingTarget)return;
+  const arr=annoLoad();
+  arr.push({
+    selector: annoSelector(pendingTarget),
+    context: annoContext(pendingTarget),
+    text,
+    timestamp: new Date().toISOString()
+  });
+  annoSave(arr);
+  document.getElementById('anno-prompt').classList.remove('visible');
+  pendingTarget=null;
+  annoRender();
+  annoToast('Annotation saved');
+});
+
+// Cmd/Ctrl+Enter to save in textarea
+document.getElementById('anno-text').addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){ e.preventDefault(); document.getElementById('anno-save').click(); }
+  if(e.key==='Escape'){ document.getElementById('anno-cancel').click(); }
+});
+
+document.getElementById('anno-export').addEventListener('click',()=>{
+  const arr=annoLoad();
+  if(arr.length===0){ annoToast('Nothing to copy'); return; }
+  const md='# Keynote Annotations\n\n'+arr.map((a,i)=>
+    `## ${i+1}. ${a.context||'—'}\n**Selector:** \`${a.selector}\`\n**Note:** ${a.text}\n`
+  ).join('\n');
+  navigator.clipboard.writeText(md).then(()=>annoToast(`Copied ${arr.length} annotation${arr.length>1?'s':''} to clipboard`));
+});
+
+document.getElementById('anno-clear').addEventListener('click',()=>{
+  if(!confirm('Clear all annotations?'))return;
+  annoSave([]); annoRender(); annoToast('Cleared');
+});
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOVE MODE — drag any element to reposition; deltas saved as annotations
+   ═══════════════════════════════════════════════════════════════════════ */
+let moveMode=false;
+let dragEl=null, dragStart=null;
+const elDeltas=new Map(); // element -> {dx, dy}
+
+function moveModeToggle(on){
+  moveMode = on===undefined ? !moveMode : on;
+  // Can't have both modes at once
+  if(moveMode && annoMode) annoToggleMode(false);
+  document.body.classList.toggle('move-mode', moveMode);
+  document.getElementById('move-toggle').classList.toggle('active', moveMode);
+  document.getElementById('move-toggle').textContent = moveMode ? '✕ Exit Move' : '✋ Move Mode';
+  if(moveMode){
+    annoToast('Move mode: drag any element. Release to save offset as annotation.');
+  } else if(elDeltas.size>0){
+    annoToast('Move mode off. Drags saved as annotations. Refresh to reset positions.');
+  }
+}
+
+document.getElementById('move-toggle').addEventListener('click',()=>moveModeToggle());
+
+document.addEventListener('keydown',e=>{
+  if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
+  if(e.key==='m'||e.key==='M'){ e.preventDefault(); moveModeToggle(); }
+});
+
+document.addEventListener('mousedown',e=>{
+  if(!moveMode)return;
+  if(e.target.closest('#move-toggle')||e.target.closest('#anno-toggle')||e.target.closest('#slide-grid')||e.target.closest('#slide-grid-zone')||e.target.closest('#anno-panel')||e.target.closest('#anno-prompt'))return;
+  e.preventDefault(); e.stopPropagation();
+  dragEl = e.target;
+  const existing = elDeltas.get(dragEl) || {dx:0, dy:0};
+  dragStart = { x:e.clientX, y:e.clientY, ix:existing.dx, iy:existing.dy };
+  dragEl.classList.add('dragging');
+}, true);
+
+document.addEventListener('mousemove',e=>{
+  if(!dragEl)return;
+  const dx = dragStart.ix + (e.clientX - dragStart.x);
+  const dy = dragStart.iy + (e.clientY - dragStart.y);
+  elDeltas.set(dragEl, {dx, dy});
+  // Apply transform — works for fixed, absolute, AND relative/static elements
+  const existingTransform = dragEl.dataset.origTransform || '';
+  if(!dragEl.dataset.origTransform){
+    dragEl.dataset.origTransform = getComputedStyle(dragEl).transform === 'none' ? '' : getComputedStyle(dragEl).transform;
+  }
+  dragEl.style.transform = `${dragEl.dataset.origTransform} translate(${dx}px, ${dy}px)`;
+}, true);
+
+document.addEventListener('mouseup',e=>{
+  if(!dragEl)return;
+  const delta = elDeltas.get(dragEl);
+  dragEl.classList.remove('dragging');
+  if(delta && (Math.abs(delta.dx)>3 || Math.abs(delta.dy)>3)){
+    const sel = annoSelector(dragEl);
+    const ctx = annoContext(dragEl);
+    const arr = annoLoad();
+    // Look for an existing move annotation for this element and replace it
+    const existing = arr.findIndex(a => a.type==='move' && a.selector===sel);
+    const note = {
+      selector: sel,
+      context: ctx,
+      text: `MOVE by Δ(${delta.dx>=0?'+':''}${Math.round(delta.dx)}px, ${delta.dy>=0?'+':''}${Math.round(delta.dy)}px) from current position`,
+      timestamp: new Date().toISOString(),
+      type: 'move',
+      delta: {dx:Math.round(delta.dx), dy:Math.round(delta.dy)},
+    };
+    if(existing >= 0) arr[existing] = note; else arr.push(note);
+    annoSave(arr);
+    annoToast(`Saved: move ${sel} Δ(${Math.round(delta.dx)},${Math.round(delta.dy)})`);
+    annoRender();
+  }
+  dragEl = null; dragStart = null;
+}, true);
+</script>
+</body>
+</html>
