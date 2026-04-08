@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spatial Deck — Social Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060810;--teal:#00d4ff;--purple:#a78bfa;--amber:#f59e0b;
+  --text:#f0f4ff;--dim:rgba(240,244,255,.5);
+  --font:'Space Grotesk',system-ui,sans-serif;
+}
+html,body{width:1200px;height:630px;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--font)}
+
+/* Background — same spatial-deck visual language */
+.bg{position:absolute;inset:0;overflow:hidden}
+.bg-gradient{position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 15% 50%,rgba(124,58,237,.22) 0%,transparent 55%),
+             radial-gradient(ellipse 60% 70% at 85% 20%,rgba(0,212,255,.16) 0%,transparent 55%),
+             linear-gradient(180deg,#060810 0%,#0b0820 50%,#060810 100%);
+}
+canvas{position:absolute;inset:0}
+
+/* Constellation graphic on the right */
+.constellation{position:absolute;top:50%;right:80px;transform:translateY(-50%);width:340px;height:340px}
+.constellation svg{width:100%;height:100%}
+.cnode{fill:rgba(0,212,255,.6);stroke:rgba(0,212,255,.85);stroke-width:1.5}
+.cring{fill:none;stroke:rgba(0,212,255,.45);stroke-width:1.5}
+.cline{stroke:rgba(0,212,255,.18);stroke-width:.6}
+
+/* Content */
+.content{position:absolute;top:50%;left:80px;transform:translateY(-50%);max-width:680px;z-index:10}
+.tag{
+  font-size:14px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--teal);opacity:.9;margin-bottom:24px;
+}
+.title{
+  font-size:96px;font-weight:700;line-height:.96;letter-spacing:-.03em;
+  background:linear-gradient(130deg,#fff 20%,#a5d8ff 55%,#9b8cff 90%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:18px;
+}
+.tagline{
+  font-size:24px;font-weight:400;color:var(--dim);line-height:1.4;
+  max-width:600px;margin-bottom:36px;
+}
+.meta{
+  display:flex;align-items:center;gap:14px;
+  font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+}
+.meta .pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  border-radius:30px;padding:9px 18px;
+}
+.meta .pill .lbl{opacity:.45;font-size:10px}
+.meta .url{color:var(--teal);opacity:.85}
+
+/* Footer brand mark */
+.footer{
+  position:absolute;bottom:36px;left:80px;right:80px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.28);
+}
+</style>
+</head>
+<body>
+<div class="bg">
+  <div class="bg-gradient"></div>
+  <canvas id="stars"></canvas>
+</div>
+
+<!-- Constellation graphic -->
+<div class="constellation">
+  <svg viewBox="0 0 340 340">
+    <!-- ring -->
+    <circle class="cring" cx="170" cy="170" r="140"/>
+    <!-- 8 connecting lines -->
+    <line class="cline" x1="170" y1="30" x2="269.5" y2="269.5"/>
+    <line class="cline" x1="269.5" y1="70.5" x2="70.5" y2="269.5"/>
+    <line class="cline" x1="310" y1="170" x2="30" y2="170"/>
+    <line class="cline" x1="269.5" y1="269.5" x2="70.5" y2="70.5"/>
+    <line class="cline" x1="170" y1="310" x2="170" y2="30"/>
+    <line class="cline" x1="70.5" y1="269.5" x2="269.5" y2="70.5"/>
+    <line class="cline" x1="30" y1="170" x2="310" y2="170"/>
+    <line class="cline" x1="70.5" y1="70.5" x2="269.5" y2="269.5"/>
+    <!-- 8 nodes -->
+    <circle class="cnode" cx="170" cy="30" r="6"/>
+    <circle class="cnode" cx="269.5" cy="70.5" r="6"/>
+    <circle class="cnode" cx="310" cy="170" r="6"/>
+    <circle class="cnode" cx="269.5" cy="269.5" r="6"/>
+    <circle class="cnode" cx="170" cy="310" r="6"/>
+    <circle class="cnode" cx="70.5" cy="269.5" r="6"/>
+    <circle class="cnode" cx="30" cy="170" r="6"/>
+    <circle class="cnode" cx="70.5" cy="70.5" r="6"/>
+    <!-- center brand -->
+    <text x="170" y="168" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,.7)" font-family="Space Grotesk,sans-serif" font-size="16" font-weight="600" letter-spacing="3">SPATIAL</text>
+    <text x="170" y="188" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,.7)" font-family="Space Grotesk,sans-serif" font-size="16" font-weight="600" letter-spacing="3">DECK</text>
+  </svg>
+</div>
+
+<div class="content">
+  <div class="tag">Open Source · MIT</div>
+  <h1 class="title">Spatial<br>Deck</h1>
+  <p class="tagline">A self-contained, single-file presentation framework for live talks. No build, no framework. AI-collaborative editing built in.</p>
+  <div class="meta">
+    <div class="pill"><span class="lbl">Repo</span><span class="url">github.com/ibrews/spatial-deck</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>One HTML File · No Dependencies</span>
+  <span>Annotate Mode · Move Mode · Clicker Ready</span>
+</div>
+
+<script>
+// Stars background
+const cv=document.getElementById('stars'),sc=cv.getContext('2d');
+cv.width=1200;cv.height=630;
+const stars=Array.from({length:90},()=>({
+  x:Math.random()*1200,y:Math.random()*630,
+  r:Math.random()*1.4+.3,o:Math.random()*.5+.15
+}));
+sc.clearRect(0,0,1200,630);
+stars.forEach(s=>{
+  sc.beginPath();sc.arc(s.x,s.y,s.r,0,Math.PI*2);
+  sc.fillStyle=`rgba(210,225,255,${s.o})`;sc.fill();
+});
+</script>
+</body>
+</html>
