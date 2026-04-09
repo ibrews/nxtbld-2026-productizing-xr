@@ -247,6 +247,7 @@ body.presentation-mode #anno-prompt {
 body.annotate-mode *:not(#anno-panel):not(#anno-panel *):not(#anno-toggle):not(#move-toggle):not(#slide-grid):not(#slide-grid *):not(#slide-grid-zone):hover{outline:2px dashed var(--teal)!important;outline-offset:2px;cursor:crosshair!important}
 body.move-mode .slide.active *:not(#anno-toggle):not(#move-toggle):hover{outline:2px dashed var(--amber)!important;outline-offset:2px;cursor:move!important}
 body.move-mode .slide.active *{user-select:none}
+body.edit-text .slide.active [contenteditable="true"]{outline:2px solid var(--teal)!important;cursor:text!important;user-select:text!important;background:rgba(0,212,255,.08)}
 .dragging{opacity:.85!important;outline:2px solid var(--amber)!important}
 #anno-panel{position:fixed;top:70px;left:24px;z-index:1001;width:320px;max-height:70vh;background:rgba(10,12,24,.96);border:1px solid rgba(0,212,255,.3);border-radius:10px;padding:16px;font-family:var(--font);font-size:.78rem;color:var(--text);backdrop-filter:blur(12px);overflow-y:auto;display:none}
 #anno-panel.visible{display:block}
@@ -758,7 +759,10 @@ function annoContext(el){
   if(!slide) return null;
   const type=slide.dataset.type||'?';
   const year=slide.dataset.year||'';
-  return year ? `${type} ${year}` : type;
+  const idx=[...document.querySelectorAll('#deck > .slide')].indexOf(slide);
+  const num=idx>=0 ? `#${idx+1}` : '';
+  const base=year ? `${type} ${year}` : type;
+  return num ? `${base} ${num}` : base;
 }
 
 function annoRender(){
@@ -938,9 +942,104 @@ document.addEventListener('keydown',e=>{
   if(e.key==='m'||e.key==='M'){ e.preventDefault(); moveModeToggle(); }
 });
 
+// Suppress link navigation while move mode is on
+document.addEventListener('click', e => {
+  if (!moveMode) return;
+  const a = e.target.closest('a');
+  if (a && !a.closest('#move-hud,#anno-panel,#anim-scrub-bar')) { e.preventDefault(); e.stopPropagation(); }
+}, true);
+
+// Double-click in move mode = enter text-edit mode
+let editingEl = null;
+function endTextEdit(save){
+  if (!editingEl) return;
+  const el = editingEl;
+  el.removeAttribute('contenteditable'); el.blur();
+  if (save) {
+    const txt = el.innerText;
+    if (txt !== (el.dataset.origText||'')) {
+      const sel = annoSelector(el);
+      const arr = annoLoad();
+      const existing = arr.find(a=>a.selector===sel && a.text.startsWith('TEXT '));
+      const entry = { selector: sel, text: `TEXT "${txt.replace(/"/g,'\\"')}"`, context: annoContext(el), ts: Date.now() };
+      if (existing) Object.assign(existing, entry); else arr.push(entry);
+      annoSave(arr); annoRender();
+      annoToast('Text saved');
+    }
+  }
+  editingEl = null;
+  document.body.classList.remove('edit-text');
+}
+document.addEventListener('dblclick', e => {
+  if (!moveMode) return;
+  if (e.target.closest('#move-hud,#anno-panel,#anim-scrub-bar,#slide-grid,#move-toggle,#anno-toggle')) return;
+  const el = e.target;
+  if (el.closest('svg')) { annoToast('SVG text not editable yet'); return; }
+  e.preventDefault(); e.stopPropagation();
+  if (editingEl && editingEl !== el) endTextEdit(true);
+  editingEl = el;
+  el.dataset.origText = el.innerText;
+  el.setAttribute('contenteditable','true');
+  document.body.classList.add('edit-text');
+  el.focus();
+  const r = document.createRange(); r.selectNodeContents(el);
+  const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+}, true);
+document.addEventListener('keydown', e => {
+  if (!editingEl) return;
+  if (e.key === 'Escape') { e.preventDefault(); endTextEdit(false); }
+  if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); endTextEdit(true); }
+}, true);
+
+// Re-apply saved TEXT and IMG annotations
+function applyTextAnnotations(){
+  annoLoad().filter(a=>a.text.startsWith('TEXT ')).forEach(a=>{
+    try { const m = a.text.match(/^TEXT "(.*)"$/s); if (!m) return;
+      const el = document.querySelector(a.selector); if (el) el.innerText = m[1].replace(/\\"/g,'"'); } catch(_){}
+  });
+}
+function applyImageAnnotations(){
+  annoLoad().filter(a=>a.text.startsWith('IMG ')).forEach(a=>{
+    try { const m = a.text.match(/^IMG (data:[^\s]+)$/); if (!m) return;
+      const el = document.querySelector(a.selector); if (el && el.tagName === 'IMG') el.src = m[1]; } catch(_){}
+  });
+}
+setTimeout(()=>{applyTextAnnotations();applyImageAnnotations();}, 300);
+
+// Drag-and-drop image swap (move mode only)
+document.addEventListener('dragover', e => {
+  if (!moveMode) return;
+  const img = e.target.closest('img'); if (!img) return;
+  e.preventDefault();
+  img.style.outline = '3px dashed var(--teal)'; img.style.outlineOffset = '2px';
+});
+document.addEventListener('dragleave', e => { const img = e.target.closest('img'); if (img) img.style.outline = ''; });
+document.addEventListener('drop', e => {
+  if (!moveMode) return;
+  const img = e.target.closest('img'); if (!img) return;
+  e.preventDefault(); e.stopPropagation();
+  img.style.outline = '';
+  const file = e.dataTransfer?.files?.[0];
+  if (!file || !file.type.startsWith('image/')) { annoToast('Drop an image file'); return; }
+  const reader = new FileReader();
+  reader.onload = () => {
+    img.src = reader.result;
+    const sel = annoSelector(img);
+    const arr = annoLoad();
+    const existing = arr.find(a=>a.selector===sel && a.text.startsWith('IMG '));
+    const entry = { selector: sel, text: `IMG ${reader.result}`, context: annoContext(img), ts: Date.now() };
+    if (existing) Object.assign(existing, entry); else arr.push(entry);
+    annoSave(arr); annoRender();
+    annoToast(`Image swapped (${(file.size/1024).toFixed(0)} KB)`);
+  };
+  reader.readAsDataURL(file);
+}, true);
+
 document.addEventListener('mousedown',e=>{
   if(!moveMode)return;
-  if(e.target.closest('#move-toggle')||e.target.closest('#anno-toggle')||e.target.closest('#slide-grid')||e.target.closest('#slide-grid-zone')||e.target.closest('#anno-panel')||e.target.closest('#anno-prompt'))return;
+  if(e.target.closest('#move-toggle')||e.target.closest('#anno-toggle')||e.target.closest('#slide-grid')||e.target.closest('#slide-grid-zone')||e.target.closest('#anno-panel')||e.target.closest('#anno-prompt')||e.target.closest('#anim-scrub-bar')||e.target.closest('#anno-toast'))return;
+  if (e.target.closest('[contenteditable="true"]')) return;
+  if (editingEl && !e.target.closest('[contenteditable="true"]')) endTextEdit(true);
   e.preventDefault(); e.stopPropagation();
   dragEl = e.target;
   const existing = elDeltas.get(dragEl) || {dx:0, dy:0};
