@@ -430,12 +430,14 @@ deck.appendChild(bon);allSlides.push(bon);
     window.addEventListener('touchmove',onTouchMove,{passive:false});
     window.addEventListener('mouseup',onUp);
     window.addEventListener('touchend',onUp);
-    running=true;autoRotate=true;
+    running=true;autoRotate=true;let baseX=0;
     function animate(){
       if(!running){rafId=null;return;}
       if(autoRotate){
         group.rotation.y+=0.005;
-        group.rotation.x=Math.sin(Date.now()*0.0008)*0.15;
+        group.rotation.x=baseX+Math.sin(Date.now()*0.0008)*0.15;
+      } else {
+        baseX=group.rotation.x;
       }
       renderer.render(scene,camera);
       rafId=requestAnimationFrame(animate);
