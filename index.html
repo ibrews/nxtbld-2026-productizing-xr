@@ -507,7 +507,7 @@ function goNext(){goTo(nextVisible(current,1),true);}
 function goPrev(){goTo(nextVisible(current,-1),false);}
 function advanceStep(){const ss=slideSteps.get(allSlides[current]);if(ss&&ss.current<ss.steps.length){ss.steps[ss.current]();ss.current++;updateStepIndicator();return true;}return false;}
 function updateStepIndicator(){const el=document.getElementById('step-indicator');const ss=slideSteps.get(allSlides[current]);el.textContent=(ss&&ss.current<ss.steps.length)?`Step ${ss.current+1}/${ss.steps.length}`:'';}
-function updateHUD(){document.getElementById('counter').textContent=`${String(current+1).padStart(2,'0')} / ${total}`;updateStepIndicator();buildGrid();}
+function updateHUD(){document.getElementById('counter').textContent=`${String(current).padStart(2,'0')} / ${total-1}`;updateStepIndicator();buildGrid();}
 function updateHash(){location.hash=current>1?current:'';}
 function goToFromHash(){const h=parseInt(location.hash.replace('#',''));if(h>=0&&h<total)goTo(h);}
 document.getElementById('btn-next').addEventListener('click',()=>{if(window._arrowSubstep!==false&&advanceStep())return;goNext();});
