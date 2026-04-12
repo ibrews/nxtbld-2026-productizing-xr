@@ -89,10 +89,24 @@ index.html
 - URL hash: `#N` jumps to slide N (1-indexed)
 
 ### Annotations & Move Mode
-- Annotations saved to `localStorage` key matching `'spatial-deck-annotations'` or similar
-- Move transforms saved as annotations: `MOVE by Δ(±Xpx, ±Ypx)`
+- Annotations saved to `localStorage` key `'sd-annos'`
+- Move transforms saved as annotations: `MOVE by Δ(±Xpx, ±Ypx)` with final absolute position
 - Text edits saved as: `TEXT "new content"`
 - Undo/redo: 50-action stack, `Cmd+Z` / `Cmd+Shift+Z`
+- **Position annotations**: clicking slide background captures `left:X%, top:Y%` coordinates
+- **Layout grid**: `G` key in move mode toggles 4×3 labeled grid (A1-C4 zones)
+- **Clipboard snippets**: after drag, CSS position code auto-copied to clipboard
+
+### Slide Transitions
+- Configurable in Settings slide: `slide` (default), `fade`, `zoom`, `none`
+- Saved to localStorage config as `transition` property
+- `goTo()` reads preference and uses corresponding CSS keyframes
+
+### Auto-Save Snapshots
+- Every 60 seconds after first interaction, annotations + config saved to `sd-snapshots`
+- Keeps last 10 snapshots; skips if nothing changed
+- "🔄 Restore Snapshot" button in Settings shows timestamped list
+- Restoring replaces annotations + config and reloads page
 
 ### Speaker Notes
 - `notes` field in SECTIONS config (string)
@@ -140,7 +154,7 @@ index.html
 
 | File | Purpose |
 |------|---------|
-| `index.html` | The entire presentation (~95KB) |
+| `index.html` | The entire presentation (~106KB) |
 | `media/` | Images, videos, GIFs (optional) |
 | `docs/` | README screenshots |
 | `social.html` | 1200×630 social sharing card |
