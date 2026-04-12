@@ -96,6 +96,7 @@ canvas#stars{position:absolute;inset:0}
 .case-slide{flex-direction:row;gap:clamp(36px,4.5vw,90px);text-align:left;padding:clamp(50px,5vw,110px) clamp(80px,9vw,180px)}
 .case-image{flex:0 0 48%;max-width:860px;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .case-image img{width:100%;display:block;border-radius:18px}
+.case-image iframe{width:100%;aspect-ratio:16/9;border-radius:18px}
 .case-image .ph{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(124,58,237,.12));display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.12);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;border-radius:18px}
 .case-content{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px}
 .case-ytag{font-size:clamp(.65rem,.95vw,.95rem);font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);opacity:.6}
@@ -360,8 +361,14 @@ SECTIONS.forEach((sec,si)=>{
   deck.appendChild(ls);allSlides.push(ls);lessonIdxs.push(allSlides.length-1);
   sec.cases.forEach(c=>{
     const s=document.createElement('div');s.className=`slide case-slide${ac}`;s.dataset.type='case';s.dataset.year=sec.year;s.dataset.section=si;
-    const img=c.img?`<img src="${c.img}" alt="${c.title}" loading="lazy">`:`<div class="ph">Image TBD</div>`;
-    s.innerHTML=`<div class="case-image"><div class="media-cycler-mount" style="width:100%;height:100%"></div></div><div class="case-content"><div class="case-ytag">Case Study &middot; ${sec.lesson.short||''}</div><h2 class="case-title">${c.title}</h2><p class="case-sub">${c.subtitle}</p><ul class="case-bl">${c.bullets.map(b=>`<li>${b.replace(/\n/g,'<br>')}</li>`).join('')}</ul></div>`;
+    let imgHTML;
+    if(c.img&&c.img.startsWith('IFRAME:')){
+      const iframeSrc=c.img.slice(7);
+      imgHTML=`<iframe src="${iframeSrc}" style="width:100%;height:100%;border:none;border-radius:18px" allow="autoplay;fullscreen;xr-spatial-tracking" allowfullscreen></iframe>`;
+    } else {
+      imgHTML=`<div class="media-cycler-mount" style="width:100%;height:100%"></div>`;
+    }
+    s.innerHTML=`<div class="case-image">${imgHTML}</div><div class="case-content"><div class="case-ytag">Case Study &middot; ${sec.lesson.short||''}</div><h2 class="case-title">${c.title}</h2><p class="case-sub">${c.subtitle}</p><ul class="case-bl">${c.bullets.map(b=>`<li>${b.replace(/\n/g,'<br>')}</li>`).join('')}</ul></div>`;
     deck.appendChild(s);allSlides.push(s);
   });
 });

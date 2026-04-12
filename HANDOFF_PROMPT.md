@@ -50,7 +50,7 @@ index.html
 ### SECTIONS Array
 - Each entry: `{ year, accent, lesson: {title, tagline, short, tags, notes}, cases: [{title, subtitle, img, bullets, notes}] }`
 - `accent` values: `'teal'`, `'purple'`, `'amber'`, `'rose'`
-- `img` values: `'MEDIA_CYCLER'` (explicit cycler IIFE needed), `'path/to/image.jpg'` (auto-wrapped), `''` (gradient placeholder)
+- `img` values: `'MEDIA_CYCLER'` (explicit cycler IIFE needed), `'path/to/image.jpg'` (auto-wrapped), `'IFRAME:url'` (embedded iframe — YouTube, pixel stream, Sketchfab, etc.), `''` (gradient placeholder)
 - `\n` in titles renders as a line break
 - `<br>` and `<br><br>` work in taglines (double = paragraph gap)
 - `\n` in bullets renders as `<br>`

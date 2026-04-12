@@ -245,6 +245,31 @@ This solves the "put X here" problem — your AI collaborator gets exact coordin
 
 ---
 
+## 🎥 Embedded Content (iframes)
+
+Embed YouTube videos, Unreal Engine pixel streams, Sketchfab models, or any web content directly in a case study slide:
+
+```javascript
+// In SECTIONS:
+{ title: 'Live Demo', 
+  img: 'IFRAME:https://www.youtube.com/embed/dQw4w9WgXcQ',
+  bullets: ['This video plays right on the slide'] }
+```
+
+The `IFRAME:` prefix tells Spatial Deck to embed a responsive iframe instead of an image. Works with:
+
+| Source | Example `img` Value |
+|--------|-------------------|
+| **YouTube** | `'IFRAME:https://www.youtube.com/embed/VIDEO_ID'` |
+| **Vimeo** | `'IFRAME:https://player.vimeo.com/video/VIDEO_ID'` |
+| **Pixel Streaming** | `'IFRAME:https://your-server.com/stream'` |
+| **Sketchfab** | `'IFRAME:https://sketchfab.com/models/ID/embed'` |
+| **Any URL** | `'IFRAME:https://example.com'` |
+
+The iframe gets `allow="autoplay;fullscreen;xr-spatial-tracking"` by default — suitable for XR streaming and immersive content.
+
+---
+
 ## 🖼️ Media Cycler
 
 The media cycler is a canvas-based image/video gallery with a distinctive pixelated reveal effect.
@@ -478,6 +503,29 @@ The handoff prompt covers: file structure, SECTIONS config format, media cycler 
 "Create a media cycler with these 3 images"
 "Estimate how long my talk will take"
 ```
+
+---
+
+## 🍴 Fork for Your Talk, Pull Template Updates
+
+The recommended workflow: **fork this repo for each talk**, then pull template updates as they ship.
+
+```bash
+# 1. Fork on GitHub (or clone + push to a new repo)
+gh repo create my-talk-2026 --public --clone
+cp /path/to/spatial-deck/index.html .
+git add -A && git commit -m "Initial fork from spatial-deck" && git push
+
+# 2. Edit SECTIONS, add your content, media, etc.
+
+# 3. When the template gets new features, pull them in:
+git remote add template https://github.com/ibrews/spatial-deck.git
+git fetch template
+git merge template/main
+# Resolve any conflicts in SECTIONS (your content vs. sample content)
+```
+
+Each fork gets its own GitHub Pages URL for sharing. Your content stays separate from the template, but you can always pull in new features (media cycler improvements, speaker notes, theme editor updates, etc.).
 
 ---
 
