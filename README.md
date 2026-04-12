@@ -1,273 +1,373 @@
-# Spatial Deck
+# 🎭 Spatial Deck
 
-> A self-contained, single-file presentation framework for live talks.
-> Designed for projector display, wireless clickers, and AI-collaborative editing.
+**The presentation framework for people who think spatially.**
 
-**Live demo:** [https://ibrews.github.io/spatial-deck/](https://ibrews.github.io/spatial-deck/)
+A single-file HTML presentation system built for XR professionals, creative technologists, and anyone who wants more control over their slides than PowerPoint will ever give you. Zero dependencies. Zero build process. One file to rule them all.
 
-Spatial Deck is one HTML file. No build step. No dependencies. No framework. Open it in any browser, edit one config object at the top, and you have a polished interactive talk that runs anywhere — your laptop, a 1920×1080 projector, a phone, GitHub Pages, anything that serves an HTML file.
-
-It came out of preparing a closing keynote for the [Harvard XR Conference 2026](https://harvardxr.com), where the speaker needed:
-
-- Beautiful slides without learning Keynote/PowerPoint conventions
-- Modular content that could be edited collaboratively with an AI agent
-- A way for teammates to leave visual feedback on a live URL
-- Compatibility with wireless presenter clickers
-- Easy navigation across 30+ slides during dry runs
-- A self-contained file that could be shared without infrastructure
-
-The full result is at [github.com/ibrews/harvardxr-keynote](https://github.com/ibrews/harvardxr-keynote). This repo is the **starter kit** — that talk's framework with all the brand-specific content stripped out, ready to fork.
+> *Designed at [Agile Lens](https://agilelens.com) — a 10-year-old immersive design studio that has given talks at Harvard, SIGGRAPH, the Kennedy Center, and everywhere in between.*
 
 ---
 
-## Quick Start
+## ✨ What Makes This Different
+
+| Feature | PowerPoint | Google Slides | Spatial Deck |
+|---------|-----------|--------------|-------------|
+| Single file, no cloud | ❌ | ❌ | ✅ |
+| Live annotation mode | ❌ | ❌ | ✅ |
+| Drag-to-reposition anything | ❌ | ✅ | ✅ |
+| Undo/redo in layout mode | ✅ | ✅ | ✅ |
+| Media cycler with pixelated reveal | ❌ | ❌ | ✅ |
+| Animated constellation map | ❌ | ❌ | ✅ |
+| Web Audio sound effects | ❌ | ❌ | ✅ |
+| Full theme editor (live) | Limited | Limited | ✅ |
+| Speaker notes + timing estimator | ✅ | ✅ | ✅ |
+| Multi-step slide animations | Limited | Limited | ✅ |
+| Works offline from a USB stick | ❌ | ❌ | ✅ |
+| AI-friendly (LLM can edit it) | ❌ | ❌ | ✅ |
+| Version control with Git | ❌ | ❌ | ✅ |
+| Runs on any device with a browser | ❌ | ✅ | ✅ |
+
+---
+
+## 🚀 Quick Start
 
 ```bash
+# Clone it
 git clone https://github.com/ibrews/spatial-deck.git
 cd spatial-deck
-open index.html        # macOS — opens in your default browser
-# OR: python3 -m http.server 8080  →  http://localhost:8080
+
+# Open it
+open index.html
+# That's it. No npm install. No webpack. No tears.
 ```
 
-Then edit the `SECTIONS` array at the top of `index.html`. Reload the browser. That's the entire workflow.
-
-To deploy: push to a GitHub repo, enable Pages on the `main` branch, share the URL. There is no build pipeline.
-
 ---
 
-## What you get
+## 🎯 How It Works
 
-### Slide types (auto-generated from config)
+### The SECTIONS Array
 
-| Type | Purpose |
-|---|---|
-| **Cover** | Title slide with speaker card |
-| **Case study** | Image + title + 1-3 bullet points (left-right layout) |
-| **Lesson** | Big takeaway slide with title, tagline, and optional reference tags |
-| **Bonus** *(optional)* | Wildcard slide that comes after the main sections |
-| **Map** | Animated constellation showing every section + lesson, with click-to-jump nodes |
-| **Closing** | Thank-you slide with contact pills |
+Everything in your presentation is driven by a single JavaScript array at the top of `index.html`:
 
-### Navigation
-
-- **Arrow keys**, **Space**, **Page Down/Up**, **N/P** — all advance/retreat
-- **Wireless clickers** — anything that emits PageDown/PageUp works
-- **Touch swipe** — works on phones/tablets
-- **Slide grid** at the bottom of the screen — hover the bottom 38px to reveal a horizontally-scrolling thumbnail strip of every slide. Click any thumb to jump. Active slide auto-scrolls into view.
-- **Map slide** — every section appears as a node on a circle; click any node to jump to that lesson
-- **Home / End** — first / last slide
-- **`H` key** — toggle **presentation mode**: hides every UI chrome element (counter, brand, nav arrows, slide grid, annotate/move toggles, panels) so the projector shows only the slide content. Press `H` again to bring everything back.
-- **URL hash routing** — append `#5` to any URL to drop a viewer directly on slide 5. Share `https://your-site/#10` and the audience lands on slide 10. The URL hash auto-updates as you navigate so any slide is bookmarkable.
-
-### Annotation system (the differentiator)
-
-Spatial Deck includes two collaboration modes for working with an AI agent on the talk:
-
-**📝 Annotate Mode** (toggle with `A` or the top-left button)
-- Click any element on the page → leave a note ("make this bigger", "wrong color", "punchier wording")
-- Notes are saved to `localStorage` with the element's CSS selector + slide context
-- Click "📋 Copy All" → exports as markdown ready to paste into Claude/ChatGPT/Cursor
-- The agent reads the markdown, finds the element in the source, makes the change
-
-**✋ Move Mode** (toggle with `M` or the orange button) — full transform engine
-- **Drag** any element to translate it
-- **Shift + drag** to scale (drag away from element center to grow, toward to shrink)
-- **Alt/Option + drag** to rotate (drag in a circle around element center)
-- Works on **SVG paths and lines too** — paths transform via standard CSS so the same controls work on any visual element
-- **Undo / Redo** — `Cmd/Ctrl + Z` to undo, `Cmd/Ctrl + Shift + Z` to redo. Onscreen Undo/Redo buttons in the move-mode HUD next to the toggle.
-- 50-action history stack with standard editor semantics (new action clears the redo branch)
-- Each annotation captures the full transform: `TRANSFORM translate Δ(+30px, -20px) · scale ×1.20 · rotate 15°`
-- The element stays where you put it so you can see your layout
-- Perfect for "the monocle should be 30px to the left, scaled up 20%" feedback that's faster to *do* than to describe
-
-The export workflow is just clipboard markdown — no API key, no MCP server, no React. Works on plain HTML by design.
-
-### Designed for projector display
-
-All typography uses `clamp(min, vw-based, max)` calibrated for 1920×1080 projectors:
-- Lesson titles up to 6.2rem (~100px)
-- Case study bullets up to 1.3rem (~21px)
-- Cover title up to 8.5rem (~136px)
-
-Smaller windows scale down naturally. Phones get a column-stacked layout via `@media(max-width:900px)`.
-
----
-
-## The Config
-
-The entire content of your talk lives in one JavaScript object at the top of `index.html`:
-
-```js
+```javascript
 const SECTIONS = [
   {
-    year: 2016,            // Or 'CH 1', or any string label
-    accent: 'teal',        // teal | purple | amber | rose
+    year: 2024, accent: 'teal',
+    lesson: {
+      title: 'Your Lesson Title\nWith Line Breaks',
+      tagline: 'The body text that explains the lesson...',
+      short: 'SHORT TAG',
+      tags: 'Tag One · Tag Two · Tag Three',
+      notes: 'Speaker notes: what to say when this slide is up'
+    },
     cases: [
       {
-        title: 'Project Name',
-        subtitle: 'Short hook line',
-        img: 'https://...',  // Or '' for a gradient placeholder
-        bullets: [
-          'A specific, concrete observation',
-          'A second beat that builds on the first',
-          'The detail that earns you the right to make the lesson land',
-        ],
+        title: 'Case Study Title',
+        subtitle: 'One-line description',
+        img: 'MEDIA_CYCLER',  // or 'path/to/image.jpg' or ''
+        bullets: ['Point one', 'Point two', 'Point three'],
+        notes: 'Talking points for this case study'
       },
-    ],
-    lesson: {
-      title: 'Your Lesson Title.\nUse \\n for a Line Break.',
-      tagline: 'One paragraph that distills what you learned.',
-      tags: 'Optional · References · Or · Project · Names',
-    },
+    ]
   },
-  // Add as many sections as you want — engine handles arbitrary length
+  // ... more sections
 ];
-
-// Optional bonus slide. Set to null to omit.
-const BONUS = {
-  year: 2026,
-  title: 'A Light, Memorable Closer.\nLeave Them Smiling.',
-  tagline: 'Your bonus slide is the punchline.',
-};
 ```
 
-That's it. The engine reads `SECTIONS`, generates all the case study and lesson slides, builds the slide grid, builds the constellation map, and wires up the tracker — all from the data.
+Change the data → the slides update. That's the whole mental model.
+
+### Slide Types
+
+| Type | Created From | Purpose |
+|------|-------------|---------|
+| `cover` | Hardcoded | Title slide |
+| `lesson` | `SECTIONS[].lesson` | Year + lesson title + tagline |
+| `case` | `SECTIONS[].cases[]` | Image/media + title + bullets |
+| `bonus` | `BONUS` const | Special amber-accent closer |
+| `map` | Auto-generated | Animated constellation of all lessons |
+| `close` | Hardcoded | QR codes + contact info |
+| `settings` | Auto-generated | Hidden slide 0 with live controls |
 
 ---
 
-## Design Philosophy
+## 🎮 Keyboard Shortcuts
 
-### Why one file?
+### Presentation Mode
+| Key | Action |
+|-----|--------|
+| `→` `Space` `PageDown` | Next slide |
+| `←` `PageUp` | Previous slide |
+| `Home` | First slide |
+| `End` | Last slide |
+| `H` | Toggle UI chrome (presentation mode) |
+| `G` | Jump to slide by number |
+| `Cmd/Ctrl + F` or `/` | Search all slide text |
+| `N` | Open presenter popup (speaker notes) |
+| `Shift + N` | Toggle inline notes drawer |
 
-A presentation should outlive its tooling. Keynote files break across versions. PowerPoints lose fonts. Reveal.js needs node_modules. A single HTML file with inline CSS and JS will still open in 2050.
+### Move Mode (`M` to toggle)
+| Key/Action | Effect |
+|------------|--------|
+| `Drag` | Translate element |
+| `Shift + Drag` | Scale element |
+| `Alt/Option + Drag` | Rotate element |
+| `Cmd/Ctrl + Click` | Select parent element |
+| `Cmd/Ctrl + Z` | Undo |
+| `Cmd/Ctrl + Shift + Z` | Redo |
+| `Double-click` | Edit text inline |
 
-### Why JavaScript config instead of Markdown / YAML?
+### Text Editing (double-click in Move Mode)
+| Key | Effect |
+|-----|--------|
+| `Enter` | New bullet (when editing a `<li>`) |
+| `Shift + Enter` | Line break within element |
+| `Backspace` on empty bullet | Delete bullet |
+| `Cmd/Ctrl + Enter` | Save and exit edit mode |
+| `Escape` | Cancel edit |
 
-You want the config in the same file as the engine because **the engine is the spec**. If you're going to customize colors, timing, or layout, you don't want to learn a separate template language — you just edit JavaScript and CSS in the same place.
+### Annotation Mode (`A` to toggle)
+| Action | Effect |
+|--------|--------|
+| Click any element | Add a note |
+| Export button | Copy all annotations as markdown |
 
-For non-developers: the config is mostly strings, arrays, and objects. The shape is simple enough that an AI agent can edit it confidently.
-
-### Why no React/Vue/framework?
-
-Frameworks are great for apps. They're overkill for a talk that runs for 30 minutes once. They also rule out:
-- Sharing the talk as a single attachment
-- Hosting on a static file server with no build
-- Editing the talk on a plane with no internet
-- Letting a non-developer edit the deck without setting up node
-
-The **no-framework constraint** is what made Agentation incompatible with this use case (it requires React 18) and forced us to build our own annotation system. The annotation system that came out of that constraint turned out to be the best feature.
-
-### Why CSS @keyframes instead of CSS transitions?
-
-Subtle but important: CSS transitions on absolute-positioned elements have a long history of edge cases where the transition silently fails to fire (TDZ issues, reflow timing, etc). CSS `@keyframes` animations are rock-solid and don't depend on the browser noticing a style change. The slide system here uses keyframes for that reason.
-
-### Why a constellation map at the end?
-
-Most decks just stop. The map slide is a recap mechanism: zoom out, see every lesson at once, click any node to revisit. It also looks cool, which matters for closing keynotes.
-
-### Why the slide grid at the bottom?
-
-Because navigating from slide 2 to slide 30 with only arrow keys is misery during a dry run. The hover-to-reveal pattern keeps it out of the way during the actual talk.
+### Media Cycler (on slides with image/video galleries)
+| Key | Effect |
+|-----|--------|
+| `Shift + →` | Next image/video |
+| `Shift + ←` | Previous image/video |
+| `Shift + ↑` | Resume auto-advance |
 
 ---
 
-## Customizing
+## 🎨 Theme Editor
 
-### Colors / theme
+The Settings slide (hidden slide 0, accessible via the slide grid) includes a full live theme editor:
 
-Edit the CSS variables at the top of the `<style>` block:
+- **Primary & Secondary Colors** — hex color pickers that update accent colors throughout
+- **Background Darkness** — adjust the base background
+- **Font Family** — choose from Space Grotesk, Inter, Outfit, JetBrains Mono, Playfair Display, or enter any Google Font name
+- **Title Scale** — adjust title font sizes (60%–130%)
+- **Tagline Scale** — adjust body text sizes (60%–150%)
+- **Paragraph Gap** — control spacing on double line breaks
+- **Image Hold Duration** — how long images display before cycling
+- **Reset to Defaults** — one click to restore everything
 
-```css
-:root {
-  --bg: #060810;
-  --teal: #00d4ff;
-  --purple: #a78bfa;
-  --amber: #f59e0b;
-  --rose: #f43f5e;
-  --text: #f0f4ff;
-  --dim: rgba(240, 244, 255, .45);
-  --font: 'Space Grotesk', system-ui, sans-serif;
-}
+All settings persist via `localStorage` — they survive page reloads and browser restarts.
+
+---
+
+## 🖼️ Media Cycler
+
+The media cycler is a canvas-based image/video gallery with a distinctive pixelated reveal effect.
+
+### How to Use
+
+Set `img: 'MEDIA_CYCLER'` on a case study, then add a cycler IIFE after the SECTIONS loop:
+
+```javascript
+// In SECTIONS:
+{ title: 'My Project', img: 'MEDIA_CYCLER', ... }
+
+// After the build loop:
+(function(){
+  const slide = allSlides.find(s =>
+    s.querySelector?.('.case-title')?.textContent.includes('My Project'));
+  if (!slide) return;
+  buildMediaCycler(slide, [
+    {type:'image', src:'media/project/photo1.jpg'},
+    {type:'image', src:'media/project/photo2.jpg', flipH: true},
+    {type:'video', src:'media/project/demo.mp4', loop: true},
+  ], {imageDuration: 6000});
+})();
 ```
 
-The four accent colors are tied to the `accent: 'teal'|'purple'|'amber'|'rose'` setting on each section. Add more colors by editing both the variables and the `.accent-*` CSS rules.
+### Options
 
-### Typography
+| Option | Default | Description |
+|--------|---------|-------------|
+| `imageDuration` | `6000` | Milliseconds to hold each image |
+| `portrait` | `false` | 9:16 canvas for vertical content |
+| `enterDur` | `700` | Slide-in duration (ms) |
+| `revealDur` | `1600` | De-pixelation reveal (ms) |
+| `exitDur` | `500` | Exit animation (ms) |
 
-The font is loaded from Google Fonts (`Space Grotesk`). Swap the `<link>` tag in the `<head>` for any other Google Font and update `--font`.
+### Per-Item Flags
 
-### Background
+| Flag | Description |
+|------|-------------|
+| `flipH: true` | Mirror the image horizontally |
+| `loop: true` | Loop a video continuously |
 
-The animated background has three layers (defined in `.bg-gradient`, `.grid-floor`, and `#stars`):
-- A radial gradient
-- Optional perspective grid floor (currently disabled in this starter — add the markup back if you want it; see the [keynote repo](https://github.com/ibrews/harvardxr-keynote) for the full version)
-- A canvas of twinkling stars
+### Static Images Get the Effect Too
 
-Remove or replace any of these without affecting the engine.
-
-### Optional brand-mark overlay on the map
-
-If you have a transparent PNG of your logo, point `LOGO_URL` at it (in the map animation section) and it'll fade in at the center of the constellation as a watermark when the map slide ends.
-
-### Avatar / mascot
-
-The original Harvard XR talk had a walking-avatar mascot that traveled around the constellation as you advanced through the talk, with a "fist pump" celebration on the final map. That code was stripped from this starter to keep it clean — see the [full keynote repo](https://github.com/ibrews/harvardxr-keynote) if you want to reuse it.
+Case studies with `img: 'path/to/image.jpg'` automatically get the pixelated reveal — no cycler IIFE needed.
 
 ---
 
-## File structure
+## 📝 Speaker Notes & Timing
+
+### Adding Notes
+
+```javascript
+lesson: {
+  title: 'My Lesson',
+  notes: 'Key talking point. Pause for effect. Ask the audience a question.'
+},
+cases: [{
+  title: 'Case Study',
+  notes: '• Mention the budget\n• Show the before/after\n• This is where the client cried'
+}]
+```
+
+### Presenter Popup (`N`)
+
+Opens a second window showing:
+- Current slide title and notes
+- Next slide preview
+- Elapsed time (MM:SS)
+- Estimated remaining time
+- Pacing indicator (🟢 on pace / 🟡 running long / 🔴 over time)
+
+### Duration Estimation
+
+Shown in Settings slide. Calculated from notes:
+- **Bullet points** (~20 sec each): short phrases or lines with `-` / `•`
+- **Full sentences** (~150 words/minute): prose-style notes
+- **No notes**: 30 seconds default
+- **Multi-step slides**: +5 seconds per step
+
+---
+
+## 🔗 Multi-Step Slide Animations
+
+```javascript
+const mySlide = allSlides.find(s => /* find your slide */);
+slideSteps.set(mySlide, {
+  current: 0,
+  steps: [
+    () => { /* Step 1: fade in */ },
+    () => { /* Step 2: animate */ },
+    () => { /* Step 3: sound */ },
+  ]
+});
+```
+
+Clicking advances through steps before moving to the next slide.
+
+---
+
+## 👁️ Hiding & Parking Slides
+
+### Hiding Slides
+
+**Ctrl/Cmd + Click** a thumbnail in the slide grid:
+- Hidden slides show at 30% opacity with dashed border
+- Navigation skips them automatically
+- Still accessible by direct thumbnail click
+
+### Parking Slides
+
+```javascript
+const PARK = [5, 8]; // move these slides to the end
+```
+
+---
+
+## 📦 Offline Export
+
+Spatial Deck works from `file://` for most features. For a fully offline experience:
+
+### Quick (covers 90% of cases)
+
+Just copy the folder. `index.html` + `media/` = done.
+
+### Full Offline (3D map + custom fonts)
+
+Use the **📦 Export for Offline** button in Settings, or manually:
+
+```bash
+# Download Three.js
+mkdir -p lib
+curl -o lib/three.module.min.js \
+  "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.min.js"
+
+# Update import map in index.html:
+#   "three":"https://cdn.jsdelivr.net/..." → "three":"./lib/three.module.min.js"
+```
+
+### Including 3D Models (GLTF, OBJ, etc.)
+
+Three.js is already available. Add a rotating model to any slide:
+
+```javascript
+const THREE = await import('three');
+const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, 1, 1, 500);
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+
+const loader = new GLTFLoader();
+loader.load('media/model.glb', (gltf) => {
+  scene.add(gltf.scene);
+  function animate() {
+    requestAnimationFrame(animate);
+    gltf.scene.rotation.y += 0.01;
+    renderer.render(scene, camera);
+  }
+  animate();
+});
+```
+
+---
+
+## 🤖 AI-Friendly Design
+
+Spatial Deck is designed to be edited by LLMs:
+
+- **Single file** — paste into any context window
+- **Config-driven** — change SECTIONS, slides update
+- **Semantic HTML** — clear class names
+- **Comment landmarks** — `// ── Section Name ──`
+
+### Example Prompts
+
+```
+"Add a new lesson about accessibility with two case studies"
+"Change the accent color for 2023 to purple"  
+"Add speaker notes to all slides"
+"Create a media cycler with these 3 images"
+"Estimate how long my talk will take"
+```
+
+---
+
+## 🏗️ Project Structure
 
 ```
 spatial-deck/
-├── index.html      # The entire framework + demo content. Edit SECTIONS at top.
-├── README.md       # This file.
-├── LICENSE         # MIT.
-└── .gitignore      # Standard.
-```
-
-That's it. There is no `package.json`, no `node_modules`, no build output, no `dist/`. The whole repo is one HTML file plus docs.
-
----
-
-## Working with an AI agent
-
-Spatial Deck was built specifically to be edited collaboratively with Claude, Cursor, ChatGPT, or any agent that can read & edit a file. The annotation system makes the loop tight:
-
-1. You: open the deck in a browser, press `A`, click an element, type a note, hit "Copy All"
-2. You: paste the markdown into your agent's chat
-3. Agent: reads the selectors and notes, edits `index.html`, pushes
-4. You: reload the browser, see the change
-
-Or with Move Mode:
-
-1. You: press `M`, drag the element where you want it
-2. You: press `A`, hit "Copy All", paste into chat
-3. Agent: reads the `MOVE by Δ(...)` deltas and converts them to actual CSS positions
-
-This is *much* faster than describing positional changes in English. The agent gets exact pixel deltas instead of "move it down a bit and to the left."
-
-### Suggested handoff prompt for teammates
-
-```
-I'm editing a Spatial Deck presentation at <YOUR_REPO_URL>.
-The whole talk is one HTML file (index.html) with a SECTIONS config
-at the top of the <script> tag. Each section has cases[] (case study
-slides) and a lesson (the takeaway slide). The engine generates
-everything from this config. To change content, edit the config.
-To change colors, edit the CSS variables. To change layout, edit the
-CSS rules near the top of <style>.
-
-I'll paste annotations from the deck below. Apply them and push.
+├── index.html      ← The entire presentation
+├── media/           ← Images, videos, GIFs
+├── social.html      ← Social sharing card (1200×630)
+├── social.png       ← Pre-rendered social image
+├── README.md        
+└── LICENSE          ← MIT
 ```
 
 ---
 
-## Credits
+## 🎤 Built With Spatial Deck
 
-Spatial Deck was built by [Alex Coulombe](https://agilelens.com) and Claude (Opus 4.6) in April 2026 while preparing the closing keynote for the [Harvard XR Conference](https://harvardxr.com). The engine is a stripped-down version of the [`harvardxr-keynote`](https://github.com/ibrews/harvardxr-keynote) project — which is the best place to look if you want to see the framework used for a real talk with full content.
+- **"10 Lessons from 10 Years"** — Alex Coulombe, Harvard XR Conference 2026
+- *Add yours — [open a PR](https://github.com/ibrews/spatial-deck/pulls)!*
 
-If you use this for a talk, [Alex would love to know](https://agilelens.com).
+---
 
-## License
+## 📄 License
 
-MIT. Do what you want. A credit link back to this repo if you use it for something public is appreciated but not required.
+MIT — use it for anything.
+
+Built with 🎭 by [Alex Coulombe](https://twitter.com/ibrews) at [Agile Lens](https://agilelens.com).
+
+*P.S. Looking for an XR studio that checks all the boxes? [agilelens.com](https://agilelens.com)*

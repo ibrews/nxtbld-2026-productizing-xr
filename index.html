@@ -3,125 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spatial Deck — Interactive Presentation Starter</title>
-<meta name="description" content="A self-contained, single-file HTML presentation framework with annotation/move modes for AI-collaborative editing. No build, no framework — just one file.">
-<meta property="og:title" content="Spatial Deck">
-<meta property="og:description" content="A self-contained, single-file presentation framework for live talks. No build, no framework. AI-collaborative editing built in.">
-<meta property="og:image" content="https://ibrews.github.io/spatial-deck/social.png">
-<meta property="og:url" content="https://ibrews.github.io/spatial-deck/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Spatial Deck">
-<meta name="twitter:description" content="A self-contained, single-file presentation framework for live talks. No build, no framework. AI-collaborative editing built in.">
-<meta name="twitter:image" content="https://ibrews.github.io/spatial-deck/social.png">
+<title>What To Look For When Hiring an XR Studio - A Spatial Deck Presentation</title>
+<meta name="description" content="5 Lessons. 10 Case Studies. An open-source single-file presentation framework.">
+<meta property="og:title" content="What To Look For When Hiring an XR Studio">
+<meta property="og:description" content="5 lessons, 10 case studies. A Spatial Deck presentation.">
+<meta property="og:image" content="social.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script>
-/* ═══════════════════════════════════════════════════════════════════════
-   PRESENTATION CONFIG — EDIT THIS SECTION TO CHANGE CONTENT
-   ═══════════════════════════════════════════════════════════════════════
-   Each SECTION represents a chapter of your talk. Each section has:
-
-     year      — anchors the chapter on a timeline (use any string label)
-     accent    — color theme: 'teal' | 'purple' | 'amber' | 'rose'
-     cases     — 1–3 case study slides shown BEFORE the lesson slide
-                 (each has title, subtitle, img, bullets[])
-     lesson    — the takeaway slide that closes the chapter
-                 (title with \n for line break, tagline, optional tags)
-
-   The engine generates all slides from this config. Add/remove/reorder
-   sections freely. The slide grid, monocle map, and tracker auto-update.
-
-   IMG TIPS:
-     - Use absolute URLs (any image host)
-     - Ideal aspect ratio: 16:10
-     - Empty string ("") shows a gradient placeholder
-   ═══════════════════════════════════════════════════════════════════════ */
+/* =======================================================================
+   SPATIAL DECK -- PRESENTATION CONFIG
+   =======================================================================
+   Each section = a year/chapter with 1 lesson + N case studies.
+   Edit SECTIONS to change all content. Everything else is generated.
+   ======================================================================= */
 const SECTIONS = [
-  {
-    year: 'CH 1', accent: 'teal',
+  { year: 2020, accent: 'teal',
+    lesson: { title:'Look for Theater People,\nNot Just Tech People', short:'THEATER > TECH', tagline:'The best XR teams look nothing like tech teams. Look for studios that hire architects, theater directors, lighting designers \u2014 not just Unity devs.<br><br>The secret weapon of every great XR studio is the person who has never opened a game engine.', tags:'Interdisciplinary \u00b7 Spatial Thinking', notes:'Open with a provocative question: how many people in this room have hired a Unity developer? Now ask how many have hired a theater director. The gap between those two numbers is the problem.\n- Emphasize that spatial thinking predates VR by centuries\n- Mention architecture, set design, and choreography as XR superpowers\n- Pause here to let the audience absorb the counter-intuitive framing' },
     cases: [
-      { title:'Your First Case Study',
-        subtitle:'Short hook line that frames the example',
-        img:'',
-        bullets:[
-          'A specific, concrete observation from this project',
-          'A second beat that builds on the first',
-          'The detail that earns you the right to make the lesson land',
-        ] },
-      { title:'Optional Second Case',
-        subtitle:'A different angle on the same theme',
-        img:'',
-        bullets:[
-          'Another concrete project moment',
-          'Something the audience can picture in their head',
-          'The pivot that points toward your takeaway',
-        ] },
-    ],
-    lesson: {
-      title:'Your First Lesson Title.\nUse \\n for a Line Break.',
-      tagline:'One paragraph that distills what you learned. Keep it specific to your experience — abstract advice is forgettable, lived advice is not. The case studies above earn this slide the right to exist.',
-      tags:'Optional · References · Or · Project · Names',
-    },
-  },
-  {
-    year: 'CH 2', accent: 'purple',
+      { title:'Case Study: The Shed @ Hudson Yards', subtitle:'Architecture meets immersive design',
+        img:'', bullets:['A great XR studio brings spatial thinkers to the table','Look for portfolios that span disciplines, not just game engines','Ask: \u201cWho on your team has NEVER written code?\u201d'], notes:'Talk about how The Shed was designed by Diller Scofidio + Renfro as a kinetic architecture piece. The building literally moves. That is spatial thinking at its most ambitious.' },
+      { title:'Case Study: Ghosted (Magic Leap)', subtitle:'When 90% of the team is non-technical',
+        img:'', bullets:['Creative-first teams build experiences, not demos','The best XR work comes from people who think about presence, not polygons','Red flag: if every team member\'s bio mentions the same engine'], notes:'Ghosted shipped with a team that was 90% non-technical. Highlight this as a feature, not a bug. The creative-first approach led to one of the most emotionally resonant Magic Leap experiences.' },
+    ] },
+  { year: 2021, accent: 'purple',
+    lesson: { title:'Demand a Discovery Phase.\nBefore Anyone Builds.', short:'DISCOVERY FIRST', tagline:'If a studio says \u201csure, we can start next week\u201d \u2014 run. Good XR work starts with questions, not timelines.<br><br>The studio that asks for a discovery budget respects the problem. The one that doesn\'t? They\'re guessing.', tags:'R&D \u00b7 Process \u00b7 Due Diligence', notes:'This is the slide where you earn trust with procurement people in the audience. Discovery phases sound expensive, but they are insurance.\n- Ask the audience: who has been burned by a project that skipped research?\n- The $60K number from Four Seasons is coming next, so set it up here\n- Key point: discovery is not a delay, it is acceleration' },
     cases: [
-      { title:'Another Case Study',
-        subtitle:'Different chapter, different texture',
-        img:'',
-        bullets:[
-          'Each chapter is one of your major themes',
-          'Cycle accent colors so each chapter has its own look',
-          'Aim for 1–3 case studies per lesson',
-        ] },
-    ],
-    lesson: {
-      title:'Your Second Lesson.',
-      tagline:'Tell stories first. Land the lesson second. Your audience will remember the spike-tape moment, not the bullet point.',
-      tags:'',
-    },
-  },
-  {
-    year: 'CH 3', accent: 'amber',
+      { title:'Case Study: Four Seasons Lake Austin', subtitle:'$60K of R&D before a single line of code',
+        img:'', bullets:['The studio that asks for a discovery budget respects the problem','R&D phases protect both the client and the team','Ask: \u201cWhat happens if the tech doesn\'t work?\u201d'], notes:'Let the $60K number land. That is a lot of money for research before writing code. But the alternative was a $400K build with no validation. Frame it as a bargain.' },
+      { title:'Case Study: Body of Mine', subtitle:'Experimental hardware needs experimental process',
+        img:'', bullets:['Full-body VR tracking required months of R&D','Studios that skip discovery ship demos, not experiences','BAFTA and Producers Guild recognition followed the process, not the pitch'], notes:'Body of Mine won recognition precisely because they invested in process. The BAFTA nomination did not come from rushing to production. Mention the haptic suit challenges.' },
+    ] },
+  { year: 2022, accent: 'amber',
+    lesson: { title:'Check Their Tools.\nThey\'re a Business Strategy.', short:'TOOLS = STRATEGY', tagline:'A studio\'s engine choice tells you everything about their priorities. WebXR for accessibility. Unreal for fidelity. Both is ideal.<br><br>Don\'t hire the studio that uses every tool. Hire the one that knows exactly why they chose theirs.', tags:'Unreal Engine \u00b7 WebXR \u00b7 Pipeline', notes:'This lesson resonates most with CTOs and technical leads. Slow down and speak their language.\n- The engine choice question is a litmus test for self-awareness\n- WebXR vs native is not a quality debate, it is a distribution strategy debate\n- Mention that the best studios have opinions, not just capabilities' },
     cases: [
-      { title:'A Third Case Study',
-        subtitle:'Build the rhythm of case → case → lesson',
-        img:'',
-        bullets:[
-          'Three sections is enough to show the pattern',
-          'Add as many more as your talk needs — engine handles arbitrary length',
-          'The slide grid at the bottom of the screen makes navigation easy at any size',
-        ] },
-    ],
-    lesson: {
-      title:'Your Third Lesson.',
-      tagline:'When you finish editing this config, the deck regenerates automatically — no build step. Open this file in any browser. Press M to drag elements around. Press A to leave annotations on any element you click.',
-      tags:'',
-    },
-  },
+      { title:'Case Study: OnboardXR', subtitle:'WebXR that runs in any browser',
+        img:'', bullets:['No app store, no headset required \u2014 accessible by default','The right tool for the job isn\'t always the most powerful one','Ask: \u201cCan my grandmother experience this from her iPad?\u201d'], notes:'OnboardXR is a perfect illustration of tool choice matching audience needs. Emphasize the grandmother test: if she cannot open a link in Safari and see something, you have already lost 80% of your audience.' },
+      { title:'Case Study: Blueprint Immersive', subtitle:'From bespoke projects to a scalable product',
+        img:'', bullets:['Studios that build their own tools understand your pipeline','Productized workflows = predictable timelines and budgets','The leap from bespoke to scalable is a maturity signal'], notes:'Blueprint Immersive went from custom projects to a repeatable product. This is the maturity arc you want to see in a studio. If they have productized anything, they understand your timelines.' },
+    ] },
+  { year: 2023, accent: 'teal',
+    lesson: { title:'They Should Say \u201cNo\u201d\nMore Than \u201cYes\u201d', short:'SCOPE DISCIPLINE', tagline:'Complex projects breed scope creep. The studio that says \u201cwe could, but we shouldn\'t\u201d is the one that ships on time.<br><br>The most dangerous word in XR is \u201cyes.\u201d The second most dangerous is \u201cand.\u201d', tags:'Scope \u00b7 Boundaries \u00b7 Delivery', notes:'This is the slide that gets knowing nods from anyone who has shipped a project. Scope creep is universal.\n- Pause after the yes/and line for laughter\n- Transition into the cases by asking: what does scope discipline look like in practice?\n- This lesson is the audience favorite at most talks, lean into it' },
+    cases: [
+      { title:'Case Study: La Pasion XR', subtitle:'Cultural sensitivity requires scope boundaries',
+        img:'', bullets:['The more meaningful the project, the harder it is to draw lines','Good studios distinguish \u201cwe could\u201d from \u201cwe should\u201d','Ask: \u201cTell me about a feature you CUT from a recent project\u201d'], notes:'La Pasion XR dealt with sacred cultural content. Every feature addition risked misrepresentation. The discipline to say no here was not just project management, it was ethics.' },
+      { title:'Case Study: Your Mind, Girls', subtitle:'$0 revenue from a genuinely excellent piece',
+        img:'', bullets:['Scope creep turned a small script into a full co-production','Beautiful work, zero dollars \u2014 passion without boundaries is a warning sign','Ask: \u201cWhat\'s your process for saying no to a great idea?\u201d'], notes:'This is a cautionary tale. The work was genuinely excellent, but $0 revenue means the studio could not sustain itself. Use this to illustrate the difference between passion and business viability.' },
+    ] },
+  { year: 2024, accent: 'rose',
+    lesson: { title:'The Demo Will Break.\nHire the Studio That Plans for It.', short:'PLAN FOR FAILURE', tagline:'In XR, something goes wrong every single time. The question isn\'t whether the demo breaks \u2014 it\'s whether the audience notices.<br><br>Nobody knows what you envisioned. When something fails, pivot gracefully \u2014 the audience experiences what you show them, not what you planned.', tags:'Contingency \u00b7 Resilience \u00b7 Live XR', notes:'Tell a personal war story here if you have one. Every XR practitioner has a demo failure moment.\n- The pivot gracefully line is the thesis of the entire talk\n- This lesson sets up the Royal Caribbean story perfectly\n- End with: the audience only sees what you show them, not what you planned' },
+    cases: [
+      { title:'Case Study: Royal Caribbean', subtitle:'When it breaks at sea, there\'s no IT department',
+        img:'', bullets:['Satellite Wi-Fi, salt air, motion sickness \u2014 the most constrained environment','Graceful fallbacks built into every moment of the experience','Ask: \u201cWalk me through your plan B. And your plan C.\u201d'], notes:'Royal Caribbean is the ultimate stress test. Satellite internet, salt corrosion on hardware, and guests who get motion sick. If your XR works on a cruise ship, it works anywhere. Get a laugh here.' },
+      { title:'Case Study: Stage Presence \u00d7 RSC', subtitle:'The Royal Shakespeare Company in VR',
+        img:'', bullets:['VR UX is best when it adapts workflows people already know','Every actor wanted a script they could hold \u2014 same as paper','The studio that doesn\'t reinvent the wheel ships faster'], notes:'Stage Presence is a story about humility. The Royal Shakespeare Company actors did not want a holographic teleprompter. They wanted paper scripts. The studio that listens ships faster than the one that innovates for its own sake.' },
+    ] },
 ];
 
-// Bonus chapter — appears after the main sections, before the closing slide.
-// Set to null to omit.
-const BONUS = {
-  year: 'BONUS',
-  title: 'A Light, Memorable Closer.\nLeave Them Smiling.',
-  tagline: 'Your bonus slide is the punchline. Self-deprecating works. A specific image works. Generalities do not. Make this one count — it is the last thing they see before "Thank You."'
-};
+const BONUS = { year:2025, title:'Find the Studio That\nBuilds Community.',
+  tagline:'The best studios don\'t just ship projects \u2014 they build ecosystems. Meetups, open demos, genuine feedback from real humans. That\'s how you know they care about the craft, not just the contract.<br><br>P.S. We know a studio that checks all five boxes. Just saying.' };
 </script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"}}</script>
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#060810;--teal:#00d4ff;--purple:#a78bfa;--amber:#f59e0b;--rose:#f43f5e;--text:#f0f4ff;--dim:rgba(240,244,255,.45);--font:'Space Grotesk',system-ui,sans-serif}
-html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--font)}
-
+:root{--bg:#060810;--teal:#00d4ff;--purple:#a78bfa;--amber:#f59e0b;--rose:#f43f5e;--text:#f0f4ff;--dim:rgba(240,244,255,.45);--font:'Space Grotesk',system-ui,sans-serif;--para-gap:.35em;--tagline-scale:1;--title-scale:1;--primary:#00d4ff;--secondary:#a78bfa;--bg-dark:#060810}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg-dark);color:var(--text);font-family:var(--font)}
 .bg{position:fixed;inset:0;z-index:0;overflow:hidden}
-.bg-gradient{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 15% 50%,rgba(124,58,237,.18) 0%,transparent 55%),radial-gradient(ellipse 60% 70% at 85% 20%,rgba(0,212,255,.12) 0%,transparent 55%),linear-gradient(180deg,#060810 0%,#0b0820 50%,#060810 100%)}
+.bg-gradient{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 15% 50%,rgba(124,58,237,.18) 0%,transparent 55%),radial-gradient(ellipse 60% 70% at 85% 20%,rgba(0,212,255,.12) 0%,transparent 55%),linear-gradient(180deg,var(--bg-dark) 0%,#0b0820 50%,var(--bg-dark) 100%)}
 canvas#stars{position:absolute;inset:0}
-
 #deck{position:relative;z-index:1;width:100%;height:100%;overflow:hidden}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(40px,5vw,80px);text-align:center;opacity:0;pointer-events:none}
 .slide.active{opacity:1;pointer-events:all}
@@ -129,21 +81,16 @@ canvas#stars{position:absolute;inset:0}
 @keyframes slideInBwd{from{opacity:0;transform:translateX(-6%) scale(.97)}to{opacity:1;transform:none}}
 @keyframes slideOutFwd{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-6%) scale(.97)}}
 @keyframes slideOutBwd{from{opacity:1;transform:none}to{opacity:0;transform:translateX(6%) scale(.97)}}
-
-/* Cover */
 .event-tag{font-size:clamp(.7rem,1.4vw,1.05rem);font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:36px;opacity:.85}
-.talk-title{font-size:clamp(3.2rem,8vw,8.5rem);font-weight:700;line-height:1;letter-spacing:-.03em;background:linear-gradient(130deg,#fff 20%,#a5d8ff 55%,#9b8cff 85%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px}
-.talk-subtitle{font-size:clamp(1.1rem,2.4vw,1.9rem);font-weight:400;color:var(--dim);margin-bottom:64px}
+.talk-title{font-size:clamp(2.8rem,7vw,7.5rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;background:linear-gradient(130deg,#fff 20%,#a5d8ff 55%,#9b8cff 85%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px}
+.talk-subtitle{font-size:clamp(1rem,2.2vw,1.7rem);font-weight:400;color:var(--dim);margin-bottom:64px}
 .speaker-card{display:flex;align-items:center;gap:24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:80px;padding:18px 40px;backdrop-filter:blur(12px)}
-.speaker-name{font-size:clamp(1rem,1.4vw,1.4rem);font-weight:600}.speaker-co{font-size:clamp(.78rem,1.1vw,1.05rem);color:var(--dim);margin-top:3px}
-.card-sep{width:1px;height:48px;background:rgba(255,255,255,.15)}
-.event-detail{font-size:clamp(.78rem,1.1vw,1.05rem);color:var(--dim);line-height:1.6}
-
-/* Case study — sized for 1920×1080 projector */
+.speaker-name{font-size:clamp(1rem,1.4vw,1.4rem);font-weight:600}
+.speaker-co{font-size:clamp(.78rem,1.1vw,1.05rem);color:var(--dim);margin-top:3px}
 .case-slide{flex-direction:row;gap:clamp(36px,4.5vw,90px);text-align:left;padding:clamp(50px,5vw,110px) clamp(80px,9vw,180px)}
-.case-image{flex:0 0 44%;max-width:780px;aspect-ratio:16/10;border-radius:18px;overflow:hidden}
-.case-image img{width:100%;height:100%;object-fit:cover;display:block}
-.case-image .ph{width:100%;height:100%;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(124,58,237,.12));display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.12);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+.case-image{flex:0 0 48%;max-width:860px;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.case-image img{width:100%;display:block;border-radius:18px}
+.case-image .ph{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(124,58,237,.12));display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.12);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;border-radius:18px}
 .case-content{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px}
 .case-ytag{font-size:clamp(.65rem,.95vw,.95rem);font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);opacity:.6}
 .case-title{font-size:clamp(1.8rem,3.6vw,3.8rem);font-weight:700;letter-spacing:-.02em;line-height:1.1}
@@ -154,97 +101,110 @@ canvas#stars{position:absolute;inset:0}
 .accent-purple .case-ytag{color:var(--purple)}.accent-purple .case-bl li::before{background:var(--purple)}
 .accent-amber .case-ytag{color:var(--amber)}.accent-amber .case-bl li::before{background:var(--amber)}
 .accent-rose .case-ytag{color:var(--rose)}.accent-rose .case-bl li::before{background:var(--rose)}
-
-/* Lesson — sized for 1920×1080 projector */
 .slide-lesson{padding-bottom:clamp(80px,10vh,140px)}
 .year-ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(10rem,24vw,26rem);font-weight:700;letter-spacing:-.06em;line-height:1;color:rgba(255,255,255,.028);pointer-events:none;user-select:none}
 .lesson-ey{display:flex;align-items:center;justify-content:center;gap:14px;font-size:clamp(.7rem,1.1vw,1rem);font-weight:600;letter-spacing:.26em;text-transform:uppercase;margin-bottom:30px}
 .ey-yr{color:rgba(255,255,255,.4)}.ey-sep{color:rgba(255,255,255,.15)}.ey-badge{color:var(--teal)}
-.lesson-title{font-size:clamp(2.4rem,5.8vw,6.2rem);font-weight:700;letter-spacing:-.025em;line-height:1.06;max-width:1300px;margin-bottom:32px;white-space:pre-line}
-.lesson-tagline{font-size:clamp(1rem,1.7vw,1.6rem);color:var(--dim);max-width:880px;line-height:1.7}
+.lesson-title{font-size:calc(clamp(2.4rem,5.8vw,6.2rem)*var(--title-scale));font-weight:700;letter-spacing:-.025em;line-height:1.06;max-width:1300px;margin-bottom:32px;white-space:pre-line}
+.lesson-tagline{font-size:calc(clamp(1rem,1.7vw,1.6rem)*var(--tagline-scale));color:var(--dim);max-width:880px;line-height:1.7}
+.lesson-tagline .para-gap{display:block;height:var(--para-gap)}
 .lesson-rule{width:64px;height:4px;border-radius:2px;background:var(--teal);margin:32px auto 0;opacity:.7}
 .lesson-tags{margin-top:18px;font-size:clamp(.6rem,.9vw,.85rem);font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.18)}
 .accent-purple .ey-badge{color:var(--purple)}.accent-purple .lesson-rule{background:var(--purple)}
 .accent-amber .ey-badge{color:var(--amber)}.accent-amber .lesson-rule{background:var(--amber)}
 .accent-rose .ey-badge{color:var(--rose)}.accent-rose .lesson-rule{background:var(--rose)}
 .slide-bonus .ey-badge{color:var(--amber)}.slide-bonus .lesson-rule{background:var(--amber)}.slide-bonus .year-ghost{color:rgba(245,158,11,.04)}
-
-/* Monocle tracker */
-#tracker{position:fixed;bottom:24px;right:24px;z-index:25;width:clamp(120px,9vw,170px);height:clamp(120px,9vw,170px);opacity:0;transition:opacity .4s;pointer-events:none}
-#tracker.visible{opacity:1}
-#tracker svg{width:100%;height:100%}
-
-/* Map */
+.slide-settings{background:rgba(3,5,12,.98)}
+.cfg-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:52px 64px;max-width:960px;width:90%;backdrop-filter:blur(20px)}
+.cfg-title{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
+.cfg-subtitle{font-size:.75rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:44px;opacity:.7}
+.cfg-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px 56px;margin-bottom:36px}
+.cfg-row{display:flex;flex-direction:column;gap:10px}
+.cfg-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.cfg-control{display:flex;align-items:center;gap:14px}
+.cfg-control input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:3px;background:rgba(255,255,255,.14);border-radius:2px;outline:none;cursor:pointer}
+.cfg-control input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--teal);cursor:pointer;box-shadow:0 0 10px rgba(0,212,255,.5)}
+.cfg-val{min-width:3.8em;font-size:.82rem;color:var(--teal);font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.cfg-color{display:flex;align-items:center;gap:10px}
+.cfg-color input[type=color]{width:36px;height:28px;border:1px solid rgba(255,255,255,.2);border-radius:6px;background:none;cursor:pointer;padding:0}
+.cfg-color input[type=text]{width:90px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text);font-family:var(--font);font-size:.78rem;padding:5px 8px;border-radius:5px;outline:none}
+.cfg-color input[type=text]:focus{border-color:var(--teal)}
+.cfg-select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text);font-family:var(--font);font-size:.78rem;padding:6px 10px;border-radius:6px;outline:none;cursor:pointer;width:100%}
+.cfg-select option{background:#0a0c18;color:#fff}
+.cfg-reset{background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.3);color:var(--rose);font-family:var(--font);font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:10px 20px;border-radius:6px;cursor:pointer;transition:all .15s;margin-top:8px}
+.cfg-reset:hover{background:rgba(244,63,94,.2)}
+.cfg-hint{font-size:.65rem;color:rgba(255,255,255,.2);letter-spacing:.06em;text-align:center;border-top:1px solid rgba(255,255,255,.06);padding-top:20px;line-height:1.8}
+#search-overlay{position:fixed;inset:0;z-index:500;background:rgba(3,5,12,.82);backdrop-filter:blur(18px);display:flex;align-items:flex-start;justify-content:center;padding-top:11vh;opacity:0;pointer-events:none;transition:opacity .18s}
+#search-overlay.open{opacity:1;pointer-events:all}
+#search-box{width:min(700px,90vw);background:rgba(14,16,28,.98);border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;box-shadow:0 32px 96px rgba(0,0,0,.7)}
+.srch-input-row{display:flex;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid rgba(255,255,255,.07)}
+.srch-icon{color:rgba(255,255,255,.35);font-size:1.05rem}
+#search-input{flex:1;background:none;border:none;outline:none;color:#fff;font-family:var(--font);font-size:1.05rem;font-weight:500;caret-color:var(--teal)}
+#search-input::placeholder{color:rgba(255,255,255,.22)}
+.srch-kbd{font-size:.6rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:4px;padding:2px 7px;color:rgba(255,255,255,.32);font-family:var(--font)}
+#srch-results{max-height:56vh;overflow-y:auto;padding:6px}
+.srch-empty{padding:38px 24px;text-align:center;color:rgba(255,255,255,.2);font-size:.82rem}
+.sr{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .1s}
+.sr:hover,.sr.sel{background:rgba(0,212,255,.1)}
+.sr-num{font-size:.6rem;font-weight:700;color:rgba(255,255,255,.25);min-width:24px;padding-top:3px}
+.sr-body{flex:1;min-width:0}
+.sr-title{font-size:.88rem;font-weight:600;color:#e8eeff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
+.sr-snip{font-size:.72rem;color:rgba(255,255,255,.4);line-height:1.55;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;margin-bottom:4px}
+.sr-snip mark{background:none;color:var(--teal);font-weight:600}
+.sr-badge{display:inline-block;font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,212,255,.55);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.18);border-radius:3px;padding:1px 5px}
+.srch-footer{padding:6px 18px 10px;font-size:.6rem;color:rgba(255,255,255,.2);display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.06)}
 .slide-map{padding:clamp(20px,2.5vw,48px)}
-.map-label{font-size:clamp(.7rem,1.1vw,1rem);font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px}
+.map-label{font-size:clamp(.7rem,1.1vw,1rem);font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px;align-self:flex-start}
 #map-svg{width:100%;height:100%;max-height:84vh}
-.recap-pill{cursor:pointer}
-.recap-pill:hover circle:first-child{fill:rgba(0,212,255,.12)!important}
-
-/* Slide grid (jump-to-slide hover strip) */
 #slide-grid-zone{position:fixed;bottom:0;left:0;right:0;height:38px;z-index:35;pointer-events:auto}
-#slide-grid{position:fixed;bottom:0;left:0;right:0;z-index:36;padding:14px 24px 18px;background:linear-gradient(180deg,transparent 0%,rgba(6,8,16,.92) 50%,rgba(6,8,16,.98) 100%);backdrop-filter:blur(10px);display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;justify-content:flex-start;flex-wrap:nowrap;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);scrollbar-width:thin}
+#slide-grid{position:fixed;bottom:0;left:0;right:0;z-index:36;padding:14px 24px 18px;background:linear-gradient(180deg,transparent 0%,rgba(6,8,16,.92) 50%,rgba(6,8,16,.98) 100%);backdrop-filter:blur(10px);display:flex;gap:6px;overflow-x:auto;justify-content:flex-start;flex-wrap:nowrap;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
 #slide-grid.visible{transform:translateY(0)}
-#slide-grid::-webkit-scrollbar{height:4px}
-#slide-grid::-webkit-scrollbar-thumb{background:rgba(0,212,255,.3);border-radius:2px}
-.sg-thumb{flex:0 0 auto;min-width:64px;height:46px;border:1px solid rgba(255,255,255,.12);border-radius:6px;background:rgba(255,255,255,.03);padding:5px 8px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;font-family:var(--font);transition:all .15s;position:relative}
+.sg-thumb{flex:0 0 auto;min-width:64px;height:46px;border:1px solid rgba(255,255,255,.12);border-radius:6px;background:rgba(255,255,255,.03);padding:5px 8px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;font-family:var(--font);transition:all .15s}
 .sg-thumb:hover{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.4);transform:translateY(-2px)}
 .sg-thumb.active{background:rgba(0,212,255,.18);border-color:var(--teal);box-shadow:0 0 12px rgba(0,212,255,.3)}
-.sg-num{font-size:.62rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.05em}
+.sg-thumb.slide-hidden{opacity:.3;border-style:dashed}
+.sg-num{font-size:.62rem;font-weight:600;color:rgba(255,255,255,.55)}
 .sg-thumb.active .sg-num{color:var(--teal)}
 .sg-label{font-size:.52rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
 .sg-thumb.active .sg-label{color:rgba(0,212,255,.7)}
-.sg-thumb.sg-cover{background:rgba(124,58,237,.06);border-color:rgba(124,58,237,.2)}
 .sg-thumb.sg-bonus{background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.2)}
-.sg-thumb.sg-bonus.active{background:rgba(245,158,11,.18);border-color:var(--amber);box-shadow:0 0 12px rgba(245,158,11,.3)}
+.sg-thumb.sg-bonus.active{background:rgba(245,158,11,.18);border-color:var(--amber)}
 .sg-thumb.sg-bonus.active .sg-num,.sg-thumb.sg-bonus.active .sg-label{color:var(--amber)}
-.sg-thumb.sg-map{background:rgba(167,139,250,.06);border-color:rgba(167,139,250,.2)}
-.sg-thumb.sg-close{background:rgba(244,63,94,.06);border-color:rgba(244,63,94,.2)}
-
-/* Close — sized for 1920×1080 projector */
 .close-ey{font-size:clamp(.7rem,1.4vw,1.05rem);font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:36px;opacity:.85}
 .close-title{font-size:clamp(3.2rem,7.5vw,7.5rem);font-weight:700;letter-spacing:-.03em;line-height:1;background:linear-gradient(130deg,#fff 20%,#fde68a 60%,#f59e0b 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:28px}
 .close-sub{font-size:clamp(1.1rem,2vw,1.7rem);color:var(--dim);margin-bottom:56px}
 .contact-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
 .contact-pill{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:48px;padding:14px 28px;font-size:clamp(.95rem,1.3vw,1.2rem)}
 .contact-pill .lbl{opacity:.4;font-size:clamp(.65rem,.9vw,.85rem);text-transform:uppercase;letter-spacing:.1em}
-
-/* HUD */
+.close-qr-row{display:flex;gap:24px;justify-content:center;align-items:flex-start;margin-top:36px;flex-wrap:wrap}
+.qr-card{display:flex;flex-direction:column;align-items:center;gap:8px;width:176px}
+.qr-card img{border-radius:10px;background:#fff;padding:8px;display:block;width:160px;height:160px}
+.qr-label{font-size:clamp(.72rem,1vw,.9rem);color:rgba(255,255,255,.6);letter-spacing:.1em;font-weight:500;text-align:center}
+.qr-badge{font-size:clamp(.58rem,.78vw,.76rem);font-weight:600;letter-spacing:.08em;text-align:center;line-height:1.35}
+.qr-badge.b-amber{color:var(--amber);animation:qrP1 2.1s ease-in-out infinite}
+.qr-badge.b-teal{color:var(--teal);animation:qrP2 1.9s ease-in-out infinite}
+@keyframes qrP1{0%,100%{opacity:.7;transform:rotate(-3deg) scale(1)}50%{opacity:1;transform:rotate(-3deg) scale(1.08)}}
+@keyframes qrP2{0%,100%{opacity:.7;transform:rotate(2.5deg) scale(1)}50%{opacity:1;transform:rotate(2.5deg) scale(1.08)}}
 #counter{position:fixed;top:32px;right:48px;z-index:20;font-size:clamp(.72rem,1vw,.95rem);font-weight:500;letter-spacing:.12em;color:rgba(255,255,255,.25)}
 #brand{position:fixed;bottom:28px;left:48px;z-index:20;font-size:clamp(.68rem,.95vw,.9rem);font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.18)}
 .nav-arrows{position:fixed;bottom:24px;right:160px;z-index:20;display:flex;gap:10px}
+#step-indicator{position:fixed;bottom:82px;right:160px;z-index:20;font-size:.6rem;font-weight:600;letter-spacing:.14em;color:rgba(255,255,255,.3);text-align:center;width:102px;pointer-events:none}
 .nav-btn{width:46px;height:46px;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:rgba(255,255,255,.03);color:rgba(255,255,255,.5);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;backdrop-filter:blur(8px)}
 .nav-btn:hover{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.3);color:var(--teal)}
-
-@keyframes fistPump{0%{transform:translateY(0)}30%{transform:translateY(-14px) scale(1.15)}50%{transform:translateY(-18px) scale(1.2)}70%{transform:translateY(-14px) scale(1.15)}100%{transform:translateY(0)}}
-
-/* Presentation mode — H key hides every UI element so the projector
-   shows only the slide content. Toggle off again with H. */
-body.presentation-mode #counter,
-body.presentation-mode #brand,
-body.presentation-mode .nav-arrows,
-body.presentation-mode #tracker,
-body.presentation-mode #slide-grid,
-body.presentation-mode #slide-grid-zone,
-body.presentation-mode #anno-toggle,
-body.presentation-mode #move-toggle,
-body.presentation-mode #anno-panel,
-body.presentation-mode #move-hud,
-body.presentation-mode #anno-prompt {
-  display: none !important;
-}
-
-@media(max-width:900px){.case-slide{flex-direction:column;text-align:center}.case-image{flex:none;width:85%;max-width:none;margin:0 auto}.case-bl li{text-align:left}}
-
-/* ── Annotation overlay ── */
+body.presentation-mode #counter,body.presentation-mode #brand,body.presentation-mode #step-indicator,body.presentation-mode .nav-arrows,body.presentation-mode #slide-grid,body.presentation-mode #slide-grid-zone,body.presentation-mode #anno-toggle,body.presentation-mode #move-toggle,body.presentation-mode #anno-panel,body.presentation-mode #move-hud,body.presentation-mode #anno-prompt,body.presentation-mode #search-overlay,body.presentation-mode #anim-scrub-bar{display:none!important}
 #anno-toggle,#move-toggle{position:fixed;top:24px;z-index:1000;border:1px solid rgba(0,212,255,.4);color:var(--teal);font-family:var(--font);font-size:.66rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:8px 14px;border-radius:6px;cursor:pointer;backdrop-filter:blur(8px);transition:all .2s;background:rgba(0,212,255,.1)}
 #anno-toggle{left:24px}
 #move-toggle{left:148px;border-color:rgba(245,158,11,.4);color:var(--amber);background:rgba(245,158,11,.1)}
-#anno-toggle:hover{background:rgba(0,212,255,.2)}
-#move-toggle:hover{background:rgba(245,158,11,.2)}
 #anno-toggle.active{background:var(--amber);color:#060810;border-color:var(--amber)}
 #move-toggle.active{background:var(--rose);color:#060810;border-color:var(--rose)}
-body.annotate-mode *:not(#anno-panel):not(#anno-panel *):not(#anno-toggle):not(#move-toggle):not(#slide-grid):not(#slide-grid *):not(#slide-grid-zone):hover{outline:2px dashed var(--teal)!important;outline-offset:2px;cursor:crosshair!important}
+#move-hud{position:fixed;top:24px;left:280px;z-index:1000;display:none;align-items:center;gap:8px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:6px 12px;backdrop-filter:blur(8px)}
+#move-hud.visible{display:flex}
+#move-hud .mh-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);font-family:var(--font);font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:5px;cursor:pointer;transition:all .15s}
+#move-hud .mh-btn:hover:not(:disabled){background:rgba(245,158,11,.2);color:var(--amber)}
+#move-hud .mh-btn:disabled{opacity:.3;cursor:not-allowed}
+#move-hud .mh-hint{font-size:.6rem;color:rgba(255,255,255,.45);padding:0 4px}
+#move-hud .mh-hint kbd{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:3px;padding:1px 5px;font-family:inherit;color:var(--amber)}
+body.annotate-mode *:not(#anno-panel):not(#anno-panel *):not(#anno-toggle):not(#move-toggle):not(#slide-grid):not(#slide-grid *):hover{outline:2px dashed var(--teal)!important;outline-offset:2px;cursor:crosshair!important}
 body.move-mode .slide.active *:not(#anno-toggle):not(#move-toggle):hover{outline:2px dashed var(--amber)!important;outline-offset:2px;cursor:move!important}
 body.move-mode .slide.active *{user-select:none}
 body.edit-text .slide.active [contenteditable="true"]{outline:2px solid var(--teal)!important;cursor:text!important;user-select:text!important;background:rgba(0,212,255,.08)}
@@ -254,62 +214,75 @@ body.edit-text .slide.active [contenteditable="true"]{outline:2px solid var(--te
 #anno-panel h3{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
 #anno-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;max-height:300px;overflow-y:auto}
 .anno-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:8px 10px;font-size:.72rem;line-height:1.4}
-.anno-item .anno-meta{font-size:.6rem;color:var(--dim);margin-bottom:4px;font-weight:500}
-.anno-item .anno-rm{float:right;color:var(--rose);cursor:pointer;font-size:.68rem;opacity:.6;margin-left:6px}
+.anno-item .anno-meta{font-size:.6rem;color:var(--dim);margin-bottom:4px}
+.anno-item .anno-rm{float:right;color:var(--rose);cursor:pointer;font-size:.68rem;opacity:.6}
 .anno-item .anno-rm:hover{opacity:1}
 .anno-actions{display:flex;gap:8px}
 .anno-btn{flex:1;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--teal);font-family:var(--font);font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:8px;border-radius:5px;cursor:pointer;transition:all .15s}
 .anno-btn:hover{background:rgba(0,212,255,.2)}
 .anno-btn.danger{color:var(--rose);border-color:rgba(244,63,94,.3);background:rgba(244,63,94,.06)}
-.anno-btn.danger:hover{background:rgba(244,63,94,.15)}
 #anno-prompt{position:fixed;z-index:1002;background:rgba(10,12,24,.98);border:1px solid var(--teal);border-radius:8px;padding:12px;display:none;flex-direction:column;gap:8px;width:280px;backdrop-filter:blur(12px)}
 #anno-prompt.visible{display:flex}
 #anno-prompt .anno-target{font-size:.62rem;color:var(--dim);font-family:monospace;word-break:break-all}
 #anno-prompt textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--text);font-family:var(--font);font-size:.78rem;padding:8px;border-radius:5px;resize:vertical;min-height:60px;outline:none}
 #anno-prompt textarea:focus{border-color:var(--teal)}
 #anno-prompt .anno-prompt-actions{display:flex;gap:6px;justify-content:flex-end}
-#anno-empty{color:var(--dim);font-size:.7rem;font-style:italic;text-align:center;padding:14px 0}
-#anno-toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--teal);color:#060810;padding:10px 18px;border-radius:6px;font-size:.72rem;font-weight:600;letter-spacing:.05em;z-index:1003;opacity:0;transition:opacity .3s;pointer-events:none}
+#anno-toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--teal);color:#060810;padding:10px 18px;border-radius:6px;font-size:.72rem;font-weight:600;z-index:1003;opacity:0;transition:opacity .3s;pointer-events:none}
 #anno-toast.show{opacity:1}
+@media(max-width:900px){.case-slide{flex-direction:column;text-align:center}.case-image{flex:none;width:85%;max-width:none;margin:0 auto}.case-bl li{text-align:left}}
+/* === SPEAKER NOTES DRAWER === */
+#notes-drawer{position:fixed;bottom:0;left:0;right:0;z-index:400;max-height:30vh;overflow-y:auto;background:rgba(6,8,16,.88);backdrop-filter:blur(14px);border-top:1px solid rgba(0,212,255,.25);padding:18px 32px;font-family:var(--font);font-size:.88rem;color:rgba(240,244,255,.8);line-height:1.7;transform:translateY(100%);transition:transform .3s ease;pointer-events:none}
+#notes-drawer.visible{transform:translateY(0);pointer-events:all}
+#notes-drawer .nd-title{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+#notes-drawer .nd-body{white-space:pre-line}
+/* === EXPORT MODAL === */
+#export-modal{position:fixed;inset:0;z-index:600;background:rgba(3,5,12,.88);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+#export-modal.open{opacity:1;pointer-events:all}
+#export-modal .em-box{width:min(780px,92vw);max-height:84vh;overflow-y:auto;background:rgba(14,16,28,.98);border:1px solid rgba(0,212,255,.2);border-radius:16px;padding:36px 40px;font-family:var(--font);color:var(--text)}
+#export-modal .em-title{font-size:1.3rem;font-weight:700;margin-bottom:6px}
+#export-modal .em-sub{font-size:.72rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px}
+#export-modal .em-section{margin-bottom:20px}
+#export-modal .em-section h4{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+#export-modal .em-check{display:flex;align-items:flex-start;gap:8px;font-size:.82rem;color:rgba(240,244,255,.7);line-height:1.5;margin-bottom:6px}
+#export-modal .em-check .em-box-icon{color:var(--dim);font-size:.9rem;flex-shrink:0}
+#export-modal code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:3px;font-size:.78rem;font-family:'JetBrains Mono',monospace;color:var(--teal)}
+#export-modal pre{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;font-size:.72rem;font-family:'JetBrains Mono',monospace;color:rgba(240,244,255,.7);line-height:1.6;overflow-x:auto;margin:8px 0 12px}
+#export-modal .em-tip{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:12px 14px;font-size:.78rem;color:rgba(245,158,11,.85);line-height:1.5;margin-top:16px}
+#export-modal .em-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
+#export-modal .em-btn{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--teal);font-family:var(--font);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;border-radius:6px;cursor:pointer;transition:all .15s}
+#export-modal .em-btn:hover{background:rgba(0,212,255,.2)}
+#export-modal .em-btn.primary{background:var(--teal);color:#060810;border-color:var(--teal)}
+#export-modal .em-btn.primary:hover{background:#33dfff}
+#export-modal .em-btn:disabled{opacity:.4;cursor:not-allowed}
+#export-modal .em-progress{font-size:.72rem;color:var(--dim);margin-top:10px}
+.cfg-btn-export{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);color:var(--teal);font-family:var(--font);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;border-radius:6px;cursor:pointer;transition:all .15s;margin-top:8px}
+.cfg-btn-export:hover{background:rgba(0,212,255,.18)}
 </style>
 </head>
 <body>
 <div class="bg"><div class="bg-gradient"></div><canvas id="stars"></canvas></div>
 <div id="deck"></div>
-<div id="tracker"><svg id="tracker-svg" viewBox="0 0 120 120"></svg></div>
 <div id="counter"></div>
 <div id="brand">Spatial Deck</div>
-<div class="nav-arrows"><button class="nav-btn" id="btn-prev">←</button><button class="nav-btn" id="btn-next">→</button></div>
-
-<!-- Slide jump grid (hover bottom of screen to reveal) -->
+<div id="step-indicator"></div>
+<div class="nav-arrows"><button class="nav-btn" id="btn-prev">&#8592;</button><button class="nav-btn" id="btn-next">&#8594;</button></div>
 <div id="slide-grid-zone"></div>
 <div id="slide-grid"></div>
-
-<!-- Annotation overlay -->
-<button id="anno-toggle" title="Toggle annotation mode (A)">📝 Annotate</button>
-<button id="move-toggle" title="Toggle move mode (M) — drag elements to reposition them">✋ Move Mode</button>
-<div id="anno-panel">
-  <h3>Annotations</h3>
-  <div id="anno-list"></div>
-  <div class="anno-actions">
-    <button class="anno-btn" id="anno-export">📋 Copy All</button>
-    <button class="anno-btn danger" id="anno-clear">Clear</button>
-  </div>
-</div>
-<div id="anno-prompt">
-  <div class="anno-target" id="anno-target-text"></div>
-  <textarea id="anno-text" placeholder="What should change?"></textarea>
-  <div class="anno-prompt-actions">
-    <button class="anno-btn" id="anno-cancel" style="flex:0">Cancel</button>
-    <button class="anno-btn" id="anno-save" style="flex:0">Save</button>
-  </div>
-</div>
+<div id="search-overlay"><div id="search-box"><div class="srch-input-row"><span class="srch-icon">&#8981;</span><input type="text" id="search-input" placeholder="Search slides, topics, case studies..." autocomplete="off" spellcheck="false"><kbd class="srch-kbd">Esc</kbd></div><div id="srch-results"><div class="srch-empty">Type to search across all slides...</div></div><div class="srch-footer"><span id="srch-count"></span><span>&#8593;&#8595; navigate &middot; Enter jump &middot; Esc close</span></div></div></div>
+<button id="anno-toggle" title="Toggle annotation mode (A)">Annotate</button>
+<button id="move-toggle" title="Toggle move mode (M)">Move Mode</button>
+<div id="move-hud"><button class="mh-btn" id="move-undo" disabled>&#8630; Undo</button><button class="mh-btn" id="move-redo" disabled>&#8631; Redo</button><span class="mh-hint">Drag = move &middot; <kbd>Shift</kbd>drag = scale &middot; <kbd>Alt</kbd>drag = rotate</span></div>
+<div id="anno-panel"><h3>Annotations</h3><div id="anno-list"></div><div class="anno-actions"><button class="anno-btn" id="anno-export">Copy All</button><button class="anno-btn danger" id="anno-clear">Clear</button></div></div>
+<div id="anno-prompt"><div class="anno-target" id="anno-target-text"></div><textarea id="anno-text" placeholder="What should change?"></textarea><div class="anno-prompt-actions"><button class="anno-btn" id="anno-cancel" style="flex:0">Cancel</button><button class="anno-btn" id="anno-save" style="flex:0">Save</button></div></div>
 <div id="anno-toast"></div>
+<div id="notes-drawer"><div class="nd-title">Speaker Notes</div><div class="nd-body" id="notes-body"></div></div>
+<div id="export-modal"><div class="em-box" id="export-box"></div></div>
 
 <script>
-/* ═══════════════════════════════════════════════════════════════════════
-   ENGINE — slide generation, navigation, monocle tracker, map animation
-   ═══════════════════════════════════════════════════════════════════════ */
+/* =======================================================================
+   ENGINE
+   ======================================================================= */
+function svgE(t,a){const e=document.createElementNS('http://www.w3.org/2000/svg',t);if(a)Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v));return e;}
 
 // Stars
 const cv=document.getElementById('stars'),sc=cv.getContext('2d');let st=[];
@@ -318,773 +291,527 @@ function drawS(){sc.clearRect(0,0,cv.width,cv.height);st.forEach(s=>{sc.beginPat
 initS();drawS();addEventListener('resize',initS);
 
 const deck=document.getElementById('deck'),allSlides=[],lessonIdxs=[];
+const slideSteps=new Map();
 
-// ── Build cover ──
+// SFX
+let _sfxCtx=null;
+function sfxCtx(){if(!_sfxCtx)_sfxCtx=new(window.AudioContext||window.webkitAudioContext)();if(_sfxCtx.state==='suspended')_sfxCtx.resume();return _sfxCtx;}
+function playWhoosh(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),g=c.createGain(),f=c.createBiquadFilter();f.type='lowpass';f.frequency.value=2000;o.type='sawtooth';o.frequency.setValueAtTime(200,t);o.frequency.exponentialRampToValueAtTime(80,t+.15);o.connect(f);f.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.03,t);g.gain.exponentialRampToValueAtTime(.001,t+.18);o.start(t);o.stop(t+.2);}catch(e){}}
+function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.setValueAtTime(72,t);o.frequency.exponentialRampToValueAtTime(38,t+.18);o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.007,t);g.gain.exponentialRampToValueAtTime(.001,t+.22);o.start(t);o.stop(t+.23);}catch(e){}}
+
+// Settings slide (slot 0, hidden)
+(function(){
+  const D={paraGap:.35,taglineScale:1,titleScale:1,imgDur:6,primaryColor:'#00d4ff',secondaryColor:'#a78bfa',bgDark:'#060810',fontFamily:'Space Grotesk'};
+  const saved=JSON.parse(localStorage.getItem('sd-cfg')||'{}');const C={...D,...saved};
+  function apply(){const r=document.documentElement.style;r.setProperty('--para-gap',C.paraGap+'em');r.setProperty('--tagline-scale',C.taglineScale);r.setProperty('--title-scale',C.titleScale);r.setProperty('--teal',C.primaryColor);r.setProperty('--purple',C.secondaryColor);r.setProperty('--bg-dark',C.bgDark);r.setProperty('--bg',C.bgDark);if(C.fontFamily&&C.fontFamily!=='Custom')r.setProperty('--font',`'${C.fontFamily}',system-ui,sans-serif`);else if(C.customFont)r.setProperty('--font',`'${C.customFont}',system-ui,sans-serif`);window._globalImageDuration=C.imgDur*1000;}
+  apply();function save(){localStorage.setItem('sd-cfg',JSON.stringify(C));}
+  const s=document.createElement('div');s.className='slide slide-settings';s.dataset.type='settings';s.dataset.hidden='1';
+  const fo=['Space Grotesk','Inter','Outfit','JetBrains Mono','Playfair Display','Custom'].map(f=>`<option value="${f}"${C.fontFamily===f?' selected':''}>${f}</option>`).join('');
+  s.innerHTML=`<div class="cfg-panel"><div class="cfg-title">Presentation Settings</div><div class="cfg-subtitle">Full Theme Editor &middot; Changes apply live &middot; Saved to localStorage</div><div class="cfg-grid">
+    <div class="cfg-row"><label class="cfg-label">Primary Color</label><div class="cfg-color"><input type="color" id="cfg-pc" value="${C.primaryColor}"><input type="text" id="cfg-ph" value="${C.primaryColor}"></div></div>
+    <div class="cfg-row"><label class="cfg-label">Secondary Color</label><div class="cfg-color"><input type="color" id="cfg-sc" value="${C.secondaryColor}"><input type="text" id="cfg-sh" value="${C.secondaryColor}"></div></div>
+    <div class="cfg-row"><label class="cfg-label">Background</label><div class="cfg-color"><input type="color" id="cfg-bc" value="${C.bgDark}"><input type="text" id="cfg-bh" value="${C.bgDark}"></div></div>
+    <div class="cfg-row"><label class="cfg-label">Font Family</label><select class="cfg-select" id="cfg-ff">${fo}</select><input type="text" id="cfg-cf" placeholder="Custom font..." style="margin-top:6px;display:${C.fontFamily==='Custom'?'block':'none'}" class="cfg-select" value="${C.customFont||''}"></div>
+    <div class="cfg-row"><label class="cfg-label">Paragraph Gap</label><div class="cfg-control"><input type="range" id="cfg-pg" min="0" max="1.2" step="0.05" value="${C.paraGap}"><span class="cfg-val" id="v-pg">${C.paraGap.toFixed(2)}em</span></div></div>
+    <div class="cfg-row"><label class="cfg-label">Image Hold Time</label><div class="cfg-control"><input type="range" id="cfg-id" min="2" max="15" step="0.5" value="${C.imgDur}"><span class="cfg-val" id="v-id">${C.imgDur.toFixed(1)}s</span></div></div>
+    <div class="cfg-row"><label class="cfg-label">Tagline Size</label><div class="cfg-control"><input type="range" id="cfg-ts" min="0.6" max="1.5" step="0.05" value="${C.taglineScale}"><span class="cfg-val" id="v-ts">${Math.round(C.taglineScale*100)}%</span></div></div>
+    <div class="cfg-row"><label class="cfg-label">Title Size</label><div class="cfg-control"><input type="range" id="cfg-ti" min="0.6" max="1.3" step="0.05" value="${C.titleScale}"><span class="cfg-val" id="v-ti">${Math.round(C.titleScale*100)}%</span></div></div>
+  </div><div class="cfg-row" style="grid-column:1/-1"><span class="cfg-label">Estimated Duration</span><span class="cfg-val" id="v-duration" style="text-align:left">--:--</span></div></div><div style="text-align:center;display:flex;gap:10px;justify-content:center"><button class="cfg-reset" id="cfg-r">Reset to Defaults</button><button class="cfg-btn-export" id="cfg-export">&#128230; Export for Offline</button></div><div class="cfg-hint">Ctrl/Cmd-click grid thumbnails to hide &middot; H = presentation mode &middot; A = annotate &middot; M = move &middot; N = presenter popup &middot; Shift+N = notes drawer</div></div>`;
+  deck.appendChild(s);allSlides.push(s);
+  function w(id,vid,set,fmt){const e=s.querySelector('#'+id),v=s.querySelector('#'+vid);e.addEventListener('input',()=>{set(parseFloat(e.value));apply();v.textContent=fmt(parseFloat(e.value));save();});}
+  w('cfg-pg','v-pg',v=>{C.paraGap=v;},v=>v.toFixed(2)+'em');w('cfg-id','v-id',v=>{C.imgDur=v;},v=>v.toFixed(1)+'s');
+  w('cfg-ts','v-ts',v=>{C.taglineScale=v;},v=>Math.round(v*100)+'%');w('cfg-ti','v-ti',v=>{C.titleScale=v;},v=>Math.round(v*100)+'%');
+  function wc(pi,hi,pr){const p=s.querySelector('#'+pi),h=s.querySelector('#'+hi);p.addEventListener('input',()=>{C[pr]=p.value;h.value=p.value;apply();save();});h.addEventListener('change',()=>{if(/^#[0-9a-fA-F]{6}$/.test(h.value)){C[pr]=h.value;p.value=h.value;apply();save();}});}
+  wc('cfg-pc','cfg-ph','primaryColor');wc('cfg-sc','cfg-sh','secondaryColor');wc('cfg-bc','cfg-bh','bgDark');
+  const fs=s.querySelector('#cfg-ff'),ci=s.querySelector('#cfg-cf');
+  fs.addEventListener('change',()=>{C.fontFamily=fs.value;ci.style.display=fs.value==='Custom'?'block':'none';apply();save();});
+  ci.addEventListener('change',()=>{C.customFont=ci.value;apply();save();});
+  s.querySelector('#cfg-r').addEventListener('click',()=>{Object.assign(C,D);delete C.customFont;save();apply();location.reload();});
+})();
+
+// Cover
 const cov=document.createElement('div');cov.className='slide active';cov.dataset.type='cover';
-cov.innerHTML=`<div class="event-tag">Venue · Date · Tagline</div>
-<h1 class="talk-title">Spatial Deck<br>Demo</h1>
-<p class="talk-subtitle">A self-contained presentation framework for live talks</p>
-<div class="speaker-card"><div><div class="speaker-name">Your Name Here</div><div class="speaker-co">Your Title · Company</div></div><div class="card-sep"></div><div class="event-detail">Talk Title<br>Venue · Date</div></div>`;
+cov.innerHTML=`<div class="event-tag">Spatial Deck &middot; Open-Source Presentation Framework</div><h1 class="talk-title">What To Look For<br>When Hiring<br>an XR Studio</h1><p class="talk-subtitle">5 Lessons. 10 Case Studies. A cheeky conclusion.</p><div class="speaker-card"><div><div class="speaker-name">A Spatial Deck Presentation</div><div class="speaker-co">github.com/spatial-deck</div></div></div>`;
 deck.appendChild(cov);allSlides.push(cov);
 
-// ── Build sections ──
+// Build sections
 SECTIONS.forEach((sec,si)=>{
   const ac=sec.accent!=='teal'?` accent-${sec.accent}`:'';
-  sec.cases.forEach((c,ci)=>{
+  const ls=document.createElement('div');ls.className=`slide slide-lesson${ac}`;ls.dataset.type='lesson';ls.dataset.year=sec.year;ls.dataset.section=si;ls.dataset.ln=si+1;
+  ls.innerHTML=`<div class="year-ghost">${sec.year}</div><div class="lesson-ey"><span class="ey-yr">${sec.year}</span><span class="ey-sep">&middot;</span><span class="ey-badge">Lesson ${String(si+1).padStart(2,'0')} / ${SECTIONS.length}</span></div><h2 class="lesson-title">${sec.lesson.title}</h2><p class="lesson-tagline">${sec.lesson.tagline.replace(/<br><br>/g,'<br><span class="para-gap"></span>')}</p>${sec.lesson.tags?`<div class="lesson-tags">${sec.lesson.tags}</div>`:''}<div class="lesson-rule"></div>`;
+  deck.appendChild(ls);allSlides.push(ls);lessonIdxs.push(allSlides.length-1);
+  sec.cases.forEach(c=>{
     const s=document.createElement('div');s.className=`slide case-slide${ac}`;s.dataset.type='case';s.dataset.year=sec.year;s.dataset.section=si;
     const img=c.img?`<img src="${c.img}" alt="${c.title}" loading="lazy">`:`<div class="ph">Image TBD</div>`;
-    s.innerHTML=`<div class="case-image">${img}</div><div class="case-content">
-      <div class="case-ytag">${sec.year} · Case Study ${ci+1}/${sec.cases.length}</div>
-      <h2 class="case-title">${c.title}</h2><p class="case-sub">${c.subtitle}</p>
-      <ul class="case-bl">${c.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div>`;
+    s.innerHTML=`<div class="case-image"><div class="media-cycler-mount" style="width:100%;height:100%"></div></div><div class="case-content"><div class="case-ytag">Case Study &middot; ${sec.lesson.short||''}</div><h2 class="case-title">${c.title}</h2><p class="case-sub">${c.subtitle}</p><ul class="case-bl">${c.bullets.map(b=>`<li>${b.replace(/\n/g,'<br>')}</li>`).join('')}</ul></div>`;
     deck.appendChild(s);allSlides.push(s);
   });
-  const ls=document.createElement('div');ls.className=`slide slide-lesson${ac}`;ls.dataset.type='lesson';ls.dataset.year=sec.year;ls.dataset.section=si;ls.dataset.ln=si+1;
-  ls.innerHTML=`<div class="year-ghost">${sec.year}</div>
-    <div class="lesson-ey"><span class="ey-yr">${sec.year}</span><span class="ey-sep">·</span><span class="ey-badge">Lesson ${String(si+1).padStart(2,'0')} / 10</span></div>
-    <h2 class="lesson-title">${sec.lesson.title}</h2><p class="lesson-tagline">${sec.lesson.tagline}</p>
-    ${sec.lesson.tags?`<div class="lesson-tags">${sec.lesson.tags}</div>`:''}<div class="lesson-rule"></div>`;
-  deck.appendChild(ls);allSlides.push(ls);lessonIdxs.push(allSlides.length-1);
 });
 
-// ── Bonus (only if BONUS is defined) ──
-if (BONUS) {
-  const bon=document.createElement('div');bon.className='slide slide-lesson slide-bonus';bon.dataset.type='bonus';bon.dataset.year=BONUS.year;
-  bon.innerHTML=`<div class="year-ghost">${BONUS.year}</div><div class="lesson-ey"><span class="ey-yr">${BONUS.year}</span><span class="ey-sep">·</span><span class="ey-badge" style="color:var(--amber)">BONUS</span></div>
-<h2 class="lesson-title">${BONUS.title}</h2><p class="lesson-tagline">${BONUS.tagline}</p><div class="lesson-rule" style="background:var(--amber)"></div>`;
-  deck.appendChild(bon);allSlides.push(bon);
-}
+// Bonus
+const bon=document.createElement('div');bon.className='slide slide-lesson slide-bonus';bon.dataset.type='bonus';bon.dataset.year=BONUS.year;
+bon.innerHTML=`<div class="year-ghost">${BONUS.year}</div><div class="lesson-ey"><span class="ey-yr">${BONUS.year}</span><span class="ey-sep">&middot;</span><span class="ey-badge" style="color:var(--amber)">BONUS LESSON</span></div><h2 class="lesson-title">${BONUS.title}</h2><p class="lesson-tagline">${BONUS.tagline.replace(/<br><br>/g,'<br><span class="para-gap"></span>')}</p><div class="lesson-rule" style="background:var(--amber)"></div>`;
+deck.appendChild(bon);allSlides.push(bon);
 
-// ── Map ──
+// Map
 const mapS=document.createElement('div');mapS.className='slide slide-map';mapS.dataset.type='map';
 mapS.innerHTML=`<div class="map-label">The Journey, Mapped</div><svg id="map-svg" viewBox="0 0 1000 600"></svg>`;
 deck.appendChild(mapS);allSlides.push(mapS);
 
-// ── Close ──
+// Close slide with inline Agile Lens SVG logo
 const cls=document.createElement('div');cls.className='slide';cls.dataset.type='close';
-cls.innerHTML=`<div class="close-ey">Thank You</div><h2 class="close-title">Let's Talk.</h2><p class="close-sub">Replace this with your closing message.</p>
-<div class="contact-row"><div class="contact-pill"><span class="lbl">Site</span>example.com</div><div class="contact-pill"><span class="lbl">Email</span>hi@example.com</div><div class="contact-pill"><span class="lbl">Social</span>@yourhandle</div></div>`;
+cls.innerHTML=`<div class="close-ey">Thank You</div><h2 class="close-title">Now Go Hire<br>the Right Studio</h2><p class="close-sub">These five lessons will save you months of pain, thousands of dollars, and at least one existential crisis in a headset.</p>
+<div class="contact-row"><div class="contact-pill"><span class="lbl">Web</span>agilelens.com</div><div class="contact-pill"><span class="lbl">X/IG</span>@agilelens</div></div>
+<div class="close-qr-row"><div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://agilelens.com" alt="QR"><div class="qr-label">agilelens.com</div><div class="qr-badge b-amber">P.S. We know a studio that<br>checks all these boxes.</div></div>
+<div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://github.com/spatial-deck" alt="QR"><div class="qr-label">This Framework</div><div class="qr-badge b-teal">Fork it! Ship your own deck!</div></div></div>
+<div style="position:absolute;bottom:clamp(30px,4vh,60px);left:50%;transform:translateX(-50%);opacity:.35;z-index:2"><svg width="200" height="40" viewBox="0 0 869 175" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M266.385 134.295L264.681 136H249.34L247.635 134.295L239.113 112.137L235.704 110.432H193.09L189.681 112.137L181.159 134.295L179.454 136H164.114L162.409 134.295V117.25L201.613 18.3878L203.318 16.6833H225.476L227.181 18.3878L266.385 117.25V134.295ZM230.59 88.2733L215.249 47.3647H213.545L198.204 88.2733L199.909 89.9778H228.886L230.59 88.2733ZM346.604 52.4783V127.477C346.604 158.159 327.854 171.795 303.991 171.795C283.537 171.795 269.901 161.568 268.196 146.227L269.901 144.523H290.355L292.059 146.227C293.764 149.636 297.173 151.341 303.991 151.341C315.923 151.341 322.741 144.523 322.741 129.182H321.036C321.036 129.182 314.218 137.705 298.878 137.705C278.423 137.705 261.378 120.659 261.378 93.3869C261.378 66.1145 278.423 49.0692 298.878 49.0692C314.218 49.0692 321.036 57.5919 321.036 57.5919H322.741L324.445 52.4783L326.15 50.7738H344.9L346.604 52.4783ZM285.241 93.3869C285.241 107.023 290.355 117.25 303.991 117.25C317.627 117.25 322.741 107.023 322.741 93.3869C322.741 79.7507 317.627 69.5235 303.991 69.5235C290.355 69.5235 285.241 79.7507 285.241 93.3869ZM378.964 35.433L377.259 37.1376H356.805L355.1 35.433V18.3878L356.805 16.6833H377.259L378.964 18.3878V35.433ZM378.964 134.295L377.259 136H356.805L355.1 134.295V52.4783L356.805 50.7738H377.259L378.964 52.4783V134.295ZM411.31 134.295L409.605 136H389.151L387.446 134.295V18.3878L389.151 16.6833H409.605L411.31 18.3878V134.295ZM496.496 93.3869V100.205L494.791 101.91H441.951L440.247 103.614C440.247 107.023 443.656 117.25 457.292 117.25C462.405 117.25 467.519 115.546 469.223 112.137L470.928 110.432H491.382L493.087 112.137C491.382 122.364 482.86 137.705 457.292 137.705C428.315 137.705 414.679 117.25 414.679 93.3869C414.679 69.5235 428.315 49.0692 455.587 49.0692C482.86 49.0692 496.496 69.5235 496.496 93.3869ZM469.223 84.8643L470.928 83.1597C470.928 81.4552 469.223 69.5235 455.587 69.5235C441.951 69.5235 440.247 81.4552 440.247 83.1597L441.951 84.8643H469.223ZM615.779 134.295L614.075 136H537.371L535.667 134.295V18.3878L537.371 16.6833H557.825L559.53 18.3878V113.841L561.234 115.546H614.075L615.779 117.25V134.295ZM687.249 93.3869V100.205L685.545 101.91H632.705L631 103.614C631 107.023 634.409 117.25 648.045 117.25C653.159 117.25 658.273 115.546 659.977 112.137L661.682 110.432H682.136L683.84 112.137C682.136 122.364 673.613 137.705 648.045 137.705C619.068 137.705 605.432 117.25 605.432 93.3869C605.432 69.5235 619.068 49.0692 646.341 49.0692C673.613 49.0692 687.249 69.5235 687.249 93.3869ZM659.977 84.8643L661.682 83.1597C661.682 81.4552 659.977 69.5235 646.341 69.5235C632.705 69.5235 631 81.4552 631 83.1597L632.705 84.8643H659.977ZM770.778 134.295L769.073 136H748.619L746.914 134.295V84.8643C746.914 76.3416 743.505 69.5235 733.278 69.5235C721.347 69.5235 714.528 76.3416 714.528 91.6824V134.295L712.824 136H692.37L690.665 134.295V52.4783L692.37 50.7738H711.119L712.824 52.4783L714.528 57.5919H716.233C719.642 54.1828 726.46 49.0692 738.392 49.0692C758.846 49.0692 770.778 62.7054 770.778 83.1597V134.295ZM847.495 110.432C847.495 124.068 837.268 137.705 809.995 137.705C786.132 137.705 772.496 125.773 772.496 108.728L774.2 107.023H794.654L796.359 108.728C796.359 115.546 801.473 117.25 809.995 117.25C818.518 117.25 823.631 115.546 823.631 110.432C823.631 103.614 816.813 103.614 806.586 101.91C796.359 100.205 774.2 95.0914 774.2 74.6371C774.2 61.0009 784.427 49.0692 809.995 49.0692C830.449 49.0692 845.79 57.5919 845.79 74.6371L844.086 76.3416H823.631L821.927 74.6371C821.927 71.2281 818.518 69.5235 809.995 69.5235C801.473 69.5235 798.064 71.2281 798.064 76.3416C798.064 83.1597 808.291 83.1597 818.518 84.8643C828.745 86.5688 847.495 89.9778 847.495 110.432Z" fill="white"/><circle cx="71" cy="73" r="60" stroke="white" stroke-width="8" fill="none"/><line x1="115" y1="117" x2="142" y2="155" stroke="white" stroke-width="8" stroke-linecap="round"/></svg></div>`;
 deck.appendChild(cls);allSlides.push(cls);
 
-const total=allSlides.length;let current=0;const counterEl=document.getElementById('counter');
-
-// ── Nav ──
-function updateHUD(){counterEl.textContent=`${String(current+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;updateTracker()}
-// ── Tally count-up ──
-function animateTally(el){
-  const orig = el.dataset.tally || el.textContent.trim();
-  el.dataset.tally = orig;
-  const m = orig.match(/^(\d+)(\+?)$/);
-  if (!m) return;
-  const target = parseInt(m[1],10);
-  const suffix = m[2] || '';
-  const dur = 1000;
-  const start = performance.now();
-  el.style.display = 'inline-block';
-  el.style.willChange = 'transform';
-  function frame(t){
-    const k = Math.min(1, (t-start)/dur);
-    const eased = 1 - Math.pow(1-k, 3);
-    el.textContent = Math.round(eased*target) + (k>=1?suffix:'');
-    let y = 0, sx = 1, sy = 1;
-    if (k < 0.85) { y = -Math.sin((k/0.85)*Math.PI) * 14; }
-    else { const lk = (k-0.85)/0.15; sy = 1 - 0.12*Math.sin(lk*Math.PI); sx = 1 + 0.12*Math.sin(lk*Math.PI); }
-    el.style.transform = `translateY(${y.toFixed(2)}px) scale(${sx.toFixed(3)}, ${sy.toFixed(3)})`;
-    if (k<1) requestAnimationFrame(frame); else el.style.transform = '';
-  }
-  requestAnimationFrame(frame);
-}
-function playTallies(slide){ if(!slide)return; slide.querySelectorAll('.num').forEach(animateTally); }
-
-let animating=false;
-function goTo(n){
-  if(n<0||n>=total||n===current||animating)return;
-  animating=true;const fwd=n>current;
-  const p=allSlides[current],nx=allSlides[n];
-  // Ensure no stale active slides
-  allSlides.forEach(s=>{if(s!==p&&s!==nx){s.classList.remove('active');s.style.animation='';s.style.cssText=''}});
-  // Exit previous
-  p.classList.remove('active');
-  p.style.animation=(fwd?'slideOutFwd':'slideOutBwd')+' .45s cubic-bezier(.4,0,.2,1) forwards';
-  setTimeout(()=>{p.style.animation='';p.style.cssText=''},500);
-  // Enter next
-  nx.style.animation=(fwd?'slideInFwd':'slideInBwd')+' .5s cubic-bezier(.4,0,.2,1) forwards';
-  nx.classList.add('active');
-  current=n;updateHUD();
-  if(allSlides[current].dataset.type==='map')setTimeout(startMap,400);
-  setTimeout(()=>playTallies(nx), 400);
-  // Update URL hash so the slide is shareable / re-navigable
-  if(history.replaceState) history.replaceState(null, '', '#' + (current + 1));
-  setTimeout(()=>{animating=false},520);
-}
-document.getElementById('btn-prev').addEventListener('click',()=>goTo(current-1));
-document.getElementById('btn-next').addEventListener('click',()=>goTo(current+1));
+// Navigation
+let current=1,total=allSlides.length,direction=1;
+function nextVisible(f,d){let i=f;for(let n=0;n<total;n++){i=(i+d+total)%total;if(allSlides[i].dataset.hidden!=='1')return i;}return f;}
+function goTo(n,fwd){if(n<0||n>=total||n===current)return;const dir=fwd!==undefined?fwd:n>current;direction=dir?1:-1;const prev=allSlides[current];prev.classList.remove('active');prev.style.animation=dir?'slideOutFwd .4s ease forwards':'slideOutBwd .4s ease forwards';setTimeout(()=>{prev.style.animation='';},450);current=n;const next=allSlides[current];next.classList.add('active');next.style.animation=dir?'slideInFwd .4s ease forwards':'slideInBwd .4s ease forwards';setTimeout(()=>{next.style.animation='';},450);updateHUD();updateHash();playWhoosh();}
+function goNext(){goTo(nextVisible(current,1),true);}
+function goPrev(){goTo(nextVisible(current,-1),false);}
+function advanceStep(){const ss=slideSteps.get(allSlides[current]);if(ss&&ss.current<ss.steps.length){ss.steps[ss.current]();ss.current++;updateStepIndicator();return true;}return false;}
+function updateStepIndicator(){const el=document.getElementById('step-indicator');const ss=slideSteps.get(allSlides[current]);el.textContent=(ss&&ss.current<ss.steps.length)?`Step ${ss.current+1}/${ss.steps.length}`:'';}
+function updateHUD(){document.getElementById('counter').textContent=`${String(current+1).padStart(2,'0')} / ${total}`;updateStepIndicator();buildGrid();}
+function updateHash(){location.hash=current>1?current:'';}
+function goToFromHash(){const h=parseInt(location.hash.replace('#',''));if(h>=0&&h<total)goTo(h);}
+document.getElementById('btn-next').addEventListener('click',()=>{if(!advanceStep())goNext();});
+document.getElementById('btn-prev').addEventListener('click',goPrev);
 document.addEventListener('keydown',e=>{
-  // Don't intercept keys when typing in inputs (annotation textarea)
-  if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
-  // Forward: arrows, space, PageDown, N (most clickers send PageDown)
-  if(['ArrowRight','ArrowDown',' ','PageDown','n','N'].includes(e.key)){e.preventDefault();goTo(current+1)}
-  // Backward: arrows, PageUp, P
-  if(['ArrowLeft','ArrowUp','PageUp','p','P'].includes(e.key)){e.preventDefault();goTo(current-1)}
-  if(e.key==='Home'){e.preventDefault();goTo(0)}
-  if(e.key==='End'){e.preventDefault();goTo(total-1)}
-  // H = toggle presentation mode (hide all UI chrome for projector display)
-  if(e.key==='h'||e.key==='H'){ e.preventDefault(); document.body.classList.toggle('presentation-mode'); }
+  if(e.target.closest('#search-input,#anno-text,[contenteditable]'))return;
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();if(!advanceStep())goNext();}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='Backspace'){e.preventDefault();goPrev();}
+  if(e.key==='Home'){e.preventDefault();goTo(1);}
+  if(e.key==='End'){e.preventDefault();goTo(total-1);}
+  if(e.shiftKey&&e.key==='ArrowRight'&&window._activeCycler){e.preventDefault();window._activeCycler.next();}
+  if(e.shiftKey&&e.key==='ArrowLeft'&&window._activeCycler){e.preventDefault();window._activeCycler.prev();}
+  if((e.key==='h'||e.key==='H')&&!e.target.closest('input,textarea,[contenteditable]')){e.preventDefault();document.body.classList.toggle('presentation-mode');}
+  if((e.key==='/'||(e.metaKey&&e.key==='f')||(e.ctrlKey&&e.key==='f'))&&!e.target.closest('input,textarea')){e.preventDefault();openSearch();}
 });
+let touchX=0;document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50){dx<0?(!advanceStep()&&goNext()):goPrev();}});
+addEventListener('hashchange',goToFromHash);
 
-// Hash routing — let the URL drive which slide we land on. Share
-// https://your-site/#5 to drop a viewer on slide 5 directly.
-function goToFromHash() {
-  const m = (location.hash || '').match(/^#(\d+)$/);
-  if (!m) return;
-  const target = Math.max(0, Math.min(total - 1, parseInt(m[1], 10) - 1));
-  if (target !== current) goTo(target);
+// Slide grid
+function buildGrid(){const g=document.getElementById('slide-grid');g.innerHTML='';allSlides.forEach((s,i)=>{const t=document.createElement('div');const ty=s.dataset.type||'slide';let c='sg-thumb';if(i===current)c+=' active';if(s.dataset.hidden==='1')c+=' slide-hidden';if(ty==='bonus')c+=' sg-bonus';t.className=c;const lb=ty==='lesson'?(s.dataset.ln?`L${s.dataset.ln}`:'LESSON'):ty==='case'?`${s.dataset.year}`:ty.toUpperCase();t.innerHTML=`<span class="sg-num">${String(i+1).padStart(2,'0')}</span><span class="sg-label">${lb}</span>`;t.addEventListener('click',e=>{if(e.ctrlKey||e.metaKey){s.dataset.hidden=s.dataset.hidden==='1'?'':'1';buildGrid();return;}goTo(i);});g.appendChild(t);});const a=g.querySelector('.active');if(a)a.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
+const gridZone=document.getElementById('slide-grid-zone'),gridEl=document.getElementById('slide-grid');let gridTimer=null;
+gridZone.addEventListener('mouseenter',()=>{clearTimeout(gridTimer);gridEl.classList.add('visible');});
+gridEl.addEventListener('mouseenter',()=>{clearTimeout(gridTimer);gridEl.classList.add('visible');});
+gridEl.addEventListener('mouseleave',()=>{gridTimer=setTimeout(()=>gridEl.classList.remove('visible'),600);});
+gridZone.addEventListener('mouseleave',()=>{gridTimer=setTimeout(()=>gridEl.classList.remove('visible'),600);});
+
+// Search
+function openSearch(){document.getElementById('search-overlay').classList.add('open');document.getElementById('search-input').value='';document.getElementById('search-input').focus();renderSearchResults('');}
+function closeSearch(){document.getElementById('search-overlay').classList.remove('open');}
+document.getElementById('search-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeSearch();});
+document.getElementById('search-input').addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();return;}if(e.key==='Enter'){const s=document.querySelector('.sr.sel');if(s){goTo(+s.dataset.idx);closeSearch();}return;}if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();navSR(e.key==='ArrowDown'?1:-1);}});
+document.getElementById('search-input').addEventListener('input',e=>renderSearchResults(e.target.value));
+let srSel=0;
+function renderSearchResults(q){const box=document.getElementById('srch-results'),cnt=document.getElementById('srch-count');if(!q.trim()){box.innerHTML='<div class="srch-empty">Type to search...</div>';cnt.textContent='';srSel=0;return;}const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');const res=[];allSlides.forEach((s,i)=>{const t=s.textContent||'';if(re.test(t)){const sn=t.substring(0,200).replace(re,m=>`<mark>${m}</mark>`);const ty=s.dataset.type||'slide';const yr=s.dataset.year||'';res.push({i,ty,yr,sn,tl:(s.querySelector('.lesson-title,.case-title,.talk-title,.close-title,.cfg-title')?.textContent||ty).substring(0,60)});}});if(!res.length){box.innerHTML='<div class="srch-empty">No matches</div>';cnt.textContent='0';srSel=0;return;}cnt.textContent=res.length;srSel=0;box.innerHTML=res.map((r,ri)=>`<div class="sr${ri===0?' sel':''}" data-idx="${r.i}"><span class="sr-num">${String(r.i+1).padStart(2,'0')}</span><div class="sr-body"><div class="sr-title">${r.tl}</div><div class="sr-snip">${r.sn}</div><span class="sr-badge">${r.ty}${r.yr?' '+r.yr:''}</span></div></div>`).join('');box.querySelectorAll('.sr').forEach(el=>{el.addEventListener('click',()=>{goTo(+el.dataset.idx);closeSearch();});});}
+function navSR(d){const it=[...document.querySelectorAll('.sr')];if(!it.length)return;it[srSel]?.classList.remove('sel');srSel=(srSel+d+it.length)%it.length;it[srSel]?.classList.add('sel');it[srSel]?.scrollIntoView({block:'nearest'});}
+
+// Media Cycler
+function buildMediaCycler(sl,items,opts){const{imageDuration=6000,enterDur=700,revealDur=1600,exitDur=500,portrait=false}=opts||{};const mount=sl.querySelector('.media-cycler-mount');if(!mount)return;let CW=portrait?338:800,CH=portrait?600:500;const canvas=document.createElement('canvas');canvas.width=CW;canvas.height=CH;canvas.style.cssText='width:100%;height:auto;display:block;border-radius:18px;';mount.appendChild(canvas);const ctx=canvas.getContext('2d');const off=document.createElement('canvas'),offCtx=off.getContext('2d');
+function adaptCanvas(s){const sw=s.naturalWidth||s.videoWidth||0,sh=s.naturalHeight||s.videoHeight||0;if(sw>0&&sh>0){const nCH=Math.round(CW*sh/sw);if(nCH!==CH){CH=nCH;canvas.width=CW;canvas.height=CH;}}}
+const sources=items.map(it=>{if(it.type==='video'){const v=document.createElement('video');v.src=it.src;v.muted=true;v.loop=!!it.loop;v.preload='auto';v.playsInline=true;v.style.display='none';document.body.appendChild(v);return v;}else if(it.type==='gradient'){const c=document.createElement('canvas');c.width=CW;c.height=CH;const g=c.getContext('2d');const grd=g.createLinearGradient(0,0,CW,CH);grd.addColorStop(0,it.color1||'rgba(0,212,255,.15)');grd.addColorStop(1,it.color2||'rgba(124,58,237,.15)');g.fillStyle=grd;g.fillRect(0,0,CW,CH);g.fillStyle='rgba(255,255,255,.06)';g.font='bold 14px sans-serif';g.textAlign='center';g.fillText(it.label||'IMAGE',CW/2,CH/2);const img=new Image();img.src=c.toDataURL();return img;}else{const img=new Image();img.crossOrigin='anonymous';img.src=it.src;return img;}});
+let idx=0,phase='entering',phaseStart=0,pulseAlpha=0,rafId=null,videoEnded=false,manualMode=false;
+function goN(){const s=sources[idx];if(s.tagName==='VIDEO'){s.pause();s.currentTime=0;videoEnded=false;}playBing();idx=(idx+1)%sources.length;phase='entering';phaseStart=0;canvas.style.transform='translateX(50%)';manualMode=true;}
+function goP(){const s=sources[idx];if(s.tagName==='VIDEO'){s.pause();s.currentTime=0;videoEnded=false;}playBing();idx=(idx-1+sources.length)%sources.length;phase='entering';phaseStart=0;canvas.style.transform='translateX(-50%)';manualMode=true;}
+const api={next:goN,prev:goP};
+function eo3(k){return 1-Math.pow(1-k,3);}function ei2(k){return k*k;}
+function covR(sw,sh){const sc=Math.max(CW/sw,CH/sh);const dw=sw*sc,dh=sh*sc;return{dx:(CW-dw)/2,dy:(CH-dh)/2,dw,dh};}
+function drawPx(src,ps,fH){const sw=src.naturalWidth||src.videoWidth||CW,sh=src.naturalHeight||src.videoHeight||CH;const{dx,dy,dw,dh}=covR(sw,sh);ctx.clearRect(0,0,CW,CH);if(fH){ctx.save();ctx.scale(-1,1);ctx.translate(-CW,0);}if(ps<=1.2){ctx.imageSmoothingEnabled=true;ctx.drawImage(src,dx,dy,dw,dh);}else{const bw=Math.max(1,Math.round(dw/ps)),bh=Math.max(1,Math.round(dh/ps));off.width=bw;off.height=bh;offCtx.drawImage(src,0,0,bw,bh);ctx.imageSmoothingEnabled=false;ctx.drawImage(off,dx,dy,dw,dh);}if(fH)ctx.restore();}
+function tick(now){if(!phaseStart)phaseStart=now;const el=now-phaseStart;const src=sources[idx];ctx.clearRect(0,0,CW,CH);const fl=items[idx]?.flipH||false;
+switch(phase){case 'entering':{adaptCanvas(src);const k=Math.min(1,el/enterDur);canvas.style.transform=`translateX(${((1-eo3(k))*50).toFixed(2)}%)`;drawPx(src,32,fl);if(k>=1){canvas.style.transform='';phase='revealing';phaseStart=now;pulseAlpha=0;}break;}
+case 'revealing':{const k=Math.min(1,el/revealDur);drawPx(src,Math.pow(2,(1-k)*5),fl);if(k>=1&&pulseAlpha===0){pulseAlpha=.5;phase='holding';phaseStart=now;if(src.tagName==='VIDEO'){videoEnded=false;src.currentTime=0;src.play().catch(()=>{});src.addEventListener('ended',()=>{videoEnded=true;},{once:true});}}break;}
+case 'holding':{drawPx(src,1,fl);if(pulseAlpha>0){ctx.save();ctx.globalCompositeOperation='lighter';ctx.fillStyle=`rgba(255,255,255,${pulseAlpha.toFixed(3)})`;ctx.fillRect(0,0,CW,CH);ctx.restore();pulseAlpha=Math.max(0,pulseAlpha-.022);}if(items.length===1&&pulseAlpha<=0){if(src.tagName==='VIDEO'){if(!src.loop)src.loop=true;}else{drawPx(src,1,fl);return;}}const isV=src.tagName==='VIDEO';if(manualMode&&isV&&videoEnded){videoEnded=false;src.currentTime=0;src.play().catch(()=>{});src.addEventListener('ended',()=>{videoEnded=true;},{once:true});}const done=!manualMode&&(isV?videoEnded:el>=(window._globalImageDuration||imageDuration));if(done){if(isV){src.pause();src.currentTime=0;}playBing();phase='exiting';phaseStart=now;}break;}
+case 'exiting':{const k=Math.min(1,el/exitDur);canvas.style.transform=`translateX(${(-ei2(k)*110).toFixed(2)}%)`;drawPx(src,Math.pow(2,k*5),fl);if(k>=1){canvas.style.transform='translateX(50%)';idx=(idx+1)%sources.length;phase='entering';phaseStart=now;}break;}}
+rafId=requestAnimationFrame(tick);}
+function start(){if(!rafId){phaseStart=0;rafId=requestAnimationFrame(tick);}}
+function stop(){if(rafId){cancelAnimationFrame(rafId);rafId=null;}canvas.style.transform='';const cur=sources[idx];if(cur?.tagName==='VIDEO'){cur.pause();cur.currentTime=0;}idx=0;phase='entering';phaseStart=0;pulseAlpha=0;videoEnded=false;}
+new MutationObserver(()=>{if(sl.classList.contains('active')){window._activeCycler=api;start();}else{if(window._activeCycler===api)window._activeCycler=null;manualMode=false;stop();}}).observe(sl,{attributes:true,attributeFilter:['class']});
+if(sl.classList.contains('active')){window._activeCycler=api;start();}}
+
+// Init gradient placeholders on case slides
+allSlides.forEach(sl=>{if(sl.dataset.type!=='case')return;const mount=sl.querySelector('.media-cycler-mount');if(!mount)return;const sec=SECTIONS[+sl.dataset.section];const acc=sec?.accent||'teal';const cols={teal:['rgba(0,212,255,.18)','rgba(6,8,16,.4)'],purple:['rgba(167,139,250,.18)','rgba(6,8,16,.4)'],amber:['rgba(245,158,11,.18)','rgba(6,8,16,.4)'],rose:['rgba(244,63,94,.18)','rgba(6,8,16,.4)']};const[c1,c2]=cols[acc]||cols.teal;const tl=sl.querySelector('.case-title')?.textContent||'';buildMediaCycler(sl,[{type:'gradient',color1:c1,color2:c2,label:tl.substring(0,30)}],{imageDuration:99999});});
+
+// Map constellation
+let mapDone=false;const LSHORT=SECTIONS.map(s=>s.lesson.short||s.lesson.title.split('\n')[0]);
+const MX=500,MY=290,MR=200,SDEG=90,STEP=360/SECTIONS.length;
+function mPos(i){const a=(SDEG+i*STEP)*Math.PI/180;return{x:MX+MR*Math.cos(a),y:MY+MR*Math.sin(a)};}
+const CL=[];for(let i=0;i<SECTIONS.length;i++)CL.push([i,(i+2)%SECTIONS.length]);
+const CA=mPos(SECTIONS.length-1),CB={x:MX+MR*1.3,y:MY+MR*.8};
+function startMap(){if(mapDone)return;mapDone=true;const svg=document.getElementById('map-svg');svg.innerHTML='';const CIRC=2*Math.PI*MR;
+const defs=svgE('defs');const f=svgE('filter',{id:'gl',x:'-40%',y:'-40%',width:'180%',height:'180%'});f.appendChild(svgE('feGaussianBlur',{stdDeviation:'3',result:'b'}));const mg=svgE('feMerge');mg.appendChild(svgE('feMergeNode',{in:'b'}));mg.appendChild(svgE('feMergeNode',{in:'SourceGraphic'}));f.appendChild(mg);defs.appendChild(f);svg.appendChild(defs);
+svg.appendChild(svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(0,212,255,.12)','stroke-width':'1.5'}));
+CL.forEach(([a,b])=>{const pa=mPos(a),pb=mPos(b);const l=svgE('line',{x1:pa.x,y1:pa.y,x2:pb.x,y2:pb.y,stroke:'rgba(0,212,255,.10)','stroke-width':'0.7',opacity:'0'});l.style.transition='opacity .6s';svg.appendChild(l);setTimeout(()=>l.setAttribute('opacity','1'),1800+a*200);});
+const ring=svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(0,212,255,.85)','stroke-width':'3','stroke-dasharray':CIRC,'stroke-dashoffset':CIRC,'stroke-linecap':'round',transform:`rotate(90 ${MX} ${MY})`,filter:'url(#gl)'});svg.appendChild(ring);
+const rs=performance.now();(function ar(now){const k=Math.min(1,(now-rs)/2200);const e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;ring.setAttribute('stroke-dashoffset',CIRC*(1-e));if(k<1)requestAnimationFrame(ar);})(rs);
+const cc={x:CA.x+55,y:CA.y+60};const cord=svgE('path',{d:`M${CA.x} ${CA.y} Q${cc.x} ${cc.y} ${CB.x} ${CB.y}`,fill:'none',stroke:'rgba(245,158,11,.55)','stroke-width':'1.8','stroke-dasharray':'200','stroke-dashoffset':'200','stroke-linecap':'round',filter:'url(#gl)'});svg.appendChild(cord);
+setTimeout(()=>{const t0=performance.now();(function ac(now){const k=Math.min(1,(now-t0)/800);cord.setAttribute('stroke-dashoffset',200*(1-k));if(k<1)requestAnimationFrame(ac);})(t0);},2400);
+for(let i=0;i<SECTIONS.length;i++){const p=mPos(i),dx=p.x-MX,dy=p.y-MY,len=Math.hypot(dx,dy),ld=34,lx=p.x+(dx/len)*ld,ly=p.y+(dy/len)*ld;const anc=p.x>MX+20?'start':p.x<MX-20?'end':'middle';const g=svgE('g',{opacity:'0',style:'cursor:pointer'});g.style.transition='opacity .4s';g.appendChild(svgE('circle',{cx:p.x,cy:p.y,r:'16',fill:'rgba(0,212,255,.02)',stroke:'rgba(0,212,255,.08)','stroke-width':'0.5'}));g.appendChild(svgE('circle',{cx:p.x,cy:p.y,r:'4.5',fill:'rgba(0,212,255,.15)',stroke:'rgba(0,212,255,.65)','stroke-width':'1.5'}));const yr=svgE('text',{x:lx,y:ly,'text-anchor':anc,fill:'rgba(0,212,255,.8)','font-family':'Space Grotesk,sans-serif','font-size':'10.5','font-weight':'600','letter-spacing':'1.2'});yr.textContent=SECTIONS[i].year;g.appendChild(yr);const tl=svgE('text',{x:lx,y:ly+14,'text-anchor':anc,fill:'rgba(255,255,255,.4)','font-family':'Space Grotesk,sans-serif','font-size':'7','font-weight':'500','letter-spacing':'1'});tl.textContent=LSHORT[i];g.appendChild(tl);g.addEventListener('click',()=>{const li=lessonIdxs[i];if(li!==undefined)goTo(li);});svg.appendChild(g);setTimeout(()=>g.setAttribute('opacity','1'),600+i*300);}
+const bg=svgE('g',{opacity:'0',style:'cursor:pointer'});bg.style.transition='opacity .4s';bg.appendChild(svgE('circle',{cx:CB.x,cy:CB.y,r:'6',fill:'rgba(245,158,11,.3)',stroke:'rgba(245,158,11,.7)','stroke-width':'1.5'}));const bl=svgE('text',{x:CB.x+14,y:CB.y+4,fill:'rgba(245,158,11,.8)','font-family':'Space Grotesk,sans-serif','font-size':'10','font-weight':'600','letter-spacing':'1'});bl.textContent=BONUS.year+' BONUS';bg.appendChild(bl);bg.addEventListener('click',()=>{const bi=allSlides.findIndex(s=>s.dataset.type==='bonus');if(bi>=0)goTo(bi);});svg.appendChild(bg);setTimeout(()=>bg.setAttribute('opacity','1'),3200);
+const ct=svgE('text',{x:MX,y:MY-10,'text-anchor':'middle',fill:'rgba(255,255,255,.12)','font-family':'Space Grotesk,sans-serif','font-size':'14','font-weight':'600','letter-spacing':'4'});ct.textContent='WHAT TO LOOK FOR';svg.appendChild(ct);const ct2=svgE('text',{x:MX,y:MY+12,'text-anchor':'middle',fill:'rgba(255,255,255,.08)','font-family':'Space Grotesk,sans-serif','font-size':'10','font-weight':'500','letter-spacing':'2'});ct2.textContent='WHEN HIRING AN XR STUDIO';svg.appendChild(ct2);}
+new MutationObserver(()=>{if(mapS.classList.contains('active'))startMap();}).observe(mapS,{attributes:true,attributeFilter:['class']});
+
+// Animation scrubber
+(function(){const bar=document.createElement('div');bar.id='anim-scrub-bar';bar.style.cssText='position:fixed;bottom:72px;left:50%;transform:translateX(-50%);z-index:1100;display:none;align-items:center;gap:10px;background:rgba(6,8,16,.92);border:1px solid rgba(245,158,11,.4);border-radius:10px;padding:10px 14px;backdrop-filter:blur(10px);font-family:var(--font);font-size:.7rem;color:var(--amber)';bar.innerHTML=`<button id="scrub-replay" style="background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.4);border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer">Replay</button><button id="scrub-pp" style="background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.4);border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer;width:70px">Pause</button><input id="scrub-r" type="range" min="0" max="5000" value="0" step="10" style="width:360px;accent-color:var(--amber)"><span id="scrub-t" style="min-width:60px;text-align:right;color:rgba(245,158,11,.8)">0 ms</span>`;document.body.appendChild(bar);const rng=bar.querySelector('#scrub-r'),tl=bar.querySelector('#scrub-t'),pp=bar.querySelector('#scrub-pp'),rp=bar.querySelector('#scrub-replay');let paused=false;function sa(){const s=allSlides[current];return s?.getAnimations?.({subtree:true})||[];}rng.addEventListener('input',()=>{paused=true;pp.textContent='Play';const v=+rng.value;tl.textContent=v+' ms';sa().forEach(a=>{a.pause();try{a.currentTime=v;}catch(e){}});});pp.addEventListener('click',()=>{paused=!paused;if(paused){sa().forEach(a=>a.pause());pp.textContent='Play';}else{sa().forEach(a=>a.play());pp.textContent='Pause';}});rp.addEventListener('click',()=>{paused=false;pp.textContent='Pause';const n=current;if(n>0){goTo(n-1);setTimeout(()=>goTo(n),560);}});window.scrubShow=(on)=>{bar.style.display=on?'flex':'none';};})();
+
+// Drag-and-drop images
+document.addEventListener('dragover',e=>{if(!window._moveMode)return;const img=e.target.closest('img');if(!img)return;e.preventDefault();img.style.outline='3px dashed var(--teal)';});
+document.addEventListener('dragleave',e=>{const img=e.target.closest('img');if(img)img.style.outline='';});
+document.addEventListener('drop',e=>{if(!window._moveMode)return;const img=e.target.closest('img');if(!img)return;e.preventDefault();e.stopPropagation();img.style.outline='';const file=e.dataTransfer?.files?.[0];if(!file||!file.type.startsWith('image/'))return;const reader=new FileReader();reader.onload=()=>{img.src=reader.result;annoToast('Image swapped');};reader.readAsDataURL(file);},true);
+
+// Annotation system
+const AK='sd-annos';let annoMode=false,pendingTarget=null;
+function aL(){try{return JSON.parse(localStorage.getItem(AK)||'[]')}catch(e){return[]}}
+function aS(a){localStorage.setItem(AK,JSON.stringify(a))}
+function annoToast(m){const t=document.getElementById('anno-toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);}
+function aSel(el){if(el.id)return'#'+el.id;const p=[];let c=el,d=0;while(c&&c!==document.body&&d<5){let pt=c.tagName.toLowerCase();if(c.id){pt='#'+c.id;p.unshift(pt);break;}if(c.classList.length){const cs=Array.from(c.classList).filter(x=>!['active'].includes(x)).slice(0,2).join('.');if(cs)pt+='.'+cs;}const sb=Array.from(c.parentNode?.children||[]).filter(s=>s.tagName===c.tagName);if(sb.length>1)pt+=':nth-of-type('+(sb.indexOf(c)+1)+')';p.unshift(pt);c=c.parentElement;d++;}return p.join(' > ');}
+function aCtx(el){const sl=el.closest('.slide');if(!sl)return null;const ty=sl.dataset.type||'?',yr=sl.dataset.year||'',idx=[...document.querySelectorAll('#deck > .slide')].indexOf(sl);return(yr?`${ty} ${yr}`:ty)+(idx>=0?` #${idx+1}`:'');}
+function aRender(){const list=document.getElementById('anno-list');const items=aL();if(!items.length){list.innerHTML='<div id="anno-empty">No annotations yet.</div>';return;}list.innerHTML=items.map((a,i)=>`<div class="anno-item"><span class="anno-rm" data-i="${i}">&times;</span><div class="anno-meta">${a.context||''} &middot; <code>${a.selector}</code></div><div>${a.text.replace(/</g,'&lt;')}</div></div>`).join('');list.querySelectorAll('.anno-rm').forEach(b=>b.addEventListener('click',e=>{const i=+e.target.dataset.i;const arr=aL();arr.splice(i,1);aS(arr);aRender();}));}
+function annoToggle(on){annoMode=on===undefined?!annoMode:on;document.body.classList.toggle('annotate-mode',annoMode);document.getElementById('anno-toggle').classList.toggle('active',annoMode);document.getElementById('anno-toggle').textContent=annoMode?'Exit Annotate':'Annotate';document.getElementById('anno-panel').classList.toggle('visible',annoMode);if(annoMode)aRender();if(!annoMode)document.getElementById('anno-prompt').classList.remove('visible');}
+document.getElementById('anno-toggle').addEventListener('click',()=>annoToggle());
+document.addEventListener('keydown',e=>{if((e.key==='a'||e.key==='A')&&!['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)&&!document.activeElement?.isContentEditable){e.preventDefault();annoToggle();}});
+document.addEventListener('click',e=>{if(!annoMode)return;if(e.target.closest('#anno-toggle,#anno-panel,#anno-prompt,#anno-toast'))return;e.preventDefault();e.stopPropagation();pendingTarget=e.target;document.getElementById('anno-target-text').textContent=(aCtx(e.target)||'')+' > '+aSel(e.target);const pr=document.getElementById('anno-prompt');pr.style.left=Math.min(e.clientX+10,innerWidth-300)+'px';pr.style.top=Math.min(e.clientY+10,innerHeight-200)+'px';pr.classList.add('visible');document.getElementById('anno-text').value='';setTimeout(()=>document.getElementById('anno-text').focus(),50);},true);
+document.getElementById('anno-cancel').addEventListener('click',()=>{document.getElementById('anno-prompt').classList.remove('visible');pendingTarget=null;});
+document.getElementById('anno-save').addEventListener('click',()=>{const text=document.getElementById('anno-text').value.trim();if(!text||!pendingTarget)return;const arr=aL();arr.push({selector:aSel(pendingTarget),context:aCtx(pendingTarget),text,timestamp:new Date().toISOString()});aS(arr);document.getElementById('anno-prompt').classList.remove('visible');pendingTarget=null;aRender();annoToast('Saved');});
+document.getElementById('anno-text').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();document.getElementById('anno-save').click();}if(e.key==='Escape')document.getElementById('anno-cancel').click();});
+document.getElementById('anno-export').addEventListener('click',()=>{const arr=aL();if(!arr.length){annoToast('Nothing to copy');return;}const md='# Annotations\n\n'+arr.map((a,i)=>`## ${i+1}. ${a.context||''}\n**Selector:** \`${a.selector}\`\n**Note:** ${a.text}\n`).join('\n');navigator.clipboard.writeText(md).then(()=>annoToast(`Copied ${arr.length} annotations`));});
+document.getElementById('anno-clear').addEventListener('click',()=>{if(!confirm('Clear all?'))return;aS([]);aRender();annoToast('Cleared');});
+
+// Move mode
+window._moveMode=false;let drag=null;const tMap=new WeakMap(),mH=[],mR=[];
+function gX(el){return tMap.get(el)||{tx:0,ty:0,scale:1,rot:0};}
+function sX(el,t){tMap.set(el,t);el.style.transformBox='fill-box';el.style.transformOrigin='center center';el.style.transform=`translate(${t.tx}px,${t.ty}px) rotate(${t.rot}deg) scale(${t.scale})`;}
+function eC(el){const r=el.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2};}
+function mmToggle(on){window._moveMode=on===undefined?!window._moveMode:on;if(window._moveMode&&annoMode)annoToggle(false);document.body.classList.toggle('move-mode',window._moveMode);document.getElementById('move-toggle').classList.toggle('active',window._moveMode);document.getElementById('move-toggle').textContent=window._moveMode?'Exit Move':'Move Mode';document.getElementById('move-hud').classList.toggle('visible',window._moveMode);if(window.scrubShow)window.scrubShow(window._moveMode);if(window._moveMode)annoToast('Move mode active');}
+document.getElementById('move-toggle').addEventListener('click',()=>mmToggle());
+document.getElementById('move-undo').addEventListener('click',mUndo);
+document.getElementById('move-redo').addEventListener('click',mRedo);
+document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)||document.activeElement?.isContentEditable)return;if(e.key==='m'||e.key==='M'){e.preventDefault();mmToggle();return;}if((e.metaKey||e.ctrlKey)&&(e.key==='z'||e.key==='Z')){e.preventDefault();e.shiftKey?mRedo():mUndo();}});
+document.addEventListener('click',e=>{if(!window._moveMode)return;const a=e.target.closest('a');if(a&&!a.closest('#move-hud,#anno-panel,#anim-scrub-bar')){e.preventDefault();e.stopPropagation();}},true);
+// Text editing
+let editEl=null;
+function endEdit(save){if(!editEl)return;editEl.removeAttribute('contenteditable');editEl.blur();if(save)annoToast('Text saved');editEl=null;document.body.classList.remove('edit-text');}
+document.addEventListener('dblclick',e=>{if(!window._moveMode)return;if(e.target.closest('#move-hud,#anno-panel,#anim-scrub-bar,#slide-grid,#move-toggle,#anno-toggle'))return;const el=e.target;if(el.closest('svg')){annoToast('SVG not editable');return;}e.preventDefault();e.stopPropagation();if(editEl&&editEl!==el)endEdit(true);editEl=el;el.dataset.origText=el.innerText;el.setAttribute('contenteditable','true');document.body.classList.add('edit-text');el.focus();const r=document.createRange();r.selectNodeContents(el);const s=window.getSelection();s.removeAllRanges();s.addRange(r);},true);
+document.addEventListener('keydown',e=>{if(!editEl)return;if(e.key==='Escape'){e.preventDefault();endEdit(false);}if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();endEdit(true);}if(e.key==='Enter'&&e.shiftKey&&!e.metaKey&&!e.ctrlKey){e.preventDefault();document.execCommand('insertLineBreak');return;}if(e.key==='Enter'&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&editEl.tagName==='LI'){e.preventDefault();endEdit(true);const li=document.createElement('li');li.textContent='';editEl.after(li);editEl=li;li.setAttribute('contenteditable','true');document.body.classList.add('edit-text');li.focus();}if(e.key==='Backspace'&&editEl.tagName==='LI'&&editEl.innerText.trim()===''){e.preventDefault();const prev=editEl.previousElementSibling;editEl.removeAttribute('contenteditable');editEl.parentElement?.removeChild(editEl);editEl=null;if(prev){editEl=prev;prev.setAttribute('contenteditable','true');document.body.classList.add('edit-text');prev.focus();}else document.body.classList.remove('edit-text');}},true);
+document.addEventListener('mousedown',e=>{if(editEl&&!e.target.closest('[contenteditable="true"]'))endEdit(true);},true);
+// Drag
+document.addEventListener('mousedown',e=>{if(!window._moveMode)return;if(e.target.closest('#move-toggle,#anno-toggle,#slide-grid,#slide-grid-zone,#anno-panel,#anno-prompt,#move-hud,#anim-scrub-bar,#anno-toast,[contenteditable]'))return;e.preventDefault();e.stopPropagation();let el=e.target;if(e.metaKey||e.ctrlKey){const p=el.parentElement;if(p&&p.tagName!=='BODY')el=p;}const ss={...gX(el)};drag={el,mode:e.shiftKey?'scale':e.altKey?'rotate':'translate',sx:e.clientX,sy:e.clientY,ss,ps:{...ss},center:eC(el)};el.classList.add('dragging');},true);
+document.addEventListener('mousemove',e=>{if(!drag)return;const n={...drag.ss};if(drag.mode==='translate'){n.tx=drag.ss.tx+(e.clientX-drag.sx);n.ty=drag.ss.ty+(e.clientY-drag.sy);}else if(drag.mode==='scale'){const sd=Math.hypot(drag.sx-drag.center.x,drag.sy-drag.center.y)||1;const cd=Math.hypot(e.clientX-drag.center.x,e.clientY-drag.center.y);n.scale=Math.max(.1,drag.ss.scale*cd/sd);}else{const sa=Math.atan2(drag.sy-drag.center.y,drag.sx-drag.center.x);const ca=Math.atan2(e.clientY-drag.center.y,e.clientX-drag.center.x);n.rot=drag.ss.rot+(ca-sa)*180/Math.PI;}sX(drag.el,n);},true);
+document.addEventListener('mouseup',()=>{if(!drag)return;drag.el.classList.remove('dragging');const n=gX(drag.el),p=drag.ps;if(n.tx!==p.tx||n.ty!==p.ty||n.scale!==p.scale||n.rot!==p.rot){mH.push({el:drag.el,prev:{...p},next:{...n}});if(mH.length>50)mH.shift();mR.length=0;uMB();}drag=null;},true);
+function mUndo(){if(!mH.length){annoToast('Nothing to undo');return;}const a=mH.pop();sX(a.el,a.prev);mR.push(a);annoToast('Undone');uMB();}
+function mRedo(){if(!mR.length){annoToast('Nothing to redo');return;}const a=mR.pop();sX(a.el,a.next);mH.push(a);annoToast('Redone');uMB();}
+function uMB(){document.getElementById('move-undo').disabled=!mH.length;document.getElementById('move-redo').disabled=!mR.length;}
+
+// =====================================================================
+// FEATURE: SPEAKER NOTES SYSTEM
+// =====================================================================
+const _notesCh=new BroadcastChannel('spatial-deck');
+let _notesWin=null,_notesDrawerOpen=false,_talkStartTime=null,_firstAdvance=false;
+
+// Build notes index: map slide index -> notes text
+function getSlideNotes(idx){
+  const sl=allSlides[idx];if(!sl)return'';
+  const ty=sl.dataset.type,si=+sl.dataset.section;
+  if(ty==='lesson'&&SECTIONS[si])return SECTIONS[si].lesson.notes||'';
+  if(ty==='case'&&SECTIONS[si]){
+    // figure out which case within the section
+    let caseIdx=0;for(let j=lessonIdxs[si]+1;j<idx;j++){if(allSlides[j]?.dataset.type==='case')caseIdx++;}
+    return SECTIONS[si].cases[caseIdx]?.notes||'';
+  }
+  if(ty==='bonus')return'Bonus lesson: rally the audience. This is the call to action. Build energy and end strong.';
+  if(ty==='cover')return'Welcome the audience. Wait for stragglers. Introduce yourself and the talk theme.';
+  if(ty==='close')return'Wrap up. Point to the QR codes. Thank the audience. Open for questions.';
+  if(ty==='map')return'The constellation map is a visual summary of the journey. Let it breathe for a moment before moving on.';
+  if(ty==='settings')return'Settings slide. Not shown to the audience during presentation mode.';
+  return'';
 }
-window.addEventListener('hashchange', goToFromHash);
+function getSlideTitle(idx){
+  const sl=allSlides[idx];if(!sl)return'';
+  const el=sl.querySelector('.lesson-title,.case-title,.talk-title,.close-title,.cfg-title,.map-label');
+  return el?el.textContent.replace(/\n/g,' '):'Slide '+(idx+1);
+}
 
-// ── Slide jump grid ──
-const sgEl=document.getElementById('slide-grid');
-const sgZone=document.getElementById('slide-grid-zone');
-allSlides.forEach((s,i)=>{
-  const t=document.createElement('div');
-  const type=s.dataset.type;
-  t.className='sg-thumb sg-'+type;
-  t.dataset.idx=i;
-  let label='';
-  if(type==='cover')label='Cover';
-  else if(type==='case')label=s.dataset.year+' ▸';
-  else if(type==='lesson')label='L'+s.dataset.ln+' '+s.dataset.year;
-  else if(type==='bonus')label='★ Bonus';
-  else if(type==='map')label='Map';
-  else if(type==='close')label='Thank You';
-  t.innerHTML=`<div class="sg-num">${String(i+1).padStart(2,'0')}</div><div class="sg-label">${label}</div>`;
-  t.addEventListener('click',()=>goTo(i));
-  sgEl.appendChild(t);
-});
+// Toggle inline notes drawer (Shift+N)
+function toggleNotesDrawer(){
+  _notesDrawerOpen=!_notesDrawerOpen;
+  document.getElementById('notes-drawer').classList.toggle('visible',_notesDrawerOpen);
+  if(_notesDrawerOpen)updateNotesDrawer();
+}
+function updateNotesDrawer(){
+  const body=document.getElementById('notes-body');
+  body.textContent=getSlideNotes(current)||'(no notes for this slide)';
+}
 
-// Reveal grid on hover at bottom of screen
-let sgHideTimer;
-function sgShow(){clearTimeout(sgHideTimer);sgEl.classList.add('visible')}
-function sgHide(){sgHideTimer=setTimeout(()=>sgEl.classList.remove('visible'),300)}
-sgZone.addEventListener('mouseenter',sgShow);
-sgEl.addEventListener('mouseenter',sgShow);
-sgEl.addEventListener('mouseleave',sgHide);
-sgZone.addEventListener('mouseleave',sgHide);
+// Presenter popup (N key)
+function openPresenterPopup(){
+  if(_notesWin&&!_notesWin.closed){_notesWin.focus();return;}
+  _notesWin=window.open('','spatial-deck-presenter','width=620,height=440,menubar=no,toolbar=no');
+  if(!_notesWin)return;
+  _notesWin.document.write(`<!DOCTYPE html><html><head><title>Presenter Notes</title><style>
+*{box-sizing:border-box;margin:0;padding:0}body{background:#0a0c18;color:#e8eeff;font-family:'Space Grotesk',system-ui,sans-serif;padding:20px;overflow-y:auto}
+.pn-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.1)}
+.pn-slide{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#00d4ff}
+.pn-timers{display:flex;gap:16px;font-size:.78rem;font-weight:600}
+.pn-timers span{color:rgba(255,255,255,.5)}.pn-timers .val{color:#f59e0b}
+.pn-title{font-size:1.3rem;font-weight:700;line-height:1.2;margin-bottom:16px}
+.pn-notes{font-size:.92rem;line-height:1.7;color:rgba(240,244,255,.75);white-space:pre-line;margin-bottom:20px;padding:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;min-height:80px}
+.pn-next{font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:4px}
+.pn-next-title{font-size:.88rem;color:rgba(255,255,255,.5)}
+.pn-pace{font-size:.82rem;font-weight:600;margin-left:8px}
+</style></head><body>
+<div class="pn-header"><span class="pn-slide" id="pn-slide">--</span><div class="pn-timers"><span>Elapsed: <span class="val" id="pn-elapsed">00:00</span></span><span>Remaining: <span class="val" id="pn-remain">--:--</span></span><span id="pn-pace-icon"></span></div></div>
+<h2 class="pn-title" id="pn-title">--</h2>
+<div class="pn-notes" id="pn-notes">Press N in the main window to start presenting.</div>
+<div class="pn-next">NEXT SLIDE</div>
+<div class="pn-next-title" id="pn-next">--</div>
+<script>
+const ch=new BroadcastChannel('spatial-deck');
+ch.onmessage=e=>{const d=e.data;if(d.type==='notes-update'){
+document.getElementById('pn-slide').textContent='Slide '+d.slideNum+' / '+d.total;
+document.getElementById('pn-title').textContent=d.title;
+document.getElementById('pn-notes').textContent=d.notes||'(no notes)';
+document.getElementById('pn-next').textContent=d.nextTitle||'(end)';
+}if(d.type==='timer-update'){
+document.getElementById('pn-elapsed').textContent=d.elapsed;
+document.getElementById('pn-remain').textContent=d.remaining;
+document.getElementById('pn-pace-icon').textContent=d.paceIcon;
+}};
+<\/script></body></html>`);
+  _notesWin.document.close();
+  sendNotesUpdate();
+}
 
-// Keep active thumb highlighted (hook into updateHUD).
-// Don't call updateHUD() here — trackerEl (used by updateTracker) is declared
-// later in this script, so calling it now would throw a TDZ error and halt
-// the rest of the script. The original updateHUD() call below (after the
-// monocle tracker setup) initializes everything safely.
+function sendNotesUpdate(){
+  const nextIdx=nextVisible(current,1);
+  const data={type:'notes-update',slideNum:current+1,total:total,title:getSlideTitle(current),notes:getSlideNotes(current),nextTitle:nextIdx!==current?getSlideTitle(nextIdx):''};
+  _notesCh.postMessage(data);
+  // Also update local popup if open
+  if(_notesWin&&!_notesWin.closed){
+    const doc=_notesWin.document;
+    if(doc.getElementById('pn-slide')){
+      doc.getElementById('pn-slide').textContent='Slide '+data.slideNum+' / '+data.total;
+      doc.getElementById('pn-title').textContent=data.title;
+      doc.getElementById('pn-notes').textContent=data.notes||'(no notes)';
+      doc.getElementById('pn-next').textContent=data.nextTitle||'(end)';
+    }
+  }
+}
+
+// =====================================================================
+// FEATURE: TALK DURATION ESTIMATOR
+// =====================================================================
+function estimateSlideDuration(idx){
+  const notes=getSlideNotes(idx);
+  const sl=allSlides[idx];
+  const ty=sl?.dataset.type||'';
+  let seconds=0;
+  if(!notes||notes.trim()===''){
+    seconds=30; // no notes default
+  }else{
+    const lines=notes.split('\n').filter(l=>l.trim());
+    lines.forEach(line=>{
+      const trimmed=line.trim();
+      const isBullet=/^[-\u2022*]/.test(trimmed);
+      const wordCount=trimmed.split(/\s+/).length;
+      if(isBullet||wordCount<15){
+        seconds+=20; // bullet point: ~20s
+      }else{
+        seconds+=Math.ceil(wordCount/150*60); // full sentence: words/150 WPM
+      }
+    });
+  }
+  // Lesson slides: add 10 seconds natural pause
+  if(ty==='lesson'||ty==='bonus')seconds+=10;
+  // Steps: add 5s per step beyond first
+  const ss=slideSteps.get(sl);
+  if(ss&&ss.steps.length>1)seconds+=(ss.steps.length-1)*5;
+  return seconds;
+}
+
+function calcTotalDuration(){
+  let total=0;
+  for(let i=0;i<allSlides.length;i++){
+    if(allSlides[i].dataset.hidden==='1')continue;
+    total+=estimateSlideDuration(i);
+  }
+  return total;
+}
+
+function fmtTime(secs){
+  const m=Math.floor(secs/60),s=Math.floor(secs%60);
+  return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+
+function updateDurationDisplay(){
+  const el=document.getElementById('v-duration');
+  if(el)el.textContent='~'+fmtTime(calcTotalDuration());
+}
+
+// Timer & pacing
+let _timerInterval=null;
+function startTalkTimer(){
+  if(_talkStartTime)return;
+  _talkStartTime=Date.now();
+  _timerInterval=setInterval(updateTimers,1000);
+}
+function updateTimers(){
+  if(!_talkStartTime)return;
+  const elapsedSec=Math.floor((Date.now()-_talkStartTime)/1000);
+  const totalEst=calcTotalDuration();
+  const remainSec=Math.max(0,totalEst-elapsedSec);
+  const elapsed=fmtTime(elapsedSec);
+  const remaining='~'+fmtTime(remainSec);
+  let paceIcon='\uD83D\uDFE2'; // green
+  if(elapsedSec>totalEst*1.25)paceIcon='\uD83D\uDD34'; // red 25%+
+  else if(elapsedSec>totalEst*1.1)paceIcon='\uD83D\uDFE1'; // yellow 10%+
+  const data={type:'timer-update',elapsed,remaining,paceIcon};
+  _notesCh.postMessage(data);
+  if(_notesWin&&!_notesWin.closed){
+    const doc=_notesWin.document;
+    if(doc.getElementById('pn-elapsed')){
+      doc.getElementById('pn-elapsed').textContent=elapsed;
+      doc.getElementById('pn-remain').textContent=remaining;
+      doc.getElementById('pn-pace-icon').textContent=paceIcon;
+    }
+  }
+}
+
+// =====================================================================
+// FEATURE: OFFLINE EXPORT HELPER
+// =====================================================================
+function openExportModal(){
+  const modal=document.getElementById('export-modal');
+  const box=document.getElementById('export-box');
+  // Collect external resources
+  const fontLinks=Array.from(document.querySelectorAll('link[href*="fonts.googleapis"]')).map(l=>l.href);
+  const qrImgs=Array.from(document.querySelectorAll('img[src*="api.qrserver"]')).map(i=>i.src);
+  const threeURL='https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.min.js';
+
+  box.innerHTML=`<div class="em-title">Offline Export Guide</div>
+<div class="em-sub">Make this presentation work without an internet connection</div>
+<div class="em-section"><h4>External Resources Detected</h4>
+<div class="em-check"><span class="em-box-icon">\u2610</span> Three.js (CDN) \u2014 for the constellation map</div>
+<div class="em-check"><span class="em-box-icon">\u2610</span> Google Fonts \u2014 for custom typography</div>
+${qrImgs.length?`<div class="em-check"><span class="em-box-icon">\u2610</span> QR Code API \u2014 ${qrImgs.length} QR code(s) on closing slide</div>`:''}
+</div>
+<div class="em-section"><h4>1. Download Three.js</h4>
+<pre>curl -o three.module.min.js "${threeURL}"</pre>
+<p style="font-size:.78rem;color:rgba(240,244,255,.6)">Then update the import map in index.html to point to <code>"./three.module.min.js"</code></p></div>
+<div class="em-section"><h4>2. Download Google Fonts</h4>
+${fontLinks.map(u=>`<pre>${u}</pre>`).join('')}
+<p style="font-size:.78rem;color:rgba(240,244,255,.6)">Save as .woff2 files and update <code>@font-face</code> rules in the style block.</p></div>
+${qrImgs.length?`<div class="em-section"><h4>3. Pre-generate QR Codes</h4>
+${qrImgs.map(u=>`<pre>${u}</pre>`).join('')}
+<p style="font-size:.78rem;color:rgba(240,244,255,.6)">Save as PNG files and update <code>&lt;img&gt;</code> references.</p></div>`:''}
+<div class="em-section"><h4>${qrImgs.length?'4':'3'}. Bundle Media</h4>
+<p style="font-size:.78rem;color:rgba(240,244,255,.6)">All <code>media/</code> paths are relative \u2014 just copy the <code>media/</code> folder alongside <code>index.html</code>.</p></div>
+<div class="em-tip">\uD83D\uDCA1 Or use the <strong>Inline Everything</strong> button below to create a single self-contained HTML file (larger file size, but truly standalone).</div>
+<div class="em-actions"><button class="em-btn" id="em-close">Close</button><button class="em-btn primary" id="em-inline">Inline Everything</button></div>
+<div class="em-progress" id="em-progress"></div>`;
+  modal.classList.add('open');
+  box.querySelector('#em-close').addEventListener('click',()=>modal.classList.remove('open'));
+  modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open');});
+  box.querySelector('#em-inline').addEventListener('click',runInlineExport);
+}
+
+async function runInlineExport(){
+  const prog=document.getElementById('em-progress');
+  const btn=document.getElementById('em-inline');
+  btn.disabled=true;
+  prog.textContent='Fetching external resources...';
+  try{
+    // Clone the document
+    const html=document.documentElement.cloneNode(true);
+    // Inline Google Fonts
+    const fontLinks=html.querySelectorAll('link[href*="fonts.googleapis"]');
+    for(const link of fontLinks){
+      try{
+        prog.textContent='Fetching fonts from '+link.href.substring(0,60)+'...';
+        const resp=await fetch(link.href);
+        const css=await resp.text();
+        // Fetch each woff2 url and convert to base64
+        const urls=[...css.matchAll(/url\(([^)]+)\)/g)].map(m=>m[1]);
+        let inlinedCSS=css;
+        for(const url of urls){
+          try{
+            const fontResp=await fetch(url);
+            const blob=await fontResp.blob();
+            const b64=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(blob);});
+            inlinedCSS=inlinedCSS.replace(url,b64);
+          }catch(e){/* skip individual font */}
+        }
+        const style=document.createElement('style');
+        style.textContent=inlinedCSS;
+        link.parentNode.replaceChild(style,link);
+      }catch(e){/* skip font link */}
+    }
+    // Inline QR codes
+    const qrImgs=html.querySelectorAll('img[src*="api.qrserver"]');
+    for(const img of qrImgs){
+      try{
+        prog.textContent='Fetching QR code...';
+        const resp=await fetch(img.src);
+        const blob=await resp.blob();
+        const b64=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(blob);});
+        img.src=b64;
+      }catch(e){/* skip */}
+    }
+    // Remove preconnect links
+    html.querySelectorAll('link[rel="preconnect"]').forEach(l=>l.remove());
+    // Build download blob
+    prog.textContent='Building self-contained file...';
+    const blob=new Blob(['<!DOCTYPE html>\n'+html.outerHTML],{type:'text/html'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download='spatial-deck-offline.html';
+    a.style.cssText='display:inline-block;margin-top:10px;color:var(--teal);font-weight:600;font-size:.82rem;text-decoration:underline;cursor:pointer;';
+    a.textContent='Download spatial-deck-offline.html ('+Math.round(blob.size/1024)+' KB)';
+    prog.textContent='';
+    prog.appendChild(a);
+    btn.disabled=false;
+  }catch(e){
+    prog.textContent='Error: '+e.message;
+    btn.disabled=false;
+  }
+}
+
+// Hook export button
+document.getElementById('cfg-export')?.addEventListener('click',openExportModal);
+
+// =====================================================================
+// HOOK INTO NAVIGATION: notes + timer updates
+// =====================================================================
+// Patch goTo by wrapping the original. We hook updateHUD which goTo always calls.
 const _origUpdateHUD=updateHUD;
 updateHUD=function(){
   _origUpdateHUD();
-  sgEl.querySelectorAll('.sg-thumb').forEach((t,i)=>t.classList.toggle('active',i===current));
-  // Auto-scroll active thumb into view
-  const active=sgEl.querySelector('.sg-thumb.active');
-  if(active&&sgEl.classList.contains('visible'))active.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+  // Start timer on first real advance
+  if(!_firstAdvance&&current>1){
+    _firstAdvance=true;
+    startTalkTimer();
+  }
+  // Update notes
+  sendNotesUpdate();
+  if(_notesDrawerOpen)updateNotesDrawer();
 };
-let tx=0;
-document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
-document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)goTo(current+(dx<0?1:-1))},{passive:true});
 
-// ── Monocle tracker ──
-const trackerEl=document.getElementById('tracker'),tsvg=document.getElementById('tracker-svg');
-const TCX=54,TCY=50,TR=34;
-function svgE(t,a){const e=document.createElementNS('http://www.w3.org/2000/svg',t);if(a)Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v));return e}
-
-// Number of sections drives the geometry of the tracker, the constellation map,
-// and how nodes are positioned around the circle. Auto-derived from SECTIONS.
-const N_SECTIONS = SECTIONS.length;
-const SECTION_ANGLE_DEG = 360 / N_SECTIONS;
-
-(function buildTracker(){
-  tsvg.appendChild(svgE('circle',{cx:TCX,cy:TCY,r:TR,fill:'none',stroke:'rgba(255,255,255,.08)','stroke-width':'1.5'}));
-  // Bonus pip — only drawn if BONUS exists
-  if (BONUS) {
-    const cordEnd={x:TCX+TR+14,y:TCY+TR+16};
-    tsvg.appendChild(svgE('path',{d:`M${TCX+TR} ${TCY} Q${TCX+TR+9} ${TCY+TR*.6} ${cordEnd.x} ${cordEnd.y}`,fill:'none',stroke:'rgba(245,158,11,.15)','stroke-width':'1.5','stroke-linecap':'round'}));
-    tsvg.appendChild(svgE('circle',{cx:cordEnd.x,cy:cordEnd.y,r:'3',fill:'none',stroke:'rgba(245,158,11,.3)','stroke-width':'1',id:'tb'}));
-  }
-  for(let i=0;i<N_SECTIONS;i++){
-    const a=(-90+i*SECTION_ANGLE_DEG)*Math.PI/180;
-    tsvg.appendChild(svgE('circle',{cx:TCX+TR*Math.cos(a),cy:TCY+TR*Math.sin(a),r:'2.5',fill:'rgba(255,255,255,.12)',id:`td${i}`}));
-  }
-  // walker dot
-  tsvg.appendChild(svgE('circle',{cx:TCX,cy:TCY-TR,r:'4',fill:'var(--teal)',id:'tav','opacity':'0.9'}));
-})();
-
-function updateTracker(){
-  const type=allSlides[current].dataset.type;
-  const show=type==='case'||type==='lesson'||type==='bonus';
-  trackerEl.classList.toggle('visible',show);if(!show)return;
-  const si=parseInt(allSlides[current].dataset.section??-1);
-  const isBonus=type==='bonus';
-  // lesson dots
-  for(let i=0;i<N_SECTIONS;i++){
-    const d=document.getElementById(`td${i}`);
-    if(!d)continue;
-    const past=i<si||(i===si&&type==='lesson')||isBonus;
-    d.setAttribute('fill',past?'rgba(0,212,255,.65)':i===si?'rgba(0,212,255,.35)':'rgba(255,255,255,.12)');
-    d.setAttribute('r',i===si&&!isBonus?'3.5':'2.5');
-  }
-  const tb=document.getElementById('tb');
-  if(tb) tb.setAttribute('fill',isBonus?'rgba(245,158,11,.7)':'none');
-  // walker position
-  const av=document.getElementById('tav');
-  if(av){
-    if(isBonus){
-      av.setAttribute('cx', TCX+TR+14);
-      av.setAttribute('cy', TCY+TR+10);
-      av.setAttribute('fill','var(--amber)');
-    } else {
-      const idx=Math.max(0,Math.min(si,N_SECTIONS-1));
-      const a=(-90+idx*SECTION_ANGLE_DEG)*Math.PI/180;
-      av.setAttribute('cx', TCX+TR*Math.cos(a));
-      av.setAttribute('cy', TCY+TR*Math.sin(a));
-      av.setAttribute('fill','var(--teal)');
-    }
-  }
-}
-updateHUD();
-// Honor the URL hash on initial load (e.g. /#5 → drops on slide 5)
-goToFromHash();
-
-// ── Map animation ──
-// Constellation map geometry. Auto-derived from N_SECTIONS so the visualization
-// scales to however many SECTIONS you defined above.
-const LSHORT=SECTIONS.map(s=>s.lesson.title.replace('\n',' '));
-const MX=460,MY=290,MR=200;
-// Cord attaches at ~5 o'clock on the ring (only used if BONUS exists)
-const CORD_ANGLE=55*Math.PI/180;
-const CORD_A={x:MX+MR*Math.cos(CORD_ANGLE), y:MY+MR*Math.sin(CORD_ANGLE)};
-const CORD_B={x:CORD_A.x+95, y:CORD_A.y+100};
-function mPos(i){const a=(-90+i*SECTION_ANGLE_DEG)*Math.PI/180;return{x:MX+MR*Math.cos(a),y:MY+MR*Math.sin(a)}}
-
-// Constellation lines connect each node to the one ⌊N/3⌋ steps ahead, creating
-// a star pattern. Auto-generates from N_SECTIONS.
-const CONSTELLATION_LINES = (function(){
-  const skip = Math.max(2, Math.floor(N_SECTIONS / 3));
-  const out = [];
-  for (let i = 0; i < N_SECTIONS; i++) out.push([i, (i + skip) % N_SECTIONS]);
-  return out;
-})();
-
-// Optional logo overlay — point LOGO_URL at a transparent PNG of your brand mark
-// to have it fade in at the center of the constellation map at the end of the
-// animation. Set LOGO_URL to '' to disable. The image is positioned and scaled
-// via LOGO_W/H/X/Y in viewBox units (the SVG viewBox is 1000×600).
-const LOGO_URL = '';
-const LOGO_W = 480, LOGO_H = 480;
-const LOGO_X = MX - LOGO_W/2, LOGO_Y = MY - LOGO_H/2;
-
-let mapDone=false;
-function startMap(){
-  if(mapDone)return;mapDone=true;
-  const svg=document.getElementById('map-svg');svg.innerHTML='';
-  const CIRC=2*Math.PI*MR;
-
-  // defs
-  const defs=svgE('defs');
-  const f=svgE('filter',{id:'gl',x:'-40%',y:'-40%',width:'180%',height:'180%'});
-  f.appendChild(svgE('feGaussianBlur',{stdDeviation:'3',result:'b'}));
-  const mg=svgE('feMerge');mg.appendChild(svgE('feMergeNode',{in:'b'}));mg.appendChild(svgE('feMergeNode',{in:'SourceGraphic'}));
-  f.appendChild(mg);defs.appendChild(f);
-  // softer glow for constellation lines
-  const f2=svgE('filter',{id:'gl2',x:'-50%',y:'-50%',width:'200%',height:'200%'});
-  f2.appendChild(svgE('feGaussianBlur',{stdDeviation:'1.5',result:'b2'}));
-  const mg2=svgE('feMerge');mg2.appendChild(svgE('feMergeNode',{in:'b2'}));mg2.appendChild(svgE('feMergeNode',{in:'SourceGraphic'}));
-  f2.appendChild(mg2);defs.appendChild(f2);
-  svg.appendChild(defs);
-
-  // Optional logo overlay (opt-in via LOGO_URL above)
-  let logoImg = null;
-  if (LOGO_URL) {
-    logoImg = svgE('image', {href: LOGO_URL, x: LOGO_X, y: LOGO_Y, width: LOGO_W, height: LOGO_H, opacity: '0'});
-    logoImg.style.transition = 'opacity 1.8s ease-in';
-    svg.appendChild(logoImg);
-  }
-
-  // Faint guide circle
-  svg.appendChild(svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(0,212,255,.05)','stroke-width':'1'}));
-
-  // Constellation lines (thin, connecting non-adjacent nodes — appear with a delay)
-  const constLines=[];
-  CONSTELLATION_LINES.forEach(([a,b])=>{
-    const pa=mPos(a),pb=mPos(b);
-    const line=svgE('line',{x1:pa.x,y1:pa.y,x2:pb.x,y2:pb.y,stroke:'rgba(0,212,255,.06)','stroke-width':'0.5',filter:'url(#gl2)',opacity:'0'});
-    line.style.transition='opacity .6s';
-    svg.appendChild(line);
-    constLines.push(line);
-  });
-
-  // Animated ring (draws clockwise from top)
-  const ring=svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(0,212,255,.55)','stroke-width':'1.8',
-    'stroke-dasharray':CIRC,'stroke-dashoffset':CIRC,'stroke-linecap':'round',
-    transform:`rotate(-90 ${MX} ${MY})`,filter:'url(#gl)'});
-  svg.appendChild(ring);
-
-  // Cord path (from ~5 o'clock on ring to bonus eyepiece)
-  const cordCtrl={x:CORD_A.x+55,y:CORD_A.y+60};
-  const cord=svgE('path',{d:`M${CORD_A.x} ${CORD_A.y} Q${cordCtrl.x} ${cordCtrl.y} ${CORD_B.x} ${CORD_B.y}`,
-    fill:'none',stroke:'rgba(245,158,11,.55)','stroke-width':'1.8',
-    'stroke-dasharray':'200','stroke-dashoffset':'200','stroke-linecap':'round',filter:'url(#gl)'});
-  svg.appendChild(cord);
-
-  // Section nodes (on the ring) — auto-scales to N_SECTIONS
-  const nEls=[];
-  for(let i=0;i<N_SECTIONS;i++){
-    const p=mPos(i),dx=p.x-MX,dy=p.y-MY,len=Math.hypot(dx,dy);
-    const lx=p.x+(dx/len)*34,ly=p.y+(dy/len)*34;
-    const anc=p.x>MX+20?'start':p.x<MX-20?'end':'middle';
-    const g=svgE('g',{opacity:'0',class:'recap-pill'});g.style.transition='opacity .4s';g.dataset.lesson=i;
-    // star glow
-    g.appendChild(svgE('circle',{cx:p.x,cy:p.y,r:'16',fill:'rgba(0,212,255,.02)',stroke:'rgba(0,212,255,.08)','stroke-width':'0.5'}));
-    // center star
-    g.appendChild(svgE('circle',{cx:p.x,cy:p.y,r:'4.5',fill:'rgba(0,212,255,.15)',stroke:'rgba(0,212,255,.65)','stroke-width':'1.5'}));
-    // year/chapter label
-    const yr=svgE('text',{x:lx,y:ly-(p.y<MY?12:0),'text-anchor':anc,fill:'rgba(0,212,255,.8)',
-      'font-family':'Space Grotesk,sans-serif','font-size':'10.5','font-weight':'600','letter-spacing':'1.2'});
-    yr.textContent=String(SECTIONS[i].year);g.appendChild(yr);
-    // lesson label
-    const tt=svgE('text',{x:lx,y:ly+(p.y<MY?3:14),'text-anchor':anc,fill:'rgba(255,255,255,.38)',
-      'font-family':'Space Grotesk,sans-serif','font-size':'8','font-weight':'400'});
-    tt.textContent=LSHORT[i];g.appendChild(tt);
-    g.addEventListener('click',()=>{if(lessonIdxs[i]!==undefined)goTo(lessonIdxs[i])});
-    svg.appendChild(g);nEls.push(g);
-  }
-
-  // Bonus node (only if BONUS exists)
-  let bG = null;
-  if (BONUS) {
-    bG=svgE('g',{opacity:'0'});bG.style.transition='opacity .5s';
-    bG.appendChild(svgE('circle',{cx:CORD_B.x,cy:CORD_B.y,r:'18',fill:'rgba(245,158,11,.02)',stroke:'rgba(245,158,11,.1)','stroke-width':'0.5'}));
-    bG.appendChild(svgE('circle',{cx:CORD_B.x,cy:CORD_B.y,r:'6',fill:'rgba(245,158,11,.15)',stroke:'rgba(245,158,11,.65)','stroke-width':'1.5'}));
-    const bYr=svgE('text',{x:CORD_B.x+22,y:CORD_B.y-5,'text-anchor':'start',fill:'rgba(245,158,11,.85)',
-      'font-family':'Space Grotesk,sans-serif','font-size':'10.5','font-weight':'600','letter-spacing':'1.2'});
-    bYr.textContent=String(BONUS.year);bG.appendChild(bYr);
-    const bTt=svgE('text',{x:CORD_B.x+22,y:CORD_B.y+10,'text-anchor':'start',fill:'rgba(255,255,255,.35)',
-      'font-family':'Space Grotesk,sans-serif','font-size':'8'});
-    bTt.textContent=BONUS.title.replace('\n',' ');bG.appendChild(bTt);
-    svg.appendChild(bG);
-  }
-
-  // Center text — uses #brand text content as the headline
-  const brandText = (document.getElementById('brand')?.textContent || 'YOUR DECK').toUpperCase();
-  const cL=svgE('text',{x:MX,y:MY-4,'text-anchor':'middle','dominant-baseline':'middle',fill:'rgba(255,255,255,0)',
-    'font-family':'Space Grotesk,sans-serif','font-size':'20','font-weight':'600','letter-spacing':'4'});
-  cL.textContent=brandText;svg.appendChild(cL);
-  const cS=svgE('text',{x:MX,y:MY+20,'text-anchor':'middle','dominant-baseline':'middle',fill:'rgba(255,255,255,0)',
-    'font-family':'Space Grotesk,sans-serif','font-size':'10','font-weight':'400','letter-spacing':'2.5'});
-  const yearRange = `${SECTIONS[0]?.year ?? ''} – ${BONUS?.year ?? SECTIONS[N_SECTIONS-1]?.year ?? ''}`;
-  cS.textContent=yearRange;svg.appendChild(cS);
-
-  // ── Animation sequence ──
-  const DLY=300, CDUR=3200, STP=CDUR/N_SECTIONS;
-
-  // 1. Ring draws (0.3s – 3.5s)
-  let rs=null;
-  function aR(ts){if(!rs)rs=ts;const p=Math.min((ts-rs)/CDUR,1);const e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;ring.setAttribute('stroke-dashoffset',CIRC*(1-e));if(p<1)requestAnimationFrame(aR)}
-  setTimeout(()=>requestAnimationFrame(aR),DLY);
-
-  // 2. Nodes appear as ring passes through (star by star)
-  nEls.forEach((g,i)=>setTimeout(()=>{g.style.opacity='1'},DLY+i*STP+80));
-
-  // 3. Constellation lines fade in after their nodes appear
-  constLines.forEach((line,i)=>{
-    const [a,b]=CONSTELLATION_LINES[i];
-    const t=DLY+Math.max(a,b)*STP+200;
-    setTimeout(()=>{line.style.opacity='1'},t);
-  });
-
-  // 4. Cord draws after ring completes
-  const cStart=DLY+CDUR+250;
-  let cs2=null;
-  function aC(ts){if(!cs2)cs2=ts;const p=Math.min((ts-cs2)/800,1);cord.setAttribute('stroke-dashoffset',200*(1-p));if(p<1)requestAnimationFrame(aC)}
-  setTimeout(()=>requestAnimationFrame(aC),cStart);
-
-  // 5. Bonus node appears (if BONUS is defined)
-  if (bG) setTimeout(()=>{bG.style.opacity='1'},cStart+800);
-
-  // 6. Center text fades in
-  setTimeout(()=>{
-    cL.setAttribute('fill','rgba(255,255,255,.65)');cL.style.transition='fill 1s';
-    cS.setAttribute('fill','rgba(255,255,255,.22)');cS.style.transition='fill 1s';
-  },cStart+1100);
-
-  // 7. Optional logo fades in (if LOGO_URL was set)
-  if (logoImg) setTimeout(()=>{ logoImg.style.opacity='0.12'; },cStart+1500);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════
-   ANNOTATION OVERLAY — click elements to leave notes, export as markdown
-   ═══════════════════════════════════════════════════════════════════════ */
-const ANNO_KEY = 'hxr-keynote-annotations';
-let annoMode = false;
-let pendingTarget = null;
-
-function annoLoad(){ try{return JSON.parse(localStorage.getItem(ANNO_KEY)||'[]')}catch(e){return []} }
-function annoSave(arr){ localStorage.setItem(ANNO_KEY, JSON.stringify(arr)) }
-
-function annoToast(msg){
-  const t=document.getElementById('anno-toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),1800);
-}
-
-// Build a stable selector for an element
-function annoSelector(el){
-  if(el.id) return '#'+el.id;
-  const path=[];
-  let cur=el, depth=0;
-  while(cur && cur!==document.body && depth<5){
-    let part=cur.tagName.toLowerCase();
-    if(cur.id){ part='#'+cur.id; path.unshift(part); break; }
-    if(cur.classList.length){
-      const cls=Array.from(cur.classList).filter(c=>!['active','exit-fwd','exit-bwd'].includes(c)).slice(0,2).join('.');
-      if(cls) part+='.'+cls;
-    }
-    // nth-of-type if siblings exist
-    const sibs=Array.from(cur.parentNode?.children||[]).filter(s=>s.tagName===cur.tagName);
-    if(sibs.length>1){ part+=':nth-of-type('+(sibs.indexOf(cur)+1)+')'; }
-    path.unshift(part);
-    cur=cur.parentElement; depth++;
-  }
-  return path.join(' > ');
-}
-
-// Get slide context (year/type) for the element if it lives inside a slide
-function annoContext(el){
-  const slide=el.closest('.slide');
-  if(!slide) return null;
-  const type=slide.dataset.type||'?';
-  const year=slide.dataset.year||'';
-  const idx=[...document.querySelectorAll('#deck > .slide')].indexOf(slide);
-  const num=idx>=0 ? `#${idx+1}` : '';
-  const base=year ? `${type} ${year}` : type;
-  return num ? `${base} ${num}` : base;
-}
-
-function annoRender(){
-  const list=document.getElementById('anno-list');
-  const items=annoLoad();
-  if(items.length===0){
-    list.innerHTML='<div id="anno-empty">No annotations yet.<br>Click any element on the page.</div>';
-    return;
-  }
-  list.innerHTML=items.map((a,i)=>`
-    <div class="anno-item">
-      <span class="anno-rm" data-i="${i}">×</span>
-      <div class="anno-meta">${a.context||'—'} · <code>${a.selector}</code></div>
-      <div>${a.text.replace(/</g,'&lt;')}</div>
-    </div>`).join('');
-  list.querySelectorAll('.anno-rm').forEach(b=>b.addEventListener('click',e=>{
-    const i=+e.target.dataset.i;
-    const arr=annoLoad(); arr.splice(i,1); annoSave(arr); annoRender();
-  }));
-}
-
-function annoToggleMode(on){
-  annoMode = on===undefined ? !annoMode : on;
-  document.body.classList.toggle('annotate-mode',annoMode);
-  document.getElementById('anno-toggle').classList.toggle('active',annoMode);
-  document.getElementById('anno-toggle').textContent=annoMode?'✕ Exit Annotate':'📝 Annotate';
-  document.getElementById('anno-panel').classList.toggle('visible',annoMode);
-  if(annoMode) annoRender();
-  if(!annoMode) document.getElementById('anno-prompt').classList.remove('visible');
-}
-
-document.getElementById('anno-toggle').addEventListener('click',()=>annoToggleMode());
-
-// Keyboard shortcut: A toggles annotate mode
+// Key bindings for notes
 document.addEventListener('keydown',e=>{
-  if(e.key==='a'||e.key==='A'){
-    if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
-    e.preventDefault(); annoToggleMode();
-  }
+  if(e.target.closest('input,textarea,[contenteditable]'))return;
+  if(e.key==='n'&&!e.shiftKey&&!e.metaKey&&!e.ctrlKey){e.preventDefault();openPresenterPopup();}
+  if(e.key==='N'&&e.shiftKey&&!e.metaKey&&!e.ctrlKey){e.preventDefault();toggleNotesDrawer();}
 });
 
-// Click handler in annotate mode
-document.addEventListener('click',e=>{
-  if(!annoMode)return;
-  // Ignore clicks on the annotation UI itself
-  if(e.target.closest('#anno-toggle')||e.target.closest('#anno-panel')||e.target.closest('#anno-prompt')||e.target.closest('#anno-toast'))return;
-  e.preventDefault(); e.stopPropagation();
-  pendingTarget=e.target;
-  const sel=annoSelector(e.target);
-  const ctx=annoContext(e.target);
-  document.getElementById('anno-target-text').textContent=(ctx?ctx+' → ':'')+sel;
-  const prompt=document.getElementById('anno-prompt');
-  // Position prompt near click
-  const x=Math.min(e.clientX+10, innerWidth-300);
-  const y=Math.min(e.clientY+10, innerHeight-200);
-  prompt.style.left=x+'px'; prompt.style.top=y+'px';
-  prompt.classList.add('visible');
-  document.getElementById('anno-text').value='';
-  setTimeout(()=>document.getElementById('anno-text').focus(),50);
-},true);
+// Init duration display
+setTimeout(updateDurationDisplay,100);
 
-document.getElementById('anno-cancel').addEventListener('click',()=>{
-  document.getElementById('anno-prompt').classList.remove('visible');
-  pendingTarget=null;
-});
-
-document.getElementById('anno-save').addEventListener('click',()=>{
-  const text=document.getElementById('anno-text').value.trim();
-  if(!text||!pendingTarget)return;
-  const arr=annoLoad();
-  arr.push({
-    selector: annoSelector(pendingTarget),
-    context: annoContext(pendingTarget),
-    text,
-    timestamp: new Date().toISOString()
-  });
-  annoSave(arr);
-  document.getElementById('anno-prompt').classList.remove('visible');
-  pendingTarget=null;
-  annoRender();
-  annoToast('Annotation saved');
-});
-
-// Cmd/Ctrl+Enter to save in textarea
-document.getElementById('anno-text').addEventListener('keydown',e=>{
-  if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){ e.preventDefault(); document.getElementById('anno-save').click(); }
-  if(e.key==='Escape'){ document.getElementById('anno-cancel').click(); }
-});
-
-document.getElementById('anno-export').addEventListener('click',()=>{
-  const arr=annoLoad();
-  if(arr.length===0){ annoToast('Nothing to copy'); return; }
-  const md='# Keynote Annotations\n\n'+arr.map((a,i)=>
-    `## ${i+1}. ${a.context||'—'}\n**Selector:** \`${a.selector}\`\n**Note:** ${a.text}\n`
-  ).join('\n');
-  navigator.clipboard.writeText(md).then(()=>annoToast(`Copied ${arr.length} annotation${arr.length>1?'s':''} to clipboard`));
-});
-
-document.getElementById('anno-clear').addEventListener('click',()=>{
-  if(!confirm('Clear all annotations?'))return;
-  annoSave([]); annoRender(); annoToast('Cleared');
-});
-
-/* ═══════════════════════════════════════════════════════════════════════
-   MOVE MODE — drag any element to reposition; deltas saved as annotations
-   ═══════════════════════════════════════════════════════════════════════ */
-let moveMode=false;
-let dragEl=null, dragStart=null;
-const elDeltas=new Map(); // element -> {dx, dy}
-
-function moveModeToggle(on){
-  moveMode = on===undefined ? !moveMode : on;
-  // Can't have both modes at once
-  if(moveMode && annoMode) annoToggleMode(false);
-  document.body.classList.toggle('move-mode', moveMode);
-  document.getElementById('move-toggle').classList.toggle('active', moveMode);
-  document.getElementById('move-toggle').textContent = moveMode ? '✕ Exit Move' : '✋ Move Mode';
-  if (window.scrubShow) window.scrubShow(moveMode);
-  if(moveMode){
-    annoToast('Move mode: drag any element. Release to save offset as annotation.');
-  } else if(elDeltas.size>0){
-    annoToast('Move mode off. Drags saved as annotations. Refresh to reset positions.');
-  }
-}
-
-// ── Move-mode timeline scrubber ──
-(function buildScrubber(){
-  const bar = document.createElement('div');
-  bar.id = 'anim-scrub-bar';
-  bar.style.cssText = 'position:fixed;bottom:72px;left:50%;transform:translateX(-50%);z-index:1100;display:none;align-items:center;gap:10px;background:rgba(6,8,16,.92);border:1px solid rgba(245,158,11,.4);border-radius:10px;padding:10px 14px;backdrop-filter:blur(10px);font-family:var(--font);font-size:.7rem;color:var(--amber);letter-spacing:.1em;text-transform:uppercase';
-  bar.innerHTML = `
-    <button id="scrub-replay" style="background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.4);border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer">↻ Replay</button>
-    <button id="scrub-playpause" style="background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.4);border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer;width:70px">⏸ Pause</button>
-    <input id="scrub-range" type="range" min="0" max="5000" value="0" step="10" style="width:360px;accent-color:var(--amber)">
-    <span id="scrub-time" style="min-width:60px;text-align:right;color:rgba(245,158,11,.8)">0 ms</span>
-  `;
-  document.body.appendChild(bar);
-  const range = bar.querySelector('#scrub-range');
-  const timeLbl = bar.querySelector('#scrub-time');
-  const pp = bar.querySelector('#scrub-playpause');
-  const replay = bar.querySelector('#scrub-replay');
-  let paused = false;
-  function slideAnims(){ const s = allSlides[current]; return (s && s.getAnimations) ? s.getAnimations({subtree:true}) : []; }
-  function maxDur(){
-    let m = 2000;
-    slideAnims().forEach(a=>{
-      const t = a.effect?.getComputedTiming?.();
-      const d = (t?.delay||0) + (t?.duration||0) * (t?.iterations||1);
-      if (isFinite(d) && d > m) m = d;
-    });
-    return Math.ceil(m);
-  }
-  range.addEventListener('input', ()=>{
-    paused = true; pp.textContent = '▶ Play';
-    const v = +range.value; timeLbl.textContent = v + ' ms';
-    slideAnims().forEach(a=>{ a.pause(); try { a.currentTime = Math.min(v, (a.effect?.getComputedTiming?.().endTime) || v); } catch(e){} });
-  });
-  pp.addEventListener('click', ()=>{
-    paused = !paused;
-    if (paused) { slideAnims().forEach(a=>a.pause()); pp.textContent='▶ Play'; }
-    else { slideAnims().forEach(a=>a.play()); pp.textContent='⏸ Pause'; }
-  });
-  replay.addEventListener('click', ()=>{
-    paused = false; pp.textContent='⏸ Pause';
-    const n = current;
-    if (n > 0) { goTo(n-1); setTimeout(()=>goTo(n), 560); }
-    else if (total > 1) { goTo(n+1); setTimeout(()=>goTo(n), 560); }
-    setTimeout(()=>{ range.max = maxDur(); }, 1200);
-  });
-  window.scrubShow = (on)=>{ bar.style.display = on ? 'flex' : 'none'; if (on) setTimeout(()=>{ range.max = maxDur(); },100); };
-})();
-
-document.getElementById('move-toggle').addEventListener('click',()=>moveModeToggle());
-
-document.addEventListener('keydown',e=>{
-  if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
-  if(e.key==='m'||e.key==='M'){ e.preventDefault(); moveModeToggle(); }
-});
-
-// Suppress link navigation while move mode is on
-document.addEventListener('click', e => {
-  if (!moveMode) return;
-  const a = e.target.closest('a');
-  if (a && !a.closest('#move-hud,#anno-panel,#anim-scrub-bar')) { e.preventDefault(); e.stopPropagation(); }
-}, true);
-
-// Double-click in move mode = enter text-edit mode
-let editingEl = null;
-function endTextEdit(save){
-  if (!editingEl) return;
-  const el = editingEl;
-  el.removeAttribute('contenteditable'); el.blur();
-  if (save) {
-    const txt = el.innerText;
-    if (txt !== (el.dataset.origText||'')) {
-      const sel = annoSelector(el);
-      const arr = annoLoad();
-      const existing = arr.find(a=>a.selector===sel && a.text.startsWith('TEXT '));
-      const entry = { selector: sel, text: `TEXT "${txt.replace(/"/g,'\\"')}"`, context: annoContext(el), ts: Date.now() };
-      if (existing) Object.assign(existing, entry); else arr.push(entry);
-      annoSave(arr); annoRender();
-      annoToast('Text saved');
-    }
-  }
-  editingEl = null;
-  document.body.classList.remove('edit-text');
-}
-document.addEventListener('dblclick', e => {
-  if (!moveMode) return;
-  if (e.target.closest('#move-hud,#anno-panel,#anim-scrub-bar,#slide-grid,#move-toggle,#anno-toggle')) return;
-  const el = e.target;
-  if (el.closest('svg')) { annoToast('SVG text not editable yet'); return; }
-  e.preventDefault(); e.stopPropagation();
-  if (editingEl && editingEl !== el) endTextEdit(true);
-  editingEl = el;
-  el.dataset.origText = el.innerText;
-  el.setAttribute('contenteditable','true');
-  document.body.classList.add('edit-text');
-  el.focus();
-  const r = document.createRange(); r.selectNodeContents(el);
-  const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-}, true);
-document.addEventListener('keydown', e => {
-  if (!editingEl) return;
-  if (e.key === 'Escape') { e.preventDefault(); endTextEdit(false); }
-  if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); endTextEdit(true); }
-}, true);
-
-// Re-apply saved TEXT and IMG annotations
-function applyTextAnnotations(){
-  annoLoad().filter(a=>a.text.startsWith('TEXT ')).forEach(a=>{
-    try { const m = a.text.match(/^TEXT "(.*)"$/s); if (!m) return;
-      const el = document.querySelector(a.selector); if (el) el.innerText = m[1].replace(/\\"/g,'"'); } catch(_){}
-  });
-}
-function applyImageAnnotations(){
-  annoLoad().filter(a=>a.text.startsWith('IMG ')).forEach(a=>{
-    try { const m = a.text.match(/^IMG (data:[^\s]+)$/); if (!m) return;
-      const el = document.querySelector(a.selector); if (el && el.tagName === 'IMG') el.src = m[1]; } catch(_){}
-  });
-}
-setTimeout(()=>{applyTextAnnotations();applyImageAnnotations();}, 300);
-
-// Drag-and-drop image swap (move mode only)
-document.addEventListener('dragover', e => {
-  if (!moveMode) return;
-  const img = e.target.closest('img'); if (!img) return;
-  e.preventDefault();
-  img.style.outline = '3px dashed var(--teal)'; img.style.outlineOffset = '2px';
-});
-document.addEventListener('dragleave', e => { const img = e.target.closest('img'); if (img) img.style.outline = ''; });
-document.addEventListener('drop', e => {
-  if (!moveMode) return;
-  const img = e.target.closest('img'); if (!img) return;
-  e.preventDefault(); e.stopPropagation();
-  img.style.outline = '';
-  const file = e.dataTransfer?.files?.[0];
-  if (!file || !file.type.startsWith('image/')) { annoToast('Drop an image file'); return; }
-  const reader = new FileReader();
-  reader.onload = () => {
-    img.src = reader.result;
-    const sel = annoSelector(img);
-    const arr = annoLoad();
-    const existing = arr.find(a=>a.selector===sel && a.text.startsWith('IMG '));
-    const entry = { selector: sel, text: `IMG ${reader.result}`, context: annoContext(img), ts: Date.now() };
-    if (existing) Object.assign(existing, entry); else arr.push(entry);
-    annoSave(arr); annoRender();
-    annoToast(`Image swapped (${(file.size/1024).toFixed(0)} KB)`);
-  };
-  reader.readAsDataURL(file);
-}, true);
-
-document.addEventListener('mousedown',e=>{
-  if(!moveMode)return;
-  if(e.target.closest('#move-toggle')||e.target.closest('#anno-toggle')||e.target.closest('#slide-grid')||e.target.closest('#slide-grid-zone')||e.target.closest('#anno-panel')||e.target.closest('#anno-prompt')||e.target.closest('#anim-scrub-bar')||e.target.closest('#anno-toast'))return;
-  if (e.target.closest('[contenteditable="true"]')) return;
-  if (editingEl && !e.target.closest('[contenteditable="true"]')) endTextEdit(true);
-  e.preventDefault(); e.stopPropagation();
-  dragEl = e.target;
-  const existing = elDeltas.get(dragEl) || {dx:0, dy:0};
-  dragStart = { x:e.clientX, y:e.clientY, ix:existing.dx, iy:existing.dy };
-  dragEl.classList.add('dragging');
-}, true);
-
-document.addEventListener('mousemove',e=>{
-  if(!dragEl)return;
-  const dx = dragStart.ix + (e.clientX - dragStart.x);
-  const dy = dragStart.iy + (e.clientY - dragStart.y);
-  elDeltas.set(dragEl, {dx, dy});
-  // Apply transform — works for fixed, absolute, AND relative/static elements
-  const existingTransform = dragEl.dataset.origTransform || '';
-  if(!dragEl.dataset.origTransform){
-    dragEl.dataset.origTransform = getComputedStyle(dragEl).transform === 'none' ? '' : getComputedStyle(dragEl).transform;
-  }
-  dragEl.style.transform = `${dragEl.dataset.origTransform} translate(${dx}px, ${dy}px)`;
-}, true);
-
-document.addEventListener('mouseup',e=>{
-  if(!dragEl)return;
-  const delta = elDeltas.get(dragEl);
-  dragEl.classList.remove('dragging');
-  if(delta && (Math.abs(delta.dx)>3 || Math.abs(delta.dy)>3)){
-    const sel = annoSelector(dragEl);
-    const ctx = annoContext(dragEl);
-    const arr = annoLoad();
-    // Look for an existing move annotation for this element and replace it
-    const existing = arr.findIndex(a => a.type==='move' && a.selector===sel);
-    const note = {
-      selector: sel,
-      context: ctx,
-      text: `MOVE by Δ(${delta.dx>=0?'+':''}${Math.round(delta.dx)}px, ${delta.dy>=0?'+':''}${Math.round(delta.dy)}px) from current position`,
-      timestamp: new Date().toISOString(),
-      type: 'move',
-      delta: {dx:Math.round(delta.dx), dy:Math.round(delta.dy)},
-    };
-    if(existing >= 0) arr[existing] = note; else arr.push(note);
-    annoSave(arr);
-    annoToast(`Saved: move ${sel} Δ(${Math.round(delta.dx)},${Math.round(delta.dy)})`);
-    annoRender();
-  }
-  dragEl = null; dragStart = null;
-}, true);
+// Init
+updateHUD();goToFromHash();
 </script>
 </body>
 </html>
