@@ -148,6 +148,10 @@ Case studies show an image/media area alongside the title, subtitle, and bullet 
 | `Alt/Option + Drag` | Rotate element |
 | `Cmd/Ctrl + Click` | Select parent element |
 | `G` | Toggle layout grid (4×3 zone overlay, A1–C4) |
+| `▲▲` button | Send selected element to front |
+| `▲` button | Send selected element forward |
+| `▼` button | Send selected element backward |
+| `▼▼` button | Send selected element to back |
 | `Cmd/Ctrl + Z` | Undo |
 | `Cmd/Ctrl + Shift + Z` | Redo |
 | `Double-click` | Edit text inline |
@@ -387,6 +391,21 @@ Press `H` to hide all UI chrome for a clean audience-facing view:
 ---
 
 ## 👁️ Hiding & Parking Slides
+
+### Per-Slide Media Resize
+
+Shift+drag any media element (image, video, iframe, gallery) in move mode to scale it larger or smaller on that specific slide — without changing the template globally. Scaled-up elements won't be clipped thanks to `overflow:visible` in move mode.
+
+### Z-Ordering (Layering)
+
+When elements overlap, use the z-order buttons in the move-mode HUD to control stacking:
+
+- **▲▲** Send to Front — above everything else on the slide
+- **▲** Send Forward — one layer up
+- **▼** Send Backward — one layer down
+- **▼▼** Send to Back — behind everything else
+
+Click or drag any element to select it, then use the buttons. A toast shows the new z-index.
 
 ### Hiding Slides
 
