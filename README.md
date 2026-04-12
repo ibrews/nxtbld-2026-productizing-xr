@@ -130,7 +130,7 @@ Case studies show an image/media area alongside the title, subtitle, and bullet 
 | `Home` | First slide |
 | `End` | Last slide |
 | `H` | Toggle UI chrome (presentation mode) |
-| `G` | Jump to slide by number |
+| `G` | Toggle layout grid (in move mode) |
 | `Cmd/Ctrl + F` or `/` | Search all slide text |
 | `N` | Open presenter popup (speaker notes) |
 | `Shift + N` | Toggle inline notes drawer |
@@ -139,7 +139,7 @@ Case studies show an image/media area alongside the title, subtitle, and bullet 
 
 ![Move Mode](docs/screenshot-movemode.png)
 
-*Move mode shows a HUD with modifier hints. Drag any element to reposition it. The animation scrubber at the bottom lets you replay slide animations.*
+*Move mode shows a HUD with modifier hints. Drag any element to reposition it. After each drag, the CSS position is auto-copied to your clipboard. The animation scrubber at the bottom lets you replay slide animations.*
 
 | Key/Action | Effect |
 |------------|--------|
@@ -147,6 +147,7 @@ Case studies show an image/media area alongside the title, subtitle, and bullet 
 | `Shift + Drag` | Scale element |
 | `Alt/Option + Drag` | Rotate element |
 | `Cmd/Ctrl + Click` | Select parent element |
+| `G` | Toggle layout grid (4×3 zone overlay, A1–C4) |
 | `Cmd/Ctrl + Z` | Undo |
 | `Cmd/Ctrl + Shift + Z` | Redo |
 | `Double-click` | Edit text inline |
@@ -164,7 +165,7 @@ Case studies show an image/media area alongside the title, subtitle, and bullet 
 
 ![Annotation Mode](docs/screenshot-annotation.png)
 
-*Click any element to leave a note. The annotation panel on the left tracks all notes. Export as markdown for handoff to collaborators or AI.*
+*Click any element to leave a note. Click the slide background to mark a position (coordinates exported as `left:X%, top:Y%`). The annotation panel tracks all notes. Export as markdown for handoff to collaborators or AI.*
 
 | Action | Effect |
 |--------|--------|
@@ -196,6 +197,51 @@ The Settings slide (hidden slide 0, accessible via the slide grid) includes a fu
 - **Reset to Defaults** — one click to restore everything
 
 All settings persist via `localStorage` — they survive page reloads and browser restarts.
+
+### Slide Transitions
+
+Choose your transition style from the Settings dropdown:
+
+| Style | Effect |
+|-------|--------|
+| **Slide** (default) | Horizontal slide left/right |
+| **Fade** | Simple opacity crossfade |
+| **Zoom** | Scale + fade (zoom in forward, zoom out backward) |
+| **None** | Instant swap, no animation |
+
+### Auto-Save & Restore
+
+Your work is automatically saved every 60 seconds (after first interaction):
+- Keeps the last 10 snapshots of your annotations and theme settings
+- Click **"🔄 Restore Snapshot"** in Settings to see timestamped backups
+- Pick any snapshot to restore — annotations and config are rolled back and the page reloads
+
+---
+
+## 📐 Layout Grid & Positioning
+
+Press `G` in move mode to toggle a 4×3 labeled grid overlay:
+
+```
+ A1  |  A2  |  A3  |  A4
+-----+------+------+-----
+ B1  |  B2  |  B3  |  B4
+-----+------+------+-----
+ C1  |  C2  |  C3  |  C4
+```
+
+- Zone labels appear on the slide so you can say "put the logo in zone A4"
+- When the grid is visible, annotations include the zone (e.g., `Zone: B2`)
+- After dragging any element, the CSS position is **auto-copied to your clipboard**:
+  ```
+  📋 Position copied: left:45%, top:32%
+  ```
+- Clicking the slide background in annotation mode captures exact coordinates:
+  ```
+  POSITION: left:45.2%, top:32.1% (on slide #15, type: lesson, year: 2023)
+  ```
+
+This solves the "put X here" problem — your AI collaborator gets exact coordinates, not vague descriptions.
 
 ---
 
