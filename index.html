@@ -371,6 +371,103 @@ const bon=document.createElement('div');bon.className='slide slide-lesson slide-
 bon.innerHTML=`<div class="year-ghost">${BONUS.year}</div><div class="lesson-ey"><span class="ey-yr">${BONUS.year}</span><span class="ey-sep">&middot;</span><span class="ey-badge" style="color:var(--amber)">BONUS LESSON</span></div><h2 class="lesson-title">${BONUS.title}</h2><p class="lesson-tagline">${BONUS.tagline.replace(/<br><br>/g,'<br><span class="para-gap"></span>')}</p><div class="lesson-rule" style="background:var(--amber)"></div>`;
 deck.appendChild(bon);allSlides.push(bon);
 
+// 3D Monocle on Bonus slide
+(function(){
+  const container=document.createElement('div');
+  container.style.cssText='position:absolute;right:10%;top:50%;transform:translateY(-50%);width:300px;height:300px;pointer-events:auto;z-index:2';
+  bon.appendChild(container);
+  const canvas=document.createElement('canvas');
+  canvas.width=600;canvas.height=600;
+  canvas.style.cssText='width:100%;height:100%;cursor:grab';
+  container.appendChild(canvas);
+  let running=false,renderer,scene,camera,group,rafId;
+  let isDragging=false,prevMouse={x:0,y:0},autoRotate=true,resumeTimer;
+  async function init(){
+    if(running)return;
+    const THREE=await import('three');
+    scene=new THREE.Scene();
+    camera=new THREE.PerspectiveCamera(40,1,0.1,100);
+    camera.position.set(0,0,8);
+    renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+    renderer.setSize(600,600);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    // Lights
+    scene.add(new THREE.AmbientLight(0x8888cc,0.5));
+    const dLight=new THREE.DirectionalLight(0xffffff,1.2);
+    dLight.position.set(5,5,5);scene.add(dLight);
+    const pLight=new THREE.PointLight(0x00d4ff,0.3);
+    pLight.position.set(0,0,2.5);scene.add(pLight);
+    // Materials
+    const ringMat=new THREE.MeshStandardMaterial({color:0xf59e0b,metalness:0.7,roughness:0.3});
+    const lensMat=new THREE.MeshStandardMaterial({color:0x00d4ff,transparent:true,opacity:0.15,metalness:0.1,roughness:0.4,side:THREE.DoubleSide});
+    const cordMat=new THREE.MeshStandardMaterial({color:0xd97706,metalness:0.6,roughness:0.35});
+    // Group
+    group=new THREE.Group();
+    // Torus (monocle ring)
+    const torus=new THREE.Mesh(new THREE.TorusGeometry(2,0.15,24,64),ringMat);
+    group.add(torus);
+    // Lens disc
+    const lens=new THREE.Mesh(new THREE.CircleGeometry(1.85,48),lensMat);
+    group.add(lens);
+    // Cord curve
+    const curve=new THREE.CatmullRomCurve3([
+      new THREE.Vector3(0,-2,0),
+      new THREE.Vector3(-0.6,-2.8,0.3),
+      new THREE.Vector3(-1.2,-3.5,0.1),
+      new THREE.Vector3(-1.0,-4.2,-0.2)
+    ]);
+    const tube=new THREE.Mesh(new THREE.TubeGeometry(curve,20,0.06,8,false),cordMat);
+    group.add(tube);
+    // Eyepiece sphere
+    const eyepiece=new THREE.Mesh(new THREE.SphereGeometry(0.18,16,16),cordMat);
+    eyepiece.position.set(-1.0,-4.2,-0.2);
+    group.add(eyepiece);
+    scene.add(group);
+    // Drag rotation
+    canvas.addEventListener('mousedown',onDown);
+    canvas.addEventListener('touchstart',onTouchDown,{passive:false});
+    window.addEventListener('mousemove',onMove);
+    window.addEventListener('touchmove',onTouchMove,{passive:false});
+    window.addEventListener('mouseup',onUp);
+    window.addEventListener('touchend',onUp);
+    running=true;autoRotate=true;
+    function animate(){
+      if(!running){rafId=null;return;}
+      if(autoRotate){
+        group.rotation.y+=0.005;
+        group.rotation.x=Math.sin(Date.now()*0.0008)*0.15;
+      }
+      renderer.render(scene,camera);
+      rafId=requestAnimationFrame(animate);
+    }
+    rafId=requestAnimationFrame(animate);
+  }
+  function onDown(e){isDragging=true;prevMouse={x:e.clientX,y:e.clientY};canvas.style.cursor='grabbing';autoRotate=false;clearTimeout(resumeTimer);}
+  function onTouchDown(e){if(e.touches.length===1){e.preventDefault();isDragging=true;prevMouse={x:e.touches[0].clientX,y:e.touches[0].clientY};autoRotate=false;clearTimeout(resumeTimer);}}
+  function onMove(e){if(!isDragging||!group)return;const dx=e.clientX-prevMouse.x,dy=e.clientY-prevMouse.y;group.rotation.y+=dx*0.01;group.rotation.x+=dy*0.01;prevMouse={x:e.clientX,y:e.clientY};}
+  function onTouchMove(e){if(!isDragging||!group||e.touches.length!==1)return;e.preventDefault();const dx=e.touches[0].clientX-prevMouse.x,dy=e.touches[0].clientY-prevMouse.y;group.rotation.y+=dx*0.01;group.rotation.x+=dy*0.01;prevMouse={x:e.touches[0].clientX,y:e.touches[0].clientY};}
+  function onUp(){if(!isDragging)return;isDragging=false;canvas.style.cursor='grab';resumeTimer=setTimeout(()=>{autoRotate=true;},2000);}
+  function dispose(){
+    running=false;
+    if(rafId){cancelAnimationFrame(rafId);rafId=null;}
+    clearTimeout(resumeTimer);isDragging=false;autoRotate=true;
+    canvas.removeEventListener('mousedown',onDown);
+    canvas.removeEventListener('touchstart',onTouchDown);
+    window.removeEventListener('mousemove',onMove);
+    window.removeEventListener('touchmove',onTouchMove);
+    window.removeEventListener('mouseup',onUp);
+    window.removeEventListener('touchend',onUp);
+    if(renderer){renderer.dispose();renderer=null;}
+    if(scene){scene.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material.dispose();}});scene=null;}
+    group=null;camera=null;
+  }
+  new MutationObserver(()=>{
+    if(bon.classList.contains('active')){setTimeout(init,400);}
+    else if(running){dispose();}
+  }).observe(bon,{attributes:true,attributeFilter:['class']});
+  if(bon.classList.contains('active'))setTimeout(init,400);
+})();
+
 // Map
 const mapS=document.createElement('div');mapS.className='slide slide-map';mapS.dataset.type='map';
 mapS.innerHTML=`<div class="map-label">The Journey, Mapped</div><svg id="map-svg" viewBox="0 0 1000 600"></svg>`;

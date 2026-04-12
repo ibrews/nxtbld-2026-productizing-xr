@@ -402,7 +402,11 @@ curl -o lib/three.module.min.js \
 
 ### Including 3D Models (GLTF, OBJ, etc.)
 
-Three.js is already available. Add a rotating model to any slide:
+Three.js is already available via the import map. The bonus slide includes a **working 3D monocle example** — a procedural gold torus with teal glass lens, cord, and eyepiece that auto-rotates and supports click-drag interaction.
+
+**Click-drag rotation** is built in: grab the 3D model and drag to rotate it. Auto-rotation pauses while dragging and resumes after 2 seconds. Touch devices supported too.
+
+To add your own 3D model to any slide:
 
 ```javascript
 const THREE = await import('three');
@@ -410,19 +414,39 @@ const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, 1, 1, 500);
-const renderer = new THREE.WebGLRenderer({ alpha: true });
+const renderer = new THREE.WebGLRenderer({ canvas: myCanvas, alpha: true });
 
 const loader = new GLTFLoader();
 loader.load('media/model.glb', (gltf) => {
   scene.add(gltf.scene);
+  
+  // Click-drag rotation (reuse this pattern for any 3D object)
+  let dragging = false, prev = {x:0, y:0}, autoRot = true;
+  myCanvas.addEventListener('mousedown', e => {
+    dragging = true; prev = {x:e.clientX, y:e.clientY};
+    autoRot = false; myCanvas.style.cursor = 'grabbing';
+  });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    gltf.scene.rotation.y += (e.clientX - prev.x) * 0.01;
+    gltf.scene.rotation.x += (e.clientY - prev.y) * 0.01;
+    prev = {x:e.clientX, y:e.clientY};
+  });
+  window.addEventListener('mouseup', () => {
+    dragging = false; myCanvas.style.cursor = 'grab';
+    setTimeout(() => { autoRot = true; }, 2000);
+  });
+
   function animate() {
     requestAnimationFrame(animate);
-    gltf.scene.rotation.y += 0.01;
+    if (autoRot) gltf.scene.rotation.y += 0.005;
     renderer.render(scene, camera);
   }
   animate();
 });
 ```
+
+See the bonus slide IIFE in `index.html` for the full implementation including lifecycle management (init on slide enter, dispose on leave).
 
 ---
 
