@@ -323,9 +323,9 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
 
 // Settings slide (slot 0, hidden)
 (function(){
-  const D={paraGap:.35,taglineScale:1,titleScale:1,imgDur:6,primaryColor:'#00d4ff',secondaryColor:'#a78bfa',bgDark:'#060810',fontFamily:'Space Grotesk',transition:'slide'};
+  const D={paraGap:.35,taglineScale:1,titleScale:1,imgDur:6,primaryColor:'#00d4ff',secondaryColor:'#a78bfa',bgDark:'#060810',fontFamily:'Space Grotesk',transition:'slide',arrowSubstep:true};
   const saved=JSON.parse(localStorage.getItem('sd-cfg')||'{}');const C={...D,...saved};
-  function apply(){const r=document.documentElement.style;r.setProperty('--para-gap',C.paraGap+'em');r.setProperty('--tagline-scale',C.taglineScale);r.setProperty('--title-scale',C.titleScale);r.setProperty('--teal',C.primaryColor);r.setProperty('--purple',C.secondaryColor);r.setProperty('--bg-dark',C.bgDark);r.setProperty('--bg',C.bgDark);if(C.fontFamily&&C.fontFamily!=='Custom')r.setProperty('--font',`'${C.fontFamily}',system-ui,sans-serif`);else if(C.customFont)r.setProperty('--font',`'${C.customFont}',system-ui,sans-serif`);window._globalImageDuration=C.imgDur*1000;}
+  function apply(){const r=document.documentElement.style;r.setProperty('--para-gap',C.paraGap+'em');r.setProperty('--tagline-scale',C.taglineScale);r.setProperty('--title-scale',C.titleScale);r.setProperty('--teal',C.primaryColor);r.setProperty('--purple',C.secondaryColor);r.setProperty('--bg-dark',C.bgDark);r.setProperty('--bg',C.bgDark);if(C.fontFamily&&C.fontFamily!=='Custom')r.setProperty('--font',`'${C.fontFamily}',system-ui,sans-serif`);else if(C.customFont)r.setProperty('--font',`'${C.customFont}',system-ui,sans-serif`);window._globalImageDuration=C.imgDur*1000;window._arrowSubstep=C.arrowSubstep;}
   apply();function save(){localStorage.setItem('sd-cfg',JSON.stringify(C));}
   const s=document.createElement('div');s.className='slide slide-settings';s.dataset.type='settings';s.dataset.hidden='1';
   const fo=['Space Grotesk','Inter','Outfit','JetBrains Mono','Playfair Display','Custom'].map(f=>`<option value="${f}"${C.fontFamily===f?' selected':''}>${f}</option>`).join('');
@@ -339,6 +339,7 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
     <div class="cfg-row"><label class="cfg-label">Tagline Size</label><div class="cfg-control"><input type="range" id="cfg-ts" min="0.6" max="1.5" step="0.05" value="${C.taglineScale}"><span class="cfg-val" id="v-ts">${Math.round(C.taglineScale*100)}%</span></div></div>
     <div class="cfg-row"><label class="cfg-label">Title Size</label><div class="cfg-control"><input type="range" id="cfg-ti" min="0.6" max="1.3" step="0.05" value="${C.titleScale}"><span class="cfg-val" id="v-ti">${Math.round(C.titleScale*100)}%</span></div></div>
   <div class="cfg-row"><label class="cfg-label">Transition</label><div class="cfg-control"><select id="cfg-transition" class="cfg-select"><option value="slide"${C.transition==='slide'?' selected':''}>Slide</option><option value="fade"${C.transition==='fade'?' selected':''}>Fade</option><option value="zoom"${C.transition==='zoom'?' selected':''}>Zoom</option><option value="none"${C.transition==='none'?' selected':''}>None (instant)</option></select></div></div>
+  <div class="cfg-row"><label class="cfg-label">Arrow substep</label><div class="cfg-control"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="cfg-substep" ${C.arrowSubstep?'checked':''}><span class="cfg-val" id="v-substep">${C.arrowSubstep?'On':'Off'}</span></label></div></div>
   </div><div class="cfg-row" style="grid-column:1/-1"><span class="cfg-label">Estimated Duration</span><span class="cfg-val" id="v-duration" style="text-align:left">--:--</span></div></div><div style="text-align:center;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="cfg-reset" id="cfg-r">Reset to Defaults</button><button class="cfg-btn-export" id="cfg-export">&#128230; Export for Offline</button><button class="cfg-btn-export" id="cfg-restore">\uD83D\uDD04 Restore Snapshot</button></div><div class="cfg-hint">Ctrl/Cmd-click grid thumbnails to hide &middot; H = presentation mode &middot; A = annotate &middot; M = move &middot; N = presenter popup &middot; Shift+N = notes drawer</div></div>`;
   deck.appendChild(s);allSlides.push(s);
   function w(id,vid,set,fmt){const e=s.querySelector('#'+id),v=s.querySelector('#'+vid);e.addEventListener('input',()=>{set(parseFloat(e.value));apply();v.textContent=fmt(parseFloat(e.value));save();});}
@@ -351,6 +352,7 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
   ci.addEventListener('change',()=>{C.customFont=ci.value;apply();save();});
   const trSel=s.querySelector('#cfg-transition');
   trSel.addEventListener('change',()=>{C.transition=trSel.value;save();});
+  const _subCb=s.querySelector('#cfg-substep'),_subVal=s.querySelector('#v-substep');_subCb.addEventListener('change',()=>{C.arrowSubstep=_subCb.checked;apply();_subVal.textContent=_subCb.checked?'On':'Off';save();});
   s.querySelector('#cfg-r').addEventListener('click',()=>{Object.assign(C,D);delete C.customFont;save();apply();location.reload();});
 })();
 
@@ -508,7 +510,7 @@ function updateStepIndicator(){const el=document.getElementById('step-indicator'
 function updateHUD(){document.getElementById('counter').textContent=`${String(current+1).padStart(2,'0')} / ${total}`;updateStepIndicator();buildGrid();}
 function updateHash(){location.hash=current>1?current:'';}
 function goToFromHash(){const h=parseInt(location.hash.replace('#',''));if(h>=0&&h<total)goTo(h);}
-document.getElementById('btn-next').addEventListener('click',()=>{if(!advanceStep())goNext();});
+document.getElementById('btn-next').addEventListener('click',()=>{if(window._arrowSubstep!==false&&advanceStep())return;goNext();});
 document.getElementById('btn-prev').addEventListener('click',goPrev);
 // ── Playing indicator + Autoplay ──
 const _navSpinner=document.getElementById('nav-playing');
@@ -522,7 +524,7 @@ function _apTick(){if(!_apc.checked)return;if(!advanceStep()){const n=nextVisibl
 _apc.addEventListener('change',()=>{if(_apc.checked)_apTick();else if(_apt){clearTimeout(_apt);_apt=null;}});
 document.addEventListener('keydown',e=>{
   if(e.target.closest('#search-input,#anno-text,[contenteditable]'))return;
-  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();if(!advanceStep())goNext();}
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();if(window._arrowSubstep!==false&&advanceStep())return;goNext();}
   if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='Backspace'){e.preventDefault();goPrev();}
   if(e.key==='Home'){e.preventDefault();goTo(1);}
   if(e.key==='End'){e.preventDefault();goTo(total-1);}
@@ -533,7 +535,7 @@ document.addEventListener('keydown',e=>{
 });
 let touchX=0,touchY=0,touchT=0;
 document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;touchY=e.touches[0].clientY;touchT=Date.now();},{passive:true});
-document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;const dy=e.changedTouches[0].clientY-touchY;const dt=Date.now()-touchT;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){dx<0?(!advanceStep()&&goNext()):goPrev();}else if(Math.abs(dx)<15&&Math.abs(dy)<15&&dt<300){if(!advanceStep())goNext();}},{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;const dy=e.changedTouches[0].clientY-touchY;const dt=Date.now()-touchT;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){dx<0?(window._arrowSubstep!==false&&advanceStep()?0:goNext()):goPrev();}else if(Math.abs(dx)<15&&Math.abs(dy)<15&&dt<300){if(window._arrowSubstep!==false&&advanceStep())return;goNext();}},{passive:true});
 addEventListener('hashchange',goToFromHash);
 const _params=new URLSearchParams(location.search);
 const _paramMode=_params.has('edit')?'edit':_params.has('view')?'view':null;
