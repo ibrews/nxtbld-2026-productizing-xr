@@ -527,8 +527,9 @@ document.addEventListener('keydown',e=>{
   if((e.key==='h'||e.key==='H')&&!e.target.closest('input,textarea,[contenteditable]')){e.preventDefault();document.body.classList.toggle('presentation-mode');}
   if((e.key==='/'||(e.metaKey&&e.key==='f')||(e.ctrlKey&&e.key==='f'))&&!e.target.closest('input,textarea')){e.preventDefault();openSearch();}
 });
-let touchX=0;document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;});
-document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50){dx<0?(!advanceStep()&&goNext()):goPrev();}});
+let touchX=0,touchY=0,touchT=0;
+document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;touchY=e.touches[0].clientY;touchT=Date.now();},{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;const dy=e.changedTouches[0].clientY-touchY;const dt=Date.now()-touchT;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){dx<0?(!advanceStep()&&goNext()):goPrev();}else if(Math.abs(dx)<15&&Math.abs(dy)<15&&dt<300){if(!advanceStep())goNext();}},{passive:true});
 addEventListener('hashchange',goToFromHash);
 
 // Slide grid
