@@ -197,7 +197,7 @@ canvas#stars{position:absolute;inset:0}
 .nav-playing{width:20px;height:20px;border:2px solid rgba(0,212,255,.3);border-top-color:var(--teal);border-radius:50%;opacity:0;transition:opacity .2s;pointer-events:none}
 .nav-playing.active{opacity:1;animation:navSpin .8s linear infinite}
 @keyframes navSpin{to{transform:rotate(360deg)}}
-.nav-autoplay{position:fixed;bottom:6px;right:160px;z-index:20;display:flex;align-items:center;gap:6px;font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.3);cursor:pointer;user-select:none}
+.nav-autoplay{display:flex;align-items:center;gap:6px;font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.3);cursor:pointer;user-select:none;margin-left:8px}
 .nav-autoplay input{accent-color:var(--teal);cursor:pointer}
 .nav-autoplay:hover{color:rgba(255,255,255,.5)}
 #step-indicator{position:fixed;bottom:82px;right:160px;z-index:20;font-size:.6rem;font-weight:600;letter-spacing:.14em;color:rgba(255,255,255,.3);text-align:center;width:102px;pointer-events:none}
@@ -280,8 +280,7 @@ body.edit-text .slide.active [contenteditable="true"]{outline:2px solid var(--te
 <div id="counter"></div>
 <div id="brand">Spatial Deck</div>
 <div id="step-indicator"></div>
-<div class="nav-arrows"><button class="nav-btn" id="btn-prev">&#8592;</button><div class="nav-playing" id="nav-playing"></div><button class="nav-btn" id="btn-next">&#8594;</button></div>
-<label class="nav-autoplay"><input type="checkbox" id="autoplay-cb">AUTOPLAY</label>
+<div class="nav-arrows"><button class="nav-btn" id="btn-prev">&#8592;</button><div class="nav-playing" id="nav-playing"></div><button class="nav-btn" id="btn-next">&#8594;</button><label class="nav-autoplay"><input type="checkbox" id="autoplay-cb">AUTO</label></div>
 <div id="slide-grid-zone"></div>
 <div id="slide-grid"></div>
 <div id="search-overlay"><div id="search-box"><div class="srch-input-row"><span class="srch-icon">&#8981;</span><input type="text" id="search-input" placeholder="Search slides, topics, case studies..." autocomplete="off" spellcheck="false"><kbd class="srch-kbd">Esc</kbd></div><div id="srch-results"><div class="srch-empty">Type to search across all slides...</div></div><div class="srch-footer"><span id="srch-count"></span><span>&#8593;&#8595; navigate &middot; Enter jump &middot; Esc close</span></div></div></div>
