@@ -401,8 +401,9 @@ document.getElementById('btn-next').addEventListener('click',()=>{if(!advanceSte
 document.getElementById('btn-prev').addEventListener('click',goPrev);
 // ── Playing indicator + Autoplay ──
 const _navSpinner=document.getElementById('nav-playing');
-{const _og=goTo;goTo=function(n){_navSpinner.classList.add('active');_og(n);const sd=slideSteps.get(allSlides[current]);if(!sd||sd.current>=sd.steps.length)setTimeout(()=>_navSpinner.classList.remove('active'),600);};
-const _oa=advanceStep;advanceStep=function(){_navSpinner.classList.add('active');const r=_oa();const sd=slideSteps.get(allSlides[current]);if(!r||!sd||sd.current>=sd.steps.length)setTimeout(()=>_navSpinner.classList.remove('active'),600);else setTimeout(()=>_navSpinner.classList.remove('active'),1200);return r;};}
+function _updateSpinner(){const sd=slideSteps.get(allSlides[current]);if(sd&&sd.current<sd.steps.length)_navSpinner.classList.add('active');else _navSpinner.classList.remove('active');}
+{const _og=goTo;goTo=function(n){_og(n);_updateSpinner();};
+const _oa=advanceStep;advanceStep=function(){const r=_oa();_updateSpinner();return r;};}
 let _apt=null;const _apc=document.getElementById('autoplay-cb');
 function _apTick(){if(!_apc.checked)return;if(!advanceStep()){const n=nextVisible(current,1);if(n>=0)goTo(n);else{_apc.checked=false;return;}}const t=allSlides[current]?.dataset.type;_apt=setTimeout(_apTick,t==='lesson'||t==='bonus'?8000:t==='case'?12000:6000);}
 _apc.addEventListener('change',()=>{if(_apc.checked)_apTick();else if(_apt){clearTimeout(_apt);_apt=null;}});
