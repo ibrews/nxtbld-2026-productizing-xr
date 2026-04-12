@@ -54,6 +54,23 @@ Spatial Deck is a single-file HTML presentation framework. Everything lives in `
 - `playWhoosh()` = white-noise bandpass slide transition.
 - `playBing()` = soft bell for media cycler transitions.
 - Wrap audio in `try{}catch(e){}` — AudioContext requires user interaction first.
+- `AudioContext` is monkey-patched — all instances auto-register for cleanup.
+- `window._killAllSfx()` closes all active contexts (called by `goTo()` automatically).
+
+### URL Params & Mobile
+- Default = view mode (presentation mode on, edit chrome hidden).
+- `?edit` = edit mode. `?view` = explicit view. `?landscape` = orientation prompt.
+- Mobile auto-detected via `(pointer:coarse)`. 👁 button toggles chrome.
+- Tap = advance. Swipe = navigate. Both respect `_arrowSubstep` toggle.
+
+### Z-Ordering
+- Move mode HUD: ▲▲/▲/▼/▼▼ buttons set `style.zIndex` on last-clicked element.
+- Click any element in move mode to select it for z-ordering.
+
+### Settings Slide (slide 0)
+- Counter shows "00" for settings, "01" for cover.
+- URL hash `#0` goes to settings. `#N` = slide N (0-indexed).
+- Arrow substep toggle: On = step through animations, Off = skip to next slide.
 
 ## Common Patterns
 

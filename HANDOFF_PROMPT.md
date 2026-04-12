@@ -86,7 +86,37 @@ index.html
 - `nextVisible(from, dir)` — skips hidden slides
 - `current` = index into `allSlides` array
 - `total` = `allSlides.length`
-- URL hash: `#N` jumps to slide N (1-indexed)
+- URL hash: `#N` jumps to slide N (0-indexed, settings=0, cover=1)
+- Counter displays `current` (settings shows "00")
+- `history.replaceState` writes `#current` on every navigation
+
+### URL Sharing Modes
+- Default (no params) = view mode (presentation mode, edit chrome hidden)
+- `?edit` = edit mode (all chrome visible, overrides mobile auto-hide)
+- `?view` = explicit view mode
+- `?landscape` = portrait-orientation prompt overlay on mobile
+
+### Mobile
+- Auto-detect via `(max-width:900px)` or `(pointer:coarse)`
+- Auto-enter presentation mode; 👁 button toggles chrome
+- Tap (< 15px, < 300ms) = advance step/slide
+- Swipe left/right = navigate (respects steps + hidden slides)
+
+### Arrow Substep Toggle
+- `arrowSubstep` in config (default: `true`), checkbox in Settings
+- When On: arrows/tap/swipe step through sub-animations before advancing
+- When Off: always skip to next full slide
+- `window._arrowSubstep` flag checked by all navigation handlers
+
+### SFX Cleanup
+- `AudioContext` constructor is monkey-patched to auto-register in `_activeAudioCtxs` Set
+- `window._killAllSfx()` closes all active contexts — called by `goTo()` on every slide change
+- No manual registration needed; all SFX functions automatically tracked
+
+### Z-Ordering
+- Move mode HUD has ▲▲/▲/▼/▼▼ buttons for Send to Front/Forward/Backward/Back
+- Operates on last-clicked/dragged element via `_lastMoveEl`
+- Sets `style.zIndex` on the element
 
 ### Annotations & Move Mode
 - Annotations saved to `localStorage` key `'sd-annos'`

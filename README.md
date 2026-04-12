@@ -134,6 +134,24 @@ Case studies show an image/media area alongside the title, subtitle, and bullet 
 | `Cmd/Ctrl + F` or `/` | Search all slide text |
 | `N` | Open presenter popup (speaker notes) |
 | `Shift + N` | Toggle inline notes drawer |
+| `👁` button (mobile) | Toggle UI chrome on touch devices |
+
+### URL Sharing Modes
+
+| URL | Mode |
+|-----|------|
+| `yoursite.com/` | View mode (default) — clean, no edit chrome |
+| `yoursite.com/?edit` | Edit mode — all chrome visible, even on mobile |
+| `yoursite.com/?view` | Explicit view mode (same as default) |
+| `yoursite.com/?landscape` | Shows "rotate to landscape" prompt on portrait phones |
+| `yoursite.com/?edit#15` | Edit mode, starting at slide 15 |
+
+### Mobile Support
+
+- **Auto-detect**: phones/tablets auto-enter presentation mode (clean view)
+- **Tap**: quick tap anywhere advances steps or slides
+- **Swipe left/right**: navigate forward/backward (respects steps + hidden slides)
+- **👁 button**: top-right toggle to show/hide UI chrome
 
 ### Move Mode (`M` to toggle)
 
@@ -201,6 +219,16 @@ The Settings slide (hidden slide 0, accessible via the slide grid) includes a fu
 - **Reset to Defaults** — one click to restore everything
 
 All settings persist via `localStorage` — they survive page reloads and browser restarts.
+
+### Arrow Substep Toggle
+
+In Settings: **"Arrow substep"** On/Off (default: On)
+- **On**: clicking →, tapping, or swiping steps through sub-animations before advancing to the next slide
+- **Off**: every click goes straight to the next full slide
+
+### SFX Cleanup
+
+All playing sound effects are automatically killed when navigating to a new slide — no lingering audio from previous animations. Uses an `AudioContext` monkey-patch for zero-config tracking.
 
 ### Slide Transitions
 
