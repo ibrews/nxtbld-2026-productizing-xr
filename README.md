@@ -389,6 +389,16 @@ Spatial Deck is designed to be edited by LLMs:
 - **Semantic HTML** — clear class names
 - **Comment landmarks** — `// ── Section Name ──`
 
+### Handoff Prompt
+
+The repo includes [`HANDOFF_PROMPT.md`](HANDOFF_PROMPT.md) — a comprehensive briefing document that any AI agent can read to instantly understand the architecture, conventions, and common tasks. Start every new session with:
+
+```
+Read HANDOFF_PROMPT.md and then help me with my presentation.
+```
+
+The handoff prompt covers: file structure, SECTIONS config format, media cycler API, slide steps, theme system, navigation hooks, and known quirks. **Keep it updated** when you make significant changes — future sessions depend on it.
+
 ### Example Prompts
 
 ```
