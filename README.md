@@ -6,6 +6,24 @@ A single-file HTML presentation system built for XR professionals, creative tech
 
 > *Designed at [Agile Lens](https://agilelens.com) — a 10-year-old immersive design studio that has given talks at Harvard, SIGGRAPH, the Kennedy Center, and everywhere in between.*
 
+![Cover Slide](docs/screenshot-cover.png)
+
+---
+
+## 📖 Origin Story
+
+In April 2026, [Alex Coulombe](https://twitter.com/ibrews) was asked to give the closing keynote at the [Harvard XR Conference](https://harvardxr.com). The talk — *"10 Lessons from 10 Years"* — needed to cover a decade of building XR experiences at Agile Lens: from The Shed at Hudson Yards to a Christmas Carol in VR to holodeck installations for Four Seasons.
+
+PowerPoint wasn't going to cut it.
+
+Alex needed a presentation system that could handle animated pixel-art avatars, canvas-based media galleries with pixelated reveal effects, Web Audio sound design, an interactive constellation map, live annotation and repositioning of any element, and — critically — the ability to iterate on slides *with an AI collaborator* right up until showtime. All in a single HTML file that could run from a USB stick at a Harvard podium.
+
+So he built one. With Claude.
+
+The Harvard keynote was a hit. The framework that powered it became **Spatial Deck** — extracted, generalized, and open-sourced so anyone can build presentations that feel as alive as the work they're presenting.
+
+**[See the original Harvard keynote →](https://ibrews.github.io/harvardxr-keynote/)**
+
 ---
 
 ## ✨ What Makes This Different
@@ -76,6 +94,18 @@ const SECTIONS = [
 
 Change the data → the slides update. That's the whole mental model.
 
+### Lesson Slides
+
+Each section generates a lesson slide with the year, lesson number, title, and tagline:
+
+![Lesson Slide](docs/screenshot-lesson.png)
+
+### Case Study Slides
+
+Case studies show an image/media area alongside the title, subtitle, and bullet points:
+
+![Case Study Slide](docs/screenshot-case.png)
+
 ### Slide Types
 
 | Type | Created From | Purpose |
@@ -106,6 +136,11 @@ Change the data → the slides update. That's the whole mental model.
 | `Shift + N` | Toggle inline notes drawer |
 
 ### Move Mode (`M` to toggle)
+
+![Move Mode](docs/screenshot-movemode.png)
+
+*Move mode shows a HUD with modifier hints. Drag any element to reposition it. The animation scrubber at the bottom lets you replay slide animations.*
+
 | Key/Action | Effect |
 |------------|--------|
 | `Drag` | Translate element |
@@ -126,6 +161,11 @@ Change the data → the slides update. That's the whole mental model.
 | `Escape` | Cancel edit |
 
 ### Annotation Mode (`A` to toggle)
+
+![Annotation Mode](docs/screenshot-annotation.png)
+
+*Click any element to leave a note. The annotation panel on the left tracks all notes. Export as markdown for handoff to collaborators or AI.*
+
 | Action | Effect |
 |--------|--------|
 | Click any element | Add a note |
@@ -143,6 +183,8 @@ Change the data → the slides update. That's the whole mental model.
 ## 🎨 Theme Editor
 
 The Settings slide (hidden slide 0, accessible via the slide grid) includes a full live theme editor:
+
+![Theme Editor](docs/screenshot-settings.png)
 
 - **Primary & Secondary Colors** — hex color pickers that update accent colors throughout
 - **Background Darkness** — adjust the base background
@@ -254,6 +296,22 @@ slideSteps.set(mySlide, {
 ```
 
 Clicking advances through steps before moving to the next slide.
+
+---
+
+## 🗺️ Constellation Map
+
+Every presentation automatically gets an animated constellation map showing all your lessons as stars on a ring, connected by constellation lines. Clickable nodes jump to any lesson.
+
+![Constellation Map](docs/screenshot-map.png)
+
+---
+
+## 🎬 Presentation Mode
+
+Press `H` to hide all UI chrome for a clean audience-facing view:
+
+![Presentation Mode](docs/screenshot-presentation.png)
 
 ---
 
