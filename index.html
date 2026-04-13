@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What To Look For When Hiring an XR Studio - A Spatial Deck Presentation</title>
-<meta name="description" content="5 Lessons. 10 Case Studies. An open-source single-file presentation framework.">
-<meta property="og:title" content="What To Look For When Hiring an XR Studio">
-<meta property="og:description" content="5 lessons, 10 case studies. A Spatial Deck presentation.">
-<meta property="og:image" content="social.html">
+<title>Is XR Right For Your Project? — A Spatial Deck Presentation</title>
+<meta name="description" content="A framework for spatial decisions — before you pick a headset or a studio. Built with Spatial Deck.">
+<meta property="og:title" content="Is XR Right For Your Project?">
+<meta property="og:description" content="3 lessons. 6 case studies. A framework for spatial decisions.">
+<meta property="og:image" content="https://ibrews.github.io/spatial-deck/social.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,50 +20,34 @@
    Edit SECTIONS to change all content. Everything else is generated.
    ======================================================================= */
 const SECTIONS = [
-  { year: 2020, accent: 'teal',
-    lesson: { title:'Look for Theater People,\nNot Just Tech People', short:'THEATER > TECH', tagline:'The best XR teams look nothing like tech teams. Look for studios that hire architects, theater directors, lighting designers \u2014 not just Unity devs.<br><br>The secret weapon of every great XR studio is the person who has never opened a game engine.', tags:'Interdisciplinary \u00b7 Spatial Thinking', notes:'Open with a provocative question: how many people in this room have hired a Unity developer? Now ask how many have hired a theater director. The gap between those two numbers is the problem.\n- Emphasize that spatial thinking predates VR by centuries\n- Mention architecture, set design, and choreography as XR superpowers\n- Pause here to let the audience absorb the counter-intuitive framing' },
+  { year: 'CH 1', accent: 'teal',
+    lesson: { title:'Define the Spatial Problem First.\nThe Technology Follows.', short:'SPACE > TECH', tagline:'Every successful XR project starts with a question about space \u2014 not a question about headsets. \u201cWhat does it feel like to stand here?\u201d beats \u201cShould we use Quest or Vision Pro?\u201d every time.', tags:'Architecture \u00b7 Theater \u00b7 Pre-Visualization' },
     cases: [
-      { title:'Case Study: The Shed @ Hudson Yards', subtitle:'Architecture meets immersive design',
-        img:'', bullets:['A great XR studio brings spatial thinkers to the table','Look for portfolios that span disciplines, not just game engines','Ask: \u201cWho on your team has NEVER written code?\u201d'], notes:'Talk about how The Shed was designed by Diller Scofidio + Renfro as a kinetic architecture piece. The building literally moves. That is spatial thinking at its most ambitious.' },
-      { title:'Case Study: Ghosted (Magic Leap)', subtitle:'When 90% of the team is non-technical',
-        img:'', bullets:['Creative-first teams build experiences, not demos','The best XR work comes from people who think about presence, not polygons','Red flag: if every team member\'s bio mentions the same engine'], notes:'Ghosted shipped with a team that was 90% non-technical. Highlight this as a feature, not a bug. The creative-first approach led to one of the most emotionally resonant Magic Leap experiences.' },
+      { title:'The Building That Didn\u2019t Exist Yet', subtitle:'Pre-construction visualization for a 200-room hotel',
+        img:'images/ch1-case1-archviz.png', bullets:['The client\u2019s architect shipped 400 pages of drawings. Nobody could agree on the lobby ceiling height.','Forty-five minutes in VR replaced three months of revision cycles','The breakthrough wasn\u2019t the headset \u2014 it was standing inside an unbuilt room and pointing at a problem'] },
+      { title:'The Rehearsal That Saved the Set', subtitle:'A theater company tests blocking before load-in',
+        img:'images/ch1-case2-theater.png', bullets:['Physical set pieces cost $40K to build. Virtual ones cost an afternoon.','The director found a sightline problem on day one \u2014 not opening night','The actors didn\u2019t need to be gamers. They needed to walk, look, and point.'] },
     ] },
-  { year: 2021, accent: 'purple',
-    lesson: { title:'Demand a Discovery Phase.\nBefore Anyone Builds.', short:'DISCOVERY FIRST', tagline:'If a studio says \u201csure, we can start next week\u201d \u2014 run. Good XR work starts with questions, not timelines.<br><br>The studio that asks for a discovery budget respects the problem. The one that doesn\'t? They\'re guessing.', tags:'R&D \u00b7 Process \u00b7 Due Diligence', notes:'This is the slide where you earn trust with procurement people in the audience. Discovery phases sound expensive, but they are insurance.\n- Ask the audience: who has been burned by a project that skipped research?\n- The $60K number from Four Seasons is coming next, so set it up here\n- Key point: discovery is not a delay, it is acceleration' },
+  { year: 'CH 2', accent: 'purple',
+    lesson: { title:'Match the Platform\nto the Friction Budget.', short:'FRICTION BUDGET', tagline:'Your users have a finite tolerance for setup, tutorials, and cables. Photorealism doesn\u2019t matter if the headset never leaves the pelican case. Pick the platform that your actual audience will actually put on.', tags:'Quest \u00b7 PCVR \u00b7 OpenXR \u00b7 WebXR' },
     cases: [
-      { title:'Case Study: Four Seasons Lake Austin', subtitle:'$60K of R&D before a single line of code',
-        img:'', bullets:['The studio that asks for a discovery budget respects the problem','R&D phases protect both the client and the team','Ask: \u201cWhat happens if the tech doesn\'t work?\u201d'], notes:'Let the $60K number land. That is a lot of money for research before writing code. But the alternative was a $400K build with no validation. Frame it as a bargain.' },
-      { title:'Case Study: Body of Mine', subtitle:'Experimental hardware needs experimental process',
-        img:'', bullets:['Full-body VR tracking required months of R&D','Studios that skip discovery ship demos, not experiences','BAFTA and Producers Guild recognition followed the process, not the pitch'], notes:'Body of Mine won recognition precisely because they invested in process. The BAFTA nomination did not come from rushing to production. Mention the haptic suit challenges.' },
+      { title:'PCVR vs. Standalone', subtitle:'It\u2019s not about specs \u2014 it\u2019s about friction',
+        img:'images/ch2-case1-platforms.png', bullets:['Standalone (Quest): 10-second setup, runs anywhere, good enough for 90% of training and review','Tethered PCVR: photorealistic fidelity, but someone has to manage cables and a gaming PC','Wireless backpack PCVR: best of both \u2014 if your project justifies the hardware investment'] },
+      { title:'The OpenXR Question', subtitle:'Build once, or build for the room you\u2019re in?',
+        img:'images/ch2-case2-flowchart.svg', bullets:['OpenXR promises write-once, deploy-anywhere. Reality: input mapping and performance still diverge.','If your audience is fixed (e.g., a sales center), optimize for one platform ruthlessly','If your audience is unknown (e.g., a downloadable app), OpenXR + graceful fallbacks is the move'] },
     ] },
-  { year: 2022, accent: 'amber',
-    lesson: { title:'Check Their Tools.\nThey\'re a Business Strategy.', short:'TOOLS = STRATEGY', tagline:'A studio\'s engine choice tells you everything about their priorities. WebXR for accessibility. Unreal for fidelity. Both is ideal.<br><br>Don\'t hire the studio that uses every tool. Hire the one that knows exactly why they chose theirs.', tags:'Unreal Engine \u00b7 WebXR \u00b7 Pipeline', notes:'This lesson resonates most with CTOs and technical leads. Slow down and speak their language.\n- The engine choice question is a litmus test for self-awareness\n- WebXR vs native is not a quality debate, it is a distribution strategy debate\n- Mention that the best studios have opinions, not just capabilities' },
+  { year: 'CH 3', accent: 'amber',
+    lesson: { title:'Iteration Speed Is\nthe Only Spec That Matters.', short:'ITERATION SPEED', tagline:'Polygon counts and refresh rates are table stakes. The studio that can show you a change on Tuesday that you asked about on Monday \u2014 that\u2019s the one that finishes the project. Everything else is a demo reel.', tags:'Unreal Engine \u00b7 Real-Time \u00b7 Multiplayer' },
     cases: [
-      { title:'Case Study: OnboardXR', subtitle:'WebXR that runs in any browser',
-        img:'', bullets:['No app store, no headset required \u2014 accessible by default','The right tool for the job isn\'t always the most powerful one','Ask: \u201cCan my grandmother experience this from her iPad?\u201d'], notes:'OnboardXR is a perfect illustration of tool choice matching audience needs. Emphasize the grandmother test: if she cannot open a link in Safari and see something, you have already lost 80% of your audience.' },
-      { title:'Case Study: Blueprint Immersive', subtitle:'From bespoke projects to a scalable product',
-        img:'', bullets:['Studios that build their own tools understand your pipeline','Productized workflows = predictable timelines and budgets','The leap from bespoke to scalable is a maturity signal'], notes:'Blueprint Immersive went from custom projects to a repeatable product. This is the maturity arc you want to see in a studio. If they have productized anything, they understand your timelines.' },
-    ] },
-  { year: 2023, accent: 'teal',
-    lesson: { title:'They Should Say \u201cNo\u201d\nMore Than \u201cYes\u201d', short:'SCOPE DISCIPLINE', tagline:'Complex projects breed scope creep. The studio that says \u201cwe could, but we shouldn\'t\u201d is the one that ships on time.<br><br>The most dangerous word in XR is \u201cyes.\u201d The second most dangerous is \u201cand.\u201d', tags:'Scope \u00b7 Boundaries \u00b7 Delivery', notes:'This is the slide that gets knowing nods from anyone who has shipped a project. Scope creep is universal.\n- Pause after the yes/and line for laughter\n- Transition into the cases by asking: what does scope discipline look like in practice?\n- This lesson is the audience favorite at most talks, lean into it' },
-    cases: [
-      { title:'Case Study: La Pasion XR', subtitle:'Cultural sensitivity requires scope boundaries',
-        img:'', bullets:['The more meaningful the project, the harder it is to draw lines','Good studios distinguish \u201cwe could\u201d from \u201cwe should\u201d','Ask: \u201cTell me about a feature you CUT from a recent project\u201d'], notes:'La Pasion XR dealt with sacred cultural content. Every feature addition risked misrepresentation. The discipline to say no here was not just project management, it was ethics.' },
-      { title:'Case Study: Your Mind, Girls', subtitle:'$0 revenue from a genuinely excellent piece',
-        img:'', bullets:['Scope creep turned a small script into a full co-production','Beautiful work, zero dollars \u2014 passion without boundaries is a warning sign','Ask: \u201cWhat\'s your process for saying no to a great idea?\u201d'], notes:'This is a cautionary tale. The work was genuinely excellent, but $0 revenue means the studio could not sustain itself. Use this to illustrate the difference between passion and business viability.' },
-    ] },
-  { year: 2024, accent: 'rose',
-    lesson: { title:'The Demo Will Break.\nHire the Studio That Plans for It.', short:'PLAN FOR FAILURE', tagline:'In XR, something goes wrong every single time. The question isn\'t whether the demo breaks \u2014 it\'s whether the audience notices.<br><br>Nobody knows what you envisioned. When something fails, pivot gracefully \u2014 the audience experiences what you show them, not what you planned.', tags:'Contingency \u00b7 Resilience \u00b7 Live XR', notes:'Tell a personal war story here if you have one. Every XR practitioner has a demo failure moment.\n- The pivot gracefully line is the thesis of the entire talk\n- This lesson sets up the Royal Caribbean story perfectly\n- End with: the audience only sees what you show them, not what you planned' },
-    cases: [
-      { title:'Case Study: Royal Caribbean', subtitle:'When it breaks at sea, there\'s no IT department',
-        img:'', bullets:['Satellite Wi-Fi, salt air, motion sickness \u2014 the most constrained environment','Graceful fallbacks built into every moment of the experience','Ask: \u201cWalk me through your plan B. And your plan C.\u201d'], notes:'Royal Caribbean is the ultimate stress test. Satellite internet, salt corrosion on hardware, and guests who get motion sick. If your XR works on a cruise ship, it works anywhere. Get a laugh here.' },
-      { title:'Case Study: Stage Presence \u00d7 RSC', subtitle:'The Royal Shakespeare Company in VR',
-        img:'', bullets:['VR UX is best when it adapts workflows people already know','Every actor wanted a script they could hold \u2014 same as paper','The studio that doesn\'t reinvent the wheel ships faster'], notes:'Stage Presence is a story about humility. The Royal Shakespeare Company actors did not want a holographic teleprompter. They wanted paper scripts. The studio that listens ships faster than the one that innovates for its own sake.' },
+      { title:'Five Questions for Any XR Studio', subtitle:'A checklist before you sign the SOW',
+        img:'images/ch3-case1-checklist.svg', bullets:['Can they show you a working prototype in two weeks, or just a pitch deck in two months?','Do they build in a real-time engine (Unreal, Unity) or pre-render everything? Real-time means you can iterate.','Ask: \u201cWhat happens when we change the floor plan halfway through?\u201d The answer tells you everything.'] },
+      { title:'The Red Flags', subtitle:'How to spot a studio that\u2019ll burn your budget',
+        img:'images/ch3-case2-redflags.png', bullets:['They demo on hardware you\u2019ll never own. If the pitch is on a $10K rig, ask what deployment looks like.','\u201cWe\u2019ll figure out multiplayer later.\u201d Networking is architectural \u2014 it can\u2019t be bolted on in month six.','No one on the team has shipped a project that ran for more than one day. Trade shows \u2260 production.'] },
     ] },
 ];
 
-const BONUS = { year:2025, title:'Find the Studio That\nBuilds Community.',
-  tagline:'The best studios don\'t just ship projects \u2014 they build ecosystems. Meetups, open demos, genuine feedback from real humans. That\'s how you know they care about the craft, not just the contract.<br><br>P.S. We know a studio that checks all five boxes. Just saying.' };
+const BONUS = { year:'BONUS', title:'The Best XR Project\nIs the One You Don\u2019t Need.',
+  tagline:'Sometimes a 3D PDF, a Matterport scan, or a well-placed monitor does the job. The most honest answer a studio can give you is \u201cyou don\u2019t need us for this.\u201d If they never say that \u2014 they\u2019re selling headsets, not solutions.' };
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"}}</script>
 
@@ -361,7 +345,7 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
 
 // Cover
 const cov=document.createElement('div');cov.className='slide active';cov.dataset.type='cover';
-cov.innerHTML=`<div class="event-tag">Spatial Deck &middot; Open-Source Presentation Framework</div><h1 class="talk-title">What To Look For<br>When Hiring<br>an XR Studio</h1><p class="talk-subtitle">5 Lessons. 10 Case Studies. A cheeky conclusion.</p><div class="speaker-card"><div><div class="speaker-name">A Spatial Deck Presentation</div><div class="speaker-co">github.com/spatial-deck</div></div></div>`;
+cov.innerHTML=`<div class="event-tag">XR Strategy &middot; 2026</div><h1 class="talk-title">Is XR Right<br>For Your Project?</h1><p class="talk-subtitle">A framework for spatial decisions &mdash; before you pick a headset or a studio</p><div class="speaker-card"><div><div class="speaker-name">Your Name Here</div><div class="speaker-co">Your Title &middot; Company</div></div></div>`;
 deck.appendChild(cov);allSlides.push(cov);
 
 // Build sections
@@ -495,17 +479,16 @@ deck.appendChild(mapS);allSlides.push(mapS);
 
 // Close slide with inline Agile Lens SVG logo
 const cls=document.createElement('div');cls.className='slide';cls.dataset.type='close';
-cls.innerHTML=`<div class="close-ey">Thank You</div><h2 class="close-title">Now Go Hire<br>the Right Studio</h2><p class="close-sub">These five lessons will save you months of pain, thousands of dollars, and at least one existential crisis in a headset.</p>
-<div class="contact-row"><div class="contact-pill"><span class="lbl">Web</span>agilelens.com</div><div class="contact-pill"><span class="lbl">X/IG</span>@agilelens</div></div>
-<div class="close-qr-row"><div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://agilelens.com" alt="QR"><div class="qr-label">agilelens.com</div><div class="qr-badge b-amber">P.S. We know a studio that<br>checks all these boxes.</div></div>
-<div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://github.com/spatial-deck" alt="QR"><div class="qr-label">This Framework</div><div class="qr-badge b-teal">Fork it! Ship your own deck!</div></div></div>
+cls.innerHTML=`<div class="close-ey">Thank You</div><h2 class="close-title">Let\u2019s Talk.</h2><p class="close-sub">Thinking spatially?</p>
+<div class="contact-row"><div class="contact-pill"><span class="lbl">Web</span>example.com</div><div class="contact-pill"><span class="lbl">Email</span>hi@example.com</div></div>
+<div class="close-qr-row"><div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://github.com/ibrews/spatial-deck" alt="QR"><div class="qr-label">Spatial Deck</div><div class="qr-badge b-teal">Fork it! Ship your own deck!</div></div></div>
 <div style="position:absolute;bottom:clamp(30px,4vh,60px);left:50%;transform:translateX(-50%);opacity:.35;z-index:2"><svg width="200" height="40" viewBox="0 0 869 175" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M266.385 134.295L264.681 136H249.34L247.635 134.295L239.113 112.137L235.704 110.432H193.09L189.681 112.137L181.159 134.295L179.454 136H164.114L162.409 134.295V117.25L201.613 18.3878L203.318 16.6833H225.476L227.181 18.3878L266.385 117.25V134.295ZM230.59 88.2733L215.249 47.3647H213.545L198.204 88.2733L199.909 89.9778H228.886L230.59 88.2733ZM346.604 52.4783V127.477C346.604 158.159 327.854 171.795 303.991 171.795C283.537 171.795 269.901 161.568 268.196 146.227L269.901 144.523H290.355L292.059 146.227C293.764 149.636 297.173 151.341 303.991 151.341C315.923 151.341 322.741 144.523 322.741 129.182H321.036C321.036 129.182 314.218 137.705 298.878 137.705C278.423 137.705 261.378 120.659 261.378 93.3869C261.378 66.1145 278.423 49.0692 298.878 49.0692C314.218 49.0692 321.036 57.5919 321.036 57.5919H322.741L324.445 52.4783L326.15 50.7738H344.9L346.604 52.4783ZM285.241 93.3869C285.241 107.023 290.355 117.25 303.991 117.25C317.627 117.25 322.741 107.023 322.741 93.3869C322.741 79.7507 317.627 69.5235 303.991 69.5235C290.355 69.5235 285.241 79.7507 285.241 93.3869ZM378.964 35.433L377.259 37.1376H356.805L355.1 35.433V18.3878L356.805 16.6833H377.259L378.964 18.3878V35.433ZM378.964 134.295L377.259 136H356.805L355.1 134.295V52.4783L356.805 50.7738H377.259L378.964 52.4783V134.295ZM411.31 134.295L409.605 136H389.151L387.446 134.295V18.3878L389.151 16.6833H409.605L411.31 18.3878V134.295ZM496.496 93.3869V100.205L494.791 101.91H441.951L440.247 103.614C440.247 107.023 443.656 117.25 457.292 117.25C462.405 117.25 467.519 115.546 469.223 112.137L470.928 110.432H491.382L493.087 112.137C491.382 122.364 482.86 137.705 457.292 137.705C428.315 137.705 414.679 117.25 414.679 93.3869C414.679 69.5235 428.315 49.0692 455.587 49.0692C482.86 49.0692 496.496 69.5235 496.496 93.3869ZM469.223 84.8643L470.928 83.1597C470.928 81.4552 469.223 69.5235 455.587 69.5235C441.951 69.5235 440.247 81.4552 440.247 83.1597L441.951 84.8643H469.223ZM615.779 134.295L614.075 136H537.371L535.667 134.295V18.3878L537.371 16.6833H557.825L559.53 18.3878V113.841L561.234 115.546H614.075L615.779 117.25V134.295ZM687.249 93.3869V100.205L685.545 101.91H632.705L631 103.614C631 107.023 634.409 117.25 648.045 117.25C653.159 117.25 658.273 115.546 659.977 112.137L661.682 110.432H682.136L683.84 112.137C682.136 122.364 673.613 137.705 648.045 137.705C619.068 137.705 605.432 117.25 605.432 93.3869C605.432 69.5235 619.068 49.0692 646.341 49.0692C673.613 49.0692 687.249 69.5235 687.249 93.3869ZM659.977 84.8643L661.682 83.1597C661.682 81.4552 659.977 69.5235 646.341 69.5235C632.705 69.5235 631 81.4552 631 83.1597L632.705 84.8643H659.977ZM770.778 134.295L769.073 136H748.619L746.914 134.295V84.8643C746.914 76.3416 743.505 69.5235 733.278 69.5235C721.347 69.5235 714.528 76.3416 714.528 91.6824V134.295L712.824 136H692.37L690.665 134.295V52.4783L692.37 50.7738H711.119L712.824 52.4783L714.528 57.5919H716.233C719.642 54.1828 726.46 49.0692 738.392 49.0692C758.846 49.0692 770.778 62.7054 770.778 83.1597V134.295ZM847.495 110.432C847.495 124.068 837.268 137.705 809.995 137.705C786.132 137.705 772.496 125.773 772.496 108.728L774.2 107.023H794.654L796.359 108.728C796.359 115.546 801.473 117.25 809.995 117.25C818.518 117.25 823.631 115.546 823.631 110.432C823.631 103.614 816.813 103.614 806.586 101.91C796.359 100.205 774.2 95.0914 774.2 74.6371C774.2 61.0009 784.427 49.0692 809.995 49.0692C830.449 49.0692 845.79 57.5919 845.79 74.6371L844.086 76.3416H823.631L821.927 74.6371C821.927 71.2281 818.518 69.5235 809.995 69.5235C801.473 69.5235 798.064 71.2281 798.064 76.3416C798.064 83.1597 808.291 83.1597 818.518 84.8643C828.745 86.5688 847.495 89.9778 847.495 110.432Z" fill="white"/><circle cx="71" cy="73" r="60" stroke="white" stroke-width="8" fill="none"/><line x1="115" y1="117" x2="142" y2="155" stroke="white" stroke-width="8" stroke-linecap="round"/></svg></div>`;
 deck.appendChild(cls);allSlides.push(cls);
 
 // Navigation
 let current=1,total=allSlides.length,direction=1;
 function nextVisible(f,d){let i=f;for(let n=0;n<total;n++){i=(i+d+total)%total;if(allSlides[i].dataset.hidden!=='1')return i;}return f;}
-function goTo(n,fwd){if(n<0||n>=total||n===current)return;window._killAllSfx();const dir=fwd!==undefined?fwd:n>current;direction=dir?1:-1;const trans=JSON.parse(localStorage.getItem('sd-cfg')||'{}').transition||'slide';const prev=allSlides[current];prev.classList.remove('active');if(trans==='none'){prev.style.animation='';}else{let exitAnim;if(trans==='fade')exitAnim='fadeOut';else if(trans==='zoom')exitAnim=dir?'zoomOutFwd':'zoomOutBwd';else exitAnim=dir?'slideOutFwd':'slideOutBwd';prev.style.animation=exitAnim+' .4s ease forwards';setTimeout(()=>{prev.style.animation='';},450);}current=n;const next=allSlides[current];next.classList.add('active');if(trans==='none'){next.style.animation='';}else{let enterAnim;if(trans==='fade')enterAnim='fadeIn';else if(trans==='zoom')enterAnim=dir?'zoomInFwd':'zoomInBwd';else enterAnim=dir?'slideInFwd':'slideInBwd';next.style.animation=enterAnim+' .4s ease forwards';setTimeout(()=>{next.style.animation='';},450);}updateHUD();updateHash();playWhoosh();if(typeof gridEnsureSlide==='function')gridEnsureSlide();}
+function goTo(n,fwd){if(n<0||n>=total||n===current)return;window._killAllSfx();const dir=fwd!==undefined?fwd:n>current;direction=dir?1:-1;const trans=JSON.parse(localStorage.getItem('sd-cfg')||'{}').transition||'slide';const prev=allSlides[current];prev.classList.remove('active');if(trans==='none'){prev.style.animation='';}else{let exitAnim;if(trans==='fade')exitAnim='fadeOut';else if(trans==='zoom')exitAnim=dir?'zoomOutFwd':'zoomOutBwd';else exitAnim=dir?'slideOutFwd':'slideOutBwd';prev.style.animation=exitAnim+' .4s ease forwards';setTimeout(()=>{prev.style.animation='';},450);}current=n;const next=allSlides[current];next.classList.add('active');if(trans==='none'){next.style.animation='';}else{let enterAnim;if(trans==='fade')enterAnim='fadeIn';else if(trans==='zoom')enterAnim=dir?'zoomInFwd':'zoomInBwd';else enterAnim=dir?'slideInFwd':'slideInBwd';next.style.animation=enterAnim+' .4s ease forwards';setTimeout(()=>{next.style.animation='';},450);}updateHUD();updateHash();playWhoosh();if(typeof gridEnsureSlide==='function')gridEnsureSlide();if(window.kfOnSlideEnter)window.kfOnSlideEnter();}
 function goNext(){goTo(nextVisible(current,1),true);}
 function goPrev(){goTo(nextVisible(current,-1),false);}
 function advanceStep(){const ss=slideSteps.get(allSlides[current]);if(ss&&ss.current<ss.steps.length){ss.steps[ss.current]();ss.current++;updateStepIndicator();return true;}return false;}
@@ -615,7 +598,98 @@ const ct=svgE('text',{x:MX,y:MY-10,'text-anchor':'middle',fill:'rgba(255,255,255
 new MutationObserver(()=>{if(mapS.classList.contains('active'))startMap();}).observe(mapS,{attributes:true,attributeFilter:['class']});
 
 // Animation scrubber
-(function(){const bar=document.createElement('div');bar.id='anim-scrub-bar';bar.style.cssText='position:fixed;bottom:72px;left:50%;transform:translateX(-50%);z-index:1100;display:none;align-items:center;gap:10px;background:rgba(6,8,16,.92);border:1px solid rgba(245,158,11,.4);border-radius:10px;padding:10px 14px;backdrop-filter:blur(10px);font-family:var(--font);font-size:.7rem;color:var(--amber)';bar.innerHTML=`<button id="scrub-replay" style="background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.4);border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer">Replay</button><button id="scrub-pp" style="background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.4);border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer;width:70px">Pause</button><input id="scrub-r" type="range" min="0" max="5000" value="0" step="10" style="width:360px;accent-color:var(--amber)"><span id="scrub-t" style="min-width:60px;text-align:right;color:rgba(245,158,11,.8)">0 ms</span>`;document.body.appendChild(bar);const rng=bar.querySelector('#scrub-r'),tl=bar.querySelector('#scrub-t'),pp=bar.querySelector('#scrub-pp'),rp=bar.querySelector('#scrub-replay');let paused=false;function sa(){const s=allSlides[current];return s?.getAnimations?.({subtree:true})||[];}rng.addEventListener('input',()=>{paused=true;pp.textContent='Play';const v=+rng.value;tl.textContent=v+' ms';sa().forEach(a=>{a.pause();try{a.currentTime=v;}catch(e){}});});pp.addEventListener('click',()=>{paused=!paused;if(paused){sa().forEach(a=>a.pause());pp.textContent='Play';}else{sa().forEach(a=>a.play());pp.textContent='Pause';}});rp.addEventListener('click',()=>{paused=false;pp.textContent='Pause';const n=current;if(n>0){goTo(n-1);setTimeout(()=>goTo(n),560);}});window.scrubShow=(on)=>{bar.style.display=on?'flex':'none';};})();
+(function(){const bar=document.createElement('div');bar.id='anim-scrub-bar';bar.style.cssText='position:fixed;bottom:72px;left:50%;transform:translateX(-50%);z-index:1100;display:none;align-items:center;gap:10px;background:rgba(6,8,16,.92);border:1px solid rgba(245,158,11,.4);border-radius:10px;padding:10px 14px;backdrop-filter:blur(10px);font-family:var(--font);font-size:.7rem;color:var(--amber)';bar.innerHTML=`<button id="scrub-replay" style="background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.4);border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer">Replay</button><button id="scrub-pp" style="background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.4);border-radius:5px;padding:5px 10px;font:inherit;cursor:pointer;width:70px">Pause</button><div id="scrub-track" style="position:relative;width:360px;height:28px;display:flex;align-items:center"><input id="scrub-r" type="range" min="0" max="5000" value="0" step="10" style="width:100%;accent-color:var(--amber);position:relative;z-index:2"><div id="kf-markers" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1"></div></div><span id="scrub-t" style="min-width:60px;text-align:right;color:rgba(245,158,11,.8)">0 ms</span><button id="kf-del" title="Delete keyframe at current time" style="background:rgba(244,63,94,.15);color:var(--rose);border:1px solid rgba(244,63,94,.4);border-radius:5px;padding:5px 8px;font:inherit;cursor:pointer;display:none">✕ KF</button>`;document.body.appendChild(bar);const rng=bar.querySelector('#scrub-r'),tl=bar.querySelector('#scrub-t'),pp=bar.querySelector('#scrub-pp'),rp=bar.querySelector('#scrub-replay');let paused=false;function sa(){const s=allSlides[current];return s?.getAnimations?.({subtree:true})||[];}rng.addEventListener('input',()=>{paused=true;pp.textContent='Play';const v=+rng.value;tl.textContent=v+' ms';sa().forEach(a=>{a.pause();try{a.currentTime=v;}catch(e){}});if(window._kfUpdateDel)window._kfUpdateDel(v);});pp.addEventListener('click',()=>{paused=!paused;if(paused){sa().forEach(a=>a.pause());pp.textContent='Play';}else{sa().forEach(a=>a.play());pp.textContent='Pause';}});rp.addEventListener('click',()=>{paused=false;pp.textContent='Pause';if(window._kfRebuild)window._kfRebuild();const n=current;if(n>0){goTo(n-1);setTimeout(()=>goTo(n),560);}if(window._kfRenderMarkers)setTimeout(window._kfRenderMarkers,1200);});window.scrubShow=(on)=>{bar.style.display=on?'flex':'none';if(on&&window._kfRenderMarkers)setTimeout(window._kfRenderMarkers,100);};window._scrubPaused=()=>paused;window._scrubTime=()=>+rng.value;window._scrubRange=()=>rng;})();
+
+// ── Keyframe animation system ──
+(function(){
+  const kfStore=new Map(),kfAnims=new Map();
+  const markers=document.getElementById('kf-markers'),delBtn=document.getElementById('kf-del');
+
+  window._kfUpdateDel=function(time){
+    let has=false;
+    kfStore.forEach(kfs=>{if(kfs.some(k=>k.slide===current&&Math.abs(k.time-time)<20))has=true;});
+    delBtn.style.display=has?'inline-block':'none';
+  };
+
+  window._kfRenderMarkers=function(){
+    if(!markers)return;markers.innerHTML='';
+    const rng=window._scrubRange?.();const max=rng?+rng.max:5000;
+    kfStore.forEach(kfs=>{
+      kfs.filter(k=>k.slide===current).forEach(kf=>{
+        const pct=(kf.time/max)*100;
+        const d=document.createElement('div');
+        d.style.cssText=`position:absolute;left:${pct}%;top:50%;width:8px;height:8px;background:var(--amber);transform:translate(-50%,-50%) rotate(45deg);border-radius:1px;opacity:.85;pointer-events:none`;
+        markers.appendChild(d);
+      });
+    });
+  };
+
+  function buildAnim(el,sel,slideIdx){
+    const old=kfAnims.get(sel);if(old)old.cancel();
+    const kfs=(kfStore.get(sel)||[]).filter(k=>k.slide===slideIdx);
+    if(kfs.length<2)return;
+    const dur=kfs[kfs.length-1].time-kfs[0].time;if(dur<=0)return;
+    const t0=kfs[0].time;
+    const frames=kfs.map(kf=>({
+      transform:`translate(${kf.tx}px,${kf.ty}px) rotate(${kf.rot}deg) scale(${kf.scale})`,
+      offset:(kf.time-t0)/dur,
+    }));
+    el.style.transform='';el.style.transformBox='fill-box';el.style.transformOrigin='center center';
+    const anim=el.animate(frames,{duration:dur,delay:t0,fill:'both',easing:'ease-in-out'});
+    if(window._scrubPaused?.()){anim.pause();try{anim.currentTime=Math.max(0,(window._scrubTime?.()??0)-t0);}catch(e){}}
+    kfAnims.set(sel,anim);tMap.delete(el);
+  }
+
+  window._kfRebuild=function(){
+    kfAnims.forEach(a=>a.cancel());kfAnims.clear();
+    kfStore.forEach((kfs,sel)=>{
+      if(kfs.filter(k=>k.slide===current).length>=2){
+        const el=document.querySelector(sel);if(el)buildAnim(el,sel,current);
+      }
+    });
+  };
+
+  window.kfAddKeyframe=function(el,xform){
+    const sel=aSel(el),time=window._scrubTime?.()??0;
+    if(!kfStore.has(sel))kfStore.set(sel,[]);
+    const kfs=kfStore.get(sel);
+    const idx=kfs.findIndex(k=>k.slide===current&&Math.abs(k.time-time)<5);
+    const kf={slide:current,time,tx:xform.tx,ty:xform.ty,scale:xform.scale,rot:xform.rot};
+    if(idx>=0)kfs[idx]=kf;else kfs.push(kf);
+    kfs.sort((a,b)=>a.time-b.time);
+    const slideKfs=kfs.filter(k=>k.slide===current);
+    if(slideKfs.length>=2)buildAnim(el,sel,current);
+    // Extend scrubber if needed
+    const rng=window._scrubRange?.();if(rng&&time>+rng.max)rng.max=time;
+    window._kfRenderMarkers();saveKf();
+    annoToast(`◆ Keyframe at ${time}ms (${slideKfs.length} total)`);
+  };
+
+  delBtn?.addEventListener('click',()=>{
+    const time=window._scrubTime?.()??0;let deleted=false;
+    kfStore.forEach((kfs,sel)=>{
+      const idx=kfs.findIndex(k=>k.slide===current&&Math.abs(k.time-time)<20);
+      if(idx>=0){kfs.splice(idx,1);deleted=true;
+        const rem=kfs.filter(k=>k.slide===current);
+        if(rem.length<2){const a=kfAnims.get(sel);if(a){a.cancel();kfAnims.delete(sel);}}
+        else{const el=document.querySelector(sel);if(el)buildAnim(el,sel,current);}
+        if(!kfs.length)kfStore.delete(sel);
+      }
+    });
+    if(deleted){window._kfRenderMarkers();saveKf();delBtn.style.display='none';annoToast(`Keyframe deleted at ${time}ms`);}
+  });
+
+  function saveKf(){
+    const arr=aL().filter(a=>a.type!=='keyframe');
+    kfStore.forEach((kfs,sel)=>{if(kfs.length)arr.push({selector:sel,context:`keyframes (${kfs.length})`,text:'KEYFRAMES '+kfs.map(k=>k.time+'ms').join(', '),timestamp:new Date().toISOString(),type:'keyframe',keyframes:kfs});});
+    aS(arr);aRender();
+  }
+  function loadKf(){
+    kfStore.clear();
+    aL().filter(a=>a.type==='keyframe').forEach(a=>{if(a.keyframes&&a.selector)kfStore.set(a.selector,a.keyframes);});
+  }
+  window.kfOnSlideEnter=function(){loadKf();setTimeout(()=>{window._kfRebuild?.();window._kfRenderMarkers?.();},500);};
+})();
 
 // Drag-and-drop images
 document.addEventListener('dragover',e=>{if(!window._moveMode)return;const img=e.target.closest('img');if(!img)return;e.preventDefault();img.style.outline='3px dashed var(--teal)';});
@@ -686,7 +760,7 @@ document.addEventListener('mousedown',e=>{if(editEl&&!e.target.closest('[content
 // Drag
 document.addEventListener('mousedown',e=>{if(!window._moveMode)return;if(e.target.closest('#move-toggle,#anno-toggle,#slide-grid,#slide-grid-zone,#anno-panel,#anno-prompt,#move-hud,#anim-scrub-bar,#anno-toast,[contenteditable]'))return;e.preventDefault();e.stopPropagation();let el=e.target;if(e.metaKey||e.ctrlKey){const p=el.parentElement;if(p&&p.tagName!=='BODY')el=p;}_lastMoveEl=el;const ss={...gX(el)};drag={el,mode:e.shiftKey?'scale':e.altKey?'rotate':'translate',sx:e.clientX,sy:e.clientY,ss,ps:{...ss},center:eC(el)};el.classList.add('dragging');},true);
 document.addEventListener('mousemove',e=>{if(!drag)return;const n={...drag.ss};if(drag.mode==='translate'){n.tx=drag.ss.tx+(e.clientX-drag.sx);n.ty=drag.ss.ty+(e.clientY-drag.sy);}else if(drag.mode==='scale'){const sd=Math.hypot(drag.sx-drag.center.x,drag.sy-drag.center.y)||1;const cd=Math.hypot(e.clientX-drag.center.x,e.clientY-drag.center.y);n.scale=Math.max(.1,drag.ss.scale*cd/sd);}else{const sa=Math.atan2(drag.sy-drag.center.y,drag.sx-drag.center.x);const ca=Math.atan2(e.clientY-drag.center.y,e.clientX-drag.center.x);n.rot=drag.ss.rot+(ca-sa)*180/Math.PI;}sX(drag.el,n);},true);
-document.addEventListener('mouseup',()=>{if(!drag)return;_lastMoveEl=drag.el;drag.el.classList.remove('dragging');const n=gX(drag.el),p=drag.ps;if(n.tx!==p.tx||n.ty!==p.ty||n.scale!==p.scale||n.rot!==p.rot){mH.push({el:drag.el,prev:{...p},next:{...n}});if(mH.length>50)mH.shift();mR.length=0;uMB();const sl=drag.el.closest('.slide');if(sl){const sr=sl.getBoundingClientRect(),er=drag.el.getBoundingClientRect();const pctL=((er.left-sr.left)/sr.width*100).toFixed(1);const pctT=((er.top-sr.top)/sr.height*100).toFixed(1);const idx=[...document.querySelectorAll('#deck > .slide')].indexOf(sl);const dx=n.tx-p.tx,dy=n.ty-p.ty;const modeLabel=drag.mode==='translate'?`TRANSFORM translate \u0394(${dx>0?'+':''}${dx.toFixed(0)}px, ${dy>0?'+':''}${dy.toFixed(0)}px) \u2192 final position: left:${pctL}%, top:${pctT}%`:drag.mode==='scale'?`TRANSFORM scale ${p.scale.toFixed(2)} \u2192 ${n.scale.toFixed(2)} \u2014 position: left:${pctL}%, top:${pctT}%`:`TRANSFORM rotate ${p.rot.toFixed(1)}\u00b0 \u2192 ${n.rot.toFixed(1)}\u00b0 \u2014 position: left:${pctL}%, top:${pctT}%`;const snippet=`/* Position: left:${pctL}%, top:${pctT}% on slide ${idx+1} */\nelement.style.cssText = 'position:absolute;left:${pctL}%;top:${pctT}%;';`;try{navigator.clipboard.writeText(snippet).then(()=>{annoToast(`\uD83D\uDCCB Position copied: left:${pctL}%, top:${pctT}%`);}).catch(()=>{annoToast(`Position: left:${pctL}%, top:${pctT}% (${er.left.toFixed(0)}px, ${er.top.toFixed(0)}px)`);});}catch(e){annoToast(`Position: left:${pctL}%, top:${pctT}%`);}window._lastTransformInfo=modeLabel;}}drag=null;},true);
+document.addEventListener('mouseup',()=>{if(!drag)return;_lastMoveEl=drag.el;drag.el.classList.remove('dragging');const n=gX(drag.el),p=drag.ps;if(n.tx!==p.tx||n.ty!==p.ty||n.scale!==p.scale||n.rot!==p.rot){mH.push({el:drag.el,prev:{...p},next:{...n}});if(mH.length>50)mH.shift();mR.length=0;uMB();if(window._scrubPaused?.()&&window.kfAddKeyframe){window.kfAddKeyframe(drag.el,n);};const sl=drag.el.closest('.slide');if(sl){const sr=sl.getBoundingClientRect(),er=drag.el.getBoundingClientRect();const pctL=((er.left-sr.left)/sr.width*100).toFixed(1);const pctT=((er.top-sr.top)/sr.height*100).toFixed(1);const idx=[...document.querySelectorAll('#deck > .slide')].indexOf(sl);const dx=n.tx-p.tx,dy=n.ty-p.ty;const modeLabel=drag.mode==='translate'?`TRANSFORM translate \u0394(${dx>0?'+':''}${dx.toFixed(0)}px, ${dy>0?'+':''}${dy.toFixed(0)}px) \u2192 final position: left:${pctL}%, top:${pctT}%`:drag.mode==='scale'?`TRANSFORM scale ${p.scale.toFixed(2)} \u2192 ${n.scale.toFixed(2)} \u2014 position: left:${pctL}%, top:${pctT}%`:`TRANSFORM rotate ${p.rot.toFixed(1)}\u00b0 \u2192 ${n.rot.toFixed(1)}\u00b0 \u2014 position: left:${pctL}%, top:${pctT}%`;const snippet=`/* Position: left:${pctL}%, top:${pctT}% on slide ${idx+1} */\nelement.style.cssText = 'position:absolute;left:${pctL}%;top:${pctT}%;';`;try{navigator.clipboard.writeText(snippet).then(()=>{annoToast(`\uD83D\uDCCB Position copied: left:${pctL}%, top:${pctT}%`);}).catch(()=>{annoToast(`Position: left:${pctL}%, top:${pctT}% (${er.left.toFixed(0)}px, ${er.top.toFixed(0)}px)`);});}catch(e){annoToast(`Position: left:${pctL}%, top:${pctT}%`);}window._lastTransformInfo=modeLabel;}}drag=null;},true);
 let _lastMoveEl=null;
 function mUndo(){if(!mH.length){annoToast('Nothing to undo');return;}const a=mH.pop();sX(a.el,a.prev);mR.push(a);annoToast('Undone');uMB();}
 function mRedo(){if(!mR.length){annoToast('Nothing to redo');return;}const a=mR.pop();sX(a.el,a.next);mH.push(a);annoToast('Redone');uMB();}
