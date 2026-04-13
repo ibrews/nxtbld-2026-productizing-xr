@@ -360,6 +360,8 @@ SECTIONS.forEach((sec,si)=>{
     if(c.img&&c.img.startsWith('IFRAME:')){
       const iframeSrc=c.img.slice(7);
       imgHTML=`<iframe src="${iframeSrc}" style="width:100%;height:100%;border:none;border-radius:18px" allow="autoplay;fullscreen;xr-spatial-tracking" allowfullscreen></iframe>`;
+    } else if(c.img&&c.img!=='MEDIA_CYCLER'){
+      imgHTML=`<img src="${c.img}" loading="lazy" style="border-radius:18px">`;
     } else {
       imgHTML=`<div class="media-cycler-mount" style="width:100%;height:100%"></div>`;
     }
