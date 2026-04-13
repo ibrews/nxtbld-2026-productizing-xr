@@ -585,7 +585,7 @@ let mapDone=false;const LSHORT=SECTIONS.map(s=>s.lesson.short||s.lesson.title.sp
 const MX=500,MY=290,MR=200,SDEG=90,STEP=360/SECTIONS.length;
 function mPos(i){const a=(SDEG+i*STEP)*Math.PI/180;return{x:MX+MR*Math.cos(a),y:MY+MR*Math.sin(a)};}
 const CL=[];for(let i=0;i<SECTIONS.length;i++)CL.push([i,(i+2)%SECTIONS.length]);
-const CA=mPos(SECTIONS.length-1),CB={x:MX+MR*1.15,y:MY+MR*1.05};
+const CA=mPos(SECTIONS.length-1),CB={x:MX+MR*0.55,y:MY+MR*1.15};
 function startMap(){if(mapDone)return;mapDone=true;const svg=document.getElementById('map-svg');svg.innerHTML='';const CIRC=2*Math.PI*MR;
 const defs=svgE('defs');const f=svgE('filter',{id:'gl',x:'-40%',y:'-40%',width:'180%',height:'180%'});f.appendChild(svgE('feGaussianBlur',{stdDeviation:'3',result:'b'}));const mg=svgE('feMerge');mg.appendChild(svgE('feMergeNode',{in:'b'}));mg.appendChild(svgE('feMergeNode',{in:'SourceGraphic'}));f.appendChild(mg);defs.appendChild(f);svg.appendChild(defs);
 svg.appendChild(svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(0,212,255,.12)','stroke-width':'1.5'}));
