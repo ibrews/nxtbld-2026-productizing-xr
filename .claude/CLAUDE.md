@@ -21,8 +21,10 @@ Spatial Deck is a single-file HTML presentation framework. Everything lives in `
 - Use `\n` for line breaks in titles. Use `<br>` and `<br><br>` in taglines.
 - Use `\n` for line breaks in bullets.
 - `img: 'MEDIA_CYCLER'` requires a matching IIFE after the build loop.
-- `img: 'path/to/file.jpg'` auto-wraps in a single-item media cycler (pixelated reveal).
+- `img: 'path/to/file.jpg'` renders as a standard `<img>` tag (no media cycler, no pixelated reveal). Use `MEDIA_CYCLER` with a single-item array if you want the canvas-based reveal.
+- `img: 'IFRAME:url'` embeds a responsive iframe.
 - `img: ''` shows a gradient placeholder.
+- Build loop priority: `IFRAME:` prefix → iframe, real path → `<img>` tag, `MEDIA_CYCLER` → media cycler mount, empty → gradient placeholder.
 
 ### Media
 - Store in `media/` subdirectories. Use relative paths.
@@ -67,9 +69,22 @@ Spatial Deck is a single-file HTML presentation framework. Everything lives in `
 - Move mode HUD: ▲▲/▲/▼/▼▼ buttons set `style.zIndex` on last-clicked element.
 - Click any element in move mode to select it for z-ordering.
 
+### Move Mode Auto-Save
+- Dragging an element in move mode auto-saves the transform as an annotation (`type: 'move'`).
+- These appear in the Annotations panel immediately — no manual save step needed.
+- Map node clicks are suppressed in move mode to prevent accidental navigation.
+
+### Keyframe Animation System
+- The scrubber has a `◆ KF` button that captures last-moved element's transform at current scrub time.
+- Diamond markers (◆) appear on the timeline for existing keyframes; `✕ KF` deletes them.
+- Keyframes are persisted as annotations (`type: 'keyframe'`).
+- Two or more keyframes on the same element automatically build a WAAPI animation.
+- When adding custom animations, prefer the keyframe system over manual `slideSteps` for transform-based motion.
+
 ### Settings Slide (slide 0)
+- Shows "Spatial Deck Creator v0.0.5" header.
 - Counter shows "00" for settings, "01" for cover.
-- URL hash `#0` goes to settings. `#N` = slide N (0-indexed).
+- URL hash `#0` and `#00` both go to settings. `#N` = slide N (0-indexed).
 - Arrow substep toggle: On = step through animations, Off = skip to next slide.
 
 ## Common Patterns

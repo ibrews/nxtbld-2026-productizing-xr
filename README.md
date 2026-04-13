@@ -12,7 +12,7 @@ A single-file HTML presentation system built for XR professionals, creative tech
 
 ## 📖 Origin Story
 
-In April 2026, [Alex Coulombe](https://twitter.com/ibrews) was asked to give the closing keynote at the [Harvard XR Conference](https://harvardxr.com). The talk — *"10 Lessons from 10 Years"* — needed to cover a decade of building XR experiences at Agile Lens: from The Shed at Hudson Yards to a Christmas Carol in VR to holodeck installations for Four Seasons.
+In April 2026, [Alex Coulombe](https://twitter.com/ibrews) was asked to give the closing keynote at the [Harvard XR Conference](https://harvardxr.com). The talk — *"10 Lessons from 10 Years"* — needed to cover a decade of building XR experiences at Agile Lens.
 
 PowerPoint wasn't going to cut it.
 
@@ -82,7 +82,7 @@ const SECTIONS = [
       {
         title: 'Case Study Title',
         subtitle: 'One-line description',
-        img: 'MEDIA_CYCLER',  // or 'path/to/image.jpg' or ''
+        img: 'MEDIA_CYCLER',  // or 'path/to/image.jpg' or 'IFRAME:url' or ''
         bullets: ['Point one', 'Point two', 'Point three'],
         notes: 'Talking points for this case study'
       },
@@ -157,7 +157,7 @@ Case studies show an image/media area alongside the title, subtitle, and bullet 
 
 ![Move Mode](docs/screenshot-movemode.png)
 
-*Move mode shows a HUD with modifier hints. Drag any element to reposition it. After each drag, the CSS position is auto-copied to your clipboard. The animation scrubber at the bottom lets you replay slide animations.*
+*Move mode shows a HUD with modifier hints. Drag any element to reposition it. Transforms are auto-saved as annotations (type: 'move'). The animation scrubber at the bottom lets you replay slide animations and set keyframe animations.*
 
 | Key/Action | Effect |
 |------------|--------|
@@ -173,6 +173,18 @@ Case studies show an image/media area alongside the title, subtitle, and bullet 
 | `Cmd/Ctrl + Z` | Undo |
 | `Cmd/Ctrl + Shift + Z` | Redo |
 | `Double-click` | Edit text inline |
+
+### Keyframe Animation (in Move Mode)
+
+The scrubber timeline supports keyframe-based animation via the Web Animations API (WAAPI):
+
+| Action | Effect |
+|--------|--------|
+| `◆ KF` button | Capture last-moved element's transform at current scrub time |
+| Diamond markers (◆) on timeline | Show existing keyframes — click to seek |
+| `✕ KF` button | Delete the keyframe at current scrub time |
+
+Two or more keyframes on the same element build a WAAPI animation automatically. Keyframes are persisted as annotations (`type: 'keyframe'`).
 
 ### Text Editing (double-click in Move Mode)
 | Key | Effect |
@@ -344,9 +356,9 @@ Set `img: 'MEDIA_CYCLER'` on a case study, then add a cycler IIFE after the SECT
 | `flipH: true` | Mirror the image horizontally |
 | `loop: true` | Loop a video continuously |
 
-### Static Images Get the Effect Too
+### Direct Image Paths
 
-Case studies with `img: 'path/to/image.jpg'` automatically get the pixelated reveal — no cycler IIFE needed.
+Case studies with `img: 'path/to/image.jpg'` render as standard `<img>` tags (no media cycler, no pixelated reveal). Use `MEDIA_CYCLER` with a single-item array if you want the canvas-based reveal effect on a single image.
 
 ---
 
@@ -581,6 +593,7 @@ Each fork gets its own GitHub Pages URL for sharing. Your content stays separate
 ```
 spatial-deck/
 ├── index.html      ← The entire presentation
+├── images/          ← AI-generated images (PNGs, SVGs)
 ├── media/           ← Images, videos, GIFs
 ├── social.html      ← Social sharing card (1200×630)
 ├── social.png       ← Pre-rendered social image
@@ -592,7 +605,8 @@ spatial-deck/
 
 ## 🎤 Built With Spatial Deck
 
-- **"10 Lessons from 10 Years"** — Alex Coulombe, Harvard XR Conference 2026
+- **"10 Lessons from 10 Years"** — Alex Coulombe, Harvard XR Conference 2026 ([view](https://ibrews.github.io/harvardxr-keynote/))
+- **"Is XR Right For Your Project?"** — Sample deck included in this repo
 - *Add yours — [open a PR](https://github.com/ibrews/spatial-deck/pulls)!*
 
 ---
@@ -602,5 +616,3 @@ spatial-deck/
 MIT — use it for anything.
 
 Built with 🎭 by [Alex Coulombe](https://twitter.com/ibrews) at [Agile Lens](https://agilelens.com).
-
-*P.S. Looking for an XR studio that checks all the boxes? [agilelens.com](https://agilelens.com)*

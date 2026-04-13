@@ -50,7 +50,8 @@ index.html
 ### SECTIONS Array
 - Each entry: `{ year, accent, lesson: {title, tagline, short, tags, notes}, cases: [{title, subtitle, img, bullets, notes}] }`
 - `accent` values: `'teal'`, `'purple'`, `'amber'`, `'rose'`
-- `img` values: `'MEDIA_CYCLER'` (explicit cycler IIFE needed), `'path/to/image.jpg'` (auto-wrapped), `'IFRAME:url'` (embedded iframe — YouTube, pixel stream, Sketchfab, etc.), `''` (gradient placeholder)
+- `img` values: `'MEDIA_CYCLER'` (explicit cycler IIFE needed), `'path/to/image.jpg'` (renders as `<img>` tag), `'IFRAME:url'` (embedded iframe — YouTube, pixel stream, Sketchfab, etc.), `''` (gradient placeholder)
+- Build loop `img` priority: `IFRAME:` prefix → iframe, real path → `<img>` tag, `MEDIA_CYCLER` → media cycler mount, empty → gradient placeholder
 - `\n` in titles renders as a line break
 - `<br>` and `<br><br>` work in taglines (double = paragraph gap)
 - `\n` in bullets renders as `<br>`
@@ -86,8 +87,8 @@ index.html
 - `nextVisible(from, dir)` — skips hidden slides
 - `current` = index into `allSlides` array
 - `total` = `allSlides.length`
-- URL hash: `#N` jumps to slide N (0-indexed, settings=0, cover=1)
-- Counter displays `current` (settings shows "00")
+- URL hash: `#N` jumps to slide N (0-indexed, settings=0, cover=1). `#0` and `#00` both go to settings
+- Counter displays `current` (settings shows "00"); grid carousel numbering is 0-indexed (00 for settings)
 - `history.replaceState` writes `#current` on every navigation
 
 ### URL Sharing Modes
@@ -120,12 +121,20 @@ index.html
 
 ### Annotations & Move Mode
 - Annotations saved to `localStorage` key `'sd-annos'`
-- Move transforms saved as annotations: `MOVE by Δ(±Xpx, ±Ypx)` with final absolute position
+- Move transforms auto-saved as annotations (`type: 'move'`) — appear in Annotations panel immediately
 - Text edits saved as: `TEXT "new content"`
 - Undo/redo: 50-action stack, `Cmd+Z` / `Cmd+Shift+Z`
 - **Position annotations**: clicking slide background captures `left:X%, top:Y%` coordinates
 - **Layout grid**: `G` key in move mode toggles 4×3 labeled grid (A1-C4 zones)
 - **Clipboard snippets**: after drag, CSS position code auto-copied to clipboard
+
+### Keyframe Animation System
+- `◆ KF` button in scrubber captures last-moved element's transform at current scrub time
+- Diamond markers (◆) on timeline show existing keyframes; click to seek
+- `✕ KF` deletes the keyframe at current scrub time
+- Keyframes persisted as annotations (`type: 'keyframe'`)
+- Two or more keyframes on the same element build a WAAPI (Web Animations API) animation automatically
+- Map node clicks are suppressed in move mode to prevent accidental navigation
 
 ### Slide Transitions
 - Configurable in Settings slide: `slide` (default), `fade`, `zoom`, `none`
@@ -137,6 +146,15 @@ index.html
 - Keeps last 10 snapshots; skips if nothing changed
 - "🔄 Restore Snapshot" button in Settings shows timestamped list
 - Restoring replaces annotations + config and reloads page
+
+### Map Constellation
+- Center text: "IS XR RIGHT / FOR YOUR PROJECT?" (updates with deck content)
+- Bonus node positioned bottom-right outside the circle
+- Node clicks suppressed in move mode
+
+### Settings Slide
+- Shows "Spatial Deck Creator v0.0.5 / by Alex Coulombe" header
+- Slide 0, accessible via `#0` or `#00`
 
 ### Speaker Notes
 - `notes` field in SECTIONS config (string)
@@ -184,7 +202,8 @@ index.html
 
 | File | Purpose |
 |------|---------|
-| `index.html` | The entire presentation (~106KB) |
+| `index.html` | The entire presentation |
+| `images/` | AI-generated images (4 PNGs, 2 SVGs) |
 | `media/` | Images, videos, GIFs (optional) |
 | `docs/` | README screenshots |
 | `social.html` | 1200×630 social sharing card |
@@ -196,7 +215,7 @@ index.html
 
 ## Sample Content
 
-The default deck is "What To Look For When Hiring an XR Studio" with 5 lessons and 10 case studies. It subtly promotes Agile Lens throughout. Replace SECTIONS + BONUS to create your own talk.
+The default deck is "Is XR Right For Your Project?" with 3 chapters and 6 case studies. Content is generic/anonymized (no client-specific references). Cover: "Spatial Deck · Open-Source Presentation Framework" / "Is XR Right For Your Project?". Bonus: "The Best XR Project Is the One You Don't Need". Closing: "Let's Talk." / "Thinking spatially?" with single QR code to the GitHub repo. Uses 6 AI-generated images from `images/` (4 PNGs, 2 SVGs). Replace SECTIONS + BONUS to create your own talk.
 
 ---
 
