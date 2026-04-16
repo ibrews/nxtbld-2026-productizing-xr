@@ -61,6 +61,16 @@ open index.html
 
 ---
 
+## Things to Try
+
+1. **Open `index.html` in any browser** — the cover slide loads instantly with no build step; press `→` or `Space` to advance through the sample presentation.
+2. **Press `M` to enter Move Mode, then drag the title on any slide** — a position like `left:45%, top:32%` auto-copies to your clipboard so you can pass exact coordinates to an AI collaborator.
+3. **Press `A` to enter Annotation Mode and click anywhere on a slide** — a note panel appears; click Export to get all annotations as copyable markdown for AI handoff.
+4. **Open slide 0 (Settings, accessible via the slide grid) and change the font family or accent color** — the entire deck re-themes live without a reload; settings persist across browser restarts.
+5. **Press `N` to open the Presenter Popup, then navigate a few slides** — a second window tracks speaker notes, elapsed time, next-slide preview, and a pacing indicator (green / yellow / red).
+
+---
+
 ## 🎯 How It Works
 
 ### The SECTIONS Array
