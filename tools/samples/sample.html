@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Claude Design sample export</title></head>
+<body>
+<section>
+  <h1>The Companion Mode Deck</h1>
+  <p>How Spatial Deck and Claude Design plug into each other.</p>
+  <ul>
+    <li>Claude Design owns the brand system — typography, tokens, palette.</li>
+    <li>Spatial Deck owns the runtime — animation, navigation, audio.</li>
+    <li>Importers are the bridge.</li>
+  </ul>
+</section>
+<section>
+  <h2>How the handoff works</h2>
+  <p>Ship a CSS file and an HTML outline. We parse both.</p>
+  <ol>
+    <li>Tokens CSS flows through import_tokens.py to :root{}.</li>
+    <li>HTML outline flows through import_html.py to SECTIONS.</li>
+    <li>The merger splices the chapter between sentinel comments.</li>
+  </ol>
+  <figure>
+    <img src="media/fleet-diagram.png" alt="Fleet topology diagram" />
+    <figcaption>Fleet topology (illustrative).</figcaption>
+  </figure>
+</section>
+<section>
+  <h2>Open questions</h2>
+  <blockquote>Does the companion story land with both audiences, or does it feel bolted on?</blockquote>
+  <ul>
+    <li>Onboarding — who writes the README?</li>
+    <li>Versioning — what happens when Claude Design ships a breaking token change?</li>
+    <li>Discovery — do users find the CLI, or do we need an in-app affordance?</li>
+  </ul>
+</section>
+</body></html>

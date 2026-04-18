@@ -14,6 +14,8 @@
 |---|---|---|
 | **Design-token import** | Any CSS/JSON/prose → `llama3.1:8b@Sam` normalizes to fixed schema → regex-validates hex → patches `:root{}` in `index.html` | cb9199e |
 | **PPTX import** | `python-pptx` extracts text/images deterministically → `llama3.1:8b@Sam` rewrites body copy into tight bullets → merger splices between `// ── IMPORTED START ──` sentinels | ee415a1 |
+| **Markdown import** | Regex parses `#`/`##`/`-`/`![]()`/`>` deterministically → optional `--tighten` via `llama3.1:8b@Sam` with `qwen3:8b@MBP` fallback → merger splices chapter | (this PR) |
+| **HTML import** | BeautifulSoup chunks by `<section>`/headings → `qwen2.5-coder:14b@Archie` normalizes to `{title,subtitle,bullets}` with `qwen3-coder:30b@MBP` fallback → images (incl. `data:` URIs) land in `media/import-*/` | (this PR) |
 | **SessionStart git-freshness hook** | Warns if repo is behind origin (unrelated to importers, but installed same day) | KB 73f067f9 |
 
 ## Fleet endpoints (confirmed working 2026-04-18)
@@ -40,16 +42,11 @@ Fort is offline (has been 5+ nights as of 2026-04-17). Sam can be flaky — `Con
 
 ## Roadmap — FLEET-FIRST (ship with minimal Claude oversight)
 
-### A. Standalone-HTML importer *(next-most-valuable, medium effort)*
-**Model:** `qwen2.5-coder:14b@Archie`
-**Goal:** `python3 tools/import_html.py claude-design-export.html` → same chapter JSON shape as PPTX importer → merger splices it in.
-**Approach:** BeautifulSoup parses the HTML, extracts each `<section>` / `<slide>` / heading+siblings pattern. LLM maps to `{title, subtitle, bullets}`. Images → `media/import-<hash>/`.
-**Watch out for:** Claude Design HTML likely uses arbitrary div nesting. Don't try to be exhaustive — match one Claude Design export shape first, expand later.
+### ~~A. Standalone-HTML importer~~ ✅ SHIPPED
+See `tools/import_html.py`. Structural-selector chunking with heading fallback; Archie primary, MBP fallback; `data:` URIs decoded to `media/`.
 
-### B. Markdown importer *(trivial, high utility)*
-**Model:** Mostly deterministic; `llama3.1:8b@Sam` optional for bullet tightening.
-**Goal:** `tools/import_md.py talk.md` where `#` = chapter, `##` = slide, `-` = bullets, `![alt](path)` = image.
-**Why:** Many folks draft in markdown. Zero LLM cost if we skip tightening.
+### ~~B. Markdown importer~~ ✅ SHIPPED
+See `tools/import_md.py`. `#`/`##`/`-`/`![]()`/`>` convention, deterministic parse, optional `--tighten`.
 
 ### C. Slide linter *(quick win)*
 **Model:** `llama3.1:8b@Sam`

@@ -608,17 +608,45 @@ python3 tools/merge_sections.py tools/imported-<deck>-<hash>.json
 - `merge_sections.py` splices the result between `// ── IMPORTED START ──` / `// ── IMPORTED END ──` sentinels in the SECTIONS array. Running it again replaces the block, so re-imports are idempotent.
 - Use `--no-llm` to skip normalization and get raw extracted text verbatim.
 
+### Markdown import
+
+Draft a talk in markdown, get a deck:
+
+```bash
+python3 tools/import_md.py path/to/talk.md
+python3 tools/import_md.py path/to/talk.md --tighten   # LLM bullet cleanup
+python3 tools/merge_sections.py tools/imported-<deck>-<hash>.json
+```
+
+Convention: `#` = deck title (and tagline from the next paragraph), `##` = slide, first paragraph after `##` = subtitle, `-` / `*` / `+` = bullets, `![alt](media/x.png)` = image (alt becomes subtitle if none set), `>` = speaker notes. The parse is deterministic regex — `--tighten` is optional and routes through Sam (`llama3.1:8b`) with MBP (`qwen3:8b`) as fallback.
+
+### HTML import (Claude Design handoff)
+
+Got an HTML deck export (e.g. from Claude Design, Framer, or hand-written)? Same flow:
+
+```bash
+pip3 install beautifulsoup4  # one-time
+python3 tools/import_html.py path/to/deck.html
+python3 tools/import_html.py path/to/deck.html --no-llm  # raw only
+python3 tools/merge_sections.py tools/imported-<deck>-<hash>.json
+```
+
+- BeautifulSoup chunks the document into slides by `<section>` / `<article>` / `.slide` / `[data-slide]`, falling back to heading-based splitting when no structural markers exist.
+- `qwen2.5-coder:14b` on Archie normalizes each chunk into `{title, subtitle, bullets}` — single-pass, with `qwen3-coder:30b` on MBP as fallback.
+- Images (including `data:` URIs) are decoded into `media/import-<deck>-<hash>/` and rewritten as repo-relative paths. Remote `http(s)://` images are left as-is.
+
 ### Fleet endpoints
 
 [`tools/fleet_client.py`](tools/fleet_client.py) wraps Ollama's HTTP API with JSON-parsing and `<think>` block stripping. Endpoints are Tailscale IPs; edit the `ENDPOINTS` table at the top if your fleet differs. No auth — Tailscale is the perimeter.
 
 Current task → model assignments (from nightly evals):
 
-| Task | Model | Where |
-|---|---|---|
-| Structured JSON / token normalization | `llama3.1:8b` | Sam |
-| Code parsing (PPTX/HTML import, planned) | `qwen2.5-coder:14b` | Archie |
-| HTML slide generation (planned) | `qwen3-coder:30b` | MBP / Lenny |
+| Task | Model | Where | Fallback |
+|---|---|---|---|
+| Token / PPTX normalization | `llama3.1:8b` | Sam | Archie |
+| Markdown bullet `--tighten` | `llama3.1:8b` | Sam | `qwen3:8b` @ MBP |
+| HTML slide normalization | `qwen2.5-coder:14b` | Archie | `qwen3-coder:30b` @ MBP |
+| Image alt-text / vision (planned) | `gemma3:27b` | Lenny | — |
 
 ---
 
@@ -656,6 +684,8 @@ spatial-deck/
 │   ├── fleet_client.py    ← Ollama wrapper for the local LLM fleet
 │   ├── import_tokens.py   ← Design-token → :root{} patcher
 │   ├── import_pptx.py     ← .pptx → SECTIONS chapter JSON
+│   ├── import_md.py       ← Markdown → SECTIONS chapter JSON
+│   ├── import_html.py     ← HTML deck → SECTIONS chapter JSON
 │   ├── merge_sections.py  ← Splice imported chapter into index.html
 │   └── samples/           ← Example input files
 ├── social.html      ← Social sharing card (1200×630)
