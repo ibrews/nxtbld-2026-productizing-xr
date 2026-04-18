@@ -575,6 +575,37 @@ The handoff prompt covers: file structure, SECTIONS config format, media cycler 
 
 ---
 
+## 🤝 Claude Design Handoff (Fleet-Powered Importers)
+
+Spatial Deck pairs well with [Claude Design](https://claude.ai/design) as the **presenter's companion**: Claude Design generates beautiful visuals, Spatial Deck gives you keyframe animation, scrubber timeline, Web Audio SFX, offline-safe presenting, and mobile touch support — things Claude Design doesn't.
+
+The `tools/` directory holds small Python scripts that use a **local LLM fleet** (Ollama over Tailscale) to normalize inbound content — so you don't spend frontier-model tokens on structural glue work.
+
+### Design token import
+
+Paste a CSS export, a JSON palette, or just a prose description into a text file, then:
+
+```bash
+python3 tools/import_tokens.py path/to/tokens.css
+python3 tools/import_tokens.py path/to/tokens.css --dry-run   # preview only
+```
+
+A local `llama3.1:8b` normalizes whatever you gave it to a fixed schema, Python validates every hex with regex, and the `:root{}` block in `index.html` is patched in place. Works with arbitrary Claude Design / Figma / Tailwind exports — no format adapter per source.
+
+### Fleet endpoints
+
+[`tools/fleet_client.py`](tools/fleet_client.py) wraps Ollama's HTTP API with JSON-parsing and `<think>` block stripping. Endpoints are Tailscale IPs; edit the `ENDPOINTS` table at the top if your fleet differs. No auth — Tailscale is the perimeter.
+
+Current task → model assignments (from nightly evals):
+
+| Task | Model | Where |
+|---|---|---|
+| Structured JSON / token normalization | `llama3.1:8b` | Sam |
+| Code parsing (PPTX/HTML import, planned) | `qwen2.5-coder:14b` | Archie |
+| HTML slide generation (planned) | `qwen3-coder:30b` | MBP / Lenny |
+
+---
+
 ## 🍴 Fork for Your Talk, Pull Template Updates
 
 The recommended workflow: **fork this repo for each talk**, then pull template updates as they ship.
@@ -605,6 +636,10 @@ spatial-deck/
 ├── index.html      ← The entire presentation
 ├── images/          ← AI-generated images (PNGs, SVGs)
 ├── media/           ← Images, videos, GIFs
+├── tools/           ← Fleet-powered importers (Claude Design handoff)
+│   ├── fleet_client.py    ← Ollama wrapper for the local LLM fleet
+│   ├── import_tokens.py   ← Design-token → :root{} patcher
+│   └── samples/           ← Example input files
 ├── social.html      ← Social sharing card (1200×630)
 ├── social.png       ← Pre-rendered social image
 ├── README.md        

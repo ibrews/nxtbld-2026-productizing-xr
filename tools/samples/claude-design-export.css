@@ -1,0 +1,12 @@
+/* Exported from Claude Design — "Sunset Reef" theme */
+:root {
+  --color-background: #1a0f1f;
+  --color-surface: #2a1530;
+  --color-text-primary: #fef3e8;
+  --color-text-muted: #8a7a85;
+  --color-accent-1: #ff6b6b;   /* coral */
+  --color-accent-2: #ffd166;   /* saffron */
+  --color-accent-3: #06d6a0;   /* mint */
+  --color-accent-4: #118ab2;   /* ocean */
+  --font-display: 'DM Sans', system-ui, sans-serif;
+}

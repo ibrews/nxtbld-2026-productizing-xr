@@ -205,6 +205,7 @@ index.html
 | `index.html` | The entire presentation |
 | `images/` | AI-generated images (4 PNGs, 2 SVGs) |
 | `media/` | Images, videos, GIFs (optional) |
+| `tools/` | Fleet-powered importers (Claude Design handoff) — Python scripts that call local Ollama endpoints over Tailscale to normalize inbound content. Start here: `tools/fleet_client.py` (thin wrapper), `tools/import_tokens.py` (design-token → `:root{}` patcher). `tools/samples/` has example inputs. |
 | `docs/` | README screenshots |
 | `social.html` | 1200×630 social sharing card |
 | `social.png` | Pre-rendered social image |
