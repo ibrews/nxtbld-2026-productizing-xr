@@ -685,6 +685,15 @@ python3 tools/import_tokens.py tools/palette-photo.css
 
 Pure-Python k-means++ on the downsampled image finds K dominant colors, then the script maps them by luminance (bg/bg_dark/text/dim) and hue distance (teal/purple/amber/rose). When the image has no color within 35° of a target accent, the accent is synthesized at the target hue using the primary's saturation — keeps the palette coherent on monochrome references. `--vibe` asks `gemma3:12b@Lenny` for a 3-6 word mood phrase, written as a CSS comment. Output is a `:root{}` block that `import_tokens.py` already accepts.
 
+### Deck diff
+
+```bash
+python3 tools/diff_decks.py old.html new.html
+python3 tools/diff_decks.py index.html tools/imported-foo.json --json
+```
+
+Reports what changed between two `SECTIONS` snapshots — chapters added/removed, cases added/removed/changed, field-level diffs for title/subtitle/img/notes, and a bullet-level diff via `difflib.SequenceMatcher`. Chapters pair by `year`; cases pair by `title` within each chapter. Works on `.html` (SECTIONS extracted via node) or chapter-JSON output from any importer. Useful before re-merging an importer or pulling template updates.
+
 ### Fleet endpoints
 
 [`tools/fleet_client.py`](tools/fleet_client.py) wraps Ollama's HTTP API with JSON-parsing and `<think>` block stripping. Endpoints are Tailscale IPs; edit the `ENDPOINTS` table at the top if your fleet differs. No auth — Tailscale is the perimeter.
@@ -743,6 +752,7 @@ spatial-deck/
 │   ├── estimate_timing.py ← Per-slide duration + note drafting
 │   ├── gen_alt_text.py    ← Vision-model alt-text per image
 │   ├── extract_palette.py ← Image → Spatial Deck CSS tokens
+│   ├── diff_decks.py      ← Compare two SECTIONS snapshots
 │   ├── merge_sections.py  ← Splice imported chapter into index.html
 │   └── samples/           ← Example input files
 ├── social.html      ← Social sharing card (1200×630)
