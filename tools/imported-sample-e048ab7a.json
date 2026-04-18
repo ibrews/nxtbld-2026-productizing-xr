@@ -1,0 +1,44 @@
+{
+  "year": "MD DEMO",
+  "accent": "teal",
+  "lesson": {
+    "title": "Spatial Deck Demo",
+    "short": "MD DEMO",
+    "tagline": "A quick markdown deck to verify the importer works end-to-end.",
+    "tags": ""
+  },
+  "cases": [
+    {
+      "title": "Why markdown",
+      "subtitle": "Draft mode for talks.",
+      "img": "",
+      "bullets": [
+        "Plain text is portable and diff-friendly",
+        "Every editor on earth can edit it",
+        "Git handles it gracefully"
+      ]
+    },
+    {
+      "title": "Three fleet machines",
+      "subtitle": "fleet diagram",
+      "img": "media/fleet-diagram.png",
+      "bullets": [
+        "Sam runs llama3.1:8b for structured JSON",
+        "Archie handles HTML and code parsing",
+        "Lenny hosts the larger vision and code models"
+      ],
+      "notes": "Remember to mention that Fort is offline tonight."
+    },
+    {
+      "title": "Next steps",
+      "subtitle": "",
+      "img": "",
+      "bullets": [
+        "Wire the HTML importer",
+        "Add alt-text generation",
+        "Write the narrative coach"
+      ],
+      "notes": "This is a speaker-note for the closing slide."
+    }
+  ]
+}
