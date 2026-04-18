@@ -592,6 +592,22 @@ python3 tools/import_tokens.py path/to/tokens.css --dry-run   # preview only
 
 A local `llama3.1:8b` normalizes whatever you gave it to a fixed schema, Python validates every hex with regex, and the `:root{}` block in `index.html` is patched in place. Works with arbitrary Claude Design / Figma / Tailwind exports — no format adapter per source.
 
+### PowerPoint import
+
+Got an existing `.pptx`? Pipe it through the fleet and drop it into your deck:
+
+```bash
+pip3 install python-pptx  # one-time
+python3 tools/import_pptx.py path/to/deck.pptx
+python3 tools/merge_sections.py tools/imported-<deck>-<hash>.json
+```
+
+- `python-pptx` does deterministic XML extraction (titles, body, speaker notes, embedded images).
+- `llama3.1:8b` on Sam rewrites each slide's bloated body copy into 2–4 tight bullets, preserving numbers and proper nouns. Single-pass — no iteration.
+- Images are extracted to `media/import-<deck>-<hash>/` and referenced by relative path.
+- `merge_sections.py` splices the result between `// ── IMPORTED START ──` / `// ── IMPORTED END ──` sentinels in the SECTIONS array. Running it again replaces the block, so re-imports are idempotent.
+- Use `--no-llm` to skip normalization and get raw extracted text verbatim.
+
 ### Fleet endpoints
 
 [`tools/fleet_client.py`](tools/fleet_client.py) wraps Ollama's HTTP API with JSON-parsing and `<think>` block stripping. Endpoints are Tailscale IPs; edit the `ENDPOINTS` table at the top if your fleet differs. No auth — Tailscale is the perimeter.
@@ -639,6 +655,8 @@ spatial-deck/
 ├── tools/           ← Fleet-powered importers (Claude Design handoff)
 │   ├── fleet_client.py    ← Ollama wrapper for the local LLM fleet
 │   ├── import_tokens.py   ← Design-token → :root{} patcher
+│   ├── import_pptx.py     ← .pptx → SECTIONS chapter JSON
+│   ├── merge_sections.py  ← Splice imported chapter into index.html
 │   └── samples/           ← Example input files
 ├── social.html      ← Social sharing card (1200×630)
 ├── social.png       ← Pre-rendered social image

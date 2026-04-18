@@ -1,0 +1,42 @@
+{
+  "year": "IMPORTED",
+  "accent": "teal",
+  "lesson": {
+    "title": "Imported: sample-deck",
+    "short": "IMPORTED",
+    "tagline": "Imported from sample-deck.pptx. Edit this tagline and the cases below to match your narrative.",
+    "tags": ""
+  },
+  "cases": [
+    {
+      "title": "Q1 Platform Strategy Overview",
+      "subtitle": "",
+      "bullets": [
+        "Consolidate product lines by end of Q2.",
+        "Reach $4.2M ARR by July with conservative retention.",
+        "12,000 seats affected by auth migration."
+      ],
+      "img": "",
+      "notes": "Expand on the auth migration risk. Engineering needs two weeks of buffer."
+    },
+    {
+      "title": "Why Users Churn",
+      "subtitle": "",
+      "bullets": [
+        "Onboarding takes 47 minutes on average.",
+        "Users who complete the tutorial within 15 minutes retain at 3x the rate.",
+        "40% abandon at step 4 (calendar connect)"
+      ],
+      "img": ""
+    },
+    {
+      "title": "Thank You",
+      "subtitle": "",
+      "bullets": [
+        "Leave 5 minutes for Q&A."
+      ],
+      "img": "",
+      "notes": "Leave 5 minutes for Q&A."
+    }
+  ]
+}
