@@ -1,0 +1,52 @@
+{
+  "year": "PDF DEMO",
+  "accent": "teal",
+  "lesson": {
+    "title": "Imported: sample",
+    "short": "PDF DEMO",
+    "tagline": "Imported from sample.pdf. Edit this tagline and the cases below to match your narrative.",
+    "tags": ""
+  },
+  "cases": [
+    {
+      "title": "The Companion Mode Deck",
+      "subtitle": "How Spatial Deck and Claude Design plug into each other.",
+      "bullets": [
+        "Claude Design owns the brand system.",
+        "Spatial Deck owns the runtime.",
+        "Importers are the bridge."
+      ],
+      "img": ""
+    },
+    {
+      "title": "Why Markdown",
+      "subtitle": "Draft mode for talks.",
+      "bullets": [
+        "Plain text is portable and diff-friendly.",
+        "Every editor on earth can edit it.",
+        "Git handles it gracefully."
+      ],
+      "img": ""
+    },
+    {
+      "title": "Three Fleet Machines",
+      "subtitle": "",
+      "bullets": [
+        "Sam runs llama3.1:8b for structured JSON.",
+        "Archie handles HTML and code parsing.",
+        "Lenny hosts the larger vision and code models."
+      ],
+      "img": ""
+    },
+    {
+      "title": "Next Steps",
+      "subtitle": "",
+      "bullets": [
+        "Wire the HTML importer.",
+        "Add alt-text generation.",
+        "Write the narrative coach."
+      ],
+      "img": ""
+    }
+  ]
+}
