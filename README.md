@@ -694,6 +694,41 @@ python3 tools/diff_decks.py index.html tools/imported-foo.json --json
 
 Reports what changed between two `SECTIONS` snapshots — chapters added/removed, cases added/removed/changed, field-level diffs for title/subtitle/img/notes, and a bullet-level diff via `difflib.SequenceMatcher`. Chapters pair by `year`; cases pair by `title` within each chapter. Works on `.html` (SECTIONS extracted via node) or chapter-JSON output from any importer. Useful before re-merging an importer or pulling template updates.
 
+### Reverse importers (Markdown, HTML, PPTX)
+
+Every importer has a matching exporter for round-trip handoff to collaborators, printers, or backup:
+
+```bash
+python3 tools/export_md.py   --out outline.md            # full deck → markdown
+python3 tools/export_html.py --out deck-outline.html     # static, no-JS HTML page
+python3 tools/export_pptx.py --out deck.pptx             # .pptx (python-pptx)
+python3 tools/export_md.py --chapter 1 --out ch1.md      # single chapter
+```
+
+`export_md.py` ↔ `import_md.py` round-trip is **0-diff verified** — a YAML-ish `<!-- spatial-deck ... -->` metadata block preserves `year`, `accent`, `short`, `tags`, and multi-line titles. `export_pptx.py` round-trips through `import_pptx.py` cleanly as well.
+
+### Peer-review harness
+
+```bash
+python3 tools/peer_review.py index.html
+python3 tools/peer_review.py tools/imported-foo.json --chapter 0
+```
+
+Two local models (llama3.1:8b@Sam for narrative clarity, qwen2.5-coder:14b@Archie for structural consistency) each critique the same chapter. Merge-vote collapses near-duplicate flags; issues both reviewers hit get a 🔴 badge (high-confidence), solo flags get 🟡. Uncorrelated error profiles across the two model families → the intersection is a real signal. Output is Markdown by default, `--json` for tooling.
+
+### Multi-deck merge
+
+```bash
+python3 tools/merge_decks.py index.html other.html fork.html --out merged.json
+python3 tools/merge_decks.py a.html b.html --drop-duplicates --prefix-year
+```
+
+Concatenates SECTIONS from multiple sources (HTML or chapter-JSON), detects year collisions, duplicate case titles, and near-duplicate cases (Jaccard similarity over bullet tokens). Writes a `.conflicts.md` alongside the merged JSON. The merge is mechanical — editorial reordering is a Claude job, not a fleet one.
+
+### New case layouts
+
+[`tools/layouts/preview.html`](tools/layouts/preview.html) shows three new layouts — `split-50` (true 50/50), `bleed` (full-bleed media + overlay), `trio` (three-column comparison) — alongside the existing 48/52 default. [`tools/layouts/PATCH.md`](tools/layouts/PATCH.md) has the exact CSS + build-loop diff to splice in when you want them. Default behaviour is unchanged if you never set `layout:` on a case.
+
 ### Fleet endpoints
 
 [`tools/fleet_client.py`](tools/fleet_client.py) wraps Ollama's HTTP API with JSON-parsing and `<think>` block stripping. Endpoints are Tailscale IPs; edit the `ENDPOINTS` table at the top if your fleet differs. No auth — Tailscale is the perimeter.
@@ -754,6 +789,12 @@ spatial-deck/
 │   ├── extract_palette.py ← Image → Spatial Deck CSS tokens
 │   ├── diff_decks.py      ← Compare two SECTIONS snapshots
 │   ├── merge_sections.py  ← Splice imported chapter into index.html
+│   ├── merge_decks.py     ← Merge N decks + flag conflicts
+│   ├── peer_review.py     ← Two-reviewer fleet critique w/ merge-vote
+│   ├── export_md.py       ← SECTIONS → markdown (round-trips via import_md)
+│   ├── export_html.py     ← SECTIONS → static, no-JS HTML outline
+│   ├── export_pptx.py     ← SECTIONS → .pptx (round-trips via import_pptx)
+│   ├── layouts/           ← Optional: 3 new case layouts (preview + splice patch)
 │   └── samples/           ← Example input files
 ├── social.html      ← Social sharing card (1200×630)
 ├── social.png       ← Pre-rendered social image
