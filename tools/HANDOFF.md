@@ -106,5 +106,5 @@ All seven fleet-first items (A–G) have shipped. Remaining work is CLAUDE-FIRST
 
 Good next moves if the user greenlights more fleet work:
 - A **peer-review harness**: given a chapter JSON, have two different fleet models critique the output and merge-vote. Cheap observability over the whole importer pipeline.
-- A **reverse-importer**: `tools/export_sections.py` → emit a clean `.md` / `.html` / `.pptx` from the current SECTIONS. Symmetric with the existing importers, useful for handoff the other way.
-- **Deck diff**: given two SECTIONS arrays (e.g. before/after a template merge), summarize what moved, what changed, what's new.
+- A **reverse-importer**: `tools/export_sections.py` → emit a clean `.md` / `.html` / `.pptx` from the current SECTIONS. Symmetric with the existing importers, useful for handoff the other way. *(Markdown side shipped: `tools/export_md.py` round-trips cleanly through `tools/import_md.py` — 0 diffs on the full deck.)*
+- **Deck diff**: given two SECTIONS arrays (e.g. before/after a template merge), summarize what moved, what changed, what's new. *(Shipped: `tools/diff_decks.py`.)*
