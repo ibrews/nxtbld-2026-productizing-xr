@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spatial Deck — Promo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#0b0820; --bg2:#060810;
+    --teal:#00d4ff; --purple:#a78bfa; --amber:#f59e0b; --rose:#f43f5e; --green:#22c55e;
+    --ink:#f0f4ff;
+    --bar: 1875ms; /* 128 BPM, 4 beats */
+    --beat: 468ms;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Space Grotesk',system-ui,sans-serif;color:var(--ink)}
+  #stage{position:absolute;inset:0;display:grid;place-items:center}
+  #frame{
+    position:relative;width:min(100vmin,1080px);aspect-ratio:1/1;
+    background:radial-gradient(ellipse at 50% 30%,#1a1238 0%, var(--bg1) 45%, var(--bg2) 100%);
+    overflow:hidden;border-radius:4px;box-shadow:0 0 120px rgba(244,63,94,.2);
+    isolation:isolate;
+  }
+  /* pulsing bg aura synced to beat */
+  #aura{position:absolute;inset:-20%;background:radial-gradient(circle at 50% 50%, rgba(244,63,94,.18), transparent 55%);animation:aura var(--bar) ease-in-out infinite;z-index:0;pointer-events:none;mix-blend-mode:screen}
+  @keyframes aura{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.7;transform:scale(1.08)}}
+
+  .scene{position:absolute;inset:0;opacity:0;display:grid;place-items:center;padding:6%;z-index:1;transition:opacity .3s ease}
+  .scene.active{opacity:1}
+
+  .kicker{font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:4px;color:rgba(240,244,255,.55);text-transform:uppercase;margin-bottom:20px;text-align:center}
+  h1.big{font-size:clamp(34px,7.5vmin,92px);font-weight:700;line-height:.92;letter-spacing:-.025em;text-align:center}
+  h1.big .accent{background:linear-gradient(90deg,var(--rose),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:clamp(14px,2.2vmin,22px);color:rgba(240,244,255,.65);margin-top:20px;text-align:center;max-width:80%}
+
+  /* beat pulse util */
+  .pulse{animation:pulse var(--beat) ease-out}
+  @keyframes pulse{0%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+  /* terminal */
+  .term{width:86%;max-width:900px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:26px 30px;font-family:'JetBrains Mono',monospace;font-size:clamp(12px,2vmin,18px);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .term .bar{display:flex;gap:6px;margin-bottom:16px}
+  .term .bar i{width:10px;height:10px;border-radius:50%;background:#333}
+  .term .bar i:nth-child(1){background:#ff5f57} .term .bar i:nth-child(2){background:#febc2e} .term .bar i:nth-child(3){background:#28c840}
+  .term .line{color:rgba(240,244,255,.9);white-space:pre;overflow:hidden}
+  .term .line .prompt{color:var(--rose)}
+  .term .line .cmd{color:var(--teal)}
+  .term .line .arg{color:var(--amber)}
+  .term .out{color:var(--green);margin-top:8px}
+  .caret{display:inline-block;width:.55em;height:1em;background:var(--teal);vertical-align:-0.15em;animation:blink 1s steps(1) infinite;margin-left:2px}
+  @keyframes blink{50%{opacity:0}}
+
+  /* chips */
+  .chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+  .chip{padding:9px 18px;border-radius:999px;border:1.5px solid;font-family:'JetBrains Mono',monospace;font-size:clamp(10px,1.7vmin,15px);letter-spacing:2px;font-weight:600;opacity:0;transform:translateY(14px) scale(.9)}
+  .chip.show{animation:chipIn .35s cubic-bezier(.2,.8,.2,1.3) forwards}
+  @keyframes chipIn{to{opacity:1;transform:translateY(0) scale(1)}}
+  .chip.teal{border-color:var(--teal);color:var(--teal);background:rgba(0,212,255,.1);box-shadow:0 0 24px rgba(0,212,255,.3)}
+  .chip.purple{border-color:var(--purple);color:var(--purple);background:rgba(167,139,250,.1);box-shadow:0 0 24px rgba(167,139,250,.3)}
+  .chip.amber{border-color:var(--amber);color:var(--amber);background:rgba(245,158,11,.1);box-shadow:0 0 24px rgba(245,158,11,.3)}
+  .chip.rose{border-color:var(--rose);color:var(--rose);background:rgba(244,63,94,.1);box-shadow:0 0 24px rgba(244,63,94,.3)}
+
+  /* swatches */
+  .swatches{display:flex;gap:10px;margin-top:22px;justify-content:center}
+  .sw{width:clamp(34px,5.5vmin,54px);height:clamp(34px,5.5vmin,54px);border-radius:10px;opacity:0;transform:scale(.5) rotate(-12deg)}
+  .sw.show{animation:swIn .32s cubic-bezier(.2,.8,.2,1.4) forwards}
+  @keyframes swIn{to{opacity:1;transform:scale(1) rotate(0)}}
+
+  /* hero */
+  .hero{width:90%;max-width:960px;display:flex;flex-direction:column;align-items:center;gap:22px}
+  .hero img{width:100%;border-radius:12px;filter:drop-shadow(0 0 50px rgba(244,63,94,.25));animation:heroIn .4s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes heroIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+  .hero .cap{font-size:clamp(20px,3.6vmin,38px);font-weight:700;letter-spacing:-.015em;text-align:center;line-height:1.1}
+  .hero .cap .em{color:var(--rose)}
+  .hero .cap .tealem{color:var(--teal)}
+
+  /* live deck iframe scene */
+  .liveframe{width:92%;height:70%;border-radius:14px;overflow:hidden;border:2px solid rgba(240,244,255,.18);box-shadow:0 30px 80px rgba(0,0,0,.6);position:relative}
+  .liveframe iframe{width:100%;height:100%;border:0;background:#0b0820;pointer-events:none}
+  .liveframe::after{content:"LIVE DECK";position:absolute;top:12px;left:12px;padding:5px 10px;background:rgba(244,63,94,.9);color:#fff;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;border-radius:4px;animation:blink 1s infinite}
+  .livelabel{font-size:clamp(14px,2.4vmin,24px);color:rgba(240,244,255,.7);margin-top:16px;text-align:center;font-family:'JetBrains Mono',monospace;letter-spacing:3px}
+
+  /* claude design scene */
+  .cd{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center;width:92%;max-width:960px}
+  .cd-side{padding:28px;border-radius:14px;border:1.5px solid;text-align:center}
+  .cd-side.left{border-color:var(--purple);background:rgba(167,139,250,.08)}
+  .cd-side.right{border-color:var(--teal);background:rgba(0,212,255,.08)}
+  .cd-side .name{font-size:clamp(14px,2.4vmin,24px);font-weight:700;letter-spacing:1px;margin-bottom:10px}
+  .cd-side.left .name{color:var(--purple)} .cd-side.right .name{color:var(--teal)}
+  .cd-side .what{font-family:'JetBrains Mono',monospace;font-size:clamp(10px,1.6vmin,14px);color:rgba(240,244,255,.6);letter-spacing:2px}
+  .cd-arrow{font-size:clamp(28px,5vmin,50px);color:var(--rose)}
+  .cd-title{text-align:center;font-size:clamp(16px,2.6vmin,26px);color:rgba(240,244,255,.85);margin-top:28px;max-width:80%;margin-left:auto;margin-right:auto;line-height:1.3}
+  .cd-title b{color:var(--rose)}
+
+  /* end card */
+  .end{text-align:center}
+  .end .logo{font-size:clamp(34px,7vmin,72px);font-weight:700;letter-spacing:-.025em}
+  .end .tag{font-size:clamp(13px,2vmin,20px);color:rgba(240,244,255,.55);margin:16px 0 28px;font-family:'JetBrains Mono',monospace;letter-spacing:3px}
+  .end .url{display:inline-block;padding:14px 28px;border:1.5px solid var(--teal);color:var(--teal);border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:clamp(12px,2vmin,18px);letter-spacing:2px;box-shadow:0 0 30px rgba(0,212,255,.3)}
+  .end .cred{display:flex;gap:14px;justify-content:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:clamp(10px,1.5vmin,14px);color:rgba(240,244,255,.5);letter-spacing:3px;flex-wrap:wrap}
+  .end .cred span{padding:6px 12px;border:1px solid rgba(240,244,255,.18);border-radius:6px}
+
+  /* progress */
+  #progress{position:absolute;left:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--purple),var(--teal));width:0%;z-index:5}
+
+  /* hint */
+  #hint{position:absolute;top:14px;right:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(240,244,255,.35);z-index:10}
+  #hint kbd{border:1px solid rgba(240,244,255,.25);padding:2px 6px;border-radius:4px;margin:0 2px}
+  #sound-badge{position:absolute;top:14px;left:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--rose);z-index:10;opacity:0;transition:opacity .3s}
+  #sound-badge.on{opacity:1}
+
+  /* vignette */
+  #frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%);z-index:2}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="frame">
+    <div id="aura"></div>
+    <div id="sound-badge">♪ SOUND ON</div>
+    <div id="hint"><kbd>R</kbd> replay &middot; <kbd>S</kbd> sound</div>
+
+    <!-- Scene 1: Title (0 - 3750ms) -->
+    <div class="scene" data-start="0" data-end="3750">
+      <div>
+        <div class="kicker">Spatial Deck</div>
+        <h1 class="big">Your deck is <span class="accent">data.</span><br>Treat it like <span class="accent">code.</span></h1>
+      </div>
+    </div>
+
+    <!-- Scene 2: import_tokens — Claude Design hook (3750 - 8500) -->
+    <div class="scene" data-start="3750" data-end="8500">
+      <div class="term">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="line"><span class="prompt">$ </span><span class="cmd" id="t1"></span><span class="caret"></span></div>
+        <div class="line out" id="t1out"></div>
+        <div class="swatches" id="swatches">
+          <div class="sw" style="background:#00d4ff"></div>
+          <div class="sw" style="background:#a78bfa"></div>
+          <div class="sw" style="background:#f43f5e"></div>
+          <div class="sw" style="background:#f59e0b"></div>
+          <div class="sw" style="background:#22c55e"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 3: Claude Design bridge (8500 - 13000) -->
+    <div class="scene" data-start="8500" data-end="13000">
+      <div style="width:100%">
+        <div class="cd">
+          <div class="cd-side left">
+            <div class="name">Claude Design</div>
+            <div class="what">HANDS YOU<br>TOKENS · STYLES · HANDOFF</div>
+          </div>
+          <div class="cd-arrow">→</div>
+          <div class="cd-side right">
+            <div class="name">Spatial Deck</div>
+            <div class="what">HANDS YOU<br>A LIVING DECK</div>
+          </div>
+        </div>
+        <div class="cd-title">Brand system in. <b>Presentable deck out.</b> One command.</div>
+      </div>
+    </div>
+
+    <!-- Scene 4: import_pptx + chapters (13000 - 17000) -->
+    <div class="scene" data-start="13000" data-end="17000">
+      <div class="term" style="width:86%">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="line"><span class="prompt">$ </span><span class="cmd" id="t2"></span><span class="caret"></span></div>
+        <div class="line out" id="t2out"></div>
+        <div class="chips">
+          <div class="chip teal">CH 1 &middot; DEFINE THE SPATIAL</div>
+          <div class="chip purple">CH 2 &middot; MATCH THE PLATFORM</div>
+          <div class="chip amber">CH 3 &middot; ITERATION SPEED</div>
+          <div class="chip rose">CH 4 &middot; DECK AS CODE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 5: Live deck (17000 - 21500) -->
+    <div class="scene" data-start="17000" data-end="21500">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;width:100%;height:100%">
+        <div class="liveframe">
+          <iframe id="live1" src="about:blank"></iframe>
+        </div>
+        <div class="livelabel">Runs in any browser &middot; zero build</div>
+      </div>
+    </div>
+
+    <!-- Scene 6: Roundtrip (21500 - 25500) -->
+    <div class="scene" data-start="21500" data-end="25500">
+      <div class="hero">
+        <img src="../images/ch4-case1-roundtrip.svg" alt="">
+        <div class="cap">Any format in. <span class="em">Any format out.</span></div>
+      </div>
+    </div>
+
+    <!-- Scene 7: Peer review (25500 - 29500) -->
+    <div class="scene" data-start="25500" data-end="29500">
+      <div class="hero">
+        <img src="../images/ch4-case2-peerreview.svg" alt="">
+        <div class="cap">Local models review every chapter.<br><span class="em">Agreement is signal.</span></div>
+      </div>
+    </div>
+
+    <!-- Scene 8: Merge (29500 - 33500) -->
+    <div class="scene" data-start="29500" data-end="33500">
+      <div class="hero">
+        <img src="../images/ch4-case3-mergediff.svg" alt="">
+        <div class="cap"><span class="em">Merge.</span> <span class="tealem">Diff.</span> <span class="em">Ship.</span></div>
+      </div>
+    </div>
+
+    <!-- Scene 9: Live deck 2 (33500 - 38000) -->
+    <div class="scene" data-start="33500" data-end="38000">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;width:100%;height:100%">
+        <div class="liveframe">
+          <iframe id="live2" src="about:blank"></iframe>
+        </div>
+        <div class="livelabel">Your deck. Your tokens. <span style="color:var(--rose)">Your fork.</span></div>
+      </div>
+    </div>
+
+    <!-- Scene 10: End card (38000 - 43000) -->
+    <div class="scene" data-start="38000" data-end="43000">
+      <div class="end">
+        <div class="logo"><span style="background:linear-gradient(90deg,var(--rose),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent">Spatial Deck</span></div>
+        <div class="tag">ZERO BUILD &middot; ONE FILE &middot; YOURS TO FORK</div>
+        <div class="url">github.com/ibrews/spatial-deck</div>
+        <div class="cred">
+          <span>.md</span><span>.html</span><span>.pptx</span><span>.pdf</span><span>.css</span>
+        </div>
+        <div style="margin-top:26px;font-family:'JetBrains Mono',monospace;font-size:clamp(10px,1.5vmin,14px);color:rgba(240,244,255,.45);letter-spacing:2px">
+          Complements <span style="color:var(--purple)">Claude Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="progress"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const scenes = Array.from(document.querySelectorAll('.scene'));
+  const progress = document.getElementById('progress');
+  const soundBadge = document.getElementById('sound-badge');
+  const DURATION = 43000;
+  const BPM = 128;
+  const BEAT = 60000 / BPM; // 468.75ms
+
+  let t0 = null, raf = null, audioOn = false, ctx = null;
+
+  // ── Audio ──
+  function initAudio(){
+    if(ctx) return;
+    ctx = new (window.AudioContext||window.webkitAudioContext)();
+    master = ctx.createGain(); master.gain.value = .6; master.connect(ctx.destination);
+  }
+  let master = null;
+  let musicNodes = [];
+
+  function kick(t){
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.frequency.setValueAtTime(120,t); o.frequency.exponentialRampToValueAtTime(40,t+.12);
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.9,t+.005); g.gain.exponentialRampToValueAtTime(.001,t+.22);
+    o.connect(g).connect(master); o.start(t); o.stop(t+.25);
+  }
+  function hat(t, open=false){
+    const b=ctx.createBuffer(1,ctx.sampleRate*.1,ctx.sampleRate), d=b.getChannelData(0);
+    for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1);
+    const s=ctx.createBufferSource(); s.buffer=b;
+    const hp=ctx.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=7000;
+    const g=ctx.createGain(); g.gain.setValueAtTime(.18,t); g.gain.exponentialRampToValueAtTime(.001,t+(open?.18:.05));
+    s.connect(hp).connect(g).connect(master); s.start(t); s.stop(t+.2);
+  }
+  function bass(t,freq,dur=BEAT/1000*0.9){
+    const o=ctx.createOscillator(), g=ctx.createGain(), lp=ctx.createBiquadFilter();
+    o.type='sawtooth'; o.frequency.value=freq;
+    lp.type='lowpass'; lp.frequency.setValueAtTime(400,t); lp.frequency.exponentialRampToValueAtTime(1200,t+.05); lp.frequency.exponentialRampToValueAtTime(300,t+dur);
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.28,t+.01); g.gain.exponentialRampToValueAtTime(.001,t+dur);
+    o.connect(lp).connect(g).connect(master); o.start(t); o.stop(t+dur+.05);
+  }
+  function arp(t,freq){
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type='square'; o.frequency.value=freq;
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.1,t+.005); g.gain.exponentialRampToValueAtTime(.001,t+.15);
+    o.connect(g).connect(master); o.start(t); o.stop(t+.2);
+  }
+  function riser(t,dur=1.5){
+    const n=ctx.createBufferSource(), b=ctx.createBuffer(1,ctx.sampleRate*dur,ctx.sampleRate);
+    const d=b.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1);
+    n.buffer=b;
+    const bp=ctx.createBiquadFilter(); bp.type='bandpass'; bp.Q.value=4;
+    bp.frequency.setValueAtTime(300,t); bp.frequency.exponentialRampToValueAtTime(6000,t+dur);
+    const g=ctx.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.2,t+dur*.85); g.gain.linearRampToValueAtTime(0,t+dur);
+    n.connect(bp).connect(g).connect(master); n.start(t); n.stop(t+dur+.05);
+  }
+  function whoosh(){
+    if(!audioOn||!ctx) return;
+    const t=ctx.currentTime;
+    const n=ctx.createBufferSource(), b=ctx.createBuffer(1,ctx.sampleRate*.45,ctx.sampleRate);
+    const d=b.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*.7;
+    n.buffer=b;
+    const bp=ctx.createBiquadFilter(); bp.type='bandpass'; bp.Q.value=2;
+    bp.frequency.setValueAtTime(800,t); bp.frequency.exponentialRampToValueAtTime(4500,t+.4);
+    const g=ctx.createGain(); g.gain.setValueAtTime(.35,t); g.gain.exponentialRampToValueAtTime(.001,t+.45);
+    n.connect(bp).connect(g).connect(master); n.start(t); n.stop(t+.5);
+  }
+  function bing(freq=880){
+    if(!audioOn||!ctx) return;
+    const t=ctx.currentTime;
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type='triangle'; o.frequency.value=freq;
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.12,t+.01); g.gain.exponentialRampToValueAtTime(.001,t+.35);
+    o.connect(g).connect(master); o.start(t); o.stop(t+.4);
+  }
+
+  // schedule the whole pulsing track up front, relative to audio start time
+  function scheduleMusic(startT){
+    // Bass pattern in A minor pentatonic-ish: A2=110, C3=130.8, E3=164.8, G3=196
+    const bassNotes = [110, 110, 164.8, 110, 130.8, 110, 146.8, 110]; // 8 per bar (eighth notes)
+    const arpNotes  = [440, 523, 659, 523, 440, 523, 659, 880];
+    const BARS = Math.ceil(DURATION/1000 / (BEAT*4/1000)); // ~23 bars
+    for(let b=0; b<BARS; b++){
+      const barT = startT + b*(BEAT*4)/1000;
+      // kick on 1 & 3
+      kick(barT);
+      kick(barT + 2*BEAT/1000);
+      // snare-ish (hat open) on 2 & 4
+      hat(barT + BEAT/1000, true);
+      hat(barT + 3*BEAT/1000, true);
+      // closed hats on 8ths
+      for(let i=0;i<8;i++) hat(barT + i*BEAT/2000);
+      // bass 8ths
+      for(let i=0;i<8;i++) bass(barT + i*BEAT/2000, bassNotes[i], BEAT/2000*.95);
+      // arp only in "hype" bars (every other bar after bar 2)
+      if(b>=2 && b%2===1){
+        for(let i=0;i<8;i++) arp(barT + i*BEAT/2000, arpNotes[i]);
+      }
+    }
+    // risers before big scene cuts (21500ms = roundtrip, 38000ms = end card)
+    riser(startT + 20.0, 1.5);
+    riser(startT + 36.5, 1.5);
+  }
+
+  // ── Typewriter ──
+  function typewrite(el, text, speed=32){
+    el.textContent='';
+    let i=0;
+    const id = setInterval(()=>{
+      if(i>=text.length){clearInterval(id); return;}
+      el.textContent += text[i++];
+    }, speed);
+    return id;
+  }
+
+  // ── Scene-specific FX (once each) ──
+  const fired = new Set();
+  function trigger(key, fn){ if(fired.has(key)) return; fired.add(key); fn(); }
+
+  function sceneFX(i){
+    if(i===1) trigger('s1',()=>{ /* soft open */ });
+    if(i===2) trigger('s2',()=>{
+      whoosh();
+      typewrite(document.getElementById('t1'),'python tools/import_tokens.py design-system.css',28);
+      setTimeout(()=>{ document.getElementById('t1out').textContent='✓ 5 tokens extracted · palette synced'; bing(660);},1400);
+      document.querySelectorAll('#swatches .sw').forEach((s,k)=>
+        setTimeout(()=>{s.classList.add('show'); bing(440+k*90);},1700+k*120));
+    });
+    if(i===3) trigger('s3',()=>{ whoosh(); setTimeout(()=>bing(784),300); setTimeout(()=>bing(988),600); });
+    if(i===4) trigger('s4',()=>{
+      whoosh();
+      typewrite(document.getElementById('t2'),'python tools/import_pptx.py talk.pptx',28);
+      setTimeout(()=>{document.getElementById('t2out').textContent='✓ 4 chapters · 18 cases'; bing(660);},1200);
+      document.querySelectorAll('.chips .chip').forEach((c,k)=>
+        setTimeout(()=>{c.classList.add('show'); bing(523+k*80);},1400+k*180));
+    });
+    if(i===5) trigger('s5',()=>{
+      whoosh();
+      const f=document.getElementById('live1');
+      f.src='../index.html?view#5';
+    });
+    if(i===6) trigger('s6',()=>whoosh());
+    if(i===7) trigger('s7',()=>whoosh());
+    if(i===8) trigger('s8',()=>whoosh());
+    if(i===9) trigger('s9',()=>{
+      whoosh();
+      const f=document.getElementById('live2');
+      f.src='../index.html?view#11';
+    });
+    if(i===10) trigger('s10',()=>{
+      whoosh();
+      setTimeout(()=>bing(880),100);
+      setTimeout(()=>bing(1175),300);
+      setTimeout(()=>bing(1318),500);
+    });
+  }
+
+  function tick(ts){
+    if(t0===null) t0=ts;
+    const t = ts - t0;
+    if(t >= DURATION){ cancelAnimationFrame(raf); progress.style.width='100%'; return; }
+    progress.style.width = (t/DURATION*100).toFixed(2)+'%';
+    scenes.forEach((s, idx)=>{
+      const start=+s.dataset.start, end=+s.dataset.end;
+      const active = t>=start && t<end;
+      if(active && !s.classList.contains('active')){
+        s.classList.add('active');
+        sceneFX(idx+1);
+      } else if(!active && s.classList.contains('active')){
+        s.classList.remove('active');
+      }
+    });
+    raf = requestAnimationFrame(tick);
+  }
+
+  function play(){
+    fired.clear();
+    scenes.forEach(s=>s.classList.remove('active'));
+    const t1=document.getElementById('t1'); if(t1) t1.textContent='';
+    const t2=document.getElementById('t2'); if(t2) t2.textContent='';
+    document.getElementById('t1out').textContent=''; document.getElementById('t2out').textContent='';
+    document.querySelectorAll('.sw,.chip').forEach(el=>el.classList.remove('show'));
+    document.getElementById('live1').src='about:blank';
+    document.getElementById('live2').src='about:blank';
+    t0=null; cancelAnimationFrame(raf);
+    if(audioOn){
+      initAudio();
+      // schedule music fresh
+      scheduleMusic(ctx.currentTime + 0.1);
+    }
+    raf = requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('keydown', e=>{
+    if(e.key==='r'||e.key==='R') play();
+    if(e.key==='s'||e.key==='S'){
+      audioOn = !audioOn;
+      soundBadge.classList.toggle('on', audioOn);
+      if(audioOn){ initAudio(); }
+      // restart so music schedule aligns
+      play();
+    }
+  });
+
+  play();
+})();
+</script>
+</body>
+</html>
