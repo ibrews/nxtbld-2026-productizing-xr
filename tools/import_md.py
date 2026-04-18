@@ -43,6 +43,12 @@ BULLET = re.compile(r"^\s*[-*+]\s+(.+?)\s*$")
 IMAGE = re.compile(r"!\[([^\]]*)\]\(([^)]+)\)")
 BLOCKQUOTE = re.compile(r"^>\s?(.*)$")
 SAFE = re.compile(r"[^a-zA-Z0-9]+")
+# Metadata carry-over from the exporter (tools/export_md.py) — lets a
+# round-tripped file preserve year / accent on each chapter.
+META_COMMENT = re.compile(r"<!--\s*spatial-deck:\s*(.+?)\s*-->")
+META_KV = re.compile(r"(\w+)\s*=\s*(.+?)(?=\s+\w+\s*=|\s*$)")
+META_BLOCK_START = re.compile(r"^<!--\s*spatial-deck\s*$")
+META_BLOCK_KV = re.compile(r"^(\w+):\s*(.*?)\s*$")
 
 TIGHTEN_PROMPT = """Rewrite these slide bullets into tight, declarative, punchy lines.
 Slide title: {title!r}
@@ -64,47 +70,85 @@ def _make_case() -> dict:
     return {"title": "", "subtitle": "", "img": "", "bullets": [], "notes": ""}
 
 
-def parse(md: str) -> dict:
-    """Return a chapter dict with lesson + cases. No LLM."""
-    lesson_title = ""
-    lesson_tagline_parts: list[str] = []
-    cases: list[dict] = []
+def _make_chapter() -> dict:
+    return {"lesson_title": "", "lesson_tagline_parts": [], "cases": [], "meta": {}}
+
+
+def parse(md: str) -> list[dict]:
+    """Return a list of chapter dicts (one per `#` heading). No LLM."""
+    chapters: list[dict] = []
+    chapter: dict | None = None
     current: dict | None = None
-    seen_h1 = False
-    # Track whether we're in lesson-tagline-paragraph mode vs case-subtitle mode.
-    # A paragraph is the first non-empty, non-list, non-image, non-heading line
-    # block after the heading.
     pending_subtitle_for_current = False
+    pending_tagline_for_chapter = False
+    in_meta_block = False
+
+    def ensure_chapter() -> dict:
+        nonlocal chapter
+        if chapter is None:
+            chapter = _make_chapter()
+            chapters.append(chapter)
+        return chapter
 
     for raw_line in md.splitlines():
         line = raw_line.rstrip()
+
+        if in_meta_block:
+            if line.strip() == "-->":
+                in_meta_block = False
+                continue
+            kv = META_BLOCK_KV.match(line.strip())
+            if kv:
+                ch = ensure_chapter()
+                ch["meta"][kv.group(1)] = kv.group(2)
+            continue
+        if META_BLOCK_START.match(line.strip()):
+            in_meta_block = True
+            ensure_chapter()
+            continue
+
         if not line.strip():
-            # Blank line ends an in-progress paragraph, but doesn't cancel
-            # the "still waiting for a subtitle after the h2" state — a lot
-            # of markdown puts a blank line between heading and paragraph.
+            continue
+
+        # `---` thematic break between chapters in exporter output.
+        if line.strip() == "---" and chapter is not None:
+            chapter = None
+            current = None
+            pending_subtitle_for_current = False
+            pending_tagline_for_chapter = False
+            continue
+
+        meta_m = META_COMMENT.search(line)
+        if meta_m:
+            ch = ensure_chapter()
+            for k, v in META_KV.findall(meta_m.group(1)):
+                ch["meta"][k] = v
             continue
 
         m = H2.match(line)
         if m:
+            ch = ensure_chapter()
             current = _make_case()
             current["title"] = m.group(1).strip()
-            cases.append(current)
+            ch["cases"].append(current)
             pending_subtitle_for_current = True
+            pending_tagline_for_chapter = False
             continue
 
         m = H1.match(line)
         if m:
-            if not seen_h1:
-                lesson_title = m.group(1).strip()
-                seen_h1 = True
-            # Additional H1s are treated as chapter-title overrides — ignore.
+            # Always start a fresh chapter on H1.
+            chapter = _make_chapter()
+            chapter["lesson_title"] = m.group(1).strip()
+            chapters.append(chapter)
+            current = None
             pending_subtitle_for_current = False
+            pending_tagline_for_chapter = True
             continue
 
         m = BULLET.match(line)
         if m and current is not None:
             text = m.group(1).strip()
-            # Strip inline image from bullet line.
             img_m = IMAGE.search(text)
             if img_m and not current["img"]:
                 current["img"] = img_m.group(2).strip()
@@ -134,22 +178,17 @@ def parse(md: str) -> dict:
 
         # Plain paragraph line.
         if current is None:
-            # Belongs to the chapter tagline.
-            lesson_tagline_parts.append(line.strip())
+            ch = ensure_chapter()
+            if pending_tagline_for_chapter or not ch["lesson_tagline_parts"]:
+                ch["lesson_tagline_parts"].append(line.strip())
         elif pending_subtitle_for_current and not current["subtitle"]:
             current["subtitle"] = line.strip()
-            # Allow multi-line subtitle to join on subsequent lines.
         elif pending_subtitle_for_current and current["subtitle"]:
             current["subtitle"] = (current["subtitle"] + " " + line.strip()).strip()
         else:
-            # Treat as additional note text.
             current["notes"] = (current["notes"] + " " + line.strip()).strip() if current["notes"] else line.strip()
 
-    return {
-        "lesson_title": lesson_title,
-        "lesson_tagline": " ".join(lesson_tagline_parts).strip(),
-        "cases": cases,
-    }
+    return chapters
 
 
 # (model, host) pairs tried in order. Sam llama3.1:8b is the fleet winner for
@@ -193,45 +232,69 @@ def main() -> int:
         print(f"ERROR: {args.md} not found", file=sys.stderr)
         return 2
 
-    parsed = parse(args.md.read_text())
-    cases = parsed["cases"]
-    if not cases:
+    parsed_chapters = parse(args.md.read_text())
+    # Drop empty chapters (no title, no tagline, no cases).
+    parsed_chapters = [c for c in parsed_chapters if c["lesson_title"] or c["cases"] or c["lesson_tagline_parts"]]
+    if not parsed_chapters:
+        print("ERROR: no `#` or `##` headings found in markdown", file=sys.stderr)
+        return 3
+
+    total_cases = sum(len(c["cases"]) for c in parsed_chapters)
+    if total_cases == 0:
         print("ERROR: no `## slide` headings found in markdown", file=sys.stderr)
         return 3
 
-    print(f"[md] {len(cases)} slides parsed from {args.md.name}", file=sys.stderr)
+    print(f"[md] {len(parsed_chapters)} chapter(s), {total_cases} slides parsed from {args.md.name}", file=sys.stderr)
 
     if args.tighten:
-        for i, c in enumerate(cases, 1):
-            try:
-                c["bullets"] = tighten_bullets(c["title"], c["bullets"])
-                print(f"  [slide {i}/{len(cases)}] tightened: {c['title'][:50]}", file=sys.stderr)
-            except Exception as e:
-                print(f"  [slide {i}] tighten failed ({e}); keeping raw", file=sys.stderr)
+        n = 0
+        for parsed in parsed_chapters:
+            for c in parsed["cases"]:
+                n += 1
+                try:
+                    c["bullets"] = tighten_bullets(c["title"], c["bullets"])
+                    print(f"  [slide {n}/{total_cases}] tightened: {c['title'][:50]}", file=sys.stderr)
+                except Exception as e:
+                    print(f"  [slide {n}] tighten failed ({e}); keeping raw", file=sys.stderr)
 
-    # Drop empty keys for cleaner JSON.
-    for c in cases:
-        if not c["notes"]:
-            del c["notes"]
-
-    chapter = {
-        "year": args.chapter,
-        "accent": args.accent,
-        "lesson": {
-            "title": parsed["lesson_title"] or f"Imported: {args.md.stem}",
-            "short": args.chapter,
-            "tagline": parsed["lesson_tagline"] or f"Imported from {args.md.name}. Edit this tagline and the cases below to match your narrative.",
-            "tags": "",
-        },
-        "cases": cases,
-    }
+    built: list[dict] = []
+    for i, parsed in enumerate(parsed_chapters):
+        cases = parsed["cases"]
+        for c in cases:
+            if not c["notes"]:
+                del c["notes"]
+        meta = parsed["meta"]
+        year = meta.get("year") or (args.chapter if len(parsed_chapters) == 1 else f"{args.chapter}-{i+1}")
+        accent = meta.get("accent") or args.accent
+        if accent not in ("teal", "purple", "amber", "rose"):
+            accent = args.accent
+        tagline = " ".join(parsed["lesson_tagline_parts"]).strip()
+        # Meta-provided title overrides the H1 when the original had line breaks.
+        meta_title = meta.get("title", "").replace("\\n", "\n") if meta.get("title") else ""
+        title = meta_title or parsed["lesson_title"] or f"Imported: {args.md.stem}"
+        built.append({
+            "year": year,
+            "accent": accent,
+            "lesson": {
+                "title": title,
+                "short": meta.get("short", year),
+                "tagline": tagline or f"Imported from {args.md.name}. Edit this tagline and the cases below to match your narrative.",
+                "tags": meta.get("tags", ""),
+            },
+            "cases": cases,
+        })
 
     stem = SAFE.sub("-", args.md.stem).strip("-").lower() or "deck"
     digest = hashlib.sha1(args.md.read_bytes()).hexdigest()[:8]
     out_path = args.out or (REPO_ROOT / "tools" / f"imported-{stem}-{digest}.json")
-    out_path.write_text(json.dumps(chapter, indent=2, ensure_ascii=False))
-    print(f"[done] Wrote {out_path.relative_to(REPO_ROOT)} ({len(cases)} cases)", file=sys.stderr)
-    print(f"[next] python3 tools/merge_sections.py {out_path.relative_to(REPO_ROOT)}", file=sys.stderr)
+    payload = built if len(built) > 1 else built[0]
+    out_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False))
+    try:
+        rel = str(out_path.relative_to(REPO_ROOT))
+    except ValueError:
+        rel = str(out_path)
+    print(f"[done] Wrote {rel} ({len(built)} chapter(s), {total_cases} cases)", file=sys.stderr)
+    print(f"[next] python3 tools/merge_sections.py {rel}", file=sys.stderr)
     return 0
 
 
