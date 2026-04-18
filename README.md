@@ -635,6 +635,56 @@ python3 tools/merge_sections.py tools/imported-<deck>-<hash>.json
 - `qwen2.5-coder:14b` on Archie normalizes each chunk into `{title, subtitle, bullets}` — single-pass, with `qwen3-coder:30b` on MBP as fallback.
 - Images (including `data:` URIs) are decoded into `media/import-<deck>-<hash>/` and rewritten as repo-relative paths. Remote `http(s)://` images are left as-is.
 
+### PDF import
+
+```bash
+pip3 install pdfplumber  # one-time
+python3 tools/import_pdf.py path/to/deck.pdf
+python3 tools/merge_sections.py tools/imported-<deck>-<hash>.json
+```
+
+- `pdfplumber` extracts per-page text sorted top-to-bottom, left-to-right — handles two-column layouts that have wonky stream order (InDesign / Keynote exports).
+- `llama3.1:8b@Sam` normalizes each page into `{title, subtitle, bullets}`, with `qwen3-coder:30b@MBP` as fallback.
+- Embedded raster images are extracted via `page.crop().to_image()` to `media/import-<deck>-<hash>/` when present. Scanned-page PDFs won't have embedded images — that's expected.
+
+### Slide linter
+
+```bash
+python3 tools/lint_deck.py
+python3 tools/lint_deck.py --json
+python3 tools/lint_deck.py --llm --limit 10
+```
+
+Never mutates — emits a markdown or JSON report. Checks title/bullet length, duplicate titles, orphan numbers (digits that appear in body but not title), empty taglines. Extracts the `SECTIONS` array via a node subprocess that walks bracket depth (string-aware). `--llm` adds a semantic review pass through `llama3.1:8b@Sam` that flags vague, redundant, or off-topic bullets.
+
+### Speaker-note timing
+
+```bash
+python3 tools/estimate_timing.py --target 20   # 20-minute talk
+python3 tools/estimate_timing.py --generate > notes-patch.json
+```
+
+Mirrors the 150-wpm / 20-sec-per-bullet formula from the presenter popup. Emits a per-slide duration table + total with a traffic-light indicator against `--target`. `--generate` drafts speaker notes for slides missing them via `llama3.1:8b@Sam` and emits a JSON patch (never mutates `index.html`).
+
+### Alt-text generator
+
+```bash
+python3 tools/gen_alt_text.py --limit 5          # smoke-test on 5 images
+python3 tools/gen_alt_text.py --scan-media       # list orphan media files
+python3 tools/gen_alt_text.py                    # full deck
+```
+
+Walks `SECTIONS` for local `case.img` paths and asks `gemma3:12b@Lenny` (vision) to draft a 10-20 word description. Emits a JSON patch you merge by hand. SVG files are skipped cleanly (vision models can't consume them). Response post-processor strips preamble phrases, markdown, and trailing punctuation artifacts. Fleet vision models are mediocre — treat output as first-pass copy.
+
+### Palette from reference image
+
+```bash
+python3 tools/extract_palette.py photo.jpg --vibe
+python3 tools/import_tokens.py tools/palette-photo.css
+```
+
+Pure-Python k-means++ on the downsampled image finds K dominant colors, then the script maps them by luminance (bg/bg_dark/text/dim) and hue distance (teal/purple/amber/rose). When the image has no color within 35° of a target accent, the accent is synthesized at the target hue using the primary's saturation — keeps the palette coherent on monochrome references. `--vibe` asks `gemma3:12b@Lenny` for a 3-6 word mood phrase, written as a CSS comment. Output is a `:root{}` block that `import_tokens.py` already accepts.
+
 ### Fleet endpoints
 
 [`tools/fleet_client.py`](tools/fleet_client.py) wraps Ollama's HTTP API with JSON-parsing and `<think>` block stripping. Endpoints are Tailscale IPs; edit the `ENDPOINTS` table at the top if your fleet differs. No auth — Tailscale is the perimeter.
@@ -643,10 +693,12 @@ Current task → model assignments (from nightly evals):
 
 | Task | Model | Where | Fallback |
 |---|---|---|---|
-| Token / PPTX normalization | `llama3.1:8b` | Sam | Archie |
+| Token / PPTX / PDF normalization | `llama3.1:8b` | Sam | Archie (same model) / MBP `qwen3-coder:30b` |
 | Markdown bullet `--tighten` | `llama3.1:8b` | Sam | `qwen3:8b` @ MBP |
 | HTML slide normalization | `qwen2.5-coder:14b` | Archie | `qwen3-coder:30b` @ MBP |
-| Image alt-text / vision (planned) | `gemma3:27b` | Lenny | — |
+| Semantic slide-linter pass | `llama3.1:8b` | Sam | — |
+| Speaker-note drafting | `llama3.1:8b` | Sam | — |
+| Image alt-text + palette vibe | `gemma3:12b` (vision) | Lenny | `gemma3:27b` (slower, higher quality) |
 
 ---
 
@@ -686,6 +738,11 @@ spatial-deck/
 │   ├── import_pptx.py     ← .pptx → SECTIONS chapter JSON
 │   ├── import_md.py       ← Markdown → SECTIONS chapter JSON
 │   ├── import_html.py     ← HTML deck → SECTIONS chapter JSON
+│   ├── import_pdf.py      ← PDF (pdfplumber) → SECTIONS chapter JSON
+│   ├── lint_deck.py       ← Report-only QA pass on SECTIONS
+│   ├── estimate_timing.py ← Per-slide duration + note drafting
+│   ├── gen_alt_text.py    ← Vision-model alt-text per image
+│   ├── extract_palette.py ← Image → Spatial Deck CSS tokens
 │   ├── merge_sections.py  ← Splice imported chapter into index.html
 │   └── samples/           ← Example input files
 ├── social.html      ← Social sharing card (1200×630)

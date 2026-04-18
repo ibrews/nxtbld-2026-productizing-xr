@@ -16,6 +16,11 @@
 | **PPTX import** | `python-pptx` extracts text/images deterministically → `llama3.1:8b@Sam` rewrites body copy into tight bullets → merger splices between `// ── IMPORTED START ──` sentinels | ee415a1 |
 | **Markdown import** | Regex parses `#`/`##`/`-`/`![]()`/`>` deterministically → optional `--tighten` via `llama3.1:8b@Sam` with `qwen3:8b@MBP` fallback → merger splices chapter | (this PR) |
 | **HTML import** | BeautifulSoup chunks by `<section>`/headings → `qwen2.5-coder:14b@Archie` normalizes to `{title,subtitle,bullets}` with `qwen3-coder:30b@MBP` fallback → images (incl. `data:` URIs) land in `media/import-*/` | (this PR) |
+| **PDF import** | `pdfplumber` per-page text sorted by y/x → `llama3.1:8b@Sam` normalizes → `page.crop().to_image()` for embedded rasters | 3a10a79-ish |
+| **Slide linter** | Node subprocess evals SECTIONS as data → static checks (title/bullet length, dup titles, orphan numbers, empty taglines) → optional `--llm` semantic pass via `llama3.1:8b@Sam`. Never mutates. | acd4ff6 |
+| **Timing estimator** | Same extractor → 150wpm/20s-per-bullet formula → markdown/JSON report with pacing traffic-light against `--target`; `--generate` drafts notes via `llama3.1:8b@Sam` | 3a10a79 |
+| **Alt-text generator** | Vision via `gemma3:12b@Lenny` over local image paths in SECTIONS. JSON patch output only. `--scan-media` lists orphans. | 3451dcc |
+| **Palette extractor** | Pillow + pure-Python k-means++ → hue/luminance map to token schema, synth missing accent hues from primary. Optional `--vibe` via Lenny vision. Round-trips through `import_tokens.py`. | 1ad39d4 |
 | **SessionStart git-freshness hook** | Warns if repo is behind origin (unrelated to importers, but installed same day) | KB 73f067f9 |
 
 ## Fleet endpoints (confirmed working 2026-04-18)
@@ -48,28 +53,11 @@ See `tools/import_html.py`. Structural-selector chunking with heading fallback; 
 ### ~~B. Markdown importer~~ ✅ SHIPPED
 See `tools/import_md.py`. `#`/`##`/`-`/`![]()`/`>` convention, deterministic parse, optional `--tighten`.
 
-### C. Slide linter *(quick win)*
-**Model:** `llama3.1:8b@Sam`
-**Goal:** `tools/lint_deck.py` scans the SECTIONS array, flags slides with >5 bullets, titles >80 chars, missing alt text, duplicated content, or numbers that appear in body but not title.
-**Output:** Markdown report. Never mutates the file.
-
-### D. Image alt-text / caption generator
-**Model:** `gemma3:27b@Lenny` (vision-ish; or try gemma3:12b@Archie first)
-**Goal:** For each image in `media/` without alt text in SECTIONS, generate a description and attach it as `alt:` on the entry.
-**Approach:** Ollama supports image input via `/api/generate` `"images":[base64,...]`. Test on a few images first — fleet vision models are mediocre, set expectations.
-
-### E. PDF importer (text-only first pass)
-**Model:** `llama3.1:8b@Sam`
-**Goal:** `tools/import_pdf.py deck.pdf` — `pdfplumber` extracts per-page text, LLM chunks into slides.
-**Watch out for:** PDFs from InDesign/Keynote have wonky text ordering. Sort by y-coordinate, not stream order.
-
-### F. Speaker-note timing estimator
-**Model:** `llama3.1:8b@Sam` (or pure Python — ~150 words/min).
-**Goal:** For each slide's `notes`, estimate spoken duration. Already partially exists in Spatial Deck's timing module; this just populates notes bulk.
-
-### G. Color palette extraction from reference image
-**Model:** `gemma3:27b@Lenny` (vision) + Python color quantization (sklearn KMeans).
-**Goal:** "Here's a photo. Make a deck that feels like this." → hex palette → feed to `import_tokens.py`.
+### ~~C. Slide linter~~ ✅ SHIPPED — `tools/lint_deck.py`
+### ~~D. Image alt-text generator~~ ✅ SHIPPED — `tools/gen_alt_text.py`
+### ~~E. PDF importer~~ ✅ SHIPPED — `tools/import_pdf.py`
+### ~~F. Speaker-note timing estimator~~ ✅ SHIPPED — `tools/estimate_timing.py`
+### ~~G. Palette from reference image~~ ✅ SHIPPED — `tools/extract_palette.py`
 
 ## Roadmap — CLAUDE-FIRST (judgment / UX / reasoning)
 
@@ -114,6 +102,9 @@ Fleet extracts SECTIONS from N source decks, Claude resolves overlap/conflicts a
 
 ## Suggested first move for the fresh session
 
-Start with **B (Markdown importer)** — it's 100 lines, mostly regex, proves the pattern works beyond PowerPoint, and ships something useful in under an hour. Then **A (HTML importer)** which is the strategic win for the Claude Design companion positioning. C/D/F can parallel-track after.
+All seven fleet-first items (A–G) have shipped. Remaining work is CLAUDE-FIRST territory (H–L, M–N) — judgment, UX, narrative. Don't start those speculatively; wait for a real user asking for them.
 
-Skip the CLAUDE-FIRST items until there's a real user asking for them. Most of this project's value is in the importer pipeline landing cleanly, not in speculative layouts or components.
+Good next moves if the user greenlights more fleet work:
+- A **peer-review harness**: given a chapter JSON, have two different fleet models critique the output and merge-vote. Cheap observability over the whole importer pipeline.
+- A **reverse-importer**: `tools/export_sections.py` → emit a clean `.md` / `.html` / `.pptx` from the current SECTIONS. Symmetric with the existing importers, useful for handoff the other way.
+- **Deck diff**: given two SECTIONS arrays (e.g. before/after a template merge), summarize what moved, what changed, what's new.
