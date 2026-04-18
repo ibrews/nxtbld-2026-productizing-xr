@@ -44,6 +44,16 @@ const SECTIONS = [
       { title:'The Red Flags', subtitle:'How to spot a studio that\u2019ll burn your budget',
         img:'images/ch3-case2-redflags.png', bullets:['They demo on hardware you\u2019ll never own. If the pitch is on a $10K rig, ask what deployment looks like.','\u201cWe\u2019ll figure out multiplayer later.\u201d Networking is architectural \u2014 it can\u2019t be bolted on in month six.','No one on the team has shipped a project that ran for more than one day. Trade shows \u2260 production.'] },
     ] },
+  { year: 'CH 4', accent: 'rose',
+    lesson: { title:'Your Deck Is Data.\nTreat It Like Code.', short:'DECK AS CODE', tagline:'Spatial Deck\u2019s <code>tools/</code> directory turns slides into a pipeline: a local Ollama fleet handles structured-JSON cleanup while frontier models stay reserved for judgment. Every importer has a mirror exporter, every change has a diff, every chapter has a peer review.<br><br>You don\u2019t rewrite a deck anymore \u2014 you <em>refactor</em> it.', tags:'Fleet \u00b7 Ollama \u00b7 Python \u00b7 Zero-Build' },
+    cases: [
+      { title:'Bring Any Format In.\nGet Any Format Out.', subtitle:'Markdown \u2194 HTML \u2194 PPTX \u2194 PDF \u2014 round-trip, not one-way',
+        img:'', bullets:['Importers: <code>import_md</code> / <code>import_html</code> / <code>import_pptx</code> / <code>import_pdf</code> / <code>import_tokens</code> \u2014 all emit the same SECTIONS-shape JSON','Exporters: <code>export_md</code> / <code>export_html</code> / <code>export_pptx</code> \u2014 round-trip verified (<code>diff_decks</code> reports 0 changes)','Structural extraction in pure Python; the fleet only rewrites prose. Single-pass, never \u201cplease fix your JSON.\u201d'] },
+      { title:'Let a Local Model\nRead Your Deck.', subtitle:'Peer review + lint + alt-text + timing \u2014 all offline, all fleet-powered',
+        img:'', bullets:['<code>peer_review.py</code>: two model families (llama3.1:8b \u00b7 qwen2.5-coder:14b) critique the same chapter \u2014 agreement is signal, disagreement is the interesting edge','<code>lint_deck</code>, <code>estimate_timing</code>, <code>gen_alt_text</code>, <code>extract_palette</code>: single-purpose QA tools, JSON-patch output only, never mutate <code>index.html</code> in one shot','Claude stays reserved for what local models fail at: architectural decisions, narrative judgment, UX trade-offs'] },
+      { title:'Merge, Diff, Ship.', subtitle:'Multi-deck merge + sentinel splicing + conflict reporting',
+        img:'', bullets:['<code>merge_decks.py</code>: concat N sources, flag year collisions, duplicate titles, Jaccard near-duplicates \u2014 writes a <code>.conflicts.md</code> for the editorial pass','<code>merge_sections.py</code>: idempotent splice between <code>// \u2500\u2500 IMPORTED START/END \u2500\u2500</code> sentinels \u2014 re-import as many times as you like','<code>diff_decks.py</code>: chapter/case-level diffs with bullet <code>difflib</code>. Your PR reviewer will thank you.'] },
+    ] },
 ];
 
 const BONUS = { year:'BONUS', title:'The Best XR Project\nIs the One You Don\u2019t Need.',
@@ -521,9 +531,16 @@ document.addEventListener('keydown',e=>{
   if((e.key==='h'||e.key==='H')&&!e.target.closest('input,textarea,[contenteditable]')){e.preventDefault();document.body.classList.toggle('presentation-mode');_mobileBtn();}
   if((e.key==='/'||(e.metaKey&&e.key==='f')||(e.ctrlKey&&e.key==='f'))&&!e.target.closest('input,textarea')){e.preventDefault();openSearch();}
 });
-let touchX=0,touchY=0,touchT=0;
+let touchX=0,touchY=0,touchT=0,lastTapT=0;
 document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;touchY=e.touches[0].clientY;touchT=Date.now();},{passive:true});
-document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;const dy=e.changedTouches[0].clientY-touchY;const dt=Date.now()-touchT;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){dx<0?(window._arrowSubstep!==false&&advanceStep()?0:goNext()):goPrev();}else if(Math.abs(dx)<15&&Math.abs(dy)<15&&dt<300){if(window._arrowSubstep!==false&&advanceStep())return;goNext();}},{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;const dy=e.changedTouches[0].clientY-touchY;const dt=Date.now()-touchT;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){lastTapT=0;dx<0?(window._arrowSubstep!==false&&advanceStep()?0:goNext()):goPrev();}else if(Math.abs(dx)<15&&Math.abs(dy)<15&&dt<300){lastTapT=Date.now();if(window._arrowSubstep!==false&&advanceStep())return;goNext();}},{passive:true});
+// Double-click (desktop): advance substep or next event — same as arrow/tap
+document.addEventListener('dblclick',e=>{
+  if(window._moveMode)return;
+  if(e.target.closest('#btn-prev,#btn-next,#move-hud,#anno-panel,#anim-scrub-bar,#slide-grid,#slide-grid-zone,#move-toggle,#anno-toggle,#mobile-ui-toggle'))return;
+  if(window._arrowSubstep!==false&&advanceStep())return;
+  goNext();
+});
 addEventListener('hashchange',goToFromHash);
 const _params=new URLSearchParams(location.search);
 const _paramMode=_params.has('edit')?'edit':_params.has('view')?'view':null;

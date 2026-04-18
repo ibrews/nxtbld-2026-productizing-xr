@@ -1,6 +1,16 @@
-# Spatial Deck — Fleet Importer Roadmap (Handoff for Fresh Session)
+# Spatial Deck — Handoff for Fresh Session
 
-**Target model:** Sonnet 4.6 is plenty for most of this. The work is formulaic — scaffold a Python script, call a fleet endpoint, validate JSON, splice into `index.html`. Reserve Opus for the items explicitly flagged as needing judgment (narrative, UX, layout intent). Fast Mode works fine too.
+**Status (updated 2026-04-18):** All fleet-first importer + exporter + QA tooling has shipped. The remaining roadmap is Claude-first (judgment-heavy) and should not be started speculatively — wait for a real user ask.
+
+**Target model:** Sonnet 4.6 for any fleet-glue work (formulaic, JSON-validated). Opus for the Claude-first items below (they require taste). Fast Mode is fine for both.
+
+## Where to pick up
+
+If the user is here to **extend the importer suite** — you're mostly done. Read `README.md §🤝 Claude Design Handoff` for the complete tool list. The patterns doc is [`~/knowledge/departments/engineering/fleet-structured-json-playbook.md`](../../../knowledge/departments/engineering/fleet-structured-json-playbook.md) (outside the repo).
+
+If the user is here to **adopt the new layouts** — [`tools/layouts/preview.html`](layouts/preview.html) shows them, [`tools/layouts/PATCH.md`](layouts/PATCH.md) has the exact splice. Not applied automatically because `index.html` usually has uncommitted edits.
+
+If the user is here for **something CLAUDE-first** (judgment, UX, narrative) — see "Roadmap — CLAUDE-FIRST" below. Expect architectural conversation first, code second.
 
 **Read first:**
 - [README.md § 🤝 Claude Design Handoff](../README.md) — user-facing description of what exists
@@ -22,6 +32,13 @@
 | **Alt-text generator** | Vision via `gemma3:12b@Lenny` over local image paths in SECTIONS. JSON patch output only. `--scan-media` lists orphans. | 3451dcc |
 | **Palette extractor** | Pillow + pure-Python k-means++ → hue/luminance map to token schema, synth missing accent hues from primary. Optional `--vibe` via Lenny vision. Round-trips through `import_tokens.py`. | 1ad39d4 |
 | **SessionStart git-freshness hook** | Warns if repo is behind origin (unrelated to importers, but installed same day) | KB 73f067f9 |
+| **Markdown exporter (`export_md.py`)** | Inverse of `import_md`. YAML-ish meta block preserves year/accent/short/tags/multiline-title. Round-trip verified: 0 diffs via `diff_decks.py`. | 0ecf1be |
+| **HTML exporter (`export_html.py`)** | Static, no-JS single-page outline. Dark theme, accent bar per chapter. For email / print / review. | 1ab9f69 |
+| **PPTX exporter (`export_pptx.py`)** | `python-pptx` emitter; round-trips cleanly through `import_pptx.py`. Accent bar, notes placeholder, 2-column layout. | 1ab9f69 |
+| **Peer-review harness (`peer_review.py`)** | Two reviewers from different model families (`llama3.1:8b`@Sam narrative + `qwen2.5-coder:14b`@Archie structural), merge-vote collapses (case_title, category) buckets. Both-flagged = 🔴, solo = 🟡. | 1ab9f69 |
+| **Multi-deck merge (`merge_decks.py`)** | Mechanical concatenation of N sources with conflict detection (year collision, duplicate titles, Jaccard near-duplicates over bullet tokens). Writes `.conflicts.md`. Editorial ordering stays with Claude. | 1ab9f69 |
+| **Layout preview + splice patch** | `tools/layouts/preview.html` + `tools/layouts/PATCH.md`. Three new layouts (`split-50`, `bleed`, `trio`) as a preview page + the exact CSS/JS diff to splice when you want to adopt them. Not editing `index.html` directly (usually has uncommitted edits). | 0e67a2f |
+| **Showcase chapter in sample deck** | `index.html` SECTIONS now includes CH 4 "Your Deck Is Data. Treat It Like Code." (rose accent, 3 cases showcasing the tool suite). | this session |
 
 ## Fleet endpoints (confirmed working 2026-04-18)
 
@@ -102,9 +119,23 @@ Fleet extracts SECTIONS from N source decks, Claude resolves overlap/conflicts a
 
 ## Suggested first move for the fresh session
 
-All seven fleet-first items (A–G) have shipped. Remaining work is CLAUDE-FIRST territory (H–L, M–N) — judgment, UX, narrative. Don't start those speculatively; wait for a real user asking for them.
+**Everything fleet-tractable has shipped** (A–G + the bonus round: reverse importers, peer review, multi-deck merge, layouts, deck diff). Don't re-implement; read the tool before rebuilding it.
 
-Good next moves if the user greenlights more fleet work:
-- A **peer-review harness**: given a chapter JSON, have two different fleet models critique the output and merge-vote. Cheap observability over the whole importer pipeline.
-- A **reverse-importer**: `tools/export_sections.py` → emit a clean `.md` / `.html` / `.pptx` from the current SECTIONS. Symmetric with the existing importers, useful for handoff the other way. *(Markdown side shipped: `tools/export_md.py` round-trips cleanly through `tools/import_md.py` — 0 diffs on the full deck.)*
-- **Deck diff**: given two SECTIONS arrays (e.g. before/after a template merge), summarize what moved, what changed, what's new. *(Shipped: `tools/diff_decks.py`.)*
+If the user asks for more, the remaining roadmap (H–N) is **Claude-first** and should start with a design conversation, not code:
+
+- **H.** `component:` registry → architecture call (enum vs template literal; fits "single-file, no-build" ethos?)
+- **I.** New layouts → **preview + patch shipped** at `tools/layouts/`; just needs the user to review + splice
+- **J.** Prose → WAAPI keyframes → intent parsing + DOM targeting; local models fail here
+- **K.** Narrative coach / reorder suggester → story-arc reasoning
+- **L.** In-deck importer UI panel → UX decision (violates "no build step" if done wrong)
+- **M.** End-to-end "Claude Design → Spatial Deck" demo → hybrid: fleet plumbing + Claude narrative
+- **N.** Multi-deck **editorial** merge → mechanical merger shipped; the narrative-order pass remains
+
+## Where the KB + docs live
+
+- **In-repo README** — authoritative feature list, quickstart, fleet routing table
+- **In-repo `tools/HANDOFF.md`** — this file; fresh-session briefing
+- **KB `projects/spatial-deck/overview.md`** — cross-project context, upcoming talks, architecture sketch
+- **KB `departments/engineering/fleet-structured-json-playbook.md`** — reusable patterns for any fleet-backed importer (not just this project)
+- **KB `intelligence/decisions/2026-04-18-spatial-deck-fleet-importer-suite.md`** — decision record for why fleet-first was chosen and what worked
+- **KB `departments/engineering/fleet-delegation-lessons.md`** — post-mortems including the "two-reviewer pattern works / local models can't do narrative" findings from this session
