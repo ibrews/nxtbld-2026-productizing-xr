@@ -1,14 +1,20 @@
-"""Peer-review harness: two fleet models critique the same SECTIONS / chapter,
-and we merge-vote the results.
+"""Peer-review harness: two reviewers from DIFFERENT model families critique
+the same SECTIONS / chapter, and we merge-vote the results.
 
-Pattern we've found useful in this repo: local models are weaker than Claude
-on judgment, but *two* local models disagreeing is a strong signal that
-something is genuinely ambiguous. Issues both reviewers flag are high-confidence;
-solo flags are suggestions.
+Pattern we've found useful in this repo: any single reviewer is noisy, but two
+reviewers from different model families have decorrelated errors — issues both
+flag are high-confidence; solo flags are suggestions. See KB:
+`departments/engineering/fleet-delegation-lessons.md`.
 
-Reviewers (different machines, different model families so their errors decorrelate):
-  - llama3.1:8b@Sam       — narrative/clarity
-  - qwen2.5-coder:14b@Archie — structure/consistency
+Reviewers come from any provider with valid creds (see review_providers.py):
+  - ollama  (local fleet — Sam: llama3.1:8b · Archie: qwen2.5-coder:14b)
+  - claude  (ANTHROPIC_API_KEY)
+  - gemini  (GEMINI_API_KEY or GOOGLE_API_KEY)
+  - openai  (OPENAI_API_KEY)
+
+`--provider auto` (default) picks the best available pair, preferring the proven
+ollama Sam+Archie combo if both fleet hosts are reachable, otherwise falling
+back to two distinct API providers in priority order [claude, gemini, openai].
 
 Each reviewer returns JSON of the form:
   {"issues": [{"case_title": "...", "severity": "high|med|low",
@@ -16,10 +22,10 @@ Each reviewer returns JSON of the form:
                "note": "..."}, ...]}
 
 Usage:
-    python3 tools/peer_review.py tools/imported-foo.json
     python3 tools/peer_review.py index.html
-    python3 tools/peer_review.py index.html --json > review.json
-    python3 tools/peer_review.py index.html --chapter 1
+    python3 tools/peer_review.py index.html --provider claude,gemini
+    python3 tools/peer_review.py index.html --provider ollama:sam,ollama:archie
+    python3 tools/peer_review.py index.html --chapter 1 --json > review.json
 """
 from __future__ import annotations
 import argparse
@@ -28,15 +34,15 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from fleet_client import call_json, ENDPOINTS  # noqa: E402
 from lint_deck import extract_sections  # noqa: E402
+from review_providers import Provider, build_pair  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
-REVIEWERS = [
-    {"model": "llama3.1:8b",       "host": "sam",    "lens": "narrative clarity, tone, pacing — is each slide doing one clear job?"},
-    {"model": "qwen2.5-coder:14b", "host": "archie", "lens": "structural consistency — bullet parallelism, title/subtitle coherence, redundancy across cases"},
-]
+LENSES = (
+    "narrative clarity, tone, pacing — is each slide doing one clear job?",
+    "structural consistency — bullet parallelism, title/subtitle coherence, redundancy across cases",
+)
 
 PROMPT = """You are reviewing a Spatial Deck chapter for the author.
 
@@ -59,17 +65,12 @@ Rules:
 """
 
 
-def review_one(chapter: dict, reviewer: dict, timeout: int = 240) -> list[dict]:
+def review_one(chapter: dict, provider: Provider, lens: str, timeout: int = 240) -> list[dict]:
     prompt = PROMPT.format(
-        lens=reviewer["lens"],
+        lens=lens,
         chapter_json=json.dumps(chapter, ensure_ascii=False, indent=2),
     )
-    data = call_json(
-        reviewer["model"], prompt,
-        endpoint=ENDPOINTS[reviewer["host"]],
-        required_keys=["issues"],
-        timeout=timeout,
-    )
+    data = provider.review(prompt, timeout=timeout)
     issues = data.get("issues") or []
     cleaned: list[dict] = []
     for i in issues:
@@ -80,7 +81,7 @@ def review_one(chapter: dict, reviewer: dict, timeout: int = 240) -> list[dict]:
             "severity":   str(i.get("severity") or "med").strip().lower(),
             "category":   str(i.get("category") or "clarity").strip().lower(),
             "note":       str(i.get("note") or "").strip(),
-            "_by":        f"{reviewer['model']}@{reviewer['host']}",
+            "_by":        provider.label,
         })
     return cleaned
 
@@ -164,8 +165,19 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("source", type=Path, help="HTML file or chapter/SECTIONS JSON")
     ap.add_argument("--chapter", type=int, default=None, help="review only this chapter index (0-based)")
+    ap.add_argument("--provider", default="auto",
+                    help="auto | comma-separated pair (e.g. 'claude,gemini', 'ollama:sam,ollama:archie')")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args()
+
+    try:
+        rev_a, rev_b = build_pair(args.provider, LENSES)
+    except Exception as e:
+        print(f"ERROR: {e}", file=sys.stderr)
+        return 3
+    print(f"[peer-review] reviewers: {rev_a.label} ({rev_a.family}) + {rev_b.label} ({rev_b.family})",
+          file=sys.stderr)
+    pair = ((rev_a, LENSES[0]), (rev_b, LENSES[1]))
 
     sections = load(args.source)
     if args.chapter is not None:
@@ -179,12 +191,12 @@ def main() -> int:
         label = f"Chapter {i} ({ch.get('year', '?')}) — {(ch.get('lesson') or {}).get('title', '')[:60]}"
         print(f"[peer-review] {label}", file=sys.stderr)
         reviews: list[list[dict]] = []
-        for r in REVIEWERS:
+        for prov, lens in pair:
             try:
-                print(f"  {r['model']}@{r['host']} …", file=sys.stderr)
-                reviews.append(review_one(ch, r))
+                print(f"  {prov.label} …", file=sys.stderr)
+                reviews.append(review_one(ch, prov, lens))
             except Exception as e:
-                print(f"  {r['model']}@{r['host']} failed: {e}", file=sys.stderr)
+                print(f"  {prov.label} failed: {e}", file=sys.stderr)
                 reviews.append([])
         merged = merge_vote(reviews)
         all_results.append({"chapter_label": label, "merged": merged})
