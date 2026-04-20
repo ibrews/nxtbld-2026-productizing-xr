@@ -28,23 +28,26 @@ The Harvard keynote was a hit. The framework that powered it became **Spatial De
 
 ## ✨ What Makes This Different
 
-| Feature | PowerPoint | Google Slides | Spatial Deck |
-|---------|-----------|--------------|-------------|
-| Single file, no cloud | ❌ | ❌ | ✅ |
-| Live annotation mode | ❌ | ❌ | ✅ |
-| Drag-to-reposition anything | ❌ | ✅ | ✅ |
-| Undo/redo in layout mode | ✅ | ✅ | ✅ |
-| Media cycler with pixelated reveal | ❌ | ❌ | ✅ |
-| Animated constellation map | ❌ | ❌ | ✅ |
-| Web Audio sound effects | ❌ | ❌ | ✅ |
-| Full theme editor (live) | Limited | Limited | ✅ |
-| Speaker notes + timing estimator | ✅ | ✅ | ✅ |
-| Multi-step slide animations | Limited | Limited | ✅ |
-| Vertical scroll mode (long-form) | ❌ | ❌ | ✅ |
-| Works offline from a USB stick | ❌ | ❌ | ✅ |
-| AI-friendly (LLM can edit it) | ❌ | ❌ | ✅ |
-| Version control with Git | ❌ | ❌ | ✅ |
-| Runs on any device with a browser | ❌ | ✅ | ✅ |
+| Feature | PowerPoint | Google Slides | Claude Design | Spatial Deck |
+|---------|-----------|--------------|--------------|-------------|
+| Single file, no cloud | ❌ | ❌ | ❌ (hosted) | ✅ |
+| Live annotation mode | ❌ | ❌ | ❌ | ✅ |
+| Drag-to-reposition anything | ❌ | ✅ | ❌ | ✅ |
+| Undo/redo in layout mode | ✅ | ✅ | ✅ | ✅ |
+| Media cycler with pixelated reveal | ❌ | ❌ | ❌ | ✅ |
+| Animated constellation map | ❌ | ❌ | ❌ | ✅ |
+| Web Audio sound effects | ❌ | ❌ | ❌ | ✅ |
+| Full theme editor (live) | Limited | Limited | ✅ | ✅ |
+| Speaker notes + timing estimator | ✅ | ✅ | ❌ | ✅ |
+| Pacing indicator (presenter popup) | ❌ | ❌ | ❌ | ✅ |
+| Multi-step slide animations | Limited | Limited | Limited | ✅ |
+| Vertical scroll mode (long-form) | ❌ | ❌ | ❌ | ✅ |
+| Works offline from a USB stick | ❌ | ❌ | ❌ | ✅ |
+| AI-friendly (LLM can edit it) | ❌ | ❌ | ✅ | ✅ |
+| Version control with Git | ❌ | ❌ | ❌ | ✅ |
+| Runs on any device with a browser | ❌ | ✅ | ✅ | ✅ |
+
+> **Claude Design vs. Spatial Deck:** Anthropic's [Claude Design](https://claude.ai/design) (launched April 2026) and Spatial Deck converge from opposite ends — Claude Design brings AI-native visuals to non-developers; Spatial Deck gives developers the depth layer beneath: speaker notes, move mode, pacing indicator, annotation export, and offline-safe presenting. Claude Design's "code handoff to Claude Code" feature points naturally to Spatial Deck as the runtime for that handoff.
 
 ---
 
