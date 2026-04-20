@@ -120,32 +120,29 @@ html,body{margin:0;width:1080px;height:1080px;overflow:hidden;background:#000;fo
     </div>
   </div>
 
-  <!-- 3. LIVE DECK fly-through #1 (7 - 15) — camera-pans across deck-mock slides -->
-  <div id="s3" class="scene clip" data-start="7" data-duration="8" data-track-index="1">
-    <div class="aura"></div>
-    <div class="scan"></div>
-    <div class="flythru">
-      <div class="keys"><kbd id="s3-arrow">→</kbd></div>
-      <!-- 3 stacked panels camera-panned via translateY -->
-      <div class="pan-stack" id="s3-stack" style="position:absolute;inset:0;will-change:transform">
-        <div class="pan" style="position:absolute;top:0;left:0;width:100%;height:100%">
-          <div class="slide-kick">CH 1 · DEFINE THE SPATIAL</div>
-          <div class="slide-title">Cardiac Surgery VR</div>
-          <img src="assets/ch1-case1-archviz.png" alt="" />
-        </div>
-        <div class="pan" style="position:absolute;top:100%;left:0;width:100%;height:100%">
-          <div class="slide-kick">MEDIA CYCLER · LIVE</div>
-          <div class="slide-title">Theater of Operations</div>
-          <img src="assets/ch1-case2-theater.png" alt="" />
-        </div>
-        <div class="pan" style="position:absolute;top:200%;left:0;width:100%;height:100%">
-          <div class="slide-kick">CH 2 · MATCH THE PLATFORM</div>
-          <div class="slide-title">18 slides · 4 chapters</div>
-          <img src="assets/ch2-case2-flowchart.svg" alt="" />
-        </div>
-      </div>
-      <div class="grade"></div>
-      <div class="hud" id="s3-hud">CH 1 · DEFINE THE SPATIAL</div>
+  <!-- 3a/3b/3c — deck slide sequence (7-15) — three hero-style slides, 2.67s each -->
+  <div id="s3a" class="scene clip" data-start="7" data-duration="2.67" data-track-index="1">
+    <div class="aura"></div><div class="scan"></div>
+    <div class="kicker" style="color:var(--rose)">LIVE DECK · CH 1</div>
+    <div class="hero">
+      <img src="assets/ch1-case1-archviz.png" alt="" />
+      <div class="cap"><span class="em">Cardiac Surgery VR</span></div>
+    </div>
+  </div>
+  <div id="s3b" class="scene clip" data-start="9.67" data-duration="2.66" data-track-index="1">
+    <div class="aura"></div><div class="scan"></div>
+    <div class="kicker" style="color:var(--rose)">LIVE DECK · MEDIA CYCLER</div>
+    <div class="hero">
+      <img src="assets/ch1-case2-theater.png" alt="" />
+      <div class="cap"><span class="tealem">Theater of Operations</span></div>
+    </div>
+  </div>
+  <div id="s3c" class="scene clip" data-start="12.34" data-duration="2.66" data-track-index="1">
+    <div class="aura"></div><div class="scan"></div>
+    <div class="kicker" style="color:var(--rose)">CH 2 · MATCH THE PLATFORM</div>
+    <div class="hero">
+      <img src="assets/ch2-case2-flowchart.svg" alt="" />
+      <div class="cap">18 slides · <span class="em">4 chapters</span></div>
     </div>
   </div>
 
@@ -169,31 +166,27 @@ html,body{margin:0;width:1080px;height:1080px;overflow:hidden;background:#000;fo
     </div>
   </div>
 
-  <!-- 5. LIVE DECK fly-through #2 (19 - 27) -->
-  <div id="s5" class="scene clip" data-start="19" data-duration="8" data-track-index="1">
-    <div class="aura"></div>
-    <div class="scan"></div>
-    <div class="flythru">
-      <div class="pan-stack" id="s5-stack" style="position:absolute;inset:0;will-change:transform">
-        <div class="pan" style="position:absolute;top:0;left:0;width:100%;height:100%">
-          <div class="slide-kick">CH 3 · ITERATION SPEED</div>
-          <div class="slide-title">Keyframe System</div>
-          <img src="assets/ch3-case1-checklist.svg" alt="" />
-        </div>
-        <div class="pan" style="position:absolute;top:100%;left:0;width:100%;height:100%">
-          <div class="slide-kick">CH 4 · DECK AS CODE</div>
-          <div class="slide-title">Merge · Diff · Ship</div>
-          <img src="assets/ch4-case2-peerreview.svg" alt="" />
-        </div>
-        <div class="pan" style="position:absolute;top:200%;left:0;width:100%;height:100%">
-          <div class="slide-kick">SETTINGS · v0.0.5</div>
-          <div class="slide-title">Spatial Deck Creator</div>
-          <div class="slide-sub">Single file. No build. Yours to fork.</div>
-        </div>
-      </div>
-      <div class="grade"></div>
-      <div class="hud" id="s5-hud">CH 3 · ITERATION SPEED</div>
+  <!-- 5a/5b/5c — deck slide sequence #2 (19-27) -->
+  <div id="s5a" class="scene clip" data-start="19" data-duration="2.67" data-track-index="1">
+    <div class="aura"></div><div class="scan"></div>
+    <div class="kicker" style="color:var(--amber)">CH 3 · ITERATION SPEED</div>
+    <div class="hero">
+      <img src="assets/ch3-case1-checklist.svg" alt="" />
+      <div class="cap"><span class="em">Keyframe</span> System</div>
     </div>
+  </div>
+  <div id="s5b" class="scene clip" data-start="21.67" data-duration="2.66" data-track-index="1">
+    <div class="aura"></div><div class="scan"></div>
+    <div class="kicker" style="color:var(--rose)">CH 4 · DECK AS CODE</div>
+    <div class="hero">
+      <img src="assets/ch4-case2-peerreview.svg" alt="" />
+      <div class="cap">Merge · Diff · <span class="tealem">Ship</span></div>
+    </div>
+  </div>
+  <div id="s5c" class="scene clip" data-start="24.34" data-duration="2.66" data-track-index="1">
+    <div class="aura"></div><div class="scan"></div>
+    <div class="kicker" style="color:var(--teal)">SETTINGS · v0.0.5</div>
+    <h1 class="title" style="font-size:80px">Single file.<br/><span class="accent">No build.</span><br/>Yours to fork.</h1>
   </div>
 
   <!-- 6. Claude Design bridge (27 - 30.5) -->
@@ -241,53 +234,105 @@ html,body{margin:0;width:1080px;height:1080px;overflow:hidden;background:#000;fo
 window.__timelines = window.__timelines || {};
 const tl = gsap.timeline({ paused: true });
 
-// ── per-scene entrances ──
-function entrance(sel, t, dur=0.5){
-  tl.from(sel + ' .kicker', {y:-20, opacity:0, duration:dur, ease:'power2.out'}, t);
-  tl.from(sel + ' .title, ' + sel + ' .term, ' + sel + ' .cd, ' + sel + ' .hero, ' + sel + ' .flythru, ' + sel + ' .logo',
-    {y:40, opacity:0, duration:0.7, ease:'power3.out'}, t + 0.1);
-  tl.from(sel + ' .sub, ' + sel + ' .cd-title, ' + sel + ' .tag, ' + sel + ' .url, ' + sel + ' .cap, ' + sel + ' .complement',
-    {y:20, opacity:0, duration:0.5, ease:'power2.out'}, t + 0.35);
+// 128 BPM = 0.469s per beat. Scene windows:
+// s1: 0-2.5  s2: 2.5-7  s3: 7-15  s4: 15-19  s5: 19-27  s6: 27-30.5  s7: 30.5-34  s8: 34-39
+const BEAT = 0.469;
+
+// ── Continuous aura pulse — attached to tl so hyperframes scrubs it frame-by-frame ──
+// 83 half-beats ≈ 39s. Yoyo on sine makes an even breathing pulse.
+for (let i = 0; i < 83; i++) {
+  const t = i * BEAT / 2;
+  tl.to('.aura', { opacity: 0.75, scale: 1.08, duration: BEAT/2, ease: 'sine.inOut' }, t);
+  tl.to('.aura', { opacity: 0.35, scale: 1.00, duration: BEAT/2, ease: 'sine.inOut' }, t + BEAT/2);
 }
 
-entrance('#s1', 0);
-entrance('#s2', 2.5);
-// s2: stagger terminal output lines + swatches
-tl.fromTo('#s2 .s2-out', {y:10}, {opacity:1, y:0, duration:0.3, stagger:0.25, ease:'power2.out'}, 3.6);
-tl.fromTo('#s2 .s2-sw', {scale:0.4, rotate:-12}, {opacity:1, scale:1, rotate:0, duration:0.3, stagger:0.08, ease:'back.out(1.4)'}, 4.6);
+// ── entrance helper ──
+// NOTE: use fromTo with explicit end state — tl.from + immediateRender interacts
+// badly with hyperframes' `.clip` scene system. Also: do NOT animate .flythru here
+// — its entrance is handled separately so the long scene-wide scale tween doesn't
+// collide with a y/opacity tween on the same element (which left it invisible).
+function entrance(sel, t){
+  tl.fromTo(sel + ' .kicker', {y:-24, opacity:0}, {y:0, opacity:1, duration:0.45, ease:'power2.out'}, t);
+  tl.fromTo(sel + ' .title, ' + sel + ' .term, ' + sel + ' .cd, ' + sel + ' .hero, ' + sel + ' .logo',
+    {y:50, opacity:0}, {y:0, opacity:1, duration:0.6, ease:'power3.out'}, t + 0.08);
+  tl.fromTo(sel + ' .sub, ' + sel + ' .cd-title, ' + sel + ' .tag, ' + sel + ' .url, ' + sel + ' .cap, ' + sel + ' .complement',
+    {y:20, opacity:0}, {y:0, opacity:1, duration:0.45, ease:'power2.out'}, t + 0.3);
+}
+// Flythru entrance (separate — no transform collision with scene-wide scale breath).
+function flythruEntrance(sel, t){
+  tl.fromTo(sel + ' .flythru', {opacity:0}, {opacity:1, duration:0.5, ease:'power2.out'}, t);
+}
 
-entrance('#s3', 7);
-// s3 fly-through: pan the stack -100%, -200% across 8s with hud updates
-tl.set('#s3-stack', {y:'0%'}, 7);
-tl.to('#s3-stack', {y:'-100%', duration:1.2, ease:'power2.inOut'}, 9.2);
-tl.add(() => { const h = document.getElementById('s3-hud'); if(h) h.textContent='MEDIA CYCLER · LIVE'; }, 9.2);
-tl.to('#s3-stack', {y:'-200%', duration:1.2, ease:'power2.inOut'}, 11.7);
-tl.add(() => { const h = document.getElementById('s3-hud'); if(h) h.textContent='CH 2 · 18 SLIDES · 4 CHAPTERS'; }, 11.7);
-// arrow tap pulses
-[7.2, 9.2, 11.7].forEach(t => {
-  tl.to('#s3-arrow', {backgroundColor:'#00d4ff', color:'#000', scale:1.15, duration:0.15, yoyo:true, repeat:1}, t);
+// ── S1 title (0-2.5) — shimmer + breath ──
+entrance('#s1', 0);
+tl.fromTo('#s1 .accent', {backgroundPosition:'0% 0%'}, {backgroundPosition:'300% 0%', duration:2.5, ease:'none'}, 0);
+tl.to('#s1 .title', {scale:1.03, duration:2.5, ease:'sine.inOut'}, 0);
+
+// ── S2 terminal + swatches (2.5-7) — continuous typing + shimmer ──
+entrance('#s2', 2.5);
+tl.fromTo('#s2 .s2-out', {x:-10, opacity:0}, {opacity:1, x:0, duration:0.35, stagger:0.4, ease:'power2.out'}, 3.4);
+tl.fromTo('#s2 .s2-sw', {scale:0.3, rotate:-12, opacity:0}, {opacity:1, scale:1, rotate:0, duration:0.35, stagger:0.12, ease:'back.out(1.6)'}, 4.9);
+// After swatches land, keep them alive — staggered glow pulse until scene end
+tl.to('#s2 .s2-sw', {boxShadow:'0 8px 30px rgba(255,255,255,0.35)', duration:0.4, stagger:{each:0.12, repeat:3, yoyo:true}, ease:'sine.inOut'}, 5.6);
+// Subtle zoom on terminal throughout scene
+tl.fromTo('#s2 .term', {scale:1.0}, {scale:1.015, duration:4.5, ease:'sine.inOut'}, 2.5);
+
+// ── S3a/b/c — three deck slides (7-15), 2.67s each, Ken Burns on image ──
+[['#s3a',7],['#s3b',9.67],['#s3c',12.34]].forEach(([sel,t])=>{
+  entrance(sel, t);
+  tl.fromTo(sel+' .hero img', {scale:1.02, x:-8}, {scale:1.08, x:8, duration:2.67, ease:'none'}, t);
+  tl.fromTo(sel+' .cap', {scale:0.95, opacity:0.6}, {scale:1.02, opacity:1, duration:0.6, ease:'back.out(1.6)'}, t+0.5);
 });
 
+// ── S4 pptx terminal + chips (15-19) — staggered entries through scene end ──
 entrance('#s4', 15);
-tl.fromTo('#s4 .s4-out', {y:10}, {opacity:1, y:0, duration:0.3, stagger:0.22, ease:'power2.out'}, 16.0);
-tl.fromTo('#s4 .s4-chip', {y:14, scale:0.85}, {opacity:1, y:0, scale:1, duration:0.3, stagger:0.12, ease:'back.out(1.4)'}, 16.9);
+tl.fromTo('#s4 .s4-out', {x:-10, opacity:0}, {opacity:1, x:0, duration:0.3, stagger:0.35, ease:'power2.out'}, 15.7);
+tl.fromTo('#s4 .s4-chip', {y:20, scale:0.75, opacity:0}, {opacity:1, y:0, scale:1, duration:0.32, stagger:0.18, ease:'back.out(1.6)'}, 16.8);
+// Rolling chip highlight from 17.6 until scene end
+tl.to('#s4 .s4-chip', {scale:1.08, duration:0.2, stagger:{each:0.15, repeat:3, yoyo:true}, ease:'sine.inOut'}, 17.8);
+tl.fromTo('#s4 .term', {scale:1.0}, {scale:1.015, duration:4, ease:'sine.inOut'}, 15);
 
-entrance('#s5', 19);
-tl.set('#s5-stack', {y:'0%'}, 19);
-tl.to('#s5-stack', {y:'-100%', duration:1.2, ease:'power2.inOut'}, 21.4);
-tl.add(() => { const h = document.getElementById('s5-hud'); if(h) h.textContent='CH 4 · DECK AS CODE'; }, 21.4);
-tl.to('#s5-stack', {y:'-200%', duration:1.2, ease:'power2.inOut'}, 23.9);
-tl.add(() => { const h = document.getElementById('s5-hud'); if(h) h.textContent='SETTINGS · v0.0.5'; }, 23.9);
+// ── S5a/b/c — three deck slides (19-27), same pattern as S3 ──
+[['#s5a',19],['#s5b',21.67]].forEach(([sel,t])=>{
+  entrance(sel, t);
+  tl.fromTo(sel+' .hero img', {scale:1.02, x:-8}, {scale:1.08, x:8, duration:2.67, ease:'none'}, t);
+  tl.fromTo(sel+' .cap', {scale:0.95, opacity:0.6}, {scale:1.02, opacity:1, duration:0.6, ease:'back.out(1.6)'}, t+0.5);
+});
+entrance('#s5c', 24.34);
+tl.fromTo('#s5c .title', {scale:0.95}, {scale:1.02, duration:2.66, ease:'sine.inOut'}, 24.34);
+tl.fromTo('#s5c .title .accent', {backgroundPosition:'0% 0%'}, {backgroundPosition:'300% 0%', duration:2.66, ease:'none'}, 24.34);
 
+// ── S6 Claude Design bridge (27-30.5) — arrow pumps + side-card breathing ──
 entrance('#s6', 27);
+// Arrow pumps every half-beat for the scene duration
+tl.to('#s6 .cd-arrow', {x:16, duration:BEAT, ease:'power1.inOut', repeat:6, yoyo:true}, 27.6);
+// Side cards slight opposing scale (left breathes in while right breathes out)
+tl.fromTo('#s6 .cd-side.left', {scale:1.0}, {scale:1.03, duration:BEAT*2, ease:'sine.inOut', repeat:2, yoyo:true}, 27.3);
+tl.fromTo('#s6 .cd-side.right', {scale:1.03}, {scale:1.0, duration:BEAT*2, ease:'sine.inOut', repeat:2, yoyo:true}, 27.3);
+
+// ── S7 merge SVG punchline (30.5-34) — kenburns + caption reveal ──
 entrance('#s7', 30.5);
+tl.fromTo('#s7 .hero img', {scale:1.02, x:-10}, {scale:1.08, x:10, duration:3.5, ease:'none'}, 30.5);
+// Caption word-by-word emphasis
+tl.from('#s7 .cap .em:first-of-type', {scale:0.8, opacity:0, duration:0.3, ease:'back.out(2)'}, 31.0);
+tl.from('#s7 .cap .tealem', {scale:0.8, opacity:0, duration:0.3, ease:'back.out(2)'}, 31.5);
+tl.from('#s7 .cap .em:last-of-type', {scale:0.8, opacity:0, duration:0.3, ease:'back.out(2)'}, 32.0);
+// Pulse the caption near end
+tl.to('#s7 .cap', {scale:1.05, duration:BEAT, yoyo:true, repeat:3, ease:'sine.inOut'}, 32.5);
+
+// ── S8 end card (34-39) — logo shimmer, url glow, rolling extensions ──
 entrance('#s8', 34);
-
-// final gentle fade
-tl.to('#s8', {opacity:0, duration:0.5, ease:'power2.in'}, 38.5);
-
-// global aura pulse — paced to the 128 BPM beat (~0.94s per pulse)
-gsap.to('.aura', {opacity:0.7, scale:1.06, duration:0.94, ease:'sine.inOut', repeat: 40, yoyo:true});
+// Logo continuous shimmer
+tl.fromTo('#s8 .logo .gradient', {backgroundPosition:'0% 0%'}, {backgroundPosition:'300% 0%', duration:5, ease:'none'}, 34);
+// URL box pulsing glow every beat
+for (let i = 0; i < 8; i++) {
+  tl.to('#s8 .url', {boxShadow:'0 0 60px rgba(0,212,255,0.65)', duration:BEAT/2, ease:'sine.inOut'}, 34.5 + i*BEAT);
+  tl.to('#s8 .url', {boxShadow:'0 0 40px rgba(0,212,255,0.3)', duration:BEAT/2, ease:'sine.inOut'}, 34.5 + i*BEAT + BEAT/2);
+}
+// Complement line breath
+tl.fromTo('#s8 .complement', {opacity:0.55}, {opacity:0.9, duration:BEAT*4, ease:'sine.inOut', yoyo:true, repeat:1}, 35);
+// Final gentle fade
+tl.to('#s8', {opacity:0, duration:0.6, ease:'power2.in'}, 38.4);
 
 window.__timelines["main"] = tl;
 </script>
