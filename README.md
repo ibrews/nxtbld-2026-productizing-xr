@@ -40,6 +40,7 @@ The Harvard keynote was a hit. The framework that powered it became **Spatial De
 | Full theme editor (live) | Limited | Limited | ✅ |
 | Speaker notes + timing estimator | ✅ | ✅ | ✅ |
 | Multi-step slide animations | Limited | Limited | ✅ |
+| Vertical scroll mode (long-form) | ❌ | ❌ | ✅ |
 | Works offline from a USB stick | ❌ | ❌ | ✅ |
 | AI-friendly (LLM can edit it) | ❌ | ❌ | ✅ |
 | Version control with Git | ❌ | ❌ | ✅ |
@@ -68,6 +69,7 @@ open index.html
 3. **Press `A` to enter Annotation Mode and click anywhere on a slide** — a note panel appears; click Export to get all annotations as copyable markdown for AI handoff.
 4. **Open slide 0 (Settings, accessible via the slide grid) and change the font family or accent color** — the entire deck re-themes live without a reload; settings persist across browser restarts.
 5. **Press `N` to open the Presenter Popup, then navigate a few slides** — a second window tracks speaker notes, elapsed time, next-slide preview, and a pacing indicator (green / yellow / red).
+6. **Append `?vertical` to the URL (or toggle "Vertical Scroll Mode" in Settings)** — slides flip from step-through presentation to a long-form scrollable page; great for sharing a deck as a readable web doc. Toggle off (or remove `?vertical`) to return to presentation mode.
 
 ---
 
@@ -154,6 +156,7 @@ Case studies show an image/media area alongside the title, subtitle, and bullet 
 | `yoursite.com/?edit` | Edit mode — all chrome visible, even on mobile |
 | `yoursite.com/?view` | Explicit view mode (same as default) |
 | `yoursite.com/?landscape` | Shows "rotate to landscape" prompt on portrait phones |
+| `yoursite.com/?vertical` | Vertical scroll mode — slides flow down the page (long-form / web-doc reading) |
 | `yoursite.com/?edit#15` | Edit mode, starting at slide 15 |
 
 ### Mobile Support

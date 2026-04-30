@@ -71,6 +71,13 @@ canvas#stars{position:absolute;inset:0}
 #deck{position:relative;z-index:1;width:100%;height:100%;overflow:hidden}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(40px,5vw,80px);text-align:center;opacity:0;pointer-events:none}
 .slide.active{opacity:1;pointer-events:all}
+/* Vertical Scroll Mode — slides flow down the page instead of stepping through */
+body.vertical-mode,body.vertical-mode html{overflow:auto!important;height:auto!important}
+body.vertical-mode #deck{height:auto;overflow:visible}
+body.vertical-mode .slide{position:relative;inset:auto;height:100vh;width:100%;opacity:1!important;pointer-events:all!important;transform:none!important;animation:none!important;scroll-snap-align:start}
+body.vertical-mode #deck{scroll-snap-type:y proximity}
+body.vertical-mode .slide[data-hidden="1"]{display:none}
+body.vertical-mode .bg{position:fixed}
 @keyframes slideInFwd{from{opacity:0;transform:translateX(6%) scale(.97)}to{opacity:1;transform:none}}
 @keyframes slideInBwd{from{opacity:0;transform:translateX(-6%) scale(.97)}to{opacity:1;transform:none}}
 @keyframes slideOutFwd{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-6%) scale(.97)}}
@@ -320,9 +327,9 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
 
 // Settings slide (slot 0, hidden)
 (function(){
-  const D={paraGap:.35,taglineScale:1,titleScale:1,imgDur:6,primaryColor:'#00d4ff',secondaryColor:'#a78bfa',bgDark:'#060810',fontFamily:'Space Grotesk',transition:'slide',arrowSubstep:true};
+  const D={paraGap:.35,taglineScale:1,titleScale:1,imgDur:6,primaryColor:'#00d4ff',secondaryColor:'#a78bfa',bgDark:'#060810',fontFamily:'Space Grotesk',transition:'slide',arrowSubstep:true,verticalMode:false};
   const saved=JSON.parse(localStorage.getItem('sd-cfg')||'{}');const C={...D,...saved};
-  function apply(){const r=document.documentElement.style;r.setProperty('--para-gap',C.paraGap+'em');r.setProperty('--tagline-scale',C.taglineScale);r.setProperty('--title-scale',C.titleScale);r.setProperty('--teal',C.primaryColor);r.setProperty('--purple',C.secondaryColor);r.setProperty('--bg-dark',C.bgDark);r.setProperty('--bg',C.bgDark);if(C.fontFamily&&C.fontFamily!=='Custom')r.setProperty('--font',`'${C.fontFamily}',system-ui,sans-serif`);else if(C.customFont)r.setProperty('--font',`'${C.customFont}',system-ui,sans-serif`);window._globalImageDuration=C.imgDur*1000;window._arrowSubstep=C.arrowSubstep;}
+  function apply(){const r=document.documentElement.style;r.setProperty('--para-gap',C.paraGap+'em');r.setProperty('--tagline-scale',C.taglineScale);r.setProperty('--title-scale',C.titleScale);r.setProperty('--teal',C.primaryColor);r.setProperty('--purple',C.secondaryColor);r.setProperty('--bg-dark',C.bgDark);r.setProperty('--bg',C.bgDark);if(C.fontFamily&&C.fontFamily!=='Custom')r.setProperty('--font',`'${C.fontFamily}',system-ui,sans-serif`);else if(C.customFont)r.setProperty('--font',`'${C.customFont}',system-ui,sans-serif`);window._globalImageDuration=C.imgDur*1000;window._arrowSubstep=C.arrowSubstep;const vForced=new URLSearchParams(location.search).has('vertical');document.body.classList.toggle('vertical-mode',!!C.verticalMode||vForced);window._verticalMode=!!C.verticalMode||vForced;}
   apply();function save(){localStorage.setItem('sd-cfg',JSON.stringify(C));}
   const s=document.createElement('div');s.className='slide slide-settings';s.dataset.type='settings';s.dataset.hidden='1';
   const fo=['Space Grotesk','Inter','Outfit','JetBrains Mono','Playfair Display','Custom'].map(f=>`<option value="${f}"${C.fontFamily===f?' selected':''}>${f}</option>`).join('');
@@ -337,6 +344,7 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
     <div class="cfg-row"><label class="cfg-label">Title Size</label><div class="cfg-control"><input type="range" id="cfg-ti" min="0.6" max="1.3" step="0.05" value="${C.titleScale}"><span class="cfg-val" id="v-ti">${Math.round(C.titleScale*100)}%</span></div></div>
   <div class="cfg-row"><label class="cfg-label">Transition</label><div class="cfg-control"><select id="cfg-transition" class="cfg-select"><option value="slide"${C.transition==='slide'?' selected':''}>Slide</option><option value="fade"${C.transition==='fade'?' selected':''}>Fade</option><option value="zoom"${C.transition==='zoom'?' selected':''}>Zoom</option><option value="none"${C.transition==='none'?' selected':''}>None (instant)</option></select></div></div>
   <div class="cfg-row"><label class="cfg-label">Arrow substep</label><div class="cfg-control"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="cfg-substep" ${C.arrowSubstep?'checked':''}><span class="cfg-val" id="v-substep">${C.arrowSubstep?'On':'Off'}</span></label></div></div>
+  <div class="cfg-row"><label class="cfg-label">Vertical Scroll Mode</label><div class="cfg-control"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="cfg-vmode" ${C.verticalMode?'checked':''}><span class="cfg-val" id="v-vmode">${C.verticalMode?'On':'Off'}</span></label></div></div>
   </div><div class="cfg-row" style="grid-column:1/-1"><span class="cfg-label">Estimated Duration</span><span class="cfg-val" id="v-duration" style="text-align:left">--:--</span></div></div><div style="text-align:center;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="cfg-reset" id="cfg-r">Reset to Defaults</button><button class="cfg-btn-export" id="cfg-export">&#128230; Export for Offline</button><button class="cfg-btn-export" id="cfg-restore">\uD83D\uDD04 Restore Snapshot</button></div><div class="cfg-hint">Ctrl/Cmd-click grid thumbnails to hide &middot; H = presentation mode &middot; A = annotate &middot; M = move &middot; N = presenter popup &middot; Shift+N = notes drawer</div></div>`;
   deck.appendChild(s);allSlides.push(s);
   function w(id,vid,set,fmt){const e=s.querySelector('#'+id),v=s.querySelector('#'+vid);e.addEventListener('input',()=>{set(parseFloat(e.value));apply();v.textContent=fmt(parseFloat(e.value));save();});}
@@ -350,6 +358,7 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
   const trSel=s.querySelector('#cfg-transition');
   trSel.addEventListener('change',()=>{C.transition=trSel.value;save();});
   const _subCb=s.querySelector('#cfg-substep'),_subVal=s.querySelector('#v-substep');_subCb.addEventListener('change',()=>{C.arrowSubstep=_subCb.checked;apply();_subVal.textContent=_subCb.checked?'On':'Off';save();});
+  const _vmCb=s.querySelector('#cfg-vmode'),_vmVal=s.querySelector('#v-vmode');_vmCb.addEventListener('change',()=>{C.verticalMode=_vmCb.checked;apply();_vmVal.textContent=_vmCb.checked?'On':'Off';save();if(window._onVerticalModeChange)window._onVerticalModeChange();});
   s.querySelector('#cfg-r').addEventListener('click',()=>{Object.assign(C,D);delete C.customFont;save();apply();location.reload();});
 })();
 
@@ -500,7 +509,7 @@ deck.appendChild(cls);allSlides.push(cls);
 // Navigation
 let current=1,total=allSlides.length,direction=1;
 function nextVisible(f,d){let i=f;for(let n=0;n<total;n++){i=(i+d+total)%total;if(allSlides[i].dataset.hidden!=='1')return i;}return f;}
-function goTo(n,fwd){if(n<0||n>=total||n===current)return;window._killAllSfx();const dir=fwd!==undefined?fwd:n>current;direction=dir?1:-1;const trans=JSON.parse(localStorage.getItem('sd-cfg')||'{}').transition||'slide';const prev=allSlides[current];prev.classList.remove('active');if(trans==='none'){prev.style.animation='';}else{let exitAnim;if(trans==='fade')exitAnim='fadeOut';else if(trans==='zoom')exitAnim=dir?'zoomOutFwd':'zoomOutBwd';else exitAnim=dir?'slideOutFwd':'slideOutBwd';prev.style.animation=exitAnim+' .4s ease forwards';setTimeout(()=>{prev.style.animation='';},450);}current=n;const next=allSlides[current];next.classList.add('active');if(trans==='none'){next.style.animation='';}else{let enterAnim;if(trans==='fade')enterAnim='fadeIn';else if(trans==='zoom')enterAnim=dir?'zoomInFwd':'zoomInBwd';else enterAnim=dir?'slideInFwd':'slideInBwd';next.style.animation=enterAnim+' .4s ease forwards';setTimeout(()=>{next.style.animation='';},450);}updateHUD();updateHash();playWhoosh();if(typeof gridEnsureSlide==='function')gridEnsureSlide();if(window.kfOnSlideEnter)window.kfOnSlideEnter();}
+function goTo(n,fwd){if(n<0||n>=total||n===current)return;window._killAllSfx();const dir=fwd!==undefined?fwd:n>current;direction=dir?1:-1;if(window._verticalMode){const prev=allSlides[current];if(prev)prev.classList.remove('active');current=n;const next=allSlides[current];next.classList.add('active');try{next.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){next.scrollIntoView();}updateHUD();updateHash();if(typeof gridEnsureSlide==='function')gridEnsureSlide();if(window.kfOnSlideEnter)window.kfOnSlideEnter();return;}const trans=JSON.parse(localStorage.getItem('sd-cfg')||'{}').transition||'slide';const prev=allSlides[current];prev.classList.remove('active');if(trans==='none'){prev.style.animation='';}else{let exitAnim;if(trans==='fade')exitAnim='fadeOut';else if(trans==='zoom')exitAnim=dir?'zoomOutFwd':'zoomOutBwd';else exitAnim=dir?'slideOutFwd':'slideOutBwd';prev.style.animation=exitAnim+' .4s ease forwards';setTimeout(()=>{prev.style.animation='';},450);}current=n;const next=allSlides[current];next.classList.add('active');if(trans==='none'){next.style.animation='';}else{let enterAnim;if(trans==='fade')enterAnim='fadeIn';else if(trans==='zoom')enterAnim=dir?'zoomInFwd':'zoomInBwd';else enterAnim=dir?'slideInFwd':'slideInBwd';next.style.animation=enterAnim+' .4s ease forwards';setTimeout(()=>{next.style.animation='';},450);}updateHUD();updateHash();playWhoosh();if(typeof gridEnsureSlide==='function')gridEnsureSlide();if(window.kfOnSlideEnter)window.kfOnSlideEnter();}
 function goNext(){goTo(nextVisible(current,1),true);}
 function goPrev(){goTo(nextVisible(current,-1),false);}
 function advanceStep(){const ss=slideSteps.get(allSlides[current]);if(ss&&ss.current<ss.steps.length){ss.steps[ss.current]();ss.current++;updateStepIndicator();return true;}return false;}
@@ -542,6 +551,15 @@ document.addEventListener('dblclick',e=>{
   goNext();
 });
 addEventListener('hashchange',goToFromHash);
+// Vertical Scroll Mode — IntersectionObserver tracks the most-visible slide while user scrolls
+(function(){
+  let io=null,scrollSyncing=false;
+  function teardown(){if(io){io.disconnect();io=null;}}
+  function setup(){teardown();if(!window._verticalMode)return;io=new IntersectionObserver(entries=>{if(scrollSyncing)return;let best=null,bestRatio=0;entries.forEach(en=>{if(en.intersectionRatio>bestRatio){bestRatio=en.intersectionRatio;best=en.target;}});if(!best||bestRatio<0.5)return;const idx=allSlides.indexOf(best);if(idx<0||idx===current)return;allSlides[current]?.classList.remove('active');current=idx;best.classList.add('active');updateHUD();updateHash();if(window.kfOnSlideEnter)window.kfOnSlideEnter();},{threshold:[0,.25,.5,.75,1]});allSlides.forEach(s=>io.observe(s));}
+  window._onVerticalModeChange=function(){if(window._verticalMode){setup();const cur=allSlides[current];if(cur)setTimeout(()=>cur.scrollIntoView({behavior:'auto',block:'start'}),50);}else{teardown();window.scrollTo(0,0);}};
+  // Boot: if URL ?vertical or stored config wants vertical, set up
+  if(window._verticalMode){setTimeout(setup,100);}
+})();
 const _params=new URLSearchParams(location.search);
 const _paramMode=_params.has('edit')?'edit':_params.has('view')?'view':null;
 const _wantLandscape=_params.has('landscape');
