@@ -1,0 +1,47 @@
+/* =======================================================================
+   Spatial Deck — speaker color-coding overlay
+   -----------------------------------------------------------------------
+   Injected by tools/import_kb_deck.py. Adds a subtle left-edge accent
+   bar to slides based on their `_speaker` field, plus colored dots in
+   the constellation map. Fully general — not deck-specific.
+   ======================================================================= */
+:root {
+  --speaker-a: var(--teal, #00d4ff);
+  --speaker-b: var(--purple, #a78bfa);
+  --speaker-both: linear-gradient(180deg, var(--speaker-a) 0%, var(--speaker-b) 100%);
+}
+.slide[data-speaker]::before{
+  content:"";
+  position:absolute;
+  left:0; top:12%; bottom:12%;
+  width:3px;
+  border-radius:0 3px 3px 0;
+  opacity:.55;
+  pointer-events:none;
+  z-index:5;
+}
+.slide[data-speaker="alex"]::before{ background:var(--speaker-a); }
+.slide[data-speaker="jun"]::before{ background:var(--speaker-b); }
+.slide[data-speaker="alex+jun"]::before,
+.slide[data-speaker="alex_jun"]::before,
+.slide[data-speaker="alex_jun_alternating"]::before,
+.slide[data-speaker="alex_to_jun"]::before{ background:var(--speaker-both); }
+
+/* Constellation map dot tinting (svg circles get a class added by the importer) */
+.map-dot-alex{ fill: var(--speaker-a) !important; }
+.map-dot-jun{ fill: var(--speaker-b) !important; }
+.map-dot-both{ fill: url(#speakerGradient) !important; }
+
+/* Speaker badge in top-right of slides (optional, hidden unless data-speaker present) */
+.slide[data-speaker]::after{
+  content: attr(data-speaker);
+  position:absolute;
+  top:18px; right:22px;
+  font-size:.65rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.28);
+  font-weight:600;
+  pointer-events:none;
+  z-index:5;
+}

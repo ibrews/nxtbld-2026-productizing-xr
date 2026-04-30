@@ -39,6 +39,49 @@ If the user is here for **something CLAUDE-first** (judgment, UX, narrative) —
 | **Multi-deck merge (`merge_decks.py`)** | Mechanical concatenation of N sources with conflict detection (year collision, duplicate titles, Jaccard near-duplicates over bullet tokens). Writes `.conflicts.md`. Editorial ordering stays with Claude. | 1ab9f69 |
 | **Layout preview + splice patch** | `tools/layouts/preview.html` + `tools/layouts/PATCH.md`. Three new layouts (`split-50`, `bleed`, `trio`) as a preview page + the exact CSS/JS diff to splice when you want to adopt them. Not editing `index.html` directly (usually has uncommitted edits). | 0e67a2f |
 | **Showcase chapter in sample deck** | `index.html` SECTIONS now includes CH 4 "Your Deck Is Data. Treat It Like Code." (rose accent, 3 cases showcasing the tool suite). | this session |
+| **KB-deck importer (`import_kb_deck.py`)** | New importer for the per-slide-frontmatter format produced by overnight AI agents (SECTIONS.json + slides/NN-*.md). Reads design tokens, generates a self-contained HTML deck with speaker notes embedded as `window._deckSpeakerNotes` and slides color-coded by `_speaker` via `_kb_speaker_styling.css`. Different from `import_md.py` — see below. | (this session) |
+
+## `import_kb_deck.py` — when to use it
+
+`import_md.py` consumes a **single** markdown file (the SECTIONS-as-prose convention). `import_kb_deck.py` consumes a **directory** with this layout:
+
+```
+deck/
+├── SECTIONS.json        # design tokens + canonical section/slide order
+├── slides/
+│   ├── 01-title.md      # YAML frontmatter (slide, section, speaker, layout, ...)
+│   ├── 02-thesis.md     # body has h1/h2 title, paragraphs, bullets,
+│   │                    #   "## Speaker Notes", "## Visual notes" sections
+│   └── ...
+└── README.md
+```
+
+This format is what overnight AI agents produce when drafting decks from the KB — every slide is its own file with rich frontmatter and speaker notes. The flat `import_md.py` convention can't represent that without losing data.
+
+**Run it:**
+
+```bash
+python3 tools/import_kb_deck.py path/to/deck \
+    --out /tmp/output.html \
+    [--title "Override title"] \
+    [--template path/to/index.html]
+```
+
+Defaults `--template` to the repo's own `index.html`. Output is a single self-contained HTML file: open in any browser, navigate with arrow keys.
+
+**What it produces in addition to a normal deck:**
+
+- `<style id="kb-design-tokens">` injected before `</head>` with CSS custom properties mapped from `design_tokens` in `SECTIONS.json` (bg_primary→--bg, accent_magenta→--rose, etc.).
+- `<style id="kb-speaker-styling">` inlined from `tools/_kb_speaker_styling.css` — adds a left-edge accent bar and small speaker badge to slides based on `data-speaker`.
+- `window._deckSpeakerNotes` and `window._deckSpeakers` globals so the existing presenter popup can pull notes by slide id.
+- A small `kb-speaker-shim` script that walks SECTIONS and stamps `data-speaker` / `data-layout` on each rendered slide for the CSS to target.
+- Frontmatter `layout:` hint preserved on each case as `_layout` for future Spatial Deck features.
+
+**Gotchas (already handled, but noted for next-session debugging):**
+
+- The template's engine script contains a `_notesWin.document.write(\`...</body></html>\`)` template literal. Naive `html.replace("</body>", ...)` would match the first occurrence inside that string — the importer uses `rfind("</body>")` to inject before the *real* body close.
+- SECTIONS.json's `section` values are title-cased (e.g. `"Hook"`); slide frontmatter uses lowercase (`section: hook`). The importer uses SECTIONS.json's order as canonical and ignores frontmatter `section:` for grouping.
+- Token names differ across variants (`accent_magenta` in coherent, `accent_warm` in bold). The mapping in `build_design_token_css()` covers all three nxtbld variants and gracefully ignores unknown tokens.
 
 ## Fleet endpoints (confirmed working 2026-04-18)
 
