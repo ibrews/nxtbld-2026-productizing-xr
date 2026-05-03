@@ -231,3 +231,20 @@ The default deck is "Is XR Right For Your Project?" with 3 chapters and 6 case s
 ---
 
 *Keep this file updated. Future you (and future AI sessions) will thank present you.*
+
+---
+
+## Conventions
+
+### Fork per presentation, not edits to main
+
+`ibrews/spatial-deck` main = framework + template (`index.html`) + tools (`tools/import_*`, `export_*`, `lint_deck`, `peer_review`, etc.). Each *talk* is a self-contained fork where SECTIONS are baked into the fork's `index.html`.
+
+- **Generic tools** (importers, exporters, linters) → commit to main. Precedent: `tools/import_kb_deck.py` (`6e41777`), `tools/import_fmx_deck.py` (`6e2847e`).
+- **Deck CONTENT for a real talk** → create a fork (e.g., `ibrews/fmx-2026-spatial-storytelling`). Bake SECTIONS into the fork's `index.html`.
+- **Editorial source-of-truth** can live in `~/knowledge/projects/<talk>/deck/`. The KB is the editing surface; the fork is the deliverable. Importer bridges them.
+- **One-off /tmp HTML render** for review is fine. Before stage delivery, the talk's SECTIONS should be in its own fork.
+
+**Do not** commit talk-specific SECTIONS.json, slide copy, or hero images to this main repo. Tools yes; talks no.
+
+Canonical version of this rule: `~/knowledge/projects/spatial-deck/conventions.md`.
