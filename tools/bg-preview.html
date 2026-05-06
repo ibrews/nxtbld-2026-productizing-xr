@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Spatial Deck — Background Style Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#00d4ff; --purple:#a78bfa; --amber:#f59e0b; --rose:#f43f5e;
+  --bg:#060810; --text:#f0f4ff;
+  --font:'Space Grotesk',system-ui,sans-serif;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}
+
+/* ========================================================================
+   STAGE — full-viewport bg + sample slide content overlay so the user can
+   judge distraction level. Bg is swapped via a body class.
+======================================================================== */
+.stage{position:fixed;inset:0;z-index:0;overflow:hidden}
+.bg-base{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 15% 50%,rgba(124,58,237,.05) 0%,transparent 55%),radial-gradient(ellipse 60% 70% at 85% 20%,rgba(0,212,255,.04) 0%,transparent 55%),linear-gradient(180deg,#060810 0%,#0b0820 50%,#060810 100%)}
+
+/* Sample slide content (kept light so the bg is what we're judging) */
+.slide-mock{position:relative;z-index:5;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:clamp(40px,5vw,80px);pointer-events:none}
+.slide-mock-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;max-width:1400px;width:100%;align-items:center}
+.slide-mock-img{aspect-ratio:16/10;border-radius:18px;background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(167,139,250,.1));border:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.18);font-size:.75rem;letter-spacing:.16em;text-transform:uppercase}
+.slide-mock-text .ytag{font-size:clamp(.65rem,.95vw,.95rem);font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);opacity:.7;margin-bottom:14px}
+.slide-mock-text h1{font-size:clamp(1.8rem,3.6vw,3.6rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.slide-mock-text p{font-size:clamp(1rem,1.4vw,1.4rem);color:rgba(255,255,255,.6);line-height:1.5;margin-bottom:24px}
+.slide-mock-text ul{list-style:none}
+.slide-mock-text li{font-size:clamp(.9rem,1.1vw,1.1rem);color:rgba(255,255,255,.55);line-height:1.6;padding-left:18px;position:relative}
+.slide-mock-text li::before{content:'';position:absolute;left:0;top:.7em;width:6px;height:6px;border-radius:50%;background:var(--teal);opacity:.5}
+@media (max-width:760px){.slide-mock-inner{grid-template-columns:1fr;gap:24px}.slide-mock-img{max-height:36vh}}
+
+/* ========================================================================
+   OPTION 1 — AURORA
+   Three large blurred blobs in deck accent colors drift slowly.
+   ~75s cycle. mix-blend-mode: screen for soft layering. GPU-only.
+======================================================================== */
+body.bg1 .opt-aurora{display:block}
+.opt-aurora{display:none;position:absolute;inset:0;overflow:hidden}
+.opt-aurora .blob{position:absolute;border-radius:50%;filter:blur(110px);will-change:transform;mix-blend-mode:screen}
+.opt-aurora .b1{width:55%;aspect-ratio:1;background:radial-gradient(circle,rgba(0,212,255,.55),rgba(0,212,255,0));top:-10%;left:-10%;animation:aurora1 78s ease-in-out infinite alternate}
+.opt-aurora .b2{width:48%;aspect-ratio:1;background:radial-gradient(circle,rgba(167,139,250,.5),rgba(167,139,250,0));top:30%;right:-10%;animation:aurora2 92s ease-in-out infinite alternate}
+.opt-aurora .b3{width:62%;aspect-ratio:1;background:radial-gradient(circle,rgba(245,158,11,.32),rgba(245,158,11,0));bottom:-20%;left:10%;animation:aurora3 110s ease-in-out infinite alternate}
+@keyframes aurora1{0%{transform:translate(0,0)}100%{transform:translate(35vw,40vh)}}
+@keyframes aurora2{0%{transform:translate(0,0)}100%{transform:translate(-30vw,-25vh)}}
+@keyframes aurora3{0%{transform:translate(0,0)}100%{transform:translate(20vw,-30vh)}}
+
+/* ========================================================================
+   OPTION 2 — EMBER
+   Warm tones (amber + rose) very slow opacity pulse + subtle drift.
+   Like distant firelight on stone. Lower energy than Aurora.
+======================================================================== */
+body.bg2 .opt-ember{display:block}
+.opt-ember{display:none;position:absolute;inset:0;overflow:hidden}
+.opt-ember .blob{position:absolute;border-radius:50%;filter:blur(140px);will-change:transform,opacity}
+.opt-ember .b1{width:60%;aspect-ratio:1;background:radial-gradient(circle,rgba(245,158,11,.5),rgba(245,158,11,0));top:-15%;left:20%;animation:emberDrift1 90s ease-in-out infinite alternate,emberPulse1 14s ease-in-out infinite alternate}
+.opt-ember .b2{width:50%;aspect-ratio:1;background:radial-gradient(circle,rgba(244,63,94,.35),rgba(244,63,94,0));bottom:-10%;right:-5%;animation:emberDrift2 120s ease-in-out infinite alternate,emberPulse2 18s ease-in-out infinite alternate}
+.opt-ember .b3{width:40%;aspect-ratio:1;background:radial-gradient(circle,rgba(254,215,170,.18),rgba(254,215,170,0));top:50%;left:-10%;animation:emberDrift3 100s ease-in-out infinite alternate,emberPulse3 22s ease-in-out infinite alternate}
+@keyframes emberDrift1{0%{transform:translate(0,0)}100%{transform:translate(-20vw,30vh)}}
+@keyframes emberDrift2{0%{transform:translate(0,0)}100%{transform:translate(-25vw,-20vh)}}
+@keyframes emberDrift3{0%{transform:translate(0,0)}100%{transform:translate(40vw,-10vh)}}
+@keyframes emberPulse1{0%{opacity:.85}100%{opacity:1}}
+@keyframes emberPulse2{0%{opacity:.7}100%{opacity:1}}
+@keyframes emberPulse3{0%{opacity:.6}100%{opacity:.95}}
+
+/* ========================================================================
+   OPTION 3 — GHOST (Christmas Carol audience feel)
+   Pale, low-opacity wisps drifting at different speeds — suggests
+   ethereal figures hovering in space. Wider blur, lower saturation.
+======================================================================== */
+body.bg3 .opt-ghost{display:block}
+.opt-ghost{display:none;position:absolute;inset:0;overflow:hidden}
+.opt-ghost .blob{position:absolute;border-radius:50%;filter:blur(160px);will-change:transform;mix-blend-mode:screen}
+.opt-ghost .b1{width:50%;aspect-ratio:1;background:radial-gradient(circle,rgba(180,210,255,.18),rgba(180,210,255,0));top:10%;left:5%;animation:ghost1 85s ease-in-out infinite alternate}
+.opt-ghost .b2{width:42%;aspect-ratio:1;background:radial-gradient(circle,rgba(220,200,255,.15),rgba(220,200,255,0));top:30%;right:5%;animation:ghost2 105s ease-in-out infinite alternate}
+.opt-ghost .b3{width:55%;aspect-ratio:1;background:radial-gradient(circle,rgba(160,180,220,.13),rgba(160,180,220,0));bottom:-5%;left:30%;animation:ghost3 95s ease-in-out infinite alternate}
+.opt-ghost .b4{width:38%;aspect-ratio:1;background:radial-gradient(circle,rgba(200,210,250,.12),rgba(200,210,250,0));top:55%;left:-5%;animation:ghost4 130s ease-in-out infinite alternate}
+@keyframes ghost1{0%{transform:translate(0,0)}50%{transform:translate(15vw,10vh)}100%{transform:translate(30vw,-5vh)}}
+@keyframes ghost2{0%{transform:translate(0,0)}50%{transform:translate(-20vw,15vh)}100%{transform:translate(-10vw,30vh)}}
+@keyframes ghost3{0%{transform:translate(0,0)}50%{transform:translate(-15vw,-10vh)}100%{transform:translate(10vw,-25vh)}}
+@keyframes ghost4{0%{transform:translate(0,0)}50%{transform:translate(25vw,-5vh)}100%{transform:translate(40vw,15vh)}}
+
+/* ========================================================================
+   OPTION 4 — NEBULA
+   Cool + warm blobs combined, with one slow-rotating element behind.
+   Most active of the four — still slow but feels alive.
+======================================================================== */
+body.bg4 .opt-nebula{display:block}
+.opt-nebula{display:none;position:absolute;inset:0;overflow:hidden}
+.opt-nebula .blob{position:absolute;border-radius:50%;filter:blur(120px);will-change:transform;mix-blend-mode:screen}
+.opt-nebula .swirl{position:absolute;inset:-25%;background:conic-gradient(from 0deg,rgba(0,212,255,.05),rgba(167,139,250,.04),rgba(245,158,11,.05),rgba(244,63,94,.04),rgba(0,212,255,.05));filter:blur(80px);will-change:transform;animation:swirl 240s linear infinite}
+.opt-nebula .b1{width:45%;aspect-ratio:1;background:radial-gradient(circle,rgba(0,212,255,.45),rgba(0,212,255,0));top:-5%;left:0;animation:nebula1 90s ease-in-out infinite alternate}
+.opt-nebula .b2{width:42%;aspect-ratio:1;background:radial-gradient(circle,rgba(167,139,250,.42),rgba(167,139,250,0));bottom:-5%;right:5%;animation:nebula2 100s ease-in-out infinite alternate}
+.opt-nebula .b3{width:35%;aspect-ratio:1;background:radial-gradient(circle,rgba(245,158,11,.28),rgba(245,158,11,0));top:50%;left:50%;transform:translate(-50%,-50%);animation:nebula3 80s ease-in-out infinite alternate}
+@keyframes nebula1{0%{transform:translate(0,0)}100%{transform:translate(30vw,25vh)}}
+@keyframes nebula2{0%{transform:translate(0,0)}100%{transform:translate(-25vw,-20vh)}}
+@keyframes nebula3{0%{transform:translate(-50%,-50%)}100%{transform:translate(-30%,-65%)}}
+@keyframes swirl{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+/* ========================================================================
+   CONTROLS
+======================================================================== */
+.ctl{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:50;display:flex;gap:6px;background:rgba(10,12,24,.85);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px;backdrop-filter:blur(12px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.ctl button{background:transparent;border:none;color:rgba(255,255,255,.55);font:600 .75rem var(--font);letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;border-radius:6px;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.ctl button:hover{color:#fff;background:rgba(255,255,255,.05)}
+.ctl button.active{background:rgba(0,212,255,.15);color:var(--teal);border:1px solid rgba(0,212,255,.4)}
+.label-tag{position:fixed;top:24px;left:24px;z-index:50;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.desc-tag{position:fixed;top:48px;left:24px;z-index:50;font-size:.78rem;color:rgba(255,255,255,.6);max-width:340px;line-height:1.5}
+.title-tag{font-size:.95rem;font-weight:600;color:var(--teal);margin-bottom:4px}
+@media (max-width:600px){.label-tag,.desc-tag{left:12px;right:12px;max-width:none}.desc-tag{font-size:.72rem}.ctl{padding:4px;gap:3px}.ctl button{padding:6px 10px;font-size:.65rem}}
+</style>
+</head>
+<body class="bg1">
+<div class="stage">
+  <div class="bg-base"></div>
+  <div class="opt-aurora"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <div class="opt-ember"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <div class="opt-ghost"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
+  <div class="opt-nebula"><div class="swirl"></div><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+</div>
+
+<!-- Mock slide content so you can judge distraction with real-feeling layout -->
+<div class="slide-mock">
+  <div class="slide-mock-inner">
+    <div class="slide-mock-img">Sample image area</div>
+    <div class="slide-mock-text">
+      <div class="ytag">Case Study · CH 1 · Pre-Vis</div>
+      <h1>The Building That<br>Didn't Exist Yet</h1>
+      <p>Pre-construction visualization for a 200-room hotel.</p>
+      <ul>
+        <li>The client's architect shipped 400 pages of drawings.</li>
+        <li>Forty-five minutes in VR replaced three months of revision cycles.</li>
+        <li>The breakthrough was standing inside an unbuilt room.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="label-tag" id="label">
+  <div class="title-tag" id="title">1 · Aurora</div>
+  <div id="desc">Three drifting blurred blobs in the deck's accent colors. ~78s cycle. Highest motion of the four — still gentle, but most "alive."</div>
+</div>
+
+<div class="ctl">
+  <button class="active" data-bg="bg1">1 Aurora</button>
+  <button data-bg="bg2">2 Ember</button>
+  <button data-bg="bg3">3 Ghost</button>
+  <button data-bg="bg4">4 Nebula</button>
+  <button data-bg="bg0" title="Plain (current deck baseline)">0 None</button>
+</div>
+
+<script>
+const META = {
+  bg1: {title:'1 · Aurora', desc:"Three drifting blurred blobs in the deck's accent colors (teal, purple, amber). ~78s cycle. Highest motion of the four — still gentle, but most 'alive.'"},
+  bg2: {title:'2 · Ember',  desc:'Warm amber + rose with subtle opacity pulse. Slowest. Like distant firelight on stone.'},
+  bg3: {title:'3 · Ghost',  desc:'Pale low-opacity wisps drifting at different speeds — A Christmas Carol audience. Most ethereal, least "designed."'},
+  bg4: {title:'4 · Nebula', desc:'Cool + warm blobs combined with a slow-rotating conic gradient behind. Fullest texture without being busy.'},
+  bg0: {title:'0 · None',   desc:'Current Spatial Deck baseline — static gradient + stars. For comparison.'}
+};
+const buttons = document.querySelectorAll('.ctl button');
+const titleEl = document.getElementById('title');
+const descEl = document.getElementById('desc');
+buttons.forEach(b => b.addEventListener('click', () => {
+  const bg = b.dataset.bg;
+  document.body.className = bg === 'bg0' ? '' : bg;
+  buttons.forEach(x => x.classList.toggle('active', x === b));
+  titleEl.textContent = META[bg].title;
+  descEl.textContent  = META[bg].desc;
+}));
+// Keyboard 1-4-0 to switch
+document.addEventListener('keydown', e => {
+  const map = {'1':'bg1','2':'bg2','3':'bg3','4':'bg4','0':'bg0'};
+  if (map[e.key]) document.querySelector(`button[data-bg="${map[e.key]}"]`).click();
+});
+</script>
+</body>
+</html>
