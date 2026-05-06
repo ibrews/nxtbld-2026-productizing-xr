@@ -22,6 +22,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 ======================================================================== */
 .stage{position:fixed;inset:0;z-index:0;overflow:hidden}
 .bg-base{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 15% 50%,rgba(124,58,237,.05) 0%,transparent 55%),radial-gradient(ellipse 60% 70% at 85% 20%,rgba(0,212,255,.04) 0%,transparent 55%),linear-gradient(180deg,#060810 0%,#0b0820 50%,#060810 100%)}
+.test-image{position:absolute;left:5%;right:5%;top:5%;bottom:5%;background:url('bg-preview-assets/testshot.jpg') center/contain no-repeat;opacity:0;transition:opacity .25s;border-radius:14px;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+body.show-image .test-image{opacity:1}
+body.show-image .slide-mock{display:none}
 
 /* Sample slide content (kept light so the bg is what we're judging) */
 .slide-mock{position:relative;z-index:5;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:clamp(40px,5vw,80px);pointer-events:none}
@@ -118,6 +121,7 @@ body.bg4 .opt-nebula{display:block}
 <body class="bg1">
 <div class="stage">
   <div class="bg-base"></div>
+  <div class="test-image"></div>
   <div class="opt-aurora"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
   <div class="opt-ember"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
   <div class="opt-ghost"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
@@ -152,6 +156,8 @@ body.bg4 .opt-nebula{display:block}
   <button data-bg="bg3">3 Ghost</button>
   <button data-bg="bg4">4 Nebula</button>
   <button data-bg="bg0" title="Plain (current deck baseline)">0 None</button>
+  <span style="width:1px;background:rgba(255,255,255,.1);margin:4px 4px"></span>
+  <button id="img-toggle" title="Overlay 90% test image">🖼 Image</button>
 </div>
 
 <script>
@@ -172,10 +178,16 @@ buttons.forEach(b => b.addEventListener('click', () => {
   titleEl.textContent = META[bg].title;
   descEl.textContent  = META[bg].desc;
 }));
-// Keyboard 1-4-0 to switch
+// Keyboard 1-4-0 to switch + I to toggle image
 document.addEventListener('keydown', e => {
   const map = {'1':'bg1','2':'bg2','3':'bg3','4':'bg4','0':'bg0'};
   if (map[e.key]) document.querySelector(`button[data-bg="${map[e.key]}"]`).click();
+  if (e.key === 'i' || e.key === 'I') document.getElementById('img-toggle').click();
+});
+// Image toggle
+document.getElementById('img-toggle').addEventListener('click', () => {
+  document.body.classList.toggle('show-image');
+  document.getElementById('img-toggle').classList.toggle('active', document.body.classList.contains('show-image'));
 });
 </script>
 </body>
