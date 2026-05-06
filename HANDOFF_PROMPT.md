@@ -1,6 +1,6 @@
 # Spatial Deck — AI Agent Handoff Prompt
 
-> **Last updated:** 2026-04-12
+> **Last updated:** 2026-05-06
 > **Purpose:** Read this file at the start of any AI session working on this project. It gives you everything you need to be productive immediately.
 > **Maintenance:** Update this file whenever you make significant changes to the architecture, add major features, or change conventions. Future sessions depend on this being accurate.
 
@@ -162,6 +162,35 @@ index.html
 - `Shift+N` toggles inline drawer
 - Duration estimator: ~20s/bullet, ~150wpm prose, 30s default per noteless slide
 
+### `?notes` Phone Speaker Companion (2026-05-06)
+- URL: append `?notes` (e.g. `index.html?notes`) → renders a phone-optimized speaker view instead of the deck
+- Topbar: ▶/⏸ timer, ⟲ long-press reset, 🔓 padlock clicker, 📋 view toggle (script ↔ bullets), ✎ edit current, ⋯ settings drawer
+- Bottom: ← / Up next thumbnail / → buttons. No tap-zone navigation — use the buttons.
+- Settings drawer: Default view (bullets/script), 🔁 Calibrate Videos & Thumbs, 📤 Reseed from SECTIONS, ≡ Edit all (full doc), ⏱ Set target finish
+- **Cloud sync** via Google Apps Script Web App bound to a Google Sheet. Setup: see `tools/SETUP_NOTES_SYNC.md`. Drop `notes-config.json` (gitignored) at repo root with `{"gasUrl":"...","deckId":"..."}`. First load auto-seeds the sheet from SECTIONS notes.
+- Without `notes-config.json` → local-only mode (toast notification, no overlay). Edits stay in localStorage per device.
+- Calibration sweep captures `<video>.duration` and 160×90 thumbnails per slide → cached to localStorage `sd-thumbs-<deckId>` and pushed to sheet `meta.calibration`.
+- Pacing: wall-clock target finish, projected finish via adaptive WPM (samples completed slides, floors 90, caps 220). `(over video)` marker in script tells the estimator that words after it are spoken concurrent with video.
+- Padlock clicker: when 🔒, phone advances broadcast to laptop via sheet `meta.state` polled at 1s. Same Tailscale/LAN restrictions apply (BroadcastChannel is intra-browser; sheet relay handles cross-device).
+
+### Animated Background Styles (2026-05-06)
+- Settings slide → "Background Style" picker: None / Aurora / Ember / Ghost / Nebula / Extreme
+- Settings slide → "Background Blend" picker: Screen / Soft Light / Overlay / Hard Light / Color Dodge / Lighten / Color Burn / Multiply / Difference / Normal
+- Pure CSS, GPU-only (`transform` + `filter:blur` on `will-change` layers, `mix-blend-mode` on overlay container). Inactive overlays are `display:none` so unused animations don't run.
+- Wired via `body[data-bg-style]` attribute and `--bg-blend` CSS variable, both set in `apply()`.
+- The `.cfg-panel` becomes more transparent when bg style is non-`none` so you can preview the effect on slide 0 in real time.
+- Test/preview page: `tools/bg-preview.html` (also includes a 🖼 Image overlay toggle to judge readability over a static image).
+
+### Annotations & Settings Round-Trip
+- Annotation panel (press `A`) now pins a "⚙ Slide 0 · current settings (auto-tracked)" card at the top, listing every cfg key. Auto-refreshes on any `apply()` call.
+- "Copy All" markdown export prepends a "Current Settings" section listing all cfg values.
+- Workflow: user tweaks slide 0 settings → exports annotations → pastes back to AI → AI updates `D` defaults to match. Lossless round-trip.
+
+### `?edit` URL Behavior
+- `?edit` with no hash → lands on slide 0 (settings) so users can configure first.
+- `?edit#5` (or any explicit hash) → normal `goToFromHash` flow.
+- View mode (no `?edit`) → cover slide as before.
+
 ---
 
 ## Common Tasks
@@ -187,6 +216,25 @@ index.html
 2. Resize to ≤2560px: `sips --resampleWidth 2560 file.jpg --out file.jpg`
 3. Videos over 100MB: transcode with `ffmpeg -i in.mp4 -vf "scale=1280:-2" -crf 28 -preset fast out.mp4`
 4. Reference via relative path in SECTIONS or media cycler IIFE
+
+### Pull a video clip from YouTube or local source
+Use `tools/import_video_clip.py` (added 2026-05-06):
+```bash
+# YouTube one-shot — download + trim + encode at full quality
+python3 tools/import_video_clip.py "https://youtu.be/ID" --start 1:23 --end 1:45 --out media/foo.mp4
+
+# Drive workflow — download manually first, then trim local file
+python3 tools/import_video_clip.py ~/Downloads/video.mp4 --start 0:30 --duration 8 --out media/intro.mp4
+
+# Two-phase YouTube — grab the source for scrubbing, then trim
+python3 tools/import_video_clip.py "URL" --download-only --out work/raw.mp4
+python3 tools/import_video_clip.py work/raw.mp4 --start 1:23 --end 1:45 --out media/clip.mp4
+
+# Force size reduction post-trim (default is full quality, no shrink)
+python3 tools/import_video_clip.py SOURCE --start 0:00 --end 5:00 --max-mb 95 --out media/long.mp4
+```
+- Default `--quality high` (CRF 21, 1280×720). Default `--max-mb 0` (no auto-shrink). Set `--max-mb 95` to fit GitHub's 100MB limit.
+- Drive URLs are explicitly rejected with a 3-step manual-download recipe (no SA key on disk for browser-side API access).
 
 ### Park/hide slides
 - **Park**: Add index to `PARK` array (0-indexed, pre-park position)
@@ -224,9 +272,10 @@ The default deck is "Is XR Right For Your Project?" with 3 chapters and 6 case s
 
 - `file://` URLs in Chrome trigger same-origin warnings for Three.js imports — harmless, or serve via `python3 -m http.server`
 - AudioContext requires user interaction before first sound plays (browser policy)
-- GIFs don't animate on canvas — convert to MP4 with `ffmpeg -i file.gif -pix_fmt yuv420p -c:v libx264 out.mp4`
-- Very large media (>100MB) can't push to GitHub without Git LFS — transcode first
+- GIFs don't animate on canvas-rendered MEDIA_CYCLER — but as of 2026-05-06, `buildMediaCycler` auto-detects `.gif` items and switches to a cross-fading `<img>` rendering path so they animate. For non-cycler use (img tag), GIFs always animate. The "convert to MP4" workaround only matters if you're using the canvas pipeline explicitly.
+- Very large media (>100MB) can't push to GitHub without Git LFS — use `tools/import_video_clip.py` with `--max-mb 95` to fit
 - `slideSteps` must be registered in `setTimeout(fn, 0)` to defer past the `const slideSteps` declaration
+- `mix-blend-mode` blends with the parent's background — apply at the overlay container level, NOT individual children. (Shipped this fix in `bg-preview.html` after seeing the effect not reach an image; the overlay container needs the blend mode for it to mix with siblings.)
 
 ---
 
