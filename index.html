@@ -1618,14 +1618,19 @@ function _visibleSlideIdxs(){
 }
 function _renderTopbar(){
   if(!document.body.classList.contains('notes-mode'))return;
+  const idx=current;const total=allSlides.length;
   const visible=_visibleSlideIdxs();
-  const pos=visible.indexOf(current);
+  const pos=visible.indexOf(idx);
   const num=pos>=0?(pos+1):'-';
   document.getElementById('na-slide-num').textContent=String(num).padStart(2,'0')+'/'+String(visible.length).padStart(2,'0');
-  // Title (small)
-  let titleEl=document.querySelector('.na-slide-title');
-  // Next preview
-  const nextIdx=(typeof nextVisible==='function')?nextVisible(idx,1):Math.min(idx+1,total-1);
+  // Next preview — find next visible non-settings slide
+  let nextIdx=idx;
+  for(let i=1;i<=total;i++){
+    const cand=(idx+i)%total;
+    const sl=allSlides[cand];
+    if(sl.dataset.hidden==='1'||sl.dataset.type==='settings')continue;
+    nextIdx=cand;break;
+  }
   const nt=document.getElementById('na-next-title');if(nt)nt.textContent=nextIdx!==idx?(getSlideTitle(nextIdx)||'(slide '+(nextIdx+1)+')'):'(end of deck)';
   const thumb=document.getElementById('na-next-thumb');
   if(thumb){
