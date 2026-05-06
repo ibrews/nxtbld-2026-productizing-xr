@@ -655,19 +655,34 @@ python3 tools/merge_sections.py tools/imported-<deck>-<hash>.json
 
 ### Video clip importer
 
-Pull a precise time-window from a YouTube URL, trim it, and re-encode it under GitHub's 100MB file-size limit so it can land in `media/` without LFS:
+Pull a clip from a YouTube URL or a local video file, trim it, and re-encode it. By default the tool preserves quality (default `--quality high` ≈ 1280px / CRF 21) and does **not** auto-shrink — pass `--max-mb` only when you actually need to fit a size budget.
 
 ```bash
-python3 tools/import_video_clip.py "https://www.youtube.com/watch?v=aqz-KE-bpKQ" \
-    --start 0:30 --duration 5 --out media/promo/intro.mp4
-python3 tools/import_video_clip.py "https://youtu.be/aqz-KE-bpKQ" \
-    --start 1:23 --end 1:42 --quality high --audio mute --out media/case/loop.mp4
+# 1. YouTube clip in one shot — download + trim, full quality
+python3 tools/import_video_clip.py "https://www.youtube.com/watch?v=ID" \
+    --start 1:23 --end 1:45 --out media/fmx/case-foo.mp4
+
+# 2. Drive workflow — download manually first, then trim the local file
+python3 tools/import_video_clip.py ~/Downloads/video.mp4 \
+    --start 0:30 --duration 8 --out media/fmx/intro.mp4
+
+# 3. Two-phase YouTube — grab source for QuickTime scrubbing, then trim
+python3 tools/import_video_clip.py "https://youtu.be/ID" \
+    --download-only --out work/raw/source.mp4
+open work/raw/source.mp4   # scrub in QuickTime to find exact in/out
+python3 tools/import_video_clip.py work/raw/source.mp4 \
+    --start 1:23 --end 1:45 --out media/fmx/clip.mp4
+
+# 4. Optional size cap — re-enables the auto-shrink ladder
+python3 tools/import_video_clip.py LONG_SOURCE.mp4 \
+    --start 0:00 --end 5:00 --max-mb 95 --out media/fmx/long.mp4
 ```
 
-- `yt-dlp` downloads only the requested segment (`--download-sections`), then `ffmpeg` re-trims to exact start/duration and re-encodes h264/aac.
-- `--quality {high,medium,low}` sets the initial preset; default `medium` is 1280x720 / CRF 23. If the result exceeds `--max-mb` (default 95) the tool auto-shrinks through 960px, 854px, 640px with progressively higher CRFs until it fits.
-- `--audio mute` drops the audio stream entirely (smaller files). `--start-from-url` uses the URL's `?t=Ns` parameter as the default start.
-- Drive URLs are explicitly rejected with a one-line ffmpeg recipe so you can finish the job by hand. Stdlib only — requires `yt-dlp` and `ffmpeg` on PATH.
+- The first positional arg accepts either a YouTube URL (`youtube.com` / `youtu.be` / `m.youtube.com` / `music.youtube.com`) or a local file path. Local paths skip the `yt-dlp` step entirely; ffmpeg runs straight on the file.
+- `--download-only` writes the yt-dlp output untouched (no re-encode). With no `--start`/`--end` it grabs the full video; with both, it pulls just that window. Useful for previewing in QuickTime before committing to a cut.
+- `--max-mb 0` is the default (no size cap, preserve quality). Set `--max-mb 95` (or any positive number) to re-enable the GitHub-friendly auto-shrink ladder: the encode retries through 1280→960→854→640 with progressively higher CRFs until the file fits.
+- `--audio mute` drops the audio stream entirely. `--start-from-url` uses the URL's `?t=Ns` parameter as the default start.
+- Drive URLs print a 3-step manual-download recipe and exit (Drive auth would need a service-account key on disk; not worth the blast radius). For ad-hoc by-hand trims the one-liner still works: `ffmpeg -ss <start> -t <dur> -i <downloaded.mp4> -c:v libx264 -crf 21 -vf scale=1280:-2 -c:a aac -b:a 96k -movflags +faststart <out.mp4>`. Stdlib only — requires `yt-dlp` and `ffmpeg` on PATH.
 
 ### Slide linter
 
