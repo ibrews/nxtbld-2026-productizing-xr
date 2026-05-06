@@ -311,19 +311,16 @@ body.notes-mode #notes-app{display:flex}
 .na-bullets li:before{content:'';position:absolute;left:6px;top:24px;width:6px;height:6px;border-radius:50%;background:#00d4ff;opacity:.7}
 .na-edit-textarea{width:100%;min-height:240px;background:rgba(255,255,255,.04);border:1px solid rgba(0,212,255,.3);border-radius:8px;color:#e8eeff;font:.95rem/1.55 var(--font);padding:14px;resize:vertical}
 .na-edit-textarea:focus{outline:none;border-color:#00d4ff;background:rgba(0,212,255,.04)}
-.na-next-pv{position:absolute;left:14px;right:14px;bottom:14px;display:flex;gap:10px;align-items:center;background:rgba(10,12,24,.85);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px 10px;backdrop-filter:blur(8px);z-index:2}
-.na-next-thumb{flex:0 0 auto;width:84px;height:48px;border-radius:5px;background:#0b0d18 center/cover no-repeat;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.55rem;color:rgba(255,255,255,.3);letter-spacing:.1em;overflow:hidden}
+.na-next-pv{position:absolute;left:10px;right:10px;bottom:10px;display:grid;grid-template-columns:64px 1fr 64px;gap:8px;align-items:stretch;background:rgba(10,12,24,.85);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:8px;backdrop-filter:blur(8px);z-index:10!important}
+.na-nav-btn{display:flex;align-items:center;justify-content:center;background:rgba(0,212,255,.14);border:1px solid rgba(0,212,255,.4);color:#00d4ff;font:700 1.7rem var(--font);border-radius:9px;cursor:pointer;transition:transform .12s,background .15s;-webkit-tap-highlight-color:transparent;user-select:none;touch-action:manipulation;line-height:1}
+.na-nav-btn:active{background:rgba(0,212,255,.32);transform:scale(.92)}
+.na-nav-btn:disabled{opacity:.25;cursor:default}
+.na-next-info-wrap{display:flex;gap:8px;align-items:center;min-width:0;padding:0 4px}
+.na-next-thumb{flex:0 0 auto;width:74px;height:44px;border-radius:5px;background:#0b0d18 center/cover no-repeat;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.55rem;color:rgba(255,255,255,.3);letter-spacing:.1em;overflow:hidden}
 .na-next-thumb img{width:100%;height:100%;object-fit:cover}
 .na-next-info{flex:1;min-width:0}
 .na-next-lbl{font-size:.55rem;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:2px}
-.na-next-title{font-size:.85rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.na-tap-zones{position:absolute;left:0;right:0;top:64px;bottom:88px;display:flex;z-index:1;pointer-events:none}
-.na-tap-zones.active{pointer-events:auto}
-.na-tap-l,.na-tap-m,.na-tap-r{display:block;height:100%}
-.na-tap-l{flex:0 0 20%}.na-tap-m{flex:1}.na-tap-r{flex:0 0 20%}
-.na-tap-l:active{background:linear-gradient(90deg,rgba(0,212,255,.12),transparent)}
-.na-tap-r:active{background:linear-gradient(-90deg,rgba(0,212,255,.12),transparent)}
-.na-tap-m:active{background:radial-gradient(circle,rgba(0,212,255,.06),transparent 65%)}
+.na-next-title{font-size:.82rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .na-toast{position:fixed;left:50%;top:60px;transform:translateX(-50%) translateY(-12px);background:rgba(10,12,24,.95);border:1px solid rgba(0,212,255,.4);color:#00d4ff;font:600 .72rem var(--font);letter-spacing:.1em;padding:8px 14px;border-radius:7px;z-index:10000;opacity:0;transition:all .25s;pointer-events:none}
 .na-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .na-doc{padding:16px 6px}
@@ -392,6 +389,7 @@ body.notes-mode #notes-app{display:flex}
       <span class="na-pace-dot" id="na-pace-dot"></span>
       <span class="na-slide-num" id="na-slide-num">--</span>
       <button class="na-iconbtn" id="na-lock-btn" title="Padlock to control main deck">🔓</button>
+      <button class="na-iconbtn" id="na-view-btn" title="Toggle script ↔ bullets">📋</button>
       <button class="na-iconbtn" id="na-edit-btn" title="Edit current slide">✎</button>
       <button class="na-iconbtn" id="na-doc-btn" title="Edit-all (full document)">≡</button>
       <button class="na-iconbtn" id="na-target-btn" title="Set target finish time">⏱</button>
@@ -413,13 +411,16 @@ body.notes-mode #notes-app{display:flex}
     </div>
   </div>
   <div class="na-content" id="na-content"></div>
-  <div class="na-tap-zones" id="na-tap-zones"><div class="na-tap-l" id="na-tap-l"></div><div class="na-tap-m" id="na-tap-m"></div><div class="na-tap-r" id="na-tap-r"></div></div>
   <div class="na-next-pv" id="na-next-pv">
-    <div class="na-next-thumb" id="na-next-thumb">NEXT</div>
-    <div class="na-next-info">
-      <div class="na-next-lbl">Up next</div>
-      <div class="na-next-title" id="na-next-title">—</div>
+    <button class="na-nav-btn" id="na-prev" title="Previous slide">←</button>
+    <div class="na-next-info-wrap">
+      <div class="na-next-thumb" id="na-next-thumb">NEXT</div>
+      <div class="na-next-info">
+        <div class="na-next-lbl">Up next</div>
+        <div class="na-next-title" id="na-next-title">—</div>
+      </div>
     </div>
+    <button class="na-nav-btn" id="na-next" title="Next slide">→</button>
   </div>
   <div class="na-toast" id="na-toast"></div>
 </div>
@@ -1649,19 +1650,18 @@ function _updatePacingDisplay(){
   }else{tLine.textContent='no target set';dot.className='na-pace-dot';}
 }
 
-// Tap zones (with debounce — ignore taps within 280ms of last)
+// Nav buttons (with light debounce — single tap, no rapid double-fire)
 let _tapLastFire=0;
-function _tapGuard(){const now=Date.now();if(now-_tapLastFire<280)return false;_tapLastFire=now;return true;}
-function _setupTapZones(){
-  const zones=document.getElementById('na-tap-zones');if(!zones)return;
-  zones.classList.add('active');
-  document.getElementById('na-tap-l').addEventListener('click',e=>{e.preventDefault();if(!_tapGuard())return;naAdvance(-1);});
-  document.getElementById('na-tap-r').addEventListener('click',e=>{e.preventDefault();if(!_tapGuard())return;naAdvance(1);});
-  document.getElementById('na-tap-m').addEventListener('click',e=>{
+function _tapGuard(){const now=Date.now();if(now-_tapLastFire<200)return false;_tapLastFire=now;return true;}
+function _setupNavButtons(){
+  document.getElementById('na-prev').addEventListener('click',e=>{e.preventDefault();if(!_tapGuard())return;naAdvance(-1);});
+  document.getElementById('na-next').addEventListener('click',e=>{e.preventDefault();if(!_tapGuard())return;naAdvance(1);});
+  document.getElementById('na-view-btn').addEventListener('click',e=>{
+    e.preventDefault();
     if(_notesView.editing||_notesView.docOpen)return;
-    if(!_tapGuard())return;
     const showBullets=_notesView.mode==='auto'?(_notesMeta.default_view==='bullets'):_notesView.mode==='bullets';
     _notesView.mode=showBullets?'script':'bullets';
+    document.getElementById('na-view-btn').classList.toggle('active',!showBullets); // active = script mode
     naRenderContent();
   });
 }
@@ -1936,7 +1936,7 @@ async function initNotesMode(){
       }
     }catch(e){console.warn('cloud sync failed',e);naToast('Sync error: '+e.message);}
   }
-  _setupTapZones();
+  _setupNavButtons();
   _renderTopbar();naRenderContent();
   // Wire buttons
   document.getElementById('na-timer-btn').addEventListener('click',naStartPause);
