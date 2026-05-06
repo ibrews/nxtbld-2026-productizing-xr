@@ -285,10 +285,10 @@ body.notes-mode #deck,body.notes-mode #counter,body.notes-mode #brand,body.notes
 body.notes-mode html,body.notes-mode{overflow:hidden;background:#06080f;height:100vh;height:100dvh}
 #notes-app{display:none;position:fixed;inset:0;z-index:9000;background:#06080f;color:#e8eeff;font-family:var(--font);flex-direction:column;overflow:hidden;-webkit-tap-highlight-color:transparent;user-select:none}
 body.notes-mode #notes-app{display:flex}
-.na-topbar{flex:0 0 auto;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(10,12,24,.92);backdrop-filter:blur(8px);position:relative;z-index:10}
+.na-topbar{flex:0 0 auto;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(10,12,24,.94);backdrop-filter:blur(8px);position:relative;z-index:20}
 .na-next-pv{z-index:10!important}
-.na-tb-l,.na-tb-r{display:flex;align-items:center;gap:8px}
-.na-slide-num{font-size:.78rem;font-weight:700;letter-spacing:.18em;color:#00d4ff}
+.na-tb-l,.na-tb-r{display:flex;align-items:center;gap:6px;flex-wrap:nowrap}
+.na-slide-num{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:#00d4ff;font-variant-numeric:tabular-nums;flex:0 0 auto}
 .na-slide-title{font-size:.7rem;color:rgba(255,255,255,.5);max-width:34vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .na-time{display:flex;flex-direction:column;align-items:center;line-height:1.1;font-variant-numeric:tabular-nums}
 .na-elapsed{font-size:1.25rem;font-weight:700;color:#fff;letter-spacing:.02em}
@@ -298,10 +298,12 @@ body.notes-mode #notes-app{display:flex}
 .na-pace-dot.warn{background:#f59e0b;box-shadow:0 0 6px rgba(245,158,11,.7);animation:naBlink 1s infinite}
 .na-pace-dot.late{background:#f43f5e;box-shadow:0 0 8px rgba(244,63,94,.85);animation:naBlink .55s infinite}
 @keyframes naBlink{50%{opacity:.25}}
-.na-iconbtn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#e8eeff;font:600 .8rem var(--font);height:34px;min-width:34px;padding:0 8px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s}
-.na-iconbtn.active{background:rgba(0,212,255,.2);border-color:rgba(0,212,255,.55);color:#00d4ff}
+.na-iconbtn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#e8eeff;font:600 .82rem var(--font);height:34px;min-width:34px;padding:0 7px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:transform .12s,background .15s,border-color .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;flex:0 0 auto}
+.na-iconbtn.active{background:rgba(0,212,255,.22);border-color:rgba(0,212,255,.6);color:#00d4ff}
 .na-iconbtn.danger{color:#f43f5e}
 .na-iconbtn:hover{background:rgba(255,255,255,.12)}
+.na-iconbtn:active{transform:scale(.92);background:rgba(0,212,255,.28)}
+.na-iconbtn.holding{background:rgba(244,63,94,.25);border-color:#f43f5e;color:#fff}
 .na-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative;z-index:1;padding:18px 18px 110px}
 .na-content.editing{padding-bottom:160px}
 .na-script{font-size:1.05rem;line-height:1.65;white-space:pre-wrap;color:rgba(240,244,255,.92)}
@@ -391,13 +393,13 @@ body.notes-mode #notes-app{display:flex}
       <button class="na-iconbtn" id="na-lock-btn" title="Padlock to control main deck">🔓</button>
       <button class="na-iconbtn" id="na-view-btn" title="Toggle script ↔ bullets">📋</button>
       <button class="na-iconbtn" id="na-edit-btn" title="Edit current slide">✎</button>
-      <button class="na-iconbtn" id="na-doc-btn" title="Edit-all (full document)">≡</button>
-      <button class="na-iconbtn" id="na-target-btn" title="Set target finish time">⏱</button>
-      <button class="na-iconbtn" id="na-settings-btn" title="Settings">⚙</button>
+      <button class="na-iconbtn" id="na-settings-btn" title="More">⋯</button>
     </div>
     <div class="na-settings-drawer" id="na-settings-drawer">
+      <button id="na-sd-doc" class="primary">≡ Edit all (full document)</button>
+      <button id="na-sd-target">⏱ Set target finish</button>
       <div><label>Default view</label><select id="na-sd-defview"><option value="bullets">Bullets</option><option value="script">Script</option></select></div>
-      <button class="primary" id="na-sd-calibrate">🔁 Calibrate Videos</button>
+      <button id="na-sd-calibrate">🔁 Calibrate Videos &amp; Thumbs</button>
       <button id="na-sd-reseed">📤 Reseed from SECTIONS</button>
       <button class="danger" id="na-sd-close" style="margin-top:4px">Close</button>
       <div class="nasd-status" id="na-sd-status"></div>
@@ -689,11 +691,12 @@ document.addEventListener('keydown',e=>{
   if((e.key==='/'||(e.metaKey&&e.key==='f')||(e.ctrlKey&&e.key==='f'))&&!e.target.closest('input,textarea')){e.preventDefault();openSearch();}
 });
 let touchX=0,touchY=0,touchT=0,lastTapT=0;
-document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;touchY=e.touches[0].clientY;touchT=Date.now();},{passive:true});
-document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;const dy=e.changedTouches[0].clientY-touchY;const dt=Date.now()-touchT;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){lastTapT=0;dx<0?(window._arrowSubstep!==false&&advanceStep()?0:goNext()):goPrev();}else if(Math.abs(dx)<15&&Math.abs(dy)<15&&dt<300){lastTapT=Date.now();if(window._arrowSubstep!==false&&advanceStep())return;goNext();}},{passive:true});
+document.addEventListener('touchstart',e=>{if(document.body.classList.contains('notes-mode'))return;touchX=e.touches[0].clientX;touchY=e.touches[0].clientY;touchT=Date.now();},{passive:true});
+document.addEventListener('touchend',e=>{if(document.body.classList.contains('notes-mode'))return;const dx=e.changedTouches[0].clientX-touchX;const dy=e.changedTouches[0].clientY-touchY;const dt=Date.now()-touchT;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){lastTapT=0;dx<0?(window._arrowSubstep!==false&&advanceStep()?0:goNext()):goPrev();}else if(Math.abs(dx)<15&&Math.abs(dy)<15&&dt<300){lastTapT=Date.now();if(window._arrowSubstep!==false&&advanceStep())return;goNext();}},{passive:true});
 // Double-click (desktop): advance substep or next event — same as arrow/tap
 document.addEventListener('dblclick',e=>{
   if(window._moveMode)return;
+  if(document.body.classList.contains('notes-mode'))return;
   if(e.target.closest('#btn-prev,#btn-next,#move-hud,#anno-panel,#anim-scrub-bar,#slide-grid,#slide-grid-zone,#move-toggle,#anno-toggle,#mobile-ui-toggle'))return;
   if(window._arrowSubstep!==false&&advanceStep())return;
   goNext();
@@ -1447,7 +1450,7 @@ async function loadNotesConfig(){
   }catch(e){window._notesConfig=null;return null;}
 }
 async function syncCall(action,extra){
-  const cfg=await loadNotesConfig();if(!cfg)throw new Error('Cloud sync not configured');
+  const cfg=await loadNotesConfig();if(!cfg){const e=new Error('offline');e._offline=true;throw e;}
   const payload=Object.assign({action,deckId:cfg.deckId},extra||{});
   const resp=await fetch(cfg.gasUrl,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload),redirect:'follow'});
   const data=await resp.json();
@@ -1539,9 +1542,12 @@ function naRenderEdit(c){
   const ov=_notesOverrides.get(idx)||{};
   const script=scriptForSlide(idx);
   const bullets=Array.isArray(ov.bullets)?ov.bullets.join('\n'):'';
+  const visible=_visibleSlideIdxs();
+  const pos=visible.indexOf(idx);
+  const slideLabel=pos>=0?(pos+1):'?';
   c.classList.add('editing');
   c.innerHTML=`
-    <div style="font-size:.6rem;letter-spacing:.18em;color:#00d4ff;font-weight:700;margin-bottom:6px">SCRIPT (slide ${idx+1})</div>
+    <div style="font-size:.6rem;letter-spacing:.18em;color:#00d4ff;font-weight:700;margin-bottom:6px">SCRIPT (slide ${slideLabel})</div>
     <textarea class="na-edit-textarea" id="na-edit-script" placeholder="Speaker script…">${(script||'').replace(/</g,'&lt;')}</textarea>
     <div style="font-size:.6rem;letter-spacing:.18em;color:#a78bfa;font-weight:700;margin:14px 0 6px">BULLETS OVERRIDE (one per line, blank = auto from script)</div>
     <textarea class="na-edit-textarea" id="na-edit-bullets" style="min-height:120px" placeholder="Leave blank to auto-generate from script">${bullets.replace(/</g,'&lt;')}</textarea>
@@ -1558,22 +1564,21 @@ function naRenderEdit(c){
     const fields={script:s,bullets,type:sl?.dataset.type||'',title:getSlideTitle(idx)};
     _notesOverrides.set(idx,Object.assign({},_notesOverrides.get(idx)||{},{idx,script:s,bullets,type:fields.type,title:fields.title}));
     try{await syncCall('setSlideNote',{idx,fields});naToast('Saved to cloud');}
-    catch(e){naToast('Saved locally (sync failed)');console.warn(e);}
+    catch(e){naToast(e._offline?'Saved locally':'Saved locally (sync failed)');}
     _notesView.editing=false;c.classList.remove('editing');naRenderContent();
   });
   document.getElementById('na-edit-cancel').addEventListener('click',()=>{_notesView.editing=false;c.classList.remove('editing');naRenderContent();});
 }
 function naRenderDoc(c){
   c.classList.remove('editing');
-  const html=allSlides.map((sl,i)=>{
-    if(sl.dataset.hidden==='1')return'';
-    const ty=sl.dataset.type||'';
-    if(ty==='settings')return'';
-    const title=getSlideTitle(i)||'(slide '+(i+1)+')';
+  const visible=_visibleSlideIdxs();
+  const html=visible.map((i,vpos)=>{
+    const sl=allSlides[i];const ty=sl.dataset.type||'';
+    const title=getSlideTitle(i)||'(slide '+(vpos+1)+')';
     const script=scriptForSlide(i);
     const cls='na-doc-slide'+(i===current?' current':'');
     return `<div class="${cls}" data-idx="${i}">
-      <div class="na-doc-head"><span class="na-doc-num">${String(i).padStart(2,'0')}</span><span class="na-doc-title">${title.replace(/</g,'&lt;')}</span><span style="font-size:.55rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.1em">${ty}</span></div>
+      <div class="na-doc-head"><span class="na-doc-num">${String(vpos+1).padStart(2,'0')}</span><span class="na-doc-title">${title.replace(/</g,'&lt;')}</span><span style="font-size:.55rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.1em">${ty}</span></div>
       <textarea class="na-doc-script" data-idx="${i}" rows="3">${(script||'').replace(/</g,'&lt;')}</textarea>
     </div>`;
   }).join('');
@@ -1601,10 +1606,22 @@ function naRenderDoc(c){
   const cur=c.querySelector('.na-doc-slide.current');if(cur)cur.scrollIntoView({block:'center'});
 }
 
+function _visibleSlideIdxs(){
+  const out=[];
+  for(let i=0;i<allSlides.length;i++){
+    const sl=allSlides[i];
+    if(sl.dataset.hidden==='1')continue;
+    if(sl.dataset.type==='settings')continue;
+    out.push(i);
+  }
+  return out;
+}
 function _renderTopbar(){
   if(!document.body.classList.contains('notes-mode'))return;
-  const idx=current;const total=allSlides.length;
-  document.getElementById('na-slide-num').textContent=String(idx+1).padStart(2,'0')+'/'+String(total).padStart(2,'0');
+  const visible=_visibleSlideIdxs();
+  const pos=visible.indexOf(current);
+  const num=pos>=0?(pos+1):'-';
+  document.getElementById('na-slide-num').textContent=String(num).padStart(2,'0')+'/'+String(visible.length).padStart(2,'0');
   // Title (small)
   let titleEl=document.querySelector('.na-slide-title');
   // Next preview
@@ -1654,16 +1671,22 @@ function _updatePacingDisplay(){
 let _tapLastFire=0;
 function _tapGuard(){const now=Date.now();if(now-_tapLastFire<200)return false;_tapLastFire=now;return true;}
 function _setupNavButtons(){
-  document.getElementById('na-prev').addEventListener('click',e=>{e.preventDefault();if(!_tapGuard())return;naAdvance(-1);});
-  document.getElementById('na-next').addEventListener('click',e=>{e.preventDefault();if(!_tapGuard())return;naAdvance(1);});
+  document.getElementById('na-prev').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();if(!_tapGuard())return;naAdvance(-1);});
+  document.getElementById('na-next').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();if(!_tapGuard())return;naAdvance(1);});
   document.getElementById('na-view-btn').addEventListener('click',e=>{
-    e.preventDefault();
+    e.preventDefault();e.stopPropagation();
     if(_notesView.editing||_notesView.docOpen)return;
     const showBullets=_notesView.mode==='auto'?(_notesMeta.default_view==='bullets'):_notesView.mode==='bullets';
     _notesView.mode=showBullets?'script':'bullets';
     document.getElementById('na-view-btn').classList.toggle('active',!showBullets); // active = script mode
     naRenderContent();
   });
+}
+function _updateNavBarVisibility(){
+  const npv=document.getElementById('na-next-pv');if(!npv)return;
+  const hidden=_notesView.editing||_notesView.docOpen;
+  npv.style.display=hidden?'none':'';
+  document.getElementById('na-content').style.paddingBottom=hidden?'24px':'110px';
 }
 function naAdvance(dir){
   if(_notesView.editing||_notesView.docOpen)return;
@@ -1901,6 +1924,7 @@ async function runCalibration(){
     const cfg=window._notesConfig;const deckId=(cfg&&cfg.deckId)||'default';
     localStorage.setItem('sd-thumbs-'+deckId,JSON.stringify(thumbnails));
     localStorage.setItem('sd-vidcache-'+deckId,JSON.stringify(videoDurations));
+    localStorage.setItem('sd-calibrated-'+deckId,'1');
   }catch(e){}
   const calibration={videoDurations,calibratedAt:new Date().toISOString(),slideCount:Object.keys(thumbnails).length};
   try{await syncCall('setMeta',{key:'calibration',value:calibration});naToast('Calibration saved · '+Object.keys(thumbnails).length+' thumbs · '+Object.keys(videoDurations).length+' videos');}
@@ -1919,10 +1943,8 @@ async function initNotesMode(){
     const v=localStorage.getItem('sd-vidcache-'+deckId);if(v)_videoDurationCache=JSON.parse(v)||{};
   }catch(e){}
   if(!cfg){
-    // Show config prompt overlay
-    const ov=document.createElement('div');ov.className='na-config-prompt';
-    ov.innerHTML='<h2>Cloud sync not configured</h2><p>Create <code>notes-config.json</code> in the repo root with <code>{"gasUrl":"…","deckId":"…"}</code>. See <code>tools/SETUP_NOTES_SYNC.md</code> for the full setup.</p><p style="color:rgba(245,158,11,.8)">Continuing in local-only mode — edits will not persist across devices.</p><button class="na-iconbtn" style="margin-top:8px" onclick="this.parentNode.remove()">Continue local-only</button>';
-    document.body.appendChild(ov);
+    // Non-blocking toast — local-only mode is fine for demo / first run
+    setTimeout(()=>naToast('Local-only mode (no cloud sync)'),300);
   }else{
     try{
       const data=await syncCall('getNotes',{});
@@ -1934,20 +1956,32 @@ async function initNotesMode(){
       }else{
         _applyNotesData(data);
       }
-    }catch(e){console.warn('cloud sync failed',e);naToast('Sync error: '+e.message);}
+    }catch(e){if(!e._offline){console.warn('cloud sync failed',e);naToast('Sync error: '+e.message);}}
   }
   _setupNavButtons();
-  _renderTopbar();naRenderContent();
+  _renderTopbar();naRenderContent();_updateNavBarVisibility();
+  // First-run calibration nudge — driven by an explicit flag, fired synchronously
+  const _deckId=(cfg&&cfg.deckId)||'default';
+  const _calFlag='sd-calibrated-'+_deckId;
+  if(localStorage.getItem(_calFlag)!=='1'){
+    const ov=document.createElement('div');ov.className='na-config-prompt';ov.id='na-first-prompt';
+    ov.innerHTML='<h2>Quick setup</h2><p>Run <strong>Calibrate</strong> once to capture next-slide thumbnails and video durations. Takes ~5–10 seconds. Re-run from <strong>⋯ &middot; Calibrate</strong> any time.</p><div style="display:flex;gap:10px;margin-top:8px"><button class="na-iconbtn" id="ncp-skip">Skip</button><button class="na-iconbtn active" id="ncp-now" style="background:rgba(0,212,255,.25);border-color:rgba(0,212,255,.6);color:#00d4ff">Calibrate now</button></div>';
+    document.body.appendChild(ov);
+    ov.querySelector('#ncp-skip').addEventListener('click',()=>{localStorage.setItem(_calFlag,'1');ov.remove();});
+    ov.querySelector('#ncp-now').addEventListener('click',async()=>{ov.remove();await runCalibration();localStorage.setItem(_calFlag,'1');});
+  }
   // Wire buttons
-  document.getElementById('na-timer-btn').addEventListener('click',naStartPause);
+  document.getElementById('na-timer-btn').addEventListener('click',e=>{e.stopPropagation();naStartPause();});
   let resetHold=null;
-  document.getElementById('na-reset-btn').addEventListener('pointerdown',()=>{resetHold=setTimeout(()=>{naReset();naToast('Timer reset');},900);});
-  document.getElementById('na-reset-btn').addEventListener('pointerup',()=>{clearTimeout(resetHold);});
-  document.getElementById('na-reset-btn').addEventListener('pointerleave',()=>{clearTimeout(resetHold);});
-  document.getElementById('na-lock-btn').addEventListener('click',naToggleLock);
-  document.getElementById('na-edit-btn').addEventListener('click',()=>{_notesView.editing=!_notesView.editing;_notesView.docOpen=false;naRenderContent();});
-  document.getElementById('na-doc-btn').addEventListener('click',()=>{_notesView.docOpen=!_notesView.docOpen;_notesView.editing=false;naRenderContent();});
-  document.getElementById('na-target-btn').addEventListener('click',naOpenTargetPicker);
+  const rb=document.getElementById('na-reset-btn');
+  const rDown=e=>{e.preventDefault();rb.classList.add('holding');rb.textContent='HOLD…';resetHold=setTimeout(()=>{naReset();naToast('Timer reset');rb.classList.remove('holding');rb.textContent='⟲';},900);};
+  const rCancel=()=>{clearTimeout(resetHold);rb.classList.remove('holding');rb.textContent='⟲';};
+  rb.addEventListener('pointerdown',rDown);
+  rb.addEventListener('pointerup',rCancel);
+  rb.addEventListener('pointerleave',rCancel);
+  rb.addEventListener('pointercancel',rCancel);
+  document.getElementById('na-lock-btn').addEventListener('click',e=>{e.stopPropagation();naToggleLock();});
+  document.getElementById('na-edit-btn').addEventListener('click',e=>{e.stopPropagation();_notesView.editing=!_notesView.editing;_notesView.docOpen=false;naRenderContent();_updateNavBarVisibility();});
   document.getElementById('na-tp-save').addEventListener('click',naSaveTarget);
   document.getElementById('na-tp-clear').addEventListener('click',naClearTarget);
   // Settings drawer
@@ -1955,12 +1989,16 @@ async function initNotesMode(){
   const sdStatus=document.getElementById('na-sd-status');
   const sdDefView=document.getElementById('na-sd-defview');
   if(_notesMeta.default_view)sdDefView.value=_notesMeta.default_view;
-  document.getElementById('na-settings-btn').addEventListener('click',()=>{
+  document.getElementById('na-settings-btn').addEventListener('click',e=>{
+    e.stopPropagation();
     document.getElementById('na-target-pick').classList.remove('open');
     sdEl.classList.toggle('open');
     if(sdEl.classList.contains('open')&&_notesMeta.default_view)sdDefView.value=_notesMeta.default_view;
   });
   document.getElementById('na-sd-close').addEventListener('click',()=>sdEl.classList.remove('open'));
+  // Doc + Target moved into settings drawer
+  document.getElementById('na-sd-doc').addEventListener('click',()=>{sdEl.classList.remove('open');_notesView.docOpen=!_notesView.docOpen;_notesView.editing=false;naRenderContent();_updateNavBarVisibility();});
+  document.getElementById('na-sd-target').addEventListener('click',()=>{sdEl.classList.remove('open');naOpenTargetPicker();});
   sdDefView.addEventListener('change',async()=>{
     _notesMeta.default_view=sdDefView.value;
     sdStatus.textContent='Default view: '+sdDefView.value;
