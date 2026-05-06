@@ -1774,33 +1774,150 @@ async function naClearTarget(){
 }
 
 // Calibration sweep — capture video durations + slide thumbnails
+async function _preloadAllImages(){
+  const imgs=Array.from(document.querySelectorAll('#deck img'));
+  await Promise.all(imgs.map(img=>{
+    if(img.complete&&img.naturalWidth>0)return Promise.resolve();
+    img.loading='eager';
+    return new Promise(res=>{
+      let done=false;const fin=()=>{if(done)return;done=true;res();};
+      img.addEventListener('load',fin,{once:true});
+      img.addEventListener('error',fin,{once:true});
+      setTimeout(fin,4000);
+      // Re-trigger load if needed
+      if(!img.src){fin();return;}
+      const orig=img.src;img.src='';img.src=orig;
+    });
+  }));
+}
+async function _preloadVideoFrames(){
+  const vids=Array.from(document.querySelectorAll('#deck video'));
+  await Promise.all(vids.map(v=>{
+    if(v.readyState>=2)return Promise.resolve();
+    return new Promise(res=>{
+      let done=false;const fin=()=>{if(done)return;done=true;res();};
+      v.addEventListener('loadeddata',fin,{once:true});
+      v.addEventListener('error',fin,{once:true});
+      setTimeout(fin,5000);
+      if(v.preload==='none')v.preload='metadata';
+      try{v.load();}catch(_){}
+    });
+  }));
+}
+function _drawCoverFit(ctx,src,sw,sh,dw,dh){
+  if(!sw||!sh)return false;
+  const ratio=Math.max(dw/sw,dh/sh);
+  const tw=sw*ratio,th=sh*ratio;
+  ctx.drawImage(src,(dw-tw)/2,(dh-th)/2,tw,th);
+  return true;
+}
+function captureSlideThumb(idx,W,H){
+  W=W||160;H=H||90;
+  const sl=allSlides[idx];if(!sl)return null;
+  const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#06080f';ctx.fillRect(0,0,W,H);
+  // Try first <img> (handle SVGs whose naturalWidth may be 0)
+  const img=sl.querySelector('img');
+  if(img&&img.complete){
+    const sw=img.naturalWidth||img.width||300;
+    const sh=img.naturalHeight||img.height||200;
+    if(sw>0&&sh>0){
+      try{_drawCoverFit(ctx,img,sw,sh,W,H);return canvas.toDataURL('image/jpeg',0.55);}
+      catch(e){/* CORS-tainted, fall through */}
+    }
+  }
+  // Try first inner <canvas> (MEDIA_CYCLER mount renders into one)
+  const innerCnv=sl.querySelector('.media-cycler-mount canvas, canvas:not(#stars)');
+  if(innerCnv&&innerCnv.width>0){
+    try{_drawCoverFit(ctx,innerCnv,innerCnv.width,innerCnv.height,W,H);return canvas.toDataURL('image/jpeg',0.55);}
+    catch(e){}
+  }
+  // Try first <video>
+  const vid=sl.querySelector('video');
+  if(vid&&vid.videoWidth>0){
+    try{_drawCoverFit(ctx,vid,vid.videoWidth,vid.videoHeight,W,H);return canvas.toDataURL('image/jpeg',0.55);}
+    catch(e){}
+  }
+  // Fallback: rendered text card
+  return _renderTextCardThumb(sl,idx,W,H);
+}
+function _renderTextCardThumb(sl,idx,W,H){
+  const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+  const ty=sl.dataset.type||'';
+  const accent=sl.classList.contains('accent-purple')?'#a78bfa':sl.classList.contains('accent-amber')?'#f59e0b':sl.classList.contains('accent-rose')?'#f43f5e':'#00d4ff';
+  // Background
+  const grad=ctx.createLinearGradient(0,0,W,H);
+  grad.addColorStop(0,'#0a0d1c');grad.addColorStop(1,'#1a1530');
+  ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+  ctx.fillStyle=accent+'22';ctx.fillRect(0,0,4,H);
+  // Slide number
+  ctx.fillStyle=accent;ctx.font='700 9px sans-serif';
+  ctx.fillText(String(idx).padStart(2,'0'),10,14);
+  // Type badge
+  ctx.fillStyle='rgba(255,255,255,.4)';ctx.font='700 7px sans-serif';
+  ctx.fillText((ty||'slide').toUpperCase(),W-Math.min(W-12,40),14);
+  // Title (word-wrapped)
+  const title=getSlideTitle(idx)||'';
+  ctx.fillStyle='rgba(240,244,255,.92)';ctx.font='600 11px sans-serif';
+  const words=title.split(/\s+/);
+  let line='',y=34;
+  words.forEach(w=>{
+    const test=line?line+' '+w:w;
+    if(ctx.measureText(test).width>W-20&&line){ctx.fillText(line,10,y);line=w;y+=14;if(y>H-6)return;}
+    else line=test;
+  });
+  if(line&&y<=H-4)ctx.fillText(line,10,y);
+  return canvas.toDataURL('image/jpeg',0.65);
+}
 async function runCalibration(){
   naToast('Calibrating…');
+  const t0=Date.now();
+  // Force-load images and video metadata so captures aren't blank
+  await Promise.race([Promise.all([_preloadAllImages(),_preloadVideoFrames()]),new Promise(r=>setTimeout(r,8000))]);
+  // Video durations
   const videoDurations={};
-  // Collect <video> elements from all slides
   const seen=new Set();
   for(let i=0;i<allSlides.length;i++){
     const vids=allSlides[i].querySelectorAll('video');
     for(const v of vids){
       if(!v.src||seen.has(v.src))continue;seen.add(v.src);
-      try{
-        if(!isFinite(v.duration)||v.duration===0){
-          await new Promise((res,rej)=>{const to=setTimeout(()=>rej(),5000);v.addEventListener('loadedmetadata',()=>{clearTimeout(to);res();},{once:true});if(v.readyState===0)v.load();});
-        }
-        if(isFinite(v.duration)&&v.duration>0)videoDurations[v.src]=Number(v.duration.toFixed(1));
-      }catch(e){}
+      if(isFinite(v.duration)&&v.duration>0)videoDurations[v.src]=Number(v.duration.toFixed(1));
     }
   }
   _videoDurationCache=videoDurations;
-  const calibration={videoDurations,thumbnails:_slideThumbs,calibratedAt:new Date().toISOString()};
-  try{await syncCall('setMeta',{key:'calibration',value:calibration});naToast('Calibration saved · '+Object.keys(videoDurations).length+' videos');}
-  catch(e){naToast('Calibration local only');}
+  // Slide thumbnails
+  const thumbnails={};
+  for(let i=0;i<allSlides.length;i++){
+    const sl=allSlides[i];
+    if(sl.dataset.hidden==='1')continue;
+    if(sl.dataset.type==='settings')continue;
+    try{const t=captureSlideThumb(i,160,90);if(t)thumbnails[i]=t;}catch(e){}
+  }
+  _slideThumbs=thumbnails;
+  // Cache to localStorage (per-deckId)
+  try{
+    const cfg=window._notesConfig;const deckId=(cfg&&cfg.deckId)||'default';
+    localStorage.setItem('sd-thumbs-'+deckId,JSON.stringify(thumbnails));
+    localStorage.setItem('sd-vidcache-'+deckId,JSON.stringify(videoDurations));
+  }catch(e){}
+  const calibration={videoDurations,calibratedAt:new Date().toISOString(),slideCount:Object.keys(thumbnails).length};
+  try{await syncCall('setMeta',{key:'calibration',value:calibration});naToast('Calibration saved · '+Object.keys(thumbnails).length+' thumbs · '+Object.keys(videoDurations).length+' videos');}
+  catch(e){naToast('Calibration local only · '+Object.keys(thumbnails).length+' thumbs');}
   _renderTopbar();
+  console.log('[calibration] '+(Date.now()-t0)+'ms · '+Object.keys(thumbnails).length+' thumbs · '+Object.keys(videoDurations).length+' videos');
 }
 
 // Notes-mode init
 async function initNotesMode(){
   const cfg=await loadNotesConfig();
+  // Load cached thumbs / video durations from localStorage (per-deckId)
+  try{
+    const deckId=(cfg&&cfg.deckId)||'default';
+    const t=localStorage.getItem('sd-thumbs-'+deckId);if(t)_slideThumbs=JSON.parse(t)||{};
+    const v=localStorage.getItem('sd-vidcache-'+deckId);if(v)_videoDurationCache=JSON.parse(v)||{};
+  }catch(e){}
   if(!cfg){
     // Show config prompt overlay
     const ov=document.createElement('div');ov.className='na-config-prompt';
