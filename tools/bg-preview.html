@@ -43,12 +43,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 body.bg1 .opt-aurora{display:block}
 .opt-aurora{display:none;position:absolute;inset:0;overflow:hidden}
 .opt-aurora .blob{position:absolute;border-radius:50%;filter:blur(110px);will-change:transform;mix-blend-mode:screen}
-.opt-aurora .b1{width:55%;aspect-ratio:1;background:radial-gradient(circle,rgba(0,212,255,.55),rgba(0,212,255,0));top:-10%;left:-10%;animation:aurora1 78s ease-in-out infinite alternate}
-.opt-aurora .b2{width:48%;aspect-ratio:1;background:radial-gradient(circle,rgba(167,139,250,.5),rgba(167,139,250,0));top:30%;right:-10%;animation:aurora2 92s ease-in-out infinite alternate}
-.opt-aurora .b3{width:62%;aspect-ratio:1;background:radial-gradient(circle,rgba(245,158,11,.32),rgba(245,158,11,0));bottom:-20%;left:10%;animation:aurora3 110s ease-in-out infinite alternate}
-@keyframes aurora1{0%{transform:translate(0,0)}100%{transform:translate(35vw,40vh)}}
-@keyframes aurora2{0%{transform:translate(0,0)}100%{transform:translate(-30vw,-25vh)}}
-@keyframes aurora3{0%{transform:translate(0,0)}100%{transform:translate(20vw,-30vh)}}
+.opt-aurora .b1{width:55%;aspect-ratio:1;background:radial-gradient(circle,rgba(0,212,255,.55),rgba(0,212,255,0));top:-10%;left:-10%;animation:aurora1 26s linear infinite}
+.opt-aurora .b2{width:48%;aspect-ratio:1;background:radial-gradient(circle,rgba(167,139,250,.5),rgba(167,139,250,0));top:30%;right:-10%;animation:aurora2 32s linear infinite}
+.opt-aurora .b3{width:62%;aspect-ratio:1;background:radial-gradient(circle,rgba(245,158,11,.32),rgba(245,158,11,0));bottom:-20%;left:10%;animation:aurora3 38s linear infinite}
+@keyframes aurora1{0%{transform:translate(0,0)}25%{transform:translate(28vw,18vh)}50%{transform:translate(40vw,38vh)}75%{transform:translate(12vw,28vh)}100%{transform:translate(0,0)}}
+@keyframes aurora2{0%{transform:translate(0,0)}25%{transform:translate(-20vw,-15vh)}50%{transform:translate(-32vw,8vh)}75%{transform:translate(-15vw,22vh)}100%{transform:translate(0,0)}}
+@keyframes aurora3{0%{transform:translate(0,0)}25%{transform:translate(18vw,-15vh)}50%{transform:translate(28vw,-30vh)}75%{transform:translate(8vw,-18vh)}100%{transform:translate(0,0)}}
 
 /* ========================================================================
    OPTION 2 — EMBER
@@ -58,15 +58,15 @@ body.bg1 .opt-aurora{display:block}
 body.bg2 .opt-ember{display:block}
 .opt-ember{display:none;position:absolute;inset:0;overflow:hidden}
 .opt-ember .blob{position:absolute;border-radius:50%;filter:blur(140px);will-change:transform,opacity}
-.opt-ember .b1{width:60%;aspect-ratio:1;background:radial-gradient(circle,rgba(245,158,11,.5),rgba(245,158,11,0));top:-15%;left:20%;animation:emberDrift1 90s ease-in-out infinite alternate,emberPulse1 14s ease-in-out infinite alternate}
-.opt-ember .b2{width:50%;aspect-ratio:1;background:radial-gradient(circle,rgba(244,63,94,.35),rgba(244,63,94,0));bottom:-10%;right:-5%;animation:emberDrift2 120s ease-in-out infinite alternate,emberPulse2 18s ease-in-out infinite alternate}
-.opt-ember .b3{width:40%;aspect-ratio:1;background:radial-gradient(circle,rgba(254,215,170,.18),rgba(254,215,170,0));top:50%;left:-10%;animation:emberDrift3 100s ease-in-out infinite alternate,emberPulse3 22s ease-in-out infinite alternate}
-@keyframes emberDrift1{0%{transform:translate(0,0)}100%{transform:translate(-20vw,30vh)}}
-@keyframes emberDrift2{0%{transform:translate(0,0)}100%{transform:translate(-25vw,-20vh)}}
-@keyframes emberDrift3{0%{transform:translate(0,0)}100%{transform:translate(40vw,-10vh)}}
-@keyframes emberPulse1{0%{opacity:.85}100%{opacity:1}}
-@keyframes emberPulse2{0%{opacity:.7}100%{opacity:1}}
-@keyframes emberPulse3{0%{opacity:.6}100%{opacity:.95}}
+.opt-ember .b1{width:60%;aspect-ratio:1;background:radial-gradient(circle,rgba(245,158,11,.5),rgba(245,158,11,0));top:-15%;left:20%;animation:emberDrift1 32s linear infinite,emberPulse1 9s ease-in-out infinite alternate}
+.opt-ember .b2{width:50%;aspect-ratio:1;background:radial-gradient(circle,rgba(244,63,94,.35),rgba(244,63,94,0));bottom:-10%;right:-5%;animation:emberDrift2 40s linear infinite,emberPulse2 12s ease-in-out infinite alternate}
+.opt-ember .b3{width:40%;aspect-ratio:1;background:radial-gradient(circle,rgba(254,215,170,.18),rgba(254,215,170,0));top:50%;left:-10%;animation:emberDrift3 36s linear infinite,emberPulse3 14s ease-in-out infinite alternate}
+@keyframes emberDrift1{0%{transform:translate(0,0)}25%{transform:translate(-15vw,18vh)}50%{transform:translate(-22vw,28vh)}75%{transform:translate(-8vw,18vh)}100%{transform:translate(0,0)}}
+@keyframes emberDrift2{0%{transform:translate(0,0)}25%{transform:translate(-18vw,-12vh)}50%{transform:translate(-28vw,-22vh)}75%{transform:translate(-12vw,-10vh)}100%{transform:translate(0,0)}}
+@keyframes emberDrift3{0%{transform:translate(0,0)}25%{transform:translate(28vw,-6vh)}50%{transform:translate(38vw,-12vh)}75%{transform:translate(20vw,-4vh)}100%{transform:translate(0,0)}}
+@keyframes emberPulse1{0%{opacity:.7}100%{opacity:1}}
+@keyframes emberPulse2{0%{opacity:.55}100%{opacity:1}}
+@keyframes emberPulse3{0%{opacity:.5}100%{opacity:.95}}
 
 /* ========================================================================
    OPTION 3 — GHOST (Christmas Carol audience feel)
@@ -75,15 +75,15 @@ body.bg2 .opt-ember{display:block}
 ======================================================================== */
 body.bg3 .opt-ghost{display:block}
 .opt-ghost{display:none;position:absolute;inset:0;overflow:hidden}
-.opt-ghost .blob{position:absolute;border-radius:50%;filter:blur(160px);will-change:transform;mix-blend-mode:screen}
-.opt-ghost .b1{width:50%;aspect-ratio:1;background:radial-gradient(circle,rgba(180,210,255,.18),rgba(180,210,255,0));top:10%;left:5%;animation:ghost1 85s ease-in-out infinite alternate}
-.opt-ghost .b2{width:42%;aspect-ratio:1;background:radial-gradient(circle,rgba(220,200,255,.15),rgba(220,200,255,0));top:30%;right:5%;animation:ghost2 105s ease-in-out infinite alternate}
-.opt-ghost .b3{width:55%;aspect-ratio:1;background:radial-gradient(circle,rgba(160,180,220,.13),rgba(160,180,220,0));bottom:-5%;left:30%;animation:ghost3 95s ease-in-out infinite alternate}
-.opt-ghost .b4{width:38%;aspect-ratio:1;background:radial-gradient(circle,rgba(200,210,250,.12),rgba(200,210,250,0));top:55%;left:-5%;animation:ghost4 130s ease-in-out infinite alternate}
-@keyframes ghost1{0%{transform:translate(0,0)}50%{transform:translate(15vw,10vh)}100%{transform:translate(30vw,-5vh)}}
-@keyframes ghost2{0%{transform:translate(0,0)}50%{transform:translate(-20vw,15vh)}100%{transform:translate(-10vw,30vh)}}
-@keyframes ghost3{0%{transform:translate(0,0)}50%{transform:translate(-15vw,-10vh)}100%{transform:translate(10vw,-25vh)}}
-@keyframes ghost4{0%{transform:translate(0,0)}50%{transform:translate(25vw,-5vh)}100%{transform:translate(40vw,15vh)}}
+.opt-ghost .blob{position:absolute;border-radius:50%;filter:blur(140px);will-change:transform;mix-blend-mode:screen}
+.opt-ghost .b1{width:50%;aspect-ratio:1;background:radial-gradient(circle,rgba(180,210,255,.32),rgba(180,210,255,0));top:10%;left:5%;animation:ghost1 28s linear infinite}
+.opt-ghost .b2{width:42%;aspect-ratio:1;background:radial-gradient(circle,rgba(220,200,255,.28),rgba(220,200,255,0));top:30%;right:5%;animation:ghost2 36s linear infinite}
+.opt-ghost .b3{width:55%;aspect-ratio:1;background:radial-gradient(circle,rgba(160,180,220,.24),rgba(160,180,220,0));bottom:-5%;left:30%;animation:ghost3 32s linear infinite}
+.opt-ghost .b4{width:38%;aspect-ratio:1;background:radial-gradient(circle,rgba(200,210,250,.22),rgba(200,210,250,0));top:55%;left:-5%;animation:ghost4 44s linear infinite}
+@keyframes ghost1{0%{transform:translate(0,0)}25%{transform:translate(20vw,12vh)}50%{transform:translate(28vw,-2vh)}75%{transform:translate(10vw,-12vh)}100%{transform:translate(0,0)}}
+@keyframes ghost2{0%{transform:translate(0,0)}25%{transform:translate(-15vw,14vh)}50%{transform:translate(-18vw,28vh)}75%{transform:translate(-6vw,16vh)}100%{transform:translate(0,0)}}
+@keyframes ghost3{0%{transform:translate(0,0)}25%{transform:translate(-12vw,-12vh)}50%{transform:translate(8vw,-22vh)}75%{transform:translate(14vw,-8vh)}100%{transform:translate(0,0)}}
+@keyframes ghost4{0%{transform:translate(0,0)}25%{transform:translate(22vw,-4vh)}50%{transform:translate(36vw,12vh)}75%{transform:translate(18vw,18vh)}100%{transform:translate(0,0)}}
 
 /* ========================================================================
    OPTION 4 — NEBULA
@@ -93,13 +93,13 @@ body.bg3 .opt-ghost{display:block}
 body.bg4 .opt-nebula{display:block}
 .opt-nebula{display:none;position:absolute;inset:0;overflow:hidden}
 .opt-nebula .blob{position:absolute;border-radius:50%;filter:blur(120px);will-change:transform;mix-blend-mode:screen}
-.opt-nebula .swirl{position:absolute;inset:-25%;background:conic-gradient(from 0deg,rgba(0,212,255,.05),rgba(167,139,250,.04),rgba(245,158,11,.05),rgba(244,63,94,.04),rgba(0,212,255,.05));filter:blur(80px);will-change:transform;animation:swirl 240s linear infinite}
-.opt-nebula .b1{width:45%;aspect-ratio:1;background:radial-gradient(circle,rgba(0,212,255,.45),rgba(0,212,255,0));top:-5%;left:0;animation:nebula1 90s ease-in-out infinite alternate}
-.opt-nebula .b2{width:42%;aspect-ratio:1;background:radial-gradient(circle,rgba(167,139,250,.42),rgba(167,139,250,0));bottom:-5%;right:5%;animation:nebula2 100s ease-in-out infinite alternate}
-.opt-nebula .b3{width:35%;aspect-ratio:1;background:radial-gradient(circle,rgba(245,158,11,.28),rgba(245,158,11,0));top:50%;left:50%;transform:translate(-50%,-50%);animation:nebula3 80s ease-in-out infinite alternate}
-@keyframes nebula1{0%{transform:translate(0,0)}100%{transform:translate(30vw,25vh)}}
-@keyframes nebula2{0%{transform:translate(0,0)}100%{transform:translate(-25vw,-20vh)}}
-@keyframes nebula3{0%{transform:translate(-50%,-50%)}100%{transform:translate(-30%,-65%)}}
+.opt-nebula .swirl{position:absolute;inset:-25%;background:conic-gradient(from 0deg,rgba(0,212,255,.05),rgba(167,139,250,.04),rgba(245,158,11,.05),rgba(244,63,94,.04),rgba(0,212,255,.05));filter:blur(80px);will-change:transform;animation:swirl 80s linear infinite}
+.opt-nebula .b1{width:45%;aspect-ratio:1;background:radial-gradient(circle,rgba(0,212,255,.45),rgba(0,212,255,0));top:-5%;left:0;animation:nebula1 30s linear infinite}
+.opt-nebula .b2{width:42%;aspect-ratio:1;background:radial-gradient(circle,rgba(167,139,250,.42),rgba(167,139,250,0));bottom:-5%;right:5%;animation:nebula2 36s linear infinite}
+.opt-nebula .b3{width:35%;aspect-ratio:1;background:radial-gradient(circle,rgba(245,158,11,.28),rgba(245,158,11,0));top:50%;left:50%;animation:nebula3 26s linear infinite}
+@keyframes nebula1{0%{transform:translate(0,0)}25%{transform:translate(22vw,18vh)}50%{transform:translate(32vw,8vh)}75%{transform:translate(14vw,-8vh)}100%{transform:translate(0,0)}}
+@keyframes nebula2{0%{transform:translate(0,0)}25%{transform:translate(-18vw,-14vh)}50%{transform:translate(-28vw,4vh)}75%{transform:translate(-12vw,12vh)}100%{transform:translate(0,0)}}
+@keyframes nebula3{0%{transform:translate(-50%,-50%)}25%{transform:translate(-30%,-58%)}50%{transform:translate(-22%,-42%)}75%{transform:translate(-58%,-44%)}100%{transform:translate(-50%,-50%)}}
 @keyframes swirl{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 
 /* ========================================================================
@@ -156,10 +156,10 @@ body.bg4 .opt-nebula{display:block}
 
 <script>
 const META = {
-  bg1: {title:'1 · Aurora', desc:"Three drifting blurred blobs in the deck's accent colors (teal, purple, amber). ~78s cycle. Highest motion of the four — still gentle, but most 'alive.'"},
-  bg2: {title:'2 · Ember',  desc:'Warm amber + rose with subtle opacity pulse. Slowest. Like distant firelight on stone.'},
-  bg3: {title:'3 · Ghost',  desc:'Pale low-opacity wisps drifting at different speeds — A Christmas Carol audience. Most ethereal, least "designed."'},
-  bg4: {title:'4 · Nebula', desc:'Cool + warm blobs combined with a slow-rotating conic gradient behind. Fullest texture without being busy.'},
+  bg1: {title:'1 · Aurora', desc:"Teal, purple, amber blobs drifting at 26–38s/loop. Highest motion of the four — visible drift but still ambient."},
+  bg2: {title:'2 · Ember',  desc:'Warm amber + rose drift at 32–40s with 9–14s opacity pulse. Distant firelight on stone.'},
+  bg3: {title:'3 · Ghost',  desc:'Pale wisps drifting at staggered 28–44s loops — A Christmas Carol audience. Ethereal, least "designed."'},
+  bg4: {title:'4 · Nebula', desc:'Cool + warm blobs (26–36s) + slow conic rotation behind (80s). Fullest texture without being busy.'},
   bg0: {title:'0 · None',   desc:'Current Spatial Deck baseline — static gradient + stars. For comparison.'}
 };
 const buttons = document.querySelectorAll('.ctl button');
