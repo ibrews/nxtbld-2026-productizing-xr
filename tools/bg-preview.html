@@ -168,12 +168,14 @@ const META = {
   bg4: {title:'4 · Nebula', desc:'Cool + warm blobs (26–36s) + slow conic rotation behind (80s). Fullest texture without being busy.'},
   bg0: {title:'0 · None',   desc:'Current Spatial Deck baseline — static gradient + stars. For comparison.'}
 };
-const buttons = document.querySelectorAll('.ctl button');
+const buttons = document.querySelectorAll('.ctl button[data-bg]');
 const titleEl = document.getElementById('title');
 const descEl = document.getElementById('desc');
 buttons.forEach(b => b.addEventListener('click', () => {
   const bg = b.dataset.bg;
-  document.body.className = bg === 'bg0' ? '' : bg;
+  // Preserve show-image state when switching bg style
+  const wasImageOn = document.body.classList.contains('show-image');
+  document.body.className = (bg === 'bg0' ? '' : bg) + (wasImageOn ? ' show-image' : '');
   buttons.forEach(x => x.classList.toggle('active', x === b));
   titleEl.textContent = META[bg].title;
   descEl.textContent  = META[bg].desc;
