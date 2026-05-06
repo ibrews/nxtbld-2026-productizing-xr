@@ -285,7 +285,8 @@ body.notes-mode #deck,body.notes-mode #counter,body.notes-mode #brand,body.notes
 body.notes-mode html,body.notes-mode{overflow:hidden;background:#06080f;height:100vh;height:100dvh}
 #notes-app{display:none;position:fixed;inset:0;z-index:9000;background:#06080f;color:#e8eeff;font-family:var(--font);flex-direction:column;overflow:hidden;-webkit-tap-highlight-color:transparent;user-select:none}
 body.notes-mode #notes-app{display:flex}
-.na-topbar{flex:0 0 auto;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(10,12,24,.85);backdrop-filter:blur(8px);position:relative;z-index:2}
+.na-topbar{flex:0 0 auto;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(10,12,24,.92);backdrop-filter:blur(8px);position:relative;z-index:10}
+.na-next-pv{z-index:10!important}
 .na-tb-l,.na-tb-r{display:flex;align-items:center;gap:8px}
 .na-slide-num{font-size:.78rem;font-weight:700;letter-spacing:.18em;color:#00d4ff}
 .na-slide-title{font-size:.7rem;color:rgba(255,255,255,.5);max-width:34vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -316,9 +317,9 @@ body.notes-mode #notes-app{display:flex}
 .na-next-info{flex:1;min-width:0}
 .na-next-lbl{font-size:.55rem;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:2px}
 .na-next-title{font-size:.85rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.na-tap-zones{position:absolute;inset:0;display:flex;z-index:5;pointer-events:none}
+.na-tap-zones{position:absolute;left:0;right:0;top:64px;bottom:88px;display:flex;z-index:1;pointer-events:none}
 .na-tap-zones.active{pointer-events:auto}
-.na-tap-l,.na-tap-m,.na-tap-r{display:block}
+.na-tap-l,.na-tap-m,.na-tap-r{display:block;height:100%}
 .na-tap-l{flex:0 0 20%}.na-tap-m{flex:1}.na-tap-r{flex:0 0 20%}
 .na-tap-l:active{background:linear-gradient(90deg,rgba(0,212,255,.12),transparent)}
 .na-tap-r:active{background:linear-gradient(-90deg,rgba(0,212,255,.12),transparent)}
@@ -345,6 +346,13 @@ body.notes-mode #notes-app{display:flex}
 .na-target-pick button{background:rgba(0,212,255,.15);border:1px solid rgba(0,212,255,.4);color:#00d4ff;font:600 .72rem var(--font);letter-spacing:.1em;padding:8px;border-radius:5px;cursor:pointer;text-transform:uppercase}
 .na-projected{font-size:.62rem;color:rgba(255,255,255,.5);letter-spacing:.05em;margin-top:6px}
 .na-projected.late{color:#f43f5e}.na-projected.warn{color:#f59e0b}
+.na-settings-drawer{position:absolute;top:48px;right:14px;background:rgba(10,12,24,.96);border:1px solid rgba(0,212,255,.4);border-radius:8px;padding:14px;display:none;flex-direction:column;gap:10px;min-width:240px;z-index:60;box-shadow:0 12px 40px rgba(0,0,0,.55)}
+.na-settings-drawer.open{display:flex}
+.na-settings-drawer label{font-size:.6rem;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,.45);text-transform:uppercase;display:block;margin-bottom:4px}
+.na-settings-drawer select,.na-settings-drawer button{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:#e8eeff;font:600 .8rem var(--font);padding:8px;border-radius:5px;width:100%;cursor:pointer}
+.na-settings-drawer button.primary{background:rgba(0,212,255,.15);border-color:rgba(0,212,255,.4);color:#00d4ff;letter-spacing:.06em}
+.na-settings-drawer button.danger{background:rgba(244,63,94,.1);border-color:rgba(244,63,94,.35);color:#f43f5e}
+.na-settings-drawer .nasd-status{font-size:.65rem;color:rgba(255,255,255,.5);margin-top:4px;line-height:1.4}
 @media (max-width:480px){.na-slide-title{display:none}.na-bullets li{font-size:1.05rem}}
 </style>
 </head>
@@ -387,6 +395,14 @@ body.notes-mode #notes-app{display:flex}
       <button class="na-iconbtn" id="na-edit-btn" title="Edit current slide">✎</button>
       <button class="na-iconbtn" id="na-doc-btn" title="Edit-all (full document)">≡</button>
       <button class="na-iconbtn" id="na-target-btn" title="Set target finish time">⏱</button>
+      <button class="na-iconbtn" id="na-settings-btn" title="Settings">⚙</button>
+    </div>
+    <div class="na-settings-drawer" id="na-settings-drawer">
+      <div><label>Default view</label><select id="na-sd-defview"><option value="bullets">Bullets</option><option value="script">Script</option></select></div>
+      <button class="primary" id="na-sd-calibrate">🔁 Calibrate Videos</button>
+      <button id="na-sd-reseed">📤 Reseed from SECTIONS</button>
+      <button class="danger" id="na-sd-close" style="margin-top:4px">Close</button>
+      <div class="nasd-status" id="na-sd-status"></div>
     </div>
     <div class="na-target-pick" id="na-target-pick">
       <label>Finish at (local time)</label>
@@ -1633,14 +1649,17 @@ function _updatePacingDisplay(){
   }else{tLine.textContent='no target set';dot.className='na-pace-dot';}
 }
 
-// Tap zones
+// Tap zones (with debounce — ignore taps within 280ms of last)
+let _tapLastFire=0;
+function _tapGuard(){const now=Date.now();if(now-_tapLastFire<280)return false;_tapLastFire=now;return true;}
 function _setupTapZones(){
   const zones=document.getElementById('na-tap-zones');if(!zones)return;
   zones.classList.add('active');
-  document.getElementById('na-tap-l').addEventListener('click',()=>{naAdvance(-1);});
-  document.getElementById('na-tap-r').addEventListener('click',()=>{naAdvance(1);});
-  document.getElementById('na-tap-m').addEventListener('click',()=>{
+  document.getElementById('na-tap-l').addEventListener('click',e=>{e.preventDefault();if(!_tapGuard())return;naAdvance(-1);});
+  document.getElementById('na-tap-r').addEventListener('click',e=>{e.preventDefault();if(!_tapGuard())return;naAdvance(1);});
+  document.getElementById('na-tap-m').addEventListener('click',e=>{
     if(_notesView.editing||_notesView.docOpen)return;
+    if(!_tapGuard())return;
     const showBullets=_notesView.mode==='auto'?(_notesMeta.default_view==='bullets'):_notesView.mode==='bullets';
     _notesView.mode=showBullets?'script':'bullets';
     naRenderContent();
@@ -1690,10 +1709,11 @@ function naReset(){
 // Padlock clicker (sheet-relayed)
 let _clickerPoll=null,_clickerLastSeq=0;
 async function _pushClickerState(){
+  if(!window._notesConfig)return; // no cloud sync; skip silently
   try{
     const state={currentSlide:current,seq:Date.now(),locked:_notesView.locked,fromPhone:true};
     await syncCall('setState',{state});
-  }catch(e){console.warn('clicker push failed',e);}
+  }catch(e){/* offline-friendly */}
 }
 async function _pollClickerForLaptop(){
   // Laptop side: read state from sheet, if seq newer and fromPhone, advance
@@ -1813,6 +1833,34 @@ async function initNotesMode(){
   document.getElementById('na-target-btn').addEventListener('click',naOpenTargetPicker);
   document.getElementById('na-tp-save').addEventListener('click',naSaveTarget);
   document.getElementById('na-tp-clear').addEventListener('click',naClearTarget);
+  // Settings drawer
+  const sdEl=document.getElementById('na-settings-drawer');
+  const sdStatus=document.getElementById('na-sd-status');
+  const sdDefView=document.getElementById('na-sd-defview');
+  if(_notesMeta.default_view)sdDefView.value=_notesMeta.default_view;
+  document.getElementById('na-settings-btn').addEventListener('click',()=>{
+    document.getElementById('na-target-pick').classList.remove('open');
+    sdEl.classList.toggle('open');
+    if(sdEl.classList.contains('open')&&_notesMeta.default_view)sdDefView.value=_notesMeta.default_view;
+  });
+  document.getElementById('na-sd-close').addEventListener('click',()=>sdEl.classList.remove('open'));
+  sdDefView.addEventListener('change',async()=>{
+    _notesMeta.default_view=sdDefView.value;
+    sdStatus.textContent='Default view: '+sdDefView.value;
+    naRenderContent();
+    try{await syncCall('setMeta',{key:'default_view',value:sdDefView.value});sdStatus.textContent='Saved · default = '+sdDefView.value;}
+    catch(e){sdStatus.textContent='Local only';}
+  });
+  document.getElementById('na-sd-calibrate').addEventListener('click',async()=>{
+    sdStatus.textContent='Calibrating videos…';
+    try{await runCalibration();sdStatus.textContent='Calibration done';}catch(e){sdStatus.textContent='Failed: '+e.message;}
+  });
+  document.getElementById('na-sd-reseed').addEventListener('click',async()=>{
+    if(!confirm('Overwrite sheet rows for this deck with current SECTIONS notes?'))return;
+    sdStatus.textContent='Reseeding…';
+    try{await seedFromSections(true);const fresh=await syncCall('getNotes',{});_applyNotesData(fresh);naRenderContent();sdStatus.textContent='Reseeded · '+(fresh.slides||[]).length+' slides';}
+    catch(e){sdStatus.textContent='Failed: '+e.message;}
+  });
   // Refresh pacing every second
   setInterval(_updatePacingDisplay,1000);
   // Hook navigation
