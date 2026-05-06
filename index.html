@@ -124,6 +124,7 @@ body.vertical-mode .bg{position:fixed}
 .slide-bonus .ey-badge{color:var(--amber)}.slide-bonus .lesson-rule{background:var(--amber)}.slide-bonus .year-ghost{color:rgba(245,158,11,.04)}
 .slide-settings{background:rgba(3,5,12,.98)}
 .cfg-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:52px 64px;max-width:960px;width:90%;backdrop-filter:blur(20px)}
+body[data-bg-style]:not([data-bg-style="none"]) .cfg-panel{background:rgba(8,10,20,.32);backdrop-filter:blur(6px)}
 .cfg-title{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
 .cfg-subtitle{font-size:.75rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:44px;opacity:.7}
 .cfg-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px 56px;margin-bottom:36px}
@@ -514,7 +515,7 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
 (function(){
   const D={paraGap:.35,taglineScale:1,titleScale:1,imgDur:6,primaryColor:'#00d4ff',secondaryColor:'#a78bfa',bgDark:'#060810',fontFamily:'Space Grotesk',transition:'slide',arrowSubstep:true,verticalMode:false,bgStyle:'none',bgBlend:'screen'};
   const saved=JSON.parse(localStorage.getItem('sd-cfg')||'{}');const C={...D,...saved};
-  function apply(){const r=document.documentElement.style;r.setProperty('--para-gap',C.paraGap+'em');r.setProperty('--tagline-scale',C.taglineScale);r.setProperty('--title-scale',C.titleScale);r.setProperty('--teal',C.primaryColor);r.setProperty('--purple',C.secondaryColor);r.setProperty('--bg-dark',C.bgDark);r.setProperty('--bg',C.bgDark);if(C.fontFamily&&C.fontFamily!=='Custom')r.setProperty('--font',`'${C.fontFamily}',system-ui,sans-serif`);else if(C.customFont)r.setProperty('--font',`'${C.customFont}',system-ui,sans-serif`);window._globalImageDuration=C.imgDur*1000;window._arrowSubstep=C.arrowSubstep;const vForced=new URLSearchParams(location.search).has('vertical');document.body.classList.toggle('vertical-mode',!!C.verticalMode||vForced);window._verticalMode=!!C.verticalMode||vForced;document.body.dataset.bgStyle=C.bgStyle||'none';r.setProperty('--bg-blend',C.bgBlend||'screen');}
+  function apply(){const r=document.documentElement.style;r.setProperty('--para-gap',C.paraGap+'em');r.setProperty('--tagline-scale',C.taglineScale);r.setProperty('--title-scale',C.titleScale);r.setProperty('--teal',C.primaryColor);r.setProperty('--purple',C.secondaryColor);r.setProperty('--bg-dark',C.bgDark);r.setProperty('--bg',C.bgDark);if(C.fontFamily&&C.fontFamily!=='Custom')r.setProperty('--font',`'${C.fontFamily}',system-ui,sans-serif`);else if(C.customFont)r.setProperty('--font',`'${C.customFont}',system-ui,sans-serif`);window._globalImageDuration=C.imgDur*1000;window._arrowSubstep=C.arrowSubstep;const vForced=new URLSearchParams(location.search).has('vertical');document.body.classList.toggle('vertical-mode',!!C.verticalMode||vForced);window._verticalMode=!!C.verticalMode||vForced;document.body.dataset.bgStyle=C.bgStyle||'none';r.setProperty('--bg-blend',C.bgBlend||'screen');if(typeof aRender==='function')aRender();}
   apply();function save(){localStorage.setItem('sd-cfg',JSON.stringify(C));}
   const s=document.createElement('div');s.className='slide slide-settings';s.dataset.type='settings';s.dataset.hidden='1';
   const fo=['Space Grotesk','Inter','Outfit','JetBrains Mono','Playfair Display','Custom'].map(f=>`<option value="${f}"${C.fontFamily===f?' selected':''}>${f}</option>`).join('');
@@ -959,7 +960,14 @@ function aS(a){localStorage.setItem(AK,JSON.stringify(a))}
 function annoToast(m){const t=document.getElementById('anno-toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);}
 function aSel(el){if(el.id)return'#'+el.id;const p=[];let c=el,d=0;while(c&&c!==document.body&&d<5){let pt=c.tagName.toLowerCase();if(c.id){pt='#'+c.id;p.unshift(pt);break;}if(c.classList.length){const cs=Array.from(c.classList).filter(x=>!['active'].includes(x)).slice(0,2).join('.');if(cs)pt+='.'+cs;}const sb=Array.from(c.parentNode?.children||[]).filter(s=>s.tagName===c.tagName);if(sb.length>1)pt+=':nth-of-type('+(sb.indexOf(c)+1)+')';p.unshift(pt);c=c.parentElement;d++;}return p.join(' > ');}
 function aCtx(el){const sl=el.closest('.slide');if(!sl)return null;const ty=sl.dataset.type||'?',yr=sl.dataset.year||'',idx=[...document.querySelectorAll('#deck > .slide')].indexOf(sl);return(yr?`${ty} ${yr}`:ty)+(idx>=0?` #${idx+1}`:'');}
-function aRender(){const list=document.getElementById('anno-list');const items=aL();if(!items.length){list.innerHTML='<div id="anno-empty">No annotations yet.</div>';return;}list.innerHTML=items.map((a,i)=>`<div class="anno-item"><span class="anno-rm" data-i="${i}">&times;</span><div class="anno-meta">${a.context||''} &middot; <code>${a.selector}</code></div>${a.position?'<div class="anno-meta" style="color:var(--amber)">'+a.position+'</div>':''}${a.transform?'<div class="anno-meta" style="color:var(--purple)">'+a.transform+'</div>':''}<div>${a.text.replace(/</g,'&lt;')}</div></div>`).join('');list.querySelectorAll('.anno-rm').forEach(b=>b.addEventListener('click',e=>{const i=+e.target.dataset.i;const arr=aL();arr.splice(i,1);aS(arr);aRender();}));}
+function _settingsCardHTML(){
+  let cfg={};try{cfg=JSON.parse(localStorage.getItem('sd-cfg')||'{}');}catch(e){return '';}
+  const keys=Object.keys(cfg).sort();
+  if(!keys.length)return '';
+  const rows=keys.map(k=>{const v=cfg[k];const fmt=typeof v==='string'?`"${v.replace(/</g,'&lt;')}"`:String(v);return `<div style="font-size:.7rem;line-height:1.5;color:rgba(240,244,255,.7)"><span style="color:var(--teal)">${k}</span>: <span style="color:#fff">${fmt}</span></div>`;}).join('');
+  return `<div class="anno-item" style="border-left:3px solid var(--teal);background:rgba(0,212,255,.04);padding:10px 12px"><div class="anno-meta" style="color:var(--teal);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.65rem;margin-bottom:6px">⚙ Slide 0 · current settings (auto-tracked)</div>${rows}</div>`;
+}
+function aRender(){const list=document.getElementById('anno-list');const items=aL();const card=_settingsCardHTML();if(!items.length){list.innerHTML=card+(card?'':'<div id="anno-empty">No annotations yet.</div>');return;}list.innerHTML=card+items.map((a,i)=>`<div class="anno-item"><span class="anno-rm" data-i="${i}">&times;</span><div class="anno-meta">${a.context||''} &middot; <code>${a.selector}</code></div>${a.position?'<div class="anno-meta" style="color:var(--amber)">'+a.position+'</div>':''}${a.transform?'<div class="anno-meta" style="color:var(--purple)">'+a.transform+'</div>':''}<div>${a.text.replace(/</g,'&lt;')}</div></div>`).join('');list.querySelectorAll('.anno-rm').forEach(b=>b.addEventListener('click',e=>{const i=+e.target.dataset.i;const arr=aL();arr.splice(i,1);aS(arr);aRender();}));}
 function annoToggle(on){annoMode=on===undefined?!annoMode:on;document.body.classList.toggle('annotate-mode',annoMode);document.getElementById('anno-toggle').classList.toggle('active',annoMode);document.getElementById('anno-toggle').textContent=annoMode?'Exit Annotate':'Annotate';document.getElementById('anno-panel').classList.toggle('visible',annoMode);if(annoMode)aRender();if(!annoMode)document.getElementById('anno-prompt').classList.remove('visible');}
 document.getElementById('anno-toggle').addEventListener('click',()=>annoToggle());
 document.addEventListener('keydown',e=>{if((e.key==='a'||e.key==='A')&&!['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)&&!document.activeElement?.isContentEditable){e.preventDefault();annoToggle();}});
@@ -2122,8 +2130,13 @@ if(_notesParam){
   const _origUH2=updateHUD;updateHUD=function(){_origUH2();_onSlideChange(current);};
 }
 
-// Init
-updateHUD();goToFromHash();
+// Init — ?edit with no hash → land on slide 0 (settings) so user can configure first
+updateHUD();
+{
+  const _hasHash=!!location.hash.replace('#','');
+  const _isEdit=new URLSearchParams(location.search).has('edit');
+  if(!_hasHash&&_isEdit){goTo(0);}else{goToFromHash();}
+}
 </script>
 </body>
 </html>
