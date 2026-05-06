@@ -283,7 +283,8 @@ body.edit-text .slide.active [contenteditable="true"]{outline:2px solid var(--te
 /* === ?notes MODE — phone speaker companion === */
 body.notes-mode #deck,body.notes-mode #counter,body.notes-mode #brand,body.notes-mode #step-indicator,body.notes-mode .nav-arrows,body.notes-mode #mobile-ui-toggle,body.notes-mode #slide-grid-zone,body.notes-mode #slide-grid,body.notes-mode #anno-toggle,body.notes-mode #move-toggle,body.notes-mode #notes-drawer,body.notes-mode #search-overlay,body.notes-mode .bg{display:none!important}
 body.notes-mode html,body.notes-mode{overflow:hidden;background:#06080f;height:100vh;height:100dvh}
-#notes-app{display:none;position:fixed;inset:0;z-index:9000;background:#06080f;color:#e8eeff;font-family:var(--font);flex-direction:column;overflow:hidden;-webkit-tap-highlight-color:transparent;user-select:none}
+#notes-app{display:none;position:fixed;inset:0;z-index:9000;background:#06080f;color:#e8eeff;font-family:var(--font);flex-direction:column;overflow:hidden;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#notes-app textarea,#notes-app .na-script,#notes-app .na-bullets,#notes-app .na-doc-script,#notes-app input{user-select:auto;-webkit-user-select:auto;-webkit-touch-callout:default}
 body.notes-mode #notes-app{display:flex}
 .na-topbar{flex:0 0 auto;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(10,12,24,.94);backdrop-filter:blur(8px);position:relative;z-index:20}
 .na-next-pv{z-index:10!important}
@@ -298,7 +299,7 @@ body.notes-mode #notes-app{display:flex}
 .na-pace-dot.warn{background:#f59e0b;box-shadow:0 0 6px rgba(245,158,11,.7);animation:naBlink 1s infinite}
 .na-pace-dot.late{background:#f43f5e;box-shadow:0 0 8px rgba(244,63,94,.85);animation:naBlink .55s infinite}
 @keyframes naBlink{50%{opacity:.25}}
-.na-iconbtn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#e8eeff;font:600 .82rem var(--font);height:34px;min-width:34px;padding:0 7px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:transform .12s,background .15s,border-color .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;flex:0 0 auto}
+.na-iconbtn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#e8eeff;font:600 .82rem var(--font);height:34px;min-width:34px;padding:0 7px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:transform .12s,background .15s,border-color .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;flex:0 0 auto}
 .na-iconbtn.active{background:rgba(0,212,255,.22);border-color:rgba(0,212,255,.6);color:#00d4ff}
 .na-iconbtn.danger{color:#f43f5e}
 .na-iconbtn:hover{background:rgba(255,255,255,.12)}
@@ -314,7 +315,7 @@ body.notes-mode #notes-app{display:flex}
 .na-edit-textarea{width:100%;min-height:240px;background:rgba(255,255,255,.04);border:1px solid rgba(0,212,255,.3);border-radius:8px;color:#e8eeff;font:.95rem/1.55 var(--font);padding:14px;resize:vertical}
 .na-edit-textarea:focus{outline:none;border-color:#00d4ff;background:rgba(0,212,255,.04)}
 .na-next-pv{position:absolute;left:10px;right:10px;bottom:10px;display:grid;grid-template-columns:64px 1fr 64px;gap:8px;align-items:stretch;background:rgba(10,12,24,.85);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:8px;backdrop-filter:blur(8px);z-index:10!important}
-.na-nav-btn{display:flex;align-items:center;justify-content:center;background:rgba(0,212,255,.14);border:1px solid rgba(0,212,255,.4);color:#00d4ff;font:700 1.7rem var(--font);border-radius:9px;cursor:pointer;transition:transform .12s,background .15s;-webkit-tap-highlight-color:transparent;user-select:none;touch-action:manipulation;line-height:1}
+.na-nav-btn{display:flex;align-items:center;justify-content:center;background:rgba(0,212,255,.14);border:1px solid rgba(0,212,255,.4);color:#00d4ff;font:700 1.7rem var(--font);border-radius:9px;cursor:pointer;transition:transform .12s,background .15s;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation;line-height:1}
 .na-nav-btn:active{background:rgba(0,212,255,.32);transform:scale(.92)}
 .na-nav-btn:disabled{opacity:.25;cursor:default}
 .na-next-info-wrap{display:flex;gap:8px;align-items:center;min-width:0;padding:0 4px}
