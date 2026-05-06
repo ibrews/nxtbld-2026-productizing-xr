@@ -653,6 +653,22 @@ python3 tools/merge_sections.py tools/imported-<deck>-<hash>.json
 - `llama3.1:8b@Sam` normalizes each page into `{title, subtitle, bullets}`, with `qwen3-coder:30b@MBP` as fallback.
 - Embedded raster images are extracted via `page.crop().to_image()` to `media/import-<deck>-<hash>/` when present. Scanned-page PDFs won't have embedded images — that's expected.
 
+### Video clip importer
+
+Pull a precise time-window from a YouTube URL, trim it, and re-encode it under GitHub's 100MB file-size limit so it can land in `media/` without LFS:
+
+```bash
+python3 tools/import_video_clip.py "https://www.youtube.com/watch?v=aqz-KE-bpKQ" \
+    --start 0:30 --duration 5 --out media/promo/intro.mp4
+python3 tools/import_video_clip.py "https://youtu.be/aqz-KE-bpKQ" \
+    --start 1:23 --end 1:42 --quality high --audio mute --out media/case/loop.mp4
+```
+
+- `yt-dlp` downloads only the requested segment (`--download-sections`), then `ffmpeg` re-trims to exact start/duration and re-encodes h264/aac.
+- `--quality {high,medium,low}` sets the initial preset; default `medium` is 1280x720 / CRF 23. If the result exceeds `--max-mb` (default 95) the tool auto-shrinks through 960px, 854px, 640px with progressively higher CRFs until it fits.
+- `--audio mute` drops the audio stream entirely (smaller files). `--start-from-url` uses the URL's `?t=Ns` parameter as the default start.
+- Drive URLs are explicitly rejected with a one-line ffmpeg recipe so you can finish the job by hand. Stdlib only — requires `yt-dlp` and `ffmpeg` on PATH.
+
 ### Slide linter
 
 ```bash
