@@ -279,6 +279,73 @@ body.edit-text .slide.active [contenteditable="true"]{outline:2px solid var(--te
 /* === LAYOUT GRID OVERLAY === */
 .layout-grid{position:absolute;inset:0;z-index:50;pointer-events:none;display:grid;grid-template:repeat(3,1fr)/repeat(4,1fr)}
 .layout-grid-cell{border:1px dashed rgba(0,212,255,.2);display:flex;align-items:center;justify-content:center;font:700 1.2rem 'Space Grotesk',sans-serif;color:rgba(0,212,255,.25);letter-spacing:.1em}
+
+/* === ?notes MODE — phone speaker companion === */
+body.notes-mode #deck,body.notes-mode #counter,body.notes-mode #brand,body.notes-mode #step-indicator,body.notes-mode .nav-arrows,body.notes-mode #mobile-ui-toggle,body.notes-mode #slide-grid-zone,body.notes-mode #slide-grid,body.notes-mode #anno-toggle,body.notes-mode #move-toggle,body.notes-mode #notes-drawer,body.notes-mode #search-overlay,body.notes-mode .bg{display:none!important}
+body.notes-mode html,body.notes-mode{overflow:hidden;background:#06080f;height:100vh;height:100dvh}
+#notes-app{display:none;position:fixed;inset:0;z-index:9000;background:#06080f;color:#e8eeff;font-family:var(--font);flex-direction:column;overflow:hidden;-webkit-tap-highlight-color:transparent;user-select:none}
+body.notes-mode #notes-app{display:flex}
+.na-topbar{flex:0 0 auto;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(10,12,24,.85);backdrop-filter:blur(8px);position:relative;z-index:2}
+.na-tb-l,.na-tb-r{display:flex;align-items:center;gap:8px}
+.na-slide-num{font-size:.78rem;font-weight:700;letter-spacing:.18em;color:#00d4ff}
+.na-slide-title{font-size:.7rem;color:rgba(255,255,255,.5);max-width:34vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.na-time{display:flex;flex-direction:column;align-items:center;line-height:1.1;font-variant-numeric:tabular-nums}
+.na-elapsed{font-size:1.25rem;font-weight:700;color:#fff;letter-spacing:.02em}
+.na-target{font-size:.62rem;color:rgba(255,255,255,.45);letter-spacing:.08em;margin-top:2px}
+.na-target.warn{color:#f59e0b}.na-target.late{color:#f43f5e}
+.na-pace-dot{width:11px;height:11px;border-radius:50%;background:#10b981;box-shadow:0 0 6px rgba(16,185,129,.7)}
+.na-pace-dot.warn{background:#f59e0b;box-shadow:0 0 6px rgba(245,158,11,.7);animation:naBlink 1s infinite}
+.na-pace-dot.late{background:#f43f5e;box-shadow:0 0 8px rgba(244,63,94,.85);animation:naBlink .55s infinite}
+@keyframes naBlink{50%{opacity:.25}}
+.na-iconbtn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#e8eeff;font:600 .8rem var(--font);height:34px;min-width:34px;padding:0 8px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s}
+.na-iconbtn.active{background:rgba(0,212,255,.2);border-color:rgba(0,212,255,.55);color:#00d4ff}
+.na-iconbtn.danger{color:#f43f5e}
+.na-iconbtn:hover{background:rgba(255,255,255,.12)}
+.na-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative;z-index:1;padding:18px 18px 110px}
+.na-content.editing{padding-bottom:160px}
+.na-script{font-size:1.05rem;line-height:1.65;white-space:pre-wrap;color:rgba(240,244,255,.92)}
+.na-script .na-over-mark{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a78bfa;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.35);padding:2px 6px;border-radius:4px;margin:0 4px;vertical-align:1px}
+.na-bullets{list-style:none;padding:0;margin:0}
+.na-bullets li{font-size:1.18rem;line-height:1.5;padding:14px 4px 14px 28px;position:relative;border-bottom:1px solid rgba(255,255,255,.04)}
+.na-bullets li:before{content:'';position:absolute;left:6px;top:24px;width:6px;height:6px;border-radius:50%;background:#00d4ff;opacity:.7}
+.na-edit-textarea{width:100%;min-height:240px;background:rgba(255,255,255,.04);border:1px solid rgba(0,212,255,.3);border-radius:8px;color:#e8eeff;font:.95rem/1.55 var(--font);padding:14px;resize:vertical}
+.na-edit-textarea:focus{outline:none;border-color:#00d4ff;background:rgba(0,212,255,.04)}
+.na-next-pv{position:absolute;left:14px;right:14px;bottom:14px;display:flex;gap:10px;align-items:center;background:rgba(10,12,24,.85);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px 10px;backdrop-filter:blur(8px);z-index:2}
+.na-next-thumb{flex:0 0 auto;width:84px;height:48px;border-radius:5px;background:#0b0d18 center/cover no-repeat;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.55rem;color:rgba(255,255,255,.3);letter-spacing:.1em;overflow:hidden}
+.na-next-thumb img{width:100%;height:100%;object-fit:cover}
+.na-next-info{flex:1;min-width:0}
+.na-next-lbl{font-size:.55rem;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:2px}
+.na-next-title{font-size:.85rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.na-tap-zones{position:absolute;inset:0;display:flex;z-index:5;pointer-events:none}
+.na-tap-zones.active{pointer-events:auto}
+.na-tap-l,.na-tap-m,.na-tap-r{display:block}
+.na-tap-l{flex:0 0 20%}.na-tap-m{flex:1}.na-tap-r{flex:0 0 20%}
+.na-tap-l:active{background:linear-gradient(90deg,rgba(0,212,255,.12),transparent)}
+.na-tap-r:active{background:linear-gradient(-90deg,rgba(0,212,255,.12),transparent)}
+.na-tap-m:active{background:radial-gradient(circle,rgba(0,212,255,.06),transparent 65%)}
+.na-toast{position:fixed;left:50%;top:60px;transform:translateX(-50%) translateY(-12px);background:rgba(10,12,24,.95);border:1px solid rgba(0,212,255,.4);color:#00d4ff;font:600 .72rem var(--font);letter-spacing:.1em;padding:8px 14px;border-radius:7px;z-index:10000;opacity:0;transition:all .25s;pointer-events:none}
+.na-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.na-doc{padding:16px 6px}
+.na-doc-slide{margin-bottom:18px;border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:12px 14px;background:rgba(255,255,255,.02)}
+.na-doc-slide.current{border-color:rgba(0,212,255,.45);background:rgba(0,212,255,.04)}
+.na-doc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.na-doc-num{font-size:.6rem;font-weight:700;letter-spacing:.18em;color:#00d4ff}
+.na-doc-title{font-size:.95rem;font-weight:600;color:#fff;flex:1;margin:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.na-doc-script{font-size:.86rem;line-height:1.55;color:rgba(240,244,255,.78);white-space:pre-wrap;margin:0;border:1px solid transparent;padding:6px 8px;border-radius:5px;background:transparent;font-family:var(--font);width:100%;resize:vertical}
+.na-doc-script:focus{outline:none;border-color:rgba(0,212,255,.4);background:rgba(0,212,255,.03)}
+.na-config-prompt{position:fixed;inset:0;z-index:11000;background:rgba(6,8,16,.96);display:flex;align-items:center;justify-content:center;padding:24px;flex-direction:column;gap:16px;text-align:center}
+.na-config-prompt h2{font-size:1.1rem;color:#00d4ff;letter-spacing:.05em;font-weight:700}
+.na-config-prompt p{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.55;max-width:480px}
+.na-config-prompt code{font-size:.78rem;color:#a78bfa;background:rgba(167,139,250,.1);padding:2px 6px;border-radius:4px}
+.na-target-pick{position:absolute;top:48px;right:14px;background:rgba(10,12,24,.95);border:1px solid rgba(0,212,255,.4);border-radius:8px;padding:14px;display:none;flex-direction:column;gap:10px;min-width:240px;z-index:50;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.na-target-pick.open{display:flex}
+.na-target-pick label{font-size:.6rem;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,.4);text-transform:uppercase}
+.na-target-pick input[type="time"],.na-target-pick input[type="number"]{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:#e8eeff;font:600 .9rem var(--font);padding:8px;border-radius:5px}
+.na-target-pick .na-tp-row{display:flex;gap:8px;align-items:center}
+.na-target-pick button{background:rgba(0,212,255,.15);border:1px solid rgba(0,212,255,.4);color:#00d4ff;font:600 .72rem var(--font);letter-spacing:.1em;padding:8px;border-radius:5px;cursor:pointer;text-transform:uppercase}
+.na-projected{font-size:.62rem;color:rgba(255,255,255,.5);letter-spacing:.05em;margin-top:6px}
+.na-projected.late{color:#f43f5e}.na-projected.warn{color:#f59e0b}
+@media (max-width:480px){.na-slide-title{display:none}.na-bullets li{font-size:1.05rem}}
 </style>
 </head>
 <body>
@@ -300,6 +367,46 @@ body.edit-text .slide.active [contenteditable="true"]{outline:2px solid var(--te
 <div id="anno-toast"></div>
 <div id="notes-drawer"><div class="nd-title">Speaker Notes</div><div class="nd-body" id="notes-body"></div></div>
 <div id="export-modal"><div class="em-box" id="export-box"></div></div>
+
+<!-- ?notes mode: phone speaker companion -->
+<div id="notes-app">
+  <div class="na-topbar">
+    <div class="na-tb-l">
+      <button class="na-iconbtn" id="na-timer-btn" title="Start/Pause timer">▶</button>
+      <button class="na-iconbtn" id="na-reset-btn" title="Long-press to reset">⟲</button>
+    </div>
+    <div class="na-time">
+      <div class="na-elapsed" id="na-elapsed">00:00</div>
+      <div class="na-target" id="na-target-line">no target set</div>
+      <div class="na-projected" id="na-projected"></div>
+    </div>
+    <div class="na-tb-r">
+      <span class="na-pace-dot" id="na-pace-dot"></span>
+      <span class="na-slide-num" id="na-slide-num">--</span>
+      <button class="na-iconbtn" id="na-lock-btn" title="Padlock to control main deck">🔓</button>
+      <button class="na-iconbtn" id="na-edit-btn" title="Edit current slide">✎</button>
+      <button class="na-iconbtn" id="na-doc-btn" title="Edit-all (full document)">≡</button>
+      <button class="na-iconbtn" id="na-target-btn" title="Set target finish time">⏱</button>
+    </div>
+    <div class="na-target-pick" id="na-target-pick">
+      <label>Finish at (local time)</label>
+      <input type="time" id="na-tp-time">
+      <div class="na-tp-row"><label style="flex:1">…or in</label><input type="number" id="na-tp-mins" min="1" max="240" style="width:70px"> <span style="font-size:.7rem">min</span></div>
+      <button id="na-tp-save">Save</button>
+      <button id="na-tp-clear" style="background:rgba(244,63,94,.1);border-color:rgba(244,63,94,.35);color:#f43f5e">Clear target</button>
+    </div>
+  </div>
+  <div class="na-content" id="na-content"></div>
+  <div class="na-tap-zones" id="na-tap-zones"><div class="na-tap-l" id="na-tap-l"></div><div class="na-tap-m" id="na-tap-m"></div><div class="na-tap-r" id="na-tap-r"></div></div>
+  <div class="na-next-pv" id="na-next-pv">
+    <div class="na-next-thumb" id="na-next-thumb">NEXT</div>
+    <div class="na-next-info">
+      <div class="na-next-lbl">Up next</div>
+      <div class="na-next-title" id="na-next-title">—</div>
+    </div>
+  </div>
+  <div class="na-toast" id="na-toast"></div>
+</div>
 
 <script>
 /* =======================================================================
@@ -345,7 +452,9 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
   <div class="cfg-row"><label class="cfg-label">Transition</label><div class="cfg-control"><select id="cfg-transition" class="cfg-select"><option value="slide"${C.transition==='slide'?' selected':''}>Slide</option><option value="fade"${C.transition==='fade'?' selected':''}>Fade</option><option value="zoom"${C.transition==='zoom'?' selected':''}>Zoom</option><option value="none"${C.transition==='none'?' selected':''}>None (instant)</option></select></div></div>
   <div class="cfg-row"><label class="cfg-label">Arrow substep</label><div class="cfg-control"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="cfg-substep" ${C.arrowSubstep?'checked':''}><span class="cfg-val" id="v-substep">${C.arrowSubstep?'On':'Off'}</span></label></div></div>
   <div class="cfg-row"><label class="cfg-label">Vertical Scroll Mode</label><div class="cfg-control"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="cfg-vmode" ${C.verticalMode?'checked':''}><span class="cfg-val" id="v-vmode">${C.verticalMode?'On':'Off'}</span></label></div></div>
-  </div><div class="cfg-row" style="grid-column:1/-1"><span class="cfg-label">Estimated Duration</span><span class="cfg-val" id="v-duration" style="text-align:left">--:--</span></div></div><div style="text-align:center;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="cfg-reset" id="cfg-r">Reset to Defaults</button><button class="cfg-btn-export" id="cfg-export">&#128230; Export for Offline</button><button class="cfg-btn-export" id="cfg-restore">\uD83D\uDD04 Restore Snapshot</button></div><div class="cfg-hint">Ctrl/Cmd-click grid thumbnails to hide &middot; H = presentation mode &middot; A = annotate &middot; M = move &middot; N = presenter popup &middot; Shift+N = notes drawer</div></div>`;
+  <div class="cfg-row"><label class="cfg-label">Default ?notes view</label><div class="cfg-control"><select id="cfg-defview" class="cfg-select"><option value="bullets">Bullets</option><option value="script">Script</option></select></div></div>
+  <div class="cfg-row"><label class="cfg-label">Target finish (local)</label><div class="cfg-control"><input type="datetime-local" id="cfg-targetfin" class="cfg-select" style="width:100%"></div></div>
+  </div><div class="cfg-row" style="grid-column:1/-1"><span class="cfg-label">Estimated Duration</span><span class="cfg-val" id="v-duration" style="text-align:left">--:--</span></div><div class="cfg-row" style="grid-column:1/-1"><span class="cfg-label">Notes sync</span><span class="cfg-val" id="v-notes-sync" style="text-align:left;font-size:.7rem">unknown</span></div></div><div style="text-align:center;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="cfg-reset" id="cfg-r">Reset to Defaults</button><button class="cfg-btn-export" id="cfg-export">&#128230; Export for Offline</button><button class="cfg-btn-export" id="cfg-restore">\uD83D\uDD04 Restore Snapshot</button><button class="cfg-btn-export" id="cfg-calibrate">&#128257; Calibrate Videos</button><button class="cfg-btn-export" id="cfg-reseed" title="Push current SECTIONS notes to sheet, overwriting">&#128228; Reseed Sheet</button></div><div class="cfg-hint">Ctrl/Cmd-click grid thumbnails to hide &middot; H = presentation mode &middot; A = annotate &middot; M = move &middot; N = presenter popup &middot; Shift+N = notes drawer &middot; ?notes = phone speaker view</div></div>`;
   deck.appendChild(s);allSlides.push(s);
   function w(id,vid,set,fmt){const e=s.querySelector('#'+id),v=s.querySelector('#'+vid);e.addEventListener('input',()=>{set(parseFloat(e.value));apply();v.textContent=fmt(parseFloat(e.value));save();});}
   w('cfg-pg','v-pg',v=>{C.paraGap=v;},v=>v.toFixed(2)+'em');w('cfg-id','v-id',v=>{C.imgDur=v;},v=>v.toFixed(1)+'s');
@@ -360,6 +469,28 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
   const _subCb=s.querySelector('#cfg-substep'),_subVal=s.querySelector('#v-substep');_subCb.addEventListener('change',()=>{C.arrowSubstep=_subCb.checked;apply();_subVal.textContent=_subCb.checked?'On':'Off';save();});
   const _vmCb=s.querySelector('#cfg-vmode'),_vmVal=s.querySelector('#v-vmode');_vmCb.addEventListener('change',()=>{C.verticalMode=_vmCb.checked;apply();_vmVal.textContent=_vmCb.checked?'On':'Off';save();if(window._onVerticalModeChange)window._onVerticalModeChange();});
   s.querySelector('#cfg-r').addEventListener('click',()=>{Object.assign(C,D);delete C.customFont;save();apply();location.reload();});
+  // ── ?notes sync controls ──
+  const _dvSel=s.querySelector('#cfg-defview');
+  const _tfIn=s.querySelector('#cfg-targetfin');
+  const _syncStatus=s.querySelector('#v-notes-sync');
+  const _calBtn=s.querySelector('#cfg-calibrate');
+  const _seedBtn=s.querySelector('#cfg-reseed');
+  function _refreshNotesUi(){
+    if(window._notesMeta&&window._notesMeta.default_view)_dvSel.value=window._notesMeta.default_view;
+    if(window._notesMeta&&window._notesMeta.target_finish){
+      const d=new Date(window._notesMeta.target_finish);
+      if(!isNaN(d)){
+        const pad=n=>String(n).padStart(2,'0');
+        _tfIn.value=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+      }
+    }
+  }
+  _dvSel.addEventListener('change',async()=>{window._notesMeta=window._notesMeta||{};window._notesMeta.default_view=_dvSel.value;try{await syncCall('setMeta',{key:'default_view',value:_dvSel.value});_syncStatus.textContent='saved · default view';}catch(e){_syncStatus.textContent='local only';}});
+  _tfIn.addEventListener('change',async()=>{const v=_tfIn.value;if(!v)return;const iso=new Date(v).toISOString();window._notesMeta=window._notesMeta||{};window._notesMeta.target_finish=iso;try{await syncCall('setMeta',{key:'target_finish',value:iso});_syncStatus.textContent='target saved';}catch(e){_syncStatus.textContent='local only';}});
+  _calBtn.addEventListener('click',async()=>{_calBtn.disabled=true;_calBtn.textContent='Calibrating…';try{await runCalibration();_syncStatus.textContent='calibrated';}catch(e){_syncStatus.textContent='calibration failed';}_calBtn.disabled=false;_calBtn.innerHTML='&#128257; Calibrate Videos';});
+  _seedBtn.addEventListener('click',async()=>{if(!confirm('Overwrite sheet rows for this deck with current SECTIONS notes?'))return;_seedBtn.disabled=true;try{await seedFromSections(true);_syncStatus.textContent='reseeded from SECTIONS';}catch(e){_syncStatus.textContent='reseed failed: '+e.message;}_seedBtn.disabled=false;});
+  // Probe sync
+  loadNotesConfig().then(cfg=>{if(!cfg){_syncStatus.textContent='no notes-config.json';return;}_syncStatus.textContent='configured · '+cfg.deckId;syncCall('getNotes',{}).then(d=>{_applyNotesData(d);_refreshNotesUi();_syncStatus.textContent='synced · '+(d.slides||[]).length+' slides';}).catch(e=>{_syncStatus.textContent='sync error: '+e.message;});});
 })();
 
 // Cover
@@ -1138,6 +1269,573 @@ document.addEventListener('keydown',e=>{
 
 // Init duration display
 setTimeout(updateDurationDisplay,100);
+
+// =====================================================================
+// FEATURE: GIF FIX in MEDIA_CYCLER (use <img>, not canvas, for animated GIFs)
+// =====================================================================
+// Wraps buildMediaCycler: any item whose src ends in .gif gets swapped for
+// a real <img> overlay so the animation plays. Pixelated reveal is skipped
+// for GIF items only — fade-in instead. Other items still use the canvas
+// pipeline unchanged.
+(function(){
+  const _origBMC=buildMediaCycler;
+  window.buildMediaCycler=function(sl,items,opts){
+    const hasGif=Array.isArray(items)&&items.some(it=>it&&it.type==='image'&&it.src&&/\.gif(\?|$)/i.test(it.src));
+    if(!hasGif)return _origBMC(sl,items,opts);
+    // Mixed mode: render a stack of <img>/<video> elements with cross-fade.
+    const mount=sl.querySelector('.media-cycler-mount');if(!mount)return;
+    const portrait=opts&&opts.portrait;const imageDuration=(opts&&opts.imageDuration)||6000;
+    mount.style.cssText='position:relative;width:100%;'+(portrait?'aspect-ratio:338/600':'aspect-ratio:16/10')+';border-radius:18px;overflow:hidden';
+    const layers=items.map((it,i)=>{
+      let el;
+      if(it.type==='video'){el=document.createElement('video');el.src=it.src;el.muted=true;el.playsInline=true;el.loop=!!it.loop;el.preload='metadata';}
+      else if(it.type==='image'){el=document.createElement('img');el.src=it.src;el.loading='lazy';}
+      else {el=document.createElement('div');el.style.background=`linear-gradient(135deg,${it.color1||'rgba(0,212,255,.18)'},${it.color2||'rgba(6,8,16,.4)'})`;el.style.display='flex';el.style.alignItems='center';el.style.justifyContent='center';if(it.label){el.textContent=it.label;el.style.color='rgba(255,255,255,.18)';el.style.font='600 .85rem var(--font)';el.style.letterSpacing='.1em';el.style.textTransform='uppercase';}}
+      el.style.cssText+=';position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:'+(i===0?'1':'0')+';transition:opacity .9s ease';
+      mount.appendChild(el);return el;
+    });
+    if(items.length<=1)return;
+    let idx=0;
+    setInterval(()=>{
+      layers[idx].style.opacity='0';
+      const v=layers[idx];if(v.tagName==='VIDEO')try{v.pause();}catch(_){}
+      idx=(idx+1)%layers.length;
+      layers[idx].style.opacity='1';
+      const nv=layers[idx];if(nv.tagName==='VIDEO')try{nv.currentTime=0;nv.play().catch(()=>{});}catch(_){}
+      try{playBing&&playBing();}catch(_){}
+    },imageDuration);
+    if(layers[0].tagName==='VIDEO')try{layers[0].play().catch(()=>{});}catch(_){}
+  };
+})();
+
+// =====================================================================
+// FEATURE: PACING MATH UPGRADES
+// (over video) marker · adaptive WPM · projected wall-clock finish
+// =====================================================================
+const OVER_VIDEO_RE=/\(\s*over\s+video\s*\)/i;
+window._notesOverrides=new Map();   // idx -> {script, bullets, video_seconds, type, title}
+window._videoDurationCache={};       // src -> seconds
+window._slideThumbs={};              // idx -> dataUrl
+window._notesMeta={};                // {target_finish, default_view, wpm}
+window._adaptiveWpm=null;            // rolling WPM, set after a few advances
+let _wpmSamples=[];                  // [{words, seconds}]
+
+function _wordsCount(s){return (s||'').trim().split(/\s+/).filter(Boolean).length;}
+function _splitOverVideo(script){
+  if(!script)return{pre:'',over:''};
+  const m=script.match(OVER_VIDEO_RE);
+  if(!m)return{pre:script,over:''};
+  const i=m.index;
+  return{pre:script.slice(0,i).trim(),over:script.slice(i+m[0].length).trim()};
+}
+function _videoSecondsFor(idx){
+  const ov=_notesOverrides.get(idx);
+  if(ov&&ov.video_seconds!=null)return Number(ov.video_seconds)||0;
+  const sl=allSlides[idx];if(!sl)return 0;
+  let total=0;
+  sl.querySelectorAll('video').forEach(v=>{
+    const cached=v.src&&_videoDurationCache[v.src];
+    if(cached)total+=Number(cached)||0;
+    else if(isFinite(v.duration)&&v.duration>0)total+=v.duration;
+  });
+  return total;
+}
+function _effectiveWpm(){
+  if(_notesMeta.wpm)return Number(_notesMeta.wpm);
+  if(_adaptiveWpm)return _adaptiveWpm;
+  return 150;
+}
+// Override estimateSlideDuration if it exists
+if(typeof estimateSlideDuration==='function'){
+  window._origEstimateSlideDuration=estimateSlideDuration;
+  window.estimateSlideDuration=function(idx){
+    const sl=allSlides[idx];if(!sl)return 30;
+    const ov=_notesOverrides.get(idx);
+    const script=ov&&ov.script!=null?ov.script:getSlideNotes(idx);
+    if(!script||!script.trim())return _origEstimateSlideDuration(idx);
+    const{pre,over}=_splitOverVideo(script);
+    const vidSec=_videoSecondsFor(idx);
+    const wpm=_effectiveWpm();
+    const preSec=_wordsCount(pre)/wpm*60;
+    // Words AFTER (over video) are spoken concurrently with the video.
+    // Slide time = pre-speech + max(video_dur, over-speech).
+    const overSec=_wordsCount(over)/wpm*60;
+    const concurrent=Math.max(vidSec,overSec);
+    let total=preSec+concurrent;
+    const ty=sl.dataset.type||'';
+    if(ty==='lesson'||ty==='bonus')total+=10;
+    const ss=slideSteps.get(sl);
+    if(ss&&ss.steps.length>1)total+=(ss.steps.length-1)*5;
+    return Math.max(5,Math.round(total));
+  };
+}
+function calcEstimateFromIdx(fromIdx){
+  let total=0;
+  for(let i=fromIdx;i<allSlides.length;i++){
+    if(allSlides[i].dataset.hidden==='1')continue;
+    total+=estimateSlideDuration(i);
+  }
+  return total;
+}
+function calcConsumedThrough(idx){
+  let total=0;
+  for(let i=0;i<=idx&&i<allSlides.length;i++){
+    if(allSlides[i].dataset.hidden==='1')continue;
+    total+=estimateSlideDuration(i);
+  }
+  return total;
+}
+// Hook slide advance to feed adaptive WPM
+window._notesPrevAdvance={idx:null,t:null};
+function _onSlideChange(newIdx){
+  const prev=_notesPrevAdvance;
+  if(prev.idx!=null&&prev.t!=null&&_talkStartTime){
+    const sl=allSlides[prev.idx];
+    if(sl&&sl.dataset.hidden!=='1'){
+      const ov=_notesOverrides.get(prev.idx);
+      const script=ov&&ov.script!=null?ov.script:getSlideNotes(prev.idx);
+      const{pre,over}=_splitOverVideo(script||'');
+      const wordsSpoken=_wordsCount(pre)+_wordsCount(over);
+      const elapsedOnSlide=(Date.now()-prev.t)/1000;
+      // Subtract concurrent video time from elapsed for WPM calc, since words run alongside video
+      const vidSec=_videoSecondsFor(prev.idx);
+      const speakingTime=Math.max(1,elapsedOnSlide-Math.min(vidSec,elapsedOnSlide*.6));
+      if(wordsSpoken>15&&speakingTime>10){
+        _wpmSamples.push({words:wordsSpoken,seconds:speakingTime});
+        if(_wpmSamples.length>=3){
+          const recent=_wpmSamples.slice(-8);
+          const wTotal=recent.reduce((a,s)=>a+s.words,0);
+          const sTotal=recent.reduce((a,s)=>a+s.seconds,0);
+          const calc=wTotal/sTotal*60;
+          _adaptiveWpm=Math.max(90,Math.min(220,calc));
+        }
+      }
+    }
+  }
+  _notesPrevAdvance={idx:newIdx,t:Date.now()};
+}
+
+// =====================================================================
+// FEATURE: ?notes CLOUD SYNC CLIENT
+// =====================================================================
+window._notesConfig=null;
+async function loadNotesConfig(){
+  if(window._notesConfig)return window._notesConfig;
+  try{
+    const r=await fetch('notes-config.json',{cache:'no-store'});
+    if(!r.ok)throw new Error('no config file');
+    const cfg=await r.json();
+    if(!cfg.gasUrl||!cfg.deckId)throw new Error('config missing gasUrl/deckId');
+    window._notesConfig=cfg;return cfg;
+  }catch(e){window._notesConfig=null;return null;}
+}
+async function syncCall(action,extra){
+  const cfg=await loadNotesConfig();if(!cfg)throw new Error('Cloud sync not configured');
+  const payload=Object.assign({action,deckId:cfg.deckId},extra||{});
+  const resp=await fetch(cfg.gasUrl,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload),redirect:'follow'});
+  const data=await resp.json();
+  if(!data.ok)throw new Error(data.error||'sync failed');
+  return data.result;
+}
+function _slideRecordForSeed(idx){
+  const sl=allSlides[idx];if(!sl)return null;
+  return{idx,type:sl.dataset.type||'',title:getSlideTitle(idx)||'',script:getSlideNotes(idx)||'',bullets:null,video_seconds:null};
+}
+async function seedFromSections(force){
+  const seedData=allSlides.map((_,i)=>_slideRecordForSeed(i)).filter(Boolean);
+  if(force){await syncCall('setNotes',{slides:seedData});return{seeded:true,forced:true,count:seedData.length};}
+  return await syncCall('seedNotes',{slides:seedData});
+}
+function _applyNotesData(data){
+  if(!data)return;
+  _notesOverrides.clear();
+  (data.slides||[]).forEach(s=>{_notesOverrides.set(Number(s.idx),s);});
+  _notesMeta=data.meta||{};
+  if(_notesMeta.calibration){
+    const c=_notesMeta.calibration;
+    if(c.videoDurations)_videoDurationCache=Object.assign({},c.videoDurations);
+    if(c.thumbnails)_slideThumbs=Object.assign({},c.thumbnails);
+  }
+}
+
+// =====================================================================
+// FEATURE: ?notes UI APP — phone speaker companion
+// =====================================================================
+const _notesParam=new URLSearchParams(location.search).has('notes');
+if(_notesParam){
+  document.body.classList.add('notes-mode');
+  // Force presentation mode off in notes view (no edit chrome)
+  document.body.classList.remove('presentation-mode');
+}
+
+function _fmtClock(d){const h=d.getHours(),m=d.getMinutes();const ap=h>=12?'PM':'AM';const h12=((h+11)%12)+1;return h12+':'+String(m).padStart(2,'0')+' '+ap;}
+function _fmtMS(s){const sign=s<0?'-':'';s=Math.abs(s);const m=Math.floor(s/60),sec=Math.floor(s%60);return sign+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');}
+
+// Sentence-split bullets (cheap)
+function autoBullets(script){
+  if(!script||!script.trim())return[];
+  const cleaned=script.replace(OVER_VIDEO_RE,' ').replace(/\s+/g,' ').trim();
+  const sentences=cleaned.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g)||[cleaned];
+  return sentences.map(s=>{
+    const t=s.trim();if(!t)return null;
+    const w=t.split(/\s+/);
+    if(w.length<=14)return t;
+    return w.slice(0,14).join(' ')+'…';
+  }).filter(Boolean).slice(0,8);
+}
+function bulletsForSlide(idx){
+  const ov=_notesOverrides.get(idx);
+  if(ov&&Array.isArray(ov.bullets)&&ov.bullets.length)return ov.bullets;
+  const script=ov&&ov.script!=null?ov.script:getSlideNotes(idx);
+  return autoBullets(script);
+}
+function scriptForSlide(idx){
+  const ov=_notesOverrides.get(idx);
+  return ov&&ov.script!=null?ov.script:(getSlideNotes(idx)||'');
+}
+
+// View state
+window._notesView={mode:'auto',editing:false,docOpen:false,locked:false,timerRunning:false,target:null};
+
+function naToast(msg){const t=document.getElementById('na-toast');if(!t)return;t.textContent=msg;t.classList.add('show');clearTimeout(naToast._t);naToast._t=setTimeout(()=>t.classList.remove('show'),1800);}
+function _renderScriptHTML(script){
+  if(!script)return'<div style="color:rgba(255,255,255,.35);font-style:italic">(no script for this slide)</div>';
+  return script.replace(OVER_VIDEO_RE,'<span class="na-over-mark">over video</span>');
+}
+function naRenderContent(){
+  const c=document.getElementById('na-content');if(!c)return;
+  const v=_notesView;
+  if(v.docOpen){naRenderDoc(c);return;}
+  if(v.editing){naRenderEdit(c);return;}
+  const idx=current;
+  const showBullets=v.mode==='auto'?(_notesMeta.default_view==='bullets'):v.mode==='bullets';
+  if(showBullets){
+    const bl=bulletsForSlide(idx);
+    if(!bl.length)c.innerHTML='<div style="color:rgba(255,255,255,.35);font-style:italic;padding:24px 0;text-align:center">(no bullets — script empty)</div>';
+    else c.innerHTML='<ul class="na-bullets">'+bl.map(b=>`<li>${b.replace(/</g,'&lt;')}</li>`).join('')+'</ul>';
+  }else{
+    c.innerHTML='<div class="na-script">'+_renderScriptHTML(scriptForSlide(idx).replace(/</g,'&lt;')).replace(/&lt;span class=&quot;na-over-mark&quot;&gt;over video&lt;\/span&gt;/g,'<span class="na-over-mark">over video</span>')+'</div>';
+  }
+}
+function naRenderEdit(c){
+  const idx=current;
+  const ov=_notesOverrides.get(idx)||{};
+  const script=scriptForSlide(idx);
+  const bullets=Array.isArray(ov.bullets)?ov.bullets.join('\n'):'';
+  c.classList.add('editing');
+  c.innerHTML=`
+    <div style="font-size:.6rem;letter-spacing:.18em;color:#00d4ff;font-weight:700;margin-bottom:6px">SCRIPT (slide ${idx+1})</div>
+    <textarea class="na-edit-textarea" id="na-edit-script" placeholder="Speaker script…">${(script||'').replace(/</g,'&lt;')}</textarea>
+    <div style="font-size:.6rem;letter-spacing:.18em;color:#a78bfa;font-weight:700;margin:14px 0 6px">BULLETS OVERRIDE (one per line, blank = auto from script)</div>
+    <textarea class="na-edit-textarea" id="na-edit-bullets" style="min-height:120px" placeholder="Leave blank to auto-generate from script">${bullets.replace(/</g,'&lt;')}</textarea>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="na-iconbtn" id="na-edit-save" style="flex:1;background:rgba(0,212,255,.2);border-color:rgba(0,212,255,.5);color:#00d4ff">Save</button>
+      <button class="na-iconbtn" id="na-edit-cancel" style="flex:1">Cancel</button>
+    </div>
+    <div style="font-size:.65rem;color:rgba(255,255,255,.35);margin-top:10px;line-height:1.5">Tip: type <code style="color:#a78bfa">(over video)</code> on its own line in the script — anything after won't add to the slide's expected time.</div>`;
+  document.getElementById('na-edit-save').addEventListener('click',async()=>{
+    const s=document.getElementById('na-edit-script').value;
+    const bRaw=document.getElementById('na-edit-bullets').value.trim();
+    const bullets=bRaw?bRaw.split('\n').map(l=>l.trim()).filter(Boolean):null;
+    const sl=allSlides[idx];
+    const fields={script:s,bullets,type:sl?.dataset.type||'',title:getSlideTitle(idx)};
+    _notesOverrides.set(idx,Object.assign({},_notesOverrides.get(idx)||{},{idx,script:s,bullets,type:fields.type,title:fields.title}));
+    try{await syncCall('setSlideNote',{idx,fields});naToast('Saved to cloud');}
+    catch(e){naToast('Saved locally (sync failed)');console.warn(e);}
+    _notesView.editing=false;c.classList.remove('editing');naRenderContent();
+  });
+  document.getElementById('na-edit-cancel').addEventListener('click',()=>{_notesView.editing=false;c.classList.remove('editing');naRenderContent();});
+}
+function naRenderDoc(c){
+  c.classList.remove('editing');
+  const html=allSlides.map((sl,i)=>{
+    if(sl.dataset.hidden==='1')return'';
+    const ty=sl.dataset.type||'';
+    if(ty==='settings')return'';
+    const title=getSlideTitle(i)||'(slide '+(i+1)+')';
+    const script=scriptForSlide(i);
+    const cls='na-doc-slide'+(i===current?' current':'');
+    return `<div class="${cls}" data-idx="${i}">
+      <div class="na-doc-head"><span class="na-doc-num">${String(i).padStart(2,'0')}</span><span class="na-doc-title">${title.replace(/</g,'&lt;')}</span><span style="font-size:.55rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.1em">${ty}</span></div>
+      <textarea class="na-doc-script" data-idx="${i}" rows="3">${(script||'').replace(/</g,'&lt;')}</textarea>
+    </div>`;
+  }).join('');
+  c.innerHTML='<div class="na-doc">'+html+'<div style="text-align:center;padding:18px;color:rgba(255,255,255,.4);font-size:.7rem">Tap any script to edit · auto-saves on blur · tap ≡ to close</div></div>';
+  // Auto-grow + save on blur
+  c.querySelectorAll('.na-doc-script').forEach(ta=>{
+    const grow=()=>{ta.style.height='auto';ta.style.height=(ta.scrollHeight+4)+'px';};grow();
+    ta.addEventListener('input',grow);
+    ta.addEventListener('blur',async()=>{
+      const idx=Number(ta.dataset.idx);
+      const newScript=ta.value;
+      const cur=_notesOverrides.get(idx)||{idx};
+      if((cur.script||scriptForSlide(idx))===newScript)return;
+      const sl=allSlides[idx];
+      const fields={script:newScript,type:sl?.dataset.type||'',title:getSlideTitle(idx)};
+      _notesOverrides.set(idx,Object.assign({},cur,{idx,script:newScript,type:fields.type,title:fields.title}));
+      try{await syncCall('setSlideNote',{idx,fields});naToast('Saved · slide '+(idx+1));}
+      catch(e){naToast('Local only (sync down)');}
+      // Re-run duration math
+      _renderTopbar();
+    });
+    // Tap-to-jump on the slide block (not on textarea) is intentional skip — long doc means scroll
+  });
+  // Scroll to current slide block
+  const cur=c.querySelector('.na-doc-slide.current');if(cur)cur.scrollIntoView({block:'center'});
+}
+
+function _renderTopbar(){
+  if(!document.body.classList.contains('notes-mode'))return;
+  const idx=current;const total=allSlides.length;
+  document.getElementById('na-slide-num').textContent=String(idx+1).padStart(2,'0')+'/'+String(total).padStart(2,'0');
+  // Title (small)
+  let titleEl=document.querySelector('.na-slide-title');
+  // Next preview
+  const nextIdx=(typeof nextVisible==='function')?nextVisible(idx,1):Math.min(idx+1,total-1);
+  const nt=document.getElementById('na-next-title');if(nt)nt.textContent=nextIdx!==idx?(getSlideTitle(nextIdx)||'(slide '+(nextIdx+1)+')'):'(end of deck)';
+  const thumb=document.getElementById('na-next-thumb');
+  if(thumb){
+    const url=_slideThumbs[nextIdx];
+    if(url){thumb.style.backgroundImage='url('+url+')';thumb.textContent='';}
+    else{thumb.style.backgroundImage='';thumb.textContent='NEXT';}
+  }
+  // Pacing
+  _updatePacingDisplay();
+}
+function _updatePacingDisplay(){
+  const elapsedSec=_talkStartTime?Math.floor((Date.now()-_talkStartTime)/1000):0;
+  document.getElementById('na-elapsed').textContent=_fmtMS(elapsedSec);
+  const targetISO=_notesMeta.target_finish||_notesView.target;
+  const tLine=document.getElementById('na-target-line');
+  const proj=document.getElementById('na-projected');
+  const dot=document.getElementById('na-pace-dot');
+  if(!_talkStartTime){
+    if(targetISO){const td=new Date(targetISO);if(!isNaN(td)){tLine.textContent='Target: '+_fmtClock(td);tLine.className='na-target';}else{tLine.textContent='no target set';}}
+    else tLine.textContent='no target set';
+    proj.textContent='';dot.className='na-pace-dot';return;
+  }
+  const remainEst=calcEstimateFromIdx(current);
+  const projectedFinish=new Date(Date.now()+remainEst*1000);
+  proj.textContent='Projected: '+_fmtClock(projectedFinish);
+  if(targetISO){
+    const td=new Date(targetISO);
+    if(!isNaN(td)){
+      tLine.textContent='Target: '+_fmtClock(td);
+      const diffMin=(projectedFinish.getTime()-td.getTime())/60000;
+      let cls='';
+      if(diffMin>2)cls='warn';
+      if(diffMin>5)cls='late';
+      if(diffMin<-2)cls='warn'; // also flag if way ahead
+      tLine.className='na-target '+(diffMin>5?'late':diffMin>2?'warn':'');
+      proj.className='na-projected '+(diffMin>5?'late':diffMin>2?'warn':'');
+      dot.className='na-pace-dot'+(diffMin>5?' late':diffMin>2?' warn':'');
+    }
+  }else{tLine.textContent='no target set';dot.className='na-pace-dot';}
+}
+
+// Tap zones
+function _setupTapZones(){
+  const zones=document.getElementById('na-tap-zones');if(!zones)return;
+  zones.classList.add('active');
+  document.getElementById('na-tap-l').addEventListener('click',()=>{naAdvance(-1);});
+  document.getElementById('na-tap-r').addEventListener('click',()=>{naAdvance(1);});
+  document.getElementById('na-tap-m').addEventListener('click',()=>{
+    if(_notesView.editing||_notesView.docOpen)return;
+    const showBullets=_notesView.mode==='auto'?(_notesMeta.default_view==='bullets'):_notesView.mode==='bullets';
+    _notesView.mode=showBullets?'script':'bullets';
+    naRenderContent();
+  });
+}
+function naAdvance(dir){
+  if(_notesView.editing||_notesView.docOpen)return;
+  const total=allSlides.length;
+  let n=current;
+  for(let i=0;i<total;i++){
+    n=(n+dir+total)%total;
+    if(allSlides[n].dataset.hidden!=='1'&&allSlides[n].dataset.type!=='settings')break;
+  }
+  goTo(n);
+  if(_notesView.locked){_pushClickerState();}
+}
+
+// Wake lock
+let _wakeLock=null;
+async function _requestWakeLock(){
+  if(!('wakeLock' in navigator))return;
+  try{_wakeLock=await navigator.wakeLock.request('screen');_wakeLock.addEventListener('release',()=>{_wakeLock=null;});}catch(e){}
+}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&document.body.classList.contains('notes-mode')&&_notesView.timerRunning)_requestWakeLock();});
+
+// Timer controls
+function naStartPause(){
+  const btn=document.getElementById('na-timer-btn');
+  if(!_talkStartTime){
+    startTalkTimer();_notesView.timerRunning=true;btn.textContent='⏸';btn.classList.add('active');_requestWakeLock();
+  }else if(_notesView.timerRunning){
+    // pause: snapshot elapsed, stop interval
+    _notesView._pausedAt=Date.now();_notesView.timerRunning=false;clearInterval(_timerInterval);_timerInterval=null;btn.textContent='▶';btn.classList.remove('active');
+  }else{
+    // resume: shift _talkStartTime forward by paused gap
+    const gap=Date.now()-(_notesView._pausedAt||Date.now());_talkStartTime+=gap;_notesView.timerRunning=true;_timerInterval=setInterval(updateTimers,1000);btn.textContent='⏸';btn.classList.add('active');_requestWakeLock();
+  }
+  _updatePacingDisplay();
+}
+function naReset(){
+  _talkStartTime=null;clearInterval(_timerInterval);_timerInterval=null;_notesView.timerRunning=false;_wpmSamples=[];_adaptiveWpm=null;_notesPrevAdvance={idx:null,t:null};
+  const btn=document.getElementById('na-timer-btn');btn.textContent='▶';btn.classList.remove('active');
+  _updatePacingDisplay();
+  document.getElementById('na-elapsed').textContent='00:00';
+}
+
+// Padlock clicker (sheet-relayed)
+let _clickerPoll=null,_clickerLastSeq=0;
+async function _pushClickerState(){
+  try{
+    const state={currentSlide:current,seq:Date.now(),locked:_notesView.locked,fromPhone:true};
+    await syncCall('setState',{state});
+  }catch(e){console.warn('clicker push failed',e);}
+}
+async function _pollClickerForLaptop(){
+  // Laptop side: read state from sheet, if seq newer and fromPhone, advance
+  try{
+    const s=await syncCall('getState',{});
+    if(!s||!s.locked)return;
+    if(s.seq&&s.seq>_clickerLastSeq){
+      _clickerLastSeq=s.seq;
+      if(s.fromPhone&&typeof s.currentSlide==='number'&&s.currentSlide!==current){
+        goTo(s.currentSlide);
+      }
+    }
+  }catch(e){}
+}
+function _startClickerListenerForLaptop(){
+  if(_clickerPoll)return;
+  _clickerPoll=setInterval(_pollClickerForLaptop,1000);
+}
+function _stopClickerListenerForLaptop(){if(_clickerPoll){clearInterval(_clickerPoll);_clickerPoll=null;}}
+
+function naToggleLock(){
+  _notesView.locked=!_notesView.locked;
+  const btn=document.getElementById('na-lock-btn');
+  btn.textContent=_notesView.locked?'🔒':'🔓';
+  btn.classList.toggle('active',_notesView.locked);
+  if(_notesView.locked){_pushClickerState();naToast('Clicker active');}
+  else{naToast('Clicker off');}
+}
+
+// Target picker
+function naOpenTargetPicker(){
+  const pop=document.getElementById('na-target-pick');
+  pop.classList.toggle('open');
+  if(pop.classList.contains('open')){
+    const t=document.getElementById('na-tp-time');const m=document.getElementById('na-tp-mins');
+    const cur=_notesMeta.target_finish||_notesView.target;
+    if(cur){const d=new Date(cur);if(!isNaN(d))t.value=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
+    m.value='';
+  }
+}
+async function naSaveTarget(){
+  const t=document.getElementById('na-tp-time').value;
+  const m=document.getElementById('na-tp-mins').value;
+  let target=null;
+  if(m){const d=new Date(Date.now()+Number(m)*60000);target=d.toISOString();}
+  else if(t){const[hh,mm]=t.split(':').map(Number);const d=new Date();d.setHours(hh,mm,0,0);if(d.getTime()<Date.now())d.setDate(d.getDate()+1);target=d.toISOString();}
+  if(!target){naToast('Set a time or duration');return;}
+  _notesMeta.target_finish=target;_notesView.target=target;
+  document.getElementById('na-target-pick').classList.remove('open');
+  _updatePacingDisplay();
+  try{await syncCall('setMeta',{key:'target_finish',value:target});naToast('Target saved');}catch(e){naToast('Saved locally');}
+}
+async function naClearTarget(){
+  _notesMeta.target_finish=null;_notesView.target=null;
+  document.getElementById('na-target-pick').classList.remove('open');
+  _updatePacingDisplay();
+  try{await syncCall('setMeta',{key:'target_finish',value:''});}catch(e){}
+}
+
+// Calibration sweep — capture video durations + slide thumbnails
+async function runCalibration(){
+  naToast('Calibrating…');
+  const videoDurations={};
+  // Collect <video> elements from all slides
+  const seen=new Set();
+  for(let i=0;i<allSlides.length;i++){
+    const vids=allSlides[i].querySelectorAll('video');
+    for(const v of vids){
+      if(!v.src||seen.has(v.src))continue;seen.add(v.src);
+      try{
+        if(!isFinite(v.duration)||v.duration===0){
+          await new Promise((res,rej)=>{const to=setTimeout(()=>rej(),5000);v.addEventListener('loadedmetadata',()=>{clearTimeout(to);res();},{once:true});if(v.readyState===0)v.load();});
+        }
+        if(isFinite(v.duration)&&v.duration>0)videoDurations[v.src]=Number(v.duration.toFixed(1));
+      }catch(e){}
+    }
+  }
+  _videoDurationCache=videoDurations;
+  const calibration={videoDurations,thumbnails:_slideThumbs,calibratedAt:new Date().toISOString()};
+  try{await syncCall('setMeta',{key:'calibration',value:calibration});naToast('Calibration saved · '+Object.keys(videoDurations).length+' videos');}
+  catch(e){naToast('Calibration local only');}
+  _renderTopbar();
+}
+
+// Notes-mode init
+async function initNotesMode(){
+  const cfg=await loadNotesConfig();
+  if(!cfg){
+    // Show config prompt overlay
+    const ov=document.createElement('div');ov.className='na-config-prompt';
+    ov.innerHTML='<h2>Cloud sync not configured</h2><p>Create <code>notes-config.json</code> in the repo root with <code>{"gasUrl":"…","deckId":"…"}</code>. See <code>tools/SETUP_NOTES_SYNC.md</code> for the full setup.</p><p style="color:rgba(245,158,11,.8)">Continuing in local-only mode — edits will not persist across devices.</p><button class="na-iconbtn" style="margin-top:8px" onclick="this.parentNode.remove()">Continue local-only</button>';
+    document.body.appendChild(ov);
+  }else{
+    try{
+      const data=await syncCall('getNotes',{});
+      if(!data.slides||!data.slides.length){
+        await seedFromSections(false);
+        const fresh=await syncCall('getNotes',{});
+        _applyNotesData(fresh);
+        naToast('Sheet seeded ('+(fresh.slides||[]).length+' slides)');
+      }else{
+        _applyNotesData(data);
+      }
+    }catch(e){console.warn('cloud sync failed',e);naToast('Sync error: '+e.message);}
+  }
+  _setupTapZones();
+  _renderTopbar();naRenderContent();
+  // Wire buttons
+  document.getElementById('na-timer-btn').addEventListener('click',naStartPause);
+  let resetHold=null;
+  document.getElementById('na-reset-btn').addEventListener('pointerdown',()=>{resetHold=setTimeout(()=>{naReset();naToast('Timer reset');},900);});
+  document.getElementById('na-reset-btn').addEventListener('pointerup',()=>{clearTimeout(resetHold);});
+  document.getElementById('na-reset-btn').addEventListener('pointerleave',()=>{clearTimeout(resetHold);});
+  document.getElementById('na-lock-btn').addEventListener('click',naToggleLock);
+  document.getElementById('na-edit-btn').addEventListener('click',()=>{_notesView.editing=!_notesView.editing;_notesView.docOpen=false;naRenderContent();});
+  document.getElementById('na-doc-btn').addEventListener('click',()=>{_notesView.docOpen=!_notesView.docOpen;_notesView.editing=false;naRenderContent();});
+  document.getElementById('na-target-btn').addEventListener('click',naOpenTargetPicker);
+  document.getElementById('na-tp-save').addEventListener('click',naSaveTarget);
+  document.getElementById('na-tp-clear').addEventListener('click',naClearTarget);
+  // Refresh pacing every second
+  setInterval(_updatePacingDisplay,1000);
+  // Hook navigation
+  const _origUH=updateHUD;updateHUD=function(){_origUH();_onSlideChange(current);if(document.body.classList.contains('notes-mode')){_renderTopbar();naRenderContent();}};
+}
+
+// Laptop side: if NOT in notes mode, but config exists, listen for clicker
+async function initLaptopClickerListener(){
+  const cfg=await loadNotesConfig();if(!cfg)return;
+  try{const data=await syncCall('getNotes',{});_applyNotesData(data);}catch(e){}
+  _startClickerListenerForLaptop();
+}
+
+// Boot — pick a path
+if(_notesParam){
+  // Phone notes mode
+  setTimeout(initNotesMode,200);
+}else{
+  // Main deck — still load notes overrides + cache so calibration data, etc. apply
+  setTimeout(initLaptopClickerListener,400);
+  // Hook _onSlideChange even on laptop so adaptive WPM data can be gathered if you ever switch to ?notes mid-talk
+  const _origUH2=updateHUD;updateHUD=function(){_origUH2();_onSlideChange(current);};
+}
 
 // Init
 updateHUD();goToFromHash();

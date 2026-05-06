@@ -8,3 +8,4 @@ node_modules/
 __pycache__/
 *.pyc
 .nano-banana-config.json
+notes-config.json
