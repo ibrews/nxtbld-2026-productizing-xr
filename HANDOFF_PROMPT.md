@@ -160,7 +160,20 @@ index.html
 - `notes` field in SECTIONS config (string)
 - `N` key opens presenter popup (BroadcastChannel sync)
 - `Shift+N` toggles inline drawer
+- `Shift+P` toggles **split presenter view**: deck shrinks to top 58%, notes drawer pins to bottom 42% (no overlap). Auto-opens the notes drawer. Toggle again to exit.
 - Duration estimator: ~20s/bullet, ~150wpm prose, 30s default per noteless slide
+
+### Haptic Pacing Alerts (mobile only — `navigator.vibrate`, no-op on desktop)
+- **Light pulse (120ms)** — once per minute when elapsed > 110% of estimated duration (running behind)
+- **Hard double-pulse (250–80–250ms)** — every 10 seconds during the final minute of the talk
+- Both fire inside `updateTimers()` (runs in both main deck and `?notes` modes)
+- Reset state (`_lastVibMinute`, `_lastVibTenSec`) cleared on timer reset
+
+### `?notes` Collapsible Slide Preview
+- 🖼 button in the topbar toggles a collapsible thumbnail panel above the notes content
+- Shows calibrated 160×90 thumbnail for the current slide (from `sd-thumbs-<deckId>` localStorage)
+- Falls back to slide title + "Calibrate to see thumbnail" hint if no thumbnail exists
+- Panel updates automatically on slide change when open
 
 ### `?notes` Phone Speaker Companion (2026-05-06)
 - URL: append `?notes` (e.g. `index.html?notes`) → renders a phone-optimized speaker view instead of the deck
