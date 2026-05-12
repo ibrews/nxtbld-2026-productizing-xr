@@ -18,6 +18,18 @@
    =======================================================================
    Each section = a year/chapter with 1 lesson + N case studies.
    Edit SECTIONS to change all content. Everything else is generated.
+
+   CASE LAYOUTS (c.layout):
+   (default)  Two-pane: image left, title + bullets right
+   'full'     Full-bleed image or video (img path, or ends in .mp4/.webm)
+   'grid'     Multi-image grid (images:[...] array, optional gridCover:true)
+   'big'      Full-slide statement. Fields: bigText (huge gradient headline),
+              title (eyebrow), subtitle (italic), bigCaption (footnote)
+   'placed'   PPTX-coordinate absolute layout. Field: placedImages array
+              where each item is [src, left%, top%, width%, height%, obj-pos?]
+              Supports images and .mp4/.webm videos. Optional title/subtitle
+              renders as frosted-glass overlay (bottom-left).
+   'IFRAME:'  Prefix c.img with 'IFRAME:' to embed a URL (YouTube, etc.)
    ======================================================================= */
 const SECTIONS = [
   { year: 'CH 1', accent: 'teal',
@@ -288,6 +300,23 @@ body.split-view .nav-arrows{bottom:calc(42vh + 4px)!important}
 #export-modal .em-progress{font-size:.72rem;color:var(--dim);margin-top:10px}
 .cfg-btn-export{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);color:var(--teal);font-family:var(--font);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;border-radius:6px;cursor:pointer;transition:all .15s;margin-top:8px}
 .cfg-btn-export:hover{background:rgba(0,212,255,.18)}
+/* === LAYOUT: PLACED (PPT-coordinate absolute positioning) === */
+.case-slide.layout-placed{display:flex;align-items:center;justify-content:center;padding:0}
+.placed-stage{position:relative;aspect-ratio:16/9;width:100%;height:auto;max-height:100%;max-width:calc(100vh*16/9);overflow:hidden}
+.placed-item{position:absolute;overflow:hidden;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.placed-item img,.placed-item video{width:100%;height:100%;object-fit:contain;display:block}
+.placed-overlay{position:absolute;left:5%;bottom:5%;background:rgba(6,8,16,.65);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);padding:14px 28px;border-radius:12px;z-index:5;max-width:80%}
+.placed-title{font-size:clamp(1rem,1.7vw,1.5rem);font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.placed-sub{font-size:clamp(.8rem,1.1vw,1rem);color:rgba(240,244,255,.75);line-height:1.4;margin-top:4px}
+/* === LAYOUT: BIG (full-slide statement text) === */
+.case-slide.layout-big{flex-direction:column;text-align:center;padding:clamp(50px,5vw,110px);justify-content:center;align-items:center}
+.case-slide.layout-big .big-stack{display:flex;flex-direction:column;gap:clamp(18px,2.5vw,40px);align-items:center;max-width:1300px}
+.case-slide.layout-big .big-eyebrow{font-size:clamp(1.4rem,2.6vw,2.4rem);font-weight:500;color:rgba(240,244,255,.78);letter-spacing:-.01em;line-height:1.2}
+.case-slide.layout-big .big-sub{font-size:clamp(.95rem,1.5vw,1.4rem);color:var(--dim);font-style:italic;line-height:1.45}
+.case-slide.layout-big .big-text{font-size:clamp(3rem,8vw,8rem);font-weight:700;letter-spacing:-.04em;line-height:1.15;background:linear-gradient(135deg,#fff 30%,#ffd6e1 70%,#c5b6ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.case-slide.layout-big .big-caption{font-size:clamp(1rem,1.6vw,1.55rem);color:rgba(240,244,255,.65);font-style:italic;line-height:1.45;max-width:900px}
+.accent-amber .case-slide.layout-big .big-text,.accent-amber.case-slide.layout-big .big-text{background:linear-gradient(135deg,#fff 30%,#ffe6a5 70%,#f59e0b 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.accent-purple .case-slide.layout-big .big-text,.accent-purple.case-slide.layout-big .big-text{background:linear-gradient(135deg,#fff 30%,#ddd2ff 70%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 /* === LAYOUT GRID OVERLAY === */
 .layout-grid{position:absolute;inset:0;z-index:50;pointer-events:none;display:grid;grid-template:repeat(3,1fr)/repeat(4,1fr)}
 .layout-grid-cell{border:1px dashed rgba(0,212,255,.2);display:flex;align-items:center;justify-content:center;font:700 1.2rem 'Space Grotesk',sans-serif;color:rgba(0,212,255,.25);letter-spacing:.1em}
@@ -601,7 +630,21 @@ SECTIONS.forEach((sec,si)=>{
   ls.innerHTML=`<div class="year-ghost">${sec.year}</div><div class="lesson-ey"><span class="ey-yr">${sec.year}</span><span class="ey-sep">&middot;</span><span class="ey-badge">Lesson ${si+1} / ${SECTIONS.length}</span></div><h2 class="lesson-title">${sec.lesson.title}</h2><p class="lesson-tagline">${sec.lesson.tagline.replace(/<br><br>/g,'<br><span class="para-gap"></span>')}</p>${sec.lesson.tags?`<div class="lesson-tags">${sec.lesson.tags}</div>`:''}<div class="lesson-rule"></div>`;
   deck.appendChild(ls);allSlides.push(ls);lessonIdxs.push(allSlides.length-1);
   sec.cases.forEach(c=>{
-    const s=document.createElement('div');s.className=`slide case-slide${ac}`;s.dataset.type='case';s.dataset.year=sec.year;s.dataset.section=si;
+    const s=document.createElement('div');s.className=`slide case-slide${ac}${c.layout?' layout-'+c.layout:''}${c.gridCover?' grid-cover':''}`;s.dataset.type='case';s.dataset.year=sec.year;s.dataset.section=si;
+    // layout: 'big' — full-slide statement text (bigText, optional title/subtitle/bigCaption)
+    if(c.layout==='big'){
+      s.innerHTML=`<div class="big-stack">${c.title?`<h2 class="big-eyebrow">${c.title.replace(/\n/g,'<br>')}</h2>`:''}${c.subtitle?`<div class="big-sub">${c.subtitle}</div>`:''}${c.bigText?`<h1 class="big-text">${c.bigText.replace(/\n/g,'<br>')}</h1>`:''}${c.bigCaption?`<p class="big-caption">${c.bigCaption}</p>`:''}</div>`;
+      deck.appendChild(s);allSlides.push(s);return;
+    }
+    // layout: 'placed' — PPTX-coordinate absolute positioning
+    // placedImages: [[src, left%, top%, width%, height%, optional_object-position], ...]
+    if(c.layout==='placed'&&c.placedImages){
+      const _mt=src=>{if(src.endsWith('.mp4')||src.endsWith('.webm'))return `<video src="${src}" autoplay loop muted playsinline>`;return `<img src="${src}" loading="lazy">`;};
+      const items=c.placedImages.map(([src,l,t,w,h,op])=>{const tag=_mt(src);const st=op?tag.replace(/>$/,` style="object-position:${op}">`):tag;return `<div class="placed-item" style="left:${l}%;top:${t}%;width:${w}%;height:${h}%">${st}</div>`;}).join('');
+      const head=(c.title||c.subtitle)?`<div class="placed-overlay">${c.title?`<h3 class="placed-title">${c.title.replace(/\n/g,'<br>')}</h3>`:''}${c.subtitle?`<p class="placed-sub">${c.subtitle}</p>`:''}</div>`:'';
+      s.innerHTML=`<div class="placed-stage">${items}</div>${head}`;
+      deck.appendChild(s);allSlides.push(s);return;
+    }
     let imgHTML;
     if(c.img&&c.img.startsWith('IFRAME:')){
       const iframeSrc=c.img.slice(7);
