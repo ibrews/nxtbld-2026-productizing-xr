@@ -310,3 +310,39 @@ The default deck is "Is XR Right For Your Project?" with 3 chapters and 6 case s
 **Do not** commit talk-specific SECTIONS.json, slide copy, or hero images to this main repo. Tools yes; talks no.
 
 Canonical version of this rule: `~/knowledge/projects/spatial-deck/conventions.md`.
+
+---
+
+## FMX 2026 Session Learnings (added 2026-05-08)
+
+### New layouts added to template
+`placed` and `big` are now in the template (`index.html`). See the SECTIONS config comment for full docs.
+
+**`placed` usage:**
+```javascript
+{ title:'Optional overlay title', subtitle:'Optional subtitle',
+  layout:'placed', placedImages:[
+    ['media/image.png', 5, 10, 60, 80],        // [src, left%, top%, w%, h%]
+    ['media/video.mp4', 50, 20, 45, 60],        // .mp4 auto-detected as <video>
+    ['media/img.jpg', 0, 0, 100, 100, 'center bottom']  // 6th param = object-position
+  ], notes:'Speaker notes here' }
+```
+
+**`big` usage:**
+```javascript
+{ layout:'big', bigText:'The constraint\nis the design.', notes:'...' }
+// Optional fields: title (eyebrow above), subtitle (italic below title),
+//                  bigCaption (small italic below bigText)
+```
+
+### Video placeholder detection
+When extracting from PPTX, any full-bleed image **under ~50KB** is almost certainly a Google Slides video thumbnail frame, not a real image. Before using it as `img:`, check `videos.json` for a local MP4 match. If none found, the slide needs a video file that wasn't embedded in the PPTX export.
+
+### Git workflow for media-heavy repos
+Committing large GIFs/videos to git history makes future pushes permanently slow (objects stay in pack even after deletion). Prevention:
+1. Add to `.gitignore` **before** first `git add`: `*.gif` (over threshold), large video patterns
+2. Use `tools/import_video_clip.py --max-mb 95` to fit GitHub's 100MB limit
+3. If already committed large files: `git checkout --orphan fresh` → remove large files → commit → `git push --force origin HEAD:main`. Orphan branch has no history = small pack = reliable push.
+
+### PPTX extraction script
+`extract_pptx2.py` in the FMX fork is more robust than `tools/import_pptx.py` for media extraction (hash-based filenames, GIF detection, relationship traversal). Consider merging improvements upstream.
