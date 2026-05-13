@@ -7,13 +7,18 @@
     "Productized version",
     "",
     "GIF or video showing it in use",
-    ""
+    "",
+    "Note: loading any floor plan from google drive"
   ],
-  "directives": [],
+  "directives": [
+    "Note: loading any floor plan from google drive"
+  ],
   "media_refs": [
-    "ppt/media/image19.png",
-    "ppt/media/image62.gif",
-    "ppt/media/image58.gif"
+    "ppt/media/image11.png",
+    "ppt/media/image91.gif",
+    "ppt/media/image56.gif",
+    "ppt/media/image28.png",
+    "ppt/media/image38.png"
   ],
   "speaker_notes": "J\nDo we want to make a qr code to link to the app lab or anything? (Alex: only if we feel really confident the in ease of use)"
 }

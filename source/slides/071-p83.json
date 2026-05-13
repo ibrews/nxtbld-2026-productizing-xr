@@ -2,10 +2,14 @@
   "index": 71,
   "page_id": "p83",
   "title": "",
-  "text_runs": [],
-  "directives": [],
+  "text_runs": [
+    "NOTE: https://drive.google.com/file/d/1RAdPw-eigVu5-16mWSJEG7a7tX7I3A1-/view?usp=drive_link"
+  ],
+  "directives": [
+    "NOTE: https://drive.google.com/file/d/1RAdPw-eigVu5-16mWSJEG7a7tX7I3A1-/view?usp=drive_link"
+  ],
   "media_refs": [
-    "ppt/media/image81.jpg"
+    "ppt/media/image66.jpg"
   ],
   "speaker_notes": ""
 }

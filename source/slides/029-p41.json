@@ -3,12 +3,15 @@
   "page_id": "p41",
   "title": "Floor Tour",
   "text_runs": [
-    "Floor Tour"
+    "Floor Tour",
+    "Note: loading any floor plan from google drive"
   ],
-  "directives": [],
+  "directives": [
+    "Note: loading any floor plan from google drive"
+  ],
   "media_refs": [
-    "ppt/media/image24.png",
-    "ppt/media/image21.png"
+    "ppt/media/image28.png",
+    "ppt/media/image38.png"
   ],
   "speaker_notes": "J"
 }
