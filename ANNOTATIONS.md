@@ -50,3 +50,8 @@ _Reset/missing keys use the built-in `D` defaults._
 **Selector:** `#deck > div.slide.case-slide:nth-of-type(8) > div.sg-frag-stage > div.sg-frag-grid:nth-of-type(1) > div.sg-frag.sg-frag-2:nth-of-type(3)`
 **left:16.2%, top:51.5% on slide #8**
 **Note:** TEXT EDIT: "“DELETE ME”…" → "“0925_Screenshot_D”"
+
+## 10. case THE PATTERN #9
+**Selector:** `#deck > div.slide.case-slide:nth-of-type(9) > div.pattern-stage > svg.pattern-svg > path.pat-flow.pat-flow-dash:nth-of-type(3)`
+**TRANSFORM translate Δ(-22px, +16px) → final position: left:37.9%, top:33.5%**
+**Note:** TRANSFORM translate Δ(-22px, +16px) → final position: left:37.9%, top:33.5%
