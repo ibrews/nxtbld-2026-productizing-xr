@@ -179,8 +179,8 @@ const SECTIONS = [
       // slide 29 \u2014 Productized version. Body: "GIF or video showing it in use"
       { layout:'placed', title:'Floor Tour', subtitle:'Productized version',
         placedItems:[
-          { type:'img', src:'media/nxtbld/floor-29-a.png', x:6, y:14, w:42, h:74 },
-          { type:'img', src:'media/nxtbld/floor-29-b.png', x:53, y:14, w:42, h:74 },
+          { type:'img', src:'media/nxtbld/floor-29-a.png', x:2.2, y:21.3, w:44.1, h:77.7 },
+          { type:'img', src:'media/nxtbld/floor-29-b.png', x:75.2, y:38.3, w:33.6, h:59.2 },
         ],
         deckTarget:'p41' },
     ] },
@@ -1136,7 +1136,7 @@ deck.appendChild(bon);allSlides.push(bon);
 // 3D Monocle on Bonus slide
 (function(){
   const container=document.createElement('div');
-  container.style.cssText='position:absolute;right:10%;top:50%;transform:translateY(-50%);width:300px;height:300px;pointer-events:auto;z-index:2';
+  container.style.cssText='position:absolute;left:75.7%;top:30.2%;width:300px;height:300px;pointer-events:auto;z-index:2';
   bon.appendChild(container);
   const canvas=document.createElement('canvas');
   canvas.width=600;canvas.height=600;
@@ -1448,8 +1448,14 @@ function shootFireball(svg,startX,startY,dir){
     svg.appendChild(defs);
   })();
   function makeUE5Box(x,y){
-    const g=svgE('g',{id:'ue5-powerup-box',transform:`translate(${x},${y})`,opacity:'0'});
+    // Outer group: positions the box on stage via SVG transform attribute.
+    // Inner #ue5-powerup-box group: target of CSS animations — keeping it
+    // separate prevents the float/explode keyframe `transform` from clobbering
+    // the position (CSS transform on SVG <g> overrides the SVG attribute).
+    const outer=svgE('g',{transform:`translate(${x},${y})`});
+    const g=svgE('g',{id:'ue5-powerup-box',opacity:'0'});
     g.style.transformOrigin='center';
+    outer.appendChild(g);
     const inner=svgE('g',{filter:'url(#ue5-glow)'});
     // Outer glow halo (low-opacity wide rect)
     inner.appendChild(svgE('rect',{x:-16,y:-14,width:32,height:28,fill:'#FFE082',opacity:'.35',rx:'3'}));
@@ -1476,7 +1482,7 @@ function shootFireball(svg,startX,startY,dir){
     inner.appendChild(svgE('rect',{x:4,y:0,width:3,height:1,fill:tcol}));
     g.appendChild(inner);
     g.style.animation='ue5BoxFloat 1.4s ease-in-out infinite';
-    svg.appendChild(g);
+    svg.appendChild(outer);
     return g;
   }
   const ue5Box=makeUE5Box(200,238);
