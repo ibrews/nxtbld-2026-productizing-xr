@@ -104,13 +104,13 @@ const SECTIONS = [
       // request ("don't remove the SG intro, just edit it").
       { layout:'big', title:'The Secret Graveyard.',
         subtitle:'Every studio has these.',
-        bigCaption:'Internal tools \u00b7 hacked Unreal viewers \u00b7 prototype UIs \u00b7 VR walkthroughs \u00b7 half-finished configurators \u2014 the things you built once, called <em>"temporary"</em>, and never deleted.',
+        bigCaption:'Internal tools \u00b7 hacked Unreal wrappers \u00b7 prototype Revit UI',
         deckTarget:'p19 (intro)' },
       // SG-1 \u2014 Toolbox collage. Consolidates source 8-22 per slide 7's NOTE.
       // EXCLUDES source slides 13 + 15 (marked show="0" / skipped in Google Slides).
       // Images named sg-NN by slot for stability across PPTX image renumbering.
       { layout:'sg-collage', title:'The Toolbox Nobody Talks About',
-        subtitle:'Internal tools \u00b7 hacked Unreal viewers \u00b7 prototype UIs \u00b7 VR walkthroughs \u00b7 half-finished configurators',
+        subtitle:'We\u2019ll sort through that someday when we\u2019re not so busy\u2026',
         collage:[
           'media/nxtbld/sg-01.png','media/nxtbld/sg-02.jpg','media/nxtbld/sg-03.png',
           'media/nxtbld/sg-05.png','media/nxtbld/sg-06.png','media/nxtbld/sg-07.png',
@@ -980,7 +980,7 @@ function playToolboxThud(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscill
 
 // Settings slide (slot 0, hidden)
 (function(){
-  const D={paraGap:.35,taglineScale:1,titleScale:1,imgDur:6,primaryColor:'#00d4ff',secondaryColor:'#a78bfa',bgDark:'#060810',fontFamily:'Space Grotesk',transition:'slide',arrowSubstep:true,verticalMode:false,bgStyle:'nebula',bgBlend:'color-dodge'};
+  const D={paraGap:.35,taglineScale:1,titleScale:1,imgDur:6,primaryColor:'#00d4ff',secondaryColor:'#a78bfa',bgDark:'#060810',fontFamily:'Space Grotesk',transition:'slide',arrowSubstep:true,verticalMode:false,bgStyle:'nebula',bgBlend:'soft-light'};
   const saved=JSON.parse(localStorage.getItem('sd-cfg-nxtbld2026')||'{}');const C={...D,...saved};
   function apply(){const r=document.documentElement.style;r.setProperty('--para-gap',C.paraGap+'em');r.setProperty('--tagline-scale',C.taglineScale);r.setProperty('--title-scale',C.titleScale);r.setProperty('--teal',C.primaryColor);r.setProperty('--purple',C.secondaryColor);r.setProperty('--bg-dark',C.bgDark);r.setProperty('--bg',C.bgDark);if(C.fontFamily&&C.fontFamily!=='Custom')r.setProperty('--font',`'${C.fontFamily}',system-ui,sans-serif`);else if(C.customFont)r.setProperty('--font',`'${C.customFont}',system-ui,sans-serif`);window._globalImageDuration=C.imgDur*1000;window._arrowSubstep=C.arrowSubstep;const vForced=new URLSearchParams(location.search).has('vertical');document.body.classList.toggle('vertical-mode',!!C.verticalMode||vForced);window._verticalMode=!!C.verticalMode||vForced;document.body.dataset.bgStyle=C.bgStyle||'none';r.setProperty('--bg-blend',C.bgBlend||'screen');if(typeof aRender==='function')aRender();}
   apply();window._sdCfg=C;function save(){localStorage.setItem('sd-cfg-nxtbld2026',JSON.stringify(C));}
