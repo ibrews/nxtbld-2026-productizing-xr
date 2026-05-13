@@ -87,6 +87,12 @@ Spatial Deck is a single-file HTML presentation framework. Everything lives in `
 - URL hash `#0` and `#00` both go to settings. `#N` = slide N (0-indexed).
 - Arrow substep toggle: On = step through animations, Off = skip to next slide.
 
+### Fork Defaults (apply when building any new deck from this template)
+- **Agenda slide** — always include one as the first case in the first section (after the cover). Use `layout:'big'` with a `bigCaption` containing an `<ul class="agenda-list">`.
+- **Company logo on cover** — always include `<div class="cover-logo-wrap"><img src="media/<slug>/logo.svg" alt="..."></div>` in the cover HTML, positioned bottom-center via the `.cover-logo-wrap` CSS class.
+- **Deck QR on close slide** — once the fork is pushed to GitHub Pages (at `https://<user>.github.io/<repo>/`), add a QR card as the first item in `.close-qr-row`: `<div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=<encoded-url>" alt="QR Deck"><div class="qr-label">View the deck</div><div class="qr-badge b-amber"><user>.github.io</div></div>`. Use `b-amber` badge color to distinguish from contact QRs.
+- **No lesson format for non-lesson decks** — the `slide-lesson` class and `lesson:` field in SECTIONS are for chapter-intro lesson cards (rarely appropriate for conference talks). For talks, chapter intros use `layout:'big'` cases. Only use `slide-lesson` when the deck is explicitly structured as educational lessons (e.g., a workshop with numbered lessons). The BONUS slide is the only built-in exception.
+
 ## Common Patterns
 
 ```javascript
