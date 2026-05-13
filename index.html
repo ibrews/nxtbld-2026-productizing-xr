@@ -354,6 +354,11 @@ body[data-bg-style]:not([data-bg-style="none"]) .cfg-panel{background:rgba(8,10,
 .qr-badge.b-teal{color:var(--teal);animation:qrP2 1.9s ease-in-out infinite}
 @keyframes qrP1{0%,100%{opacity:.7;transform:rotate(-3deg) scale(1)}50%{opacity:1;transform:rotate(-3deg) scale(1.08)}}
 @keyframes qrP2{0%,100%{opacity:.7;transform:rotate(2.5deg) scale(1)}50%{opacity:1;transform:rotate(2.5deg) scale(1.08)}}
+.close-sprite{position:absolute;bottom:clamp(80px,12vh,170px);width:clamp(90px,9vw,140px);height:clamp(105px,10.5vw,160px);opacity:0;transform:translateY(-20px) scale(.3);pointer-events:none;z-index:3;image-rendering:pixelated}
+.close-sprite-alex{left:clamp(40px,7vw,140px)}
+.close-sprite-jun{right:clamp(40px,7vw,140px)}
+.close-sprite.popped{animation:closeSpritePop .6s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes closeSpritePop{0%{opacity:0;transform:translateY(-20px) scale(.3)}55%{opacity:1;transform:translateY(4px) scale(1.1)}80%{transform:translateY(0) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
 #counter{position:fixed;top:32px;right:48px;z-index:20;font-size:clamp(.72rem,1vw,.95rem);font-weight:500;letter-spacing:.12em;color:rgba(255,255,255,.25)}
 #brand{position:fixed;bottom:28px;left:48px;z-index:20;font-size:clamp(.68rem,.95vw,.9rem);font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.18)}
 .nav-arrows{position:fixed;bottom:24px;right:160px;z-index:20;display:flex;gap:10px;align-items:center}
@@ -1251,7 +1256,30 @@ cls.innerHTML=`<div class="close-ey">Thank You</div><h2 class="close-title">If y
 <div class="contact-row"><div class="contact-pill"><span class="lbl">Web</span>agilelens.com</div><div class="contact-pill"><span class="lbl">Email</span>alex@agilelens.com</div><div class="contact-pill"><span class="lbl">Email</span>jun@agilelens.com</div></div>
 <div class="close-qr-row"><div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fwww.linkedin.com%2Fin%2Falexcoulombe%2F" alt="QR Alex LinkedIn"><div class="qr-label">Alex on LinkedIn</div><div class="qr-badge b-teal">in/alexcoulombe</div></div><div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fyu-jun-yeh-4a0929183%2F" alt="QR Jun LinkedIn"><div class="qr-label">Jun on LinkedIn</div><div class="qr-badge b-purple">in/yu-jun-yeh</div></div></div>
 <div style="position:absolute;bottom:clamp(30px,4vh,60px);left:50%;transform:translateX(-50%);opacity:.35;z-index:2"><svg width="200" height="40" viewBox="0 0 869 175" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M266.385 134.295L264.681 136H249.34L247.635 134.295L239.113 112.137L235.704 110.432H193.09L189.681 112.137L181.159 134.295L179.454 136H164.114L162.409 134.295V117.25L201.613 18.3878L203.318 16.6833H225.476L227.181 18.3878L266.385 117.25V134.295ZM230.59 88.2733L215.249 47.3647H213.545L198.204 88.2733L199.909 89.9778H228.886L230.59 88.2733ZM346.604 52.4783V127.477C346.604 158.159 327.854 171.795 303.991 171.795C283.537 171.795 269.901 161.568 268.196 146.227L269.901 144.523H290.355L292.059 146.227C293.764 149.636 297.173 151.341 303.991 151.341C315.923 151.341 322.741 144.523 322.741 129.182H321.036C321.036 129.182 314.218 137.705 298.878 137.705C278.423 137.705 261.378 120.659 261.378 93.3869C261.378 66.1145 278.423 49.0692 298.878 49.0692C314.218 49.0692 321.036 57.5919 321.036 57.5919H322.741L324.445 52.4783L326.15 50.7738H344.9L346.604 52.4783ZM285.241 93.3869C285.241 107.023 290.355 117.25 303.991 117.25C317.627 117.25 322.741 107.023 322.741 93.3869C322.741 79.7507 317.627 69.5235 303.991 69.5235C290.355 69.5235 285.241 79.7507 285.241 93.3869ZM378.964 35.433L377.259 37.1376H356.805L355.1 35.433V18.3878L356.805 16.6833H377.259L378.964 18.3878V35.433ZM378.964 134.295L377.259 136H356.805L355.1 134.295V52.4783L356.805 50.7738H377.259L378.964 52.4783V134.295ZM411.31 134.295L409.605 136H389.151L387.446 134.295V18.3878L389.151 16.6833H409.605L411.31 18.3878V134.295ZM496.496 93.3869V100.205L494.791 101.91H441.951L440.247 103.614C440.247 107.023 443.656 117.25 457.292 117.25C462.405 117.25 467.519 115.546 469.223 112.137L470.928 110.432H491.382L493.087 112.137C491.382 122.364 482.86 137.705 457.292 137.705C428.315 137.705 414.679 117.25 414.679 93.3869C414.679 69.5235 428.315 49.0692 455.587 49.0692C482.86 49.0692 496.496 69.5235 496.496 93.3869ZM469.223 84.8643L470.928 83.1597C470.928 81.4552 469.223 69.5235 455.587 69.5235C441.951 69.5235 440.247 81.4552 440.247 83.1597L441.951 84.8643H469.223ZM615.779 134.295L614.075 136H537.371L535.667 134.295V18.3878L537.371 16.6833H557.825L559.53 18.3878V113.841L561.234 115.546H614.075L615.779 117.25V134.295ZM687.249 93.3869V100.205L685.545 101.91H632.705L631 103.614C631 107.023 634.409 117.25 648.045 117.25C653.159 117.25 658.273 115.546 659.977 112.137L661.682 110.432H682.136L683.84 112.137C682.136 122.364 673.613 137.705 648.045 137.705C619.068 137.705 605.432 117.25 605.432 93.3869C605.432 69.5235 619.068 49.0692 646.341 49.0692C673.613 49.0692 687.249 69.5235 687.249 93.3869ZM659.977 84.8643L661.682 83.1597C661.682 81.4552 659.977 69.5235 646.341 69.5235C632.705 69.5235 631 81.4552 631 83.1597L632.705 84.8643H659.977ZM770.778 134.295L769.073 136H748.619L746.914 134.295V84.8643C746.914 76.3416 743.505 69.5235 733.278 69.5235C721.347 69.5235 714.528 76.3416 714.528 91.6824V134.295L712.824 136H692.37L690.665 134.295V52.4783L692.37 50.7738H711.119L712.824 52.4783L714.528 57.5919H716.233C719.642 54.1828 726.46 49.0692 738.392 49.0692C758.846 49.0692 770.778 62.7054 770.778 83.1597V134.295ZM847.495 110.432C847.495 124.068 837.268 137.705 809.995 137.705C786.132 137.705 772.496 125.773 772.496 108.728L774.2 107.023H794.654L796.359 108.728C796.359 115.546 801.473 117.25 809.995 117.25C818.518 117.25 823.631 115.546 823.631 110.432C823.631 103.614 816.813 103.614 806.586 101.91C796.359 100.205 774.2 95.0914 774.2 74.6371C774.2 61.0009 784.427 49.0692 809.995 49.0692C830.449 49.0692 845.79 57.5919 845.79 74.6371L844.086 76.3416H823.631L821.927 74.6371C821.927 71.2281 818.518 69.5235 809.995 69.5235C801.473 69.5235 798.064 71.2281 798.064 76.3416C798.064 83.1597 808.291 83.1597 818.518 84.8643C828.745 86.5688 847.495 89.9778 847.495 110.432Z" fill="white"/><circle cx="71" cy="73" r="60" stroke="white" stroke-width="8" fill="none"/><line x1="115" y1="117" x2="142" y2="155" stroke="white" stroke-width="8" stroke-linecap="round"/></svg></div>`;
+// Pop-in sprite containers (Alex left, Jun right). Painted by IIFE below.
+cls.insertAdjacentHTML('beforeend','<svg class="close-sprite close-sprite-alex" viewBox="-22 -45 44 76" xmlns="http://www.w3.org/2000/svg"></svg><svg class="close-sprite close-sprite-jun" viewBox="-22 -45 44 76" xmlns="http://www.w3.org/2000/svg"></svg>');
 deck.appendChild(cls);allSlides.push(cls);
+
+// ── Close-slide sprite IIFE: paint Alex+Jun avatars matching slide 3, pop on .active ──
+setTimeout(()=>{(function(){
+  const alexSvg=cls.querySelector('.close-sprite-alex');
+  const junSvg=cls.querySelector('.close-sprite-jun');
+  if(!alexSvg||!junSvg)return;
+  const alexCfg={withBeard:true,withGlasses:false};
+  const junCfg={withBeard:false,withGlasses:false,longHair:true,noBrows:true,hairColor:'#1a1a1a',hairDark:'#0a0a0a',hairLight:'#3a3a3a',hairShadow:'#000',shirtColor:'#a78bfa',shirtDark:'#7c5ce0'};
+  buildAvatar(alexSvg,alexCfg);
+  buildAvatar(junSvg,junCfg);
+  const junBody=junSvg.querySelector('.av-body');if(junBody)paintLongHair(junBody,junCfg);
+  const pop=()=>{
+    setTimeout(()=>{alexSvg.classList.add('popped');try{playBing();}catch(e){}},200);
+    setTimeout(()=>{junSvg.classList.add('popped');try{playBing();}catch(e){}},500);
+  };
+  new MutationObserver(()=>{
+    if(cls.classList.contains('active')){pop();}
+    else{alexSvg.classList.remove('popped');junSvg.classList.remove('popped');}
+  }).observe(cls,{attributes:true,attributeFilter:['class']});
+  if(cls.classList.contains('active'))pop();
+})();},0);
 
 // ── Avatar sprite (ported from FMX 2026 deck, originally HXR keynote) ────────
 function buildAvatar(parent,opts={}){
@@ -1485,7 +1513,11 @@ function shootFireball(svg,startX,startY,dir){
     svg.appendChild(outer);
     return g;
   }
-  const ue5Box=makeUE5Box(200,238);
+  // Two boxes at the same x as the VR headset boxes (140, 260) and same y (200).
+  // Each walker collects their own box during the UE5 power-up substep.
+  const ue5BoxAlex=makeUE5Box(140,200);
+  const ue5BoxJun =makeUE5Box(260,200);
+  const ue5Boxes=[ue5BoxAlex,ue5BoxJun];
 
   // Bright power-up "collect" tone
   function playUE5CollectSfx(){
@@ -1547,8 +1579,8 @@ function shootFireball(svg,startX,startY,dir){
     [alexBlock,junBlock].forEach(b=>{b.style.opacity='1';b.style.animation='introHeadsetBob 1.6s ease-in-out infinite';});
     sparkles.style.opacity='0';sparkles.querySelectorAll('circle').forEach(c=>c.style.animation='none');
     flash.style.animation='none';flash.style.opacity='0';
-    // Reset UE5 box so re-entering the slide cleanly re-plays the substep
-    if(ue5Box){ue5Box.style.animation='ue5BoxFloat 1.4s ease-in-out infinite';ue5Box.style.opacity='0';}
+    // Reset UE5 boxes so re-entering the slide cleanly re-plays the substep
+    ue5Boxes.forEach(b=>{if(b){b.style.animation='ue5BoxFloat 1.4s ease-in-out infinite';b.style.opacity='0';}});
     ['intro-eyebrow','intro-title','intro-sub','intro-sub-ue5','intro-duo-names','intro-stats-row'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity='0';});
     if(slideSteps.get(duoSlide))slideSteps.get(duoSlide).current=0;
     void alexAnim.offsetWidth;void junAnim.offsetWidth;
@@ -1596,45 +1628,48 @@ function shootFireball(svg,startX,startY,dir){
   // Reveals the UE5 sub-text ("Gold authorized UE5 instructor...") on entry.
   function playDuoUE5PowerUp(){
     if(!alexAnim||!junAnim)return;
-    // 0ms — UE5 power-up crate fades in at center stage
-    if(ue5Box){
-      ue5Box.style.animation='none';void ue5Box.offsetWidth;
-      ue5Box.style.opacity='1';
-      ue5Box.style.animation='ue5BoxFadeIn .35s ease-out forwards, ue5BoxFloat 1.4s ease-in-out .35s infinite';
-    }
+    // 0ms — Two UE5 power-up crates fade in (one per walker, at headset positions)
+    // Slowed ~2x from earlier version so "UE5" is readable before the box explodes.
+    ue5Boxes.forEach(b=>{
+      if(!b)return;
+      b.style.animation='none';void b.offsetWidth;
+      b.style.opacity='1';
+      b.style.animation='ue5BoxFadeIn .7s ease-out forwards, ue5BoxFloat 1.4s ease-in-out .7s infinite';
+    });
     alexAnim.style.animation='none';junAnim.style.animation='none';
     void alexAnim.offsetWidth;void junAnim.offsetWidth;
     // transform-origin intentionally NOT set — keep default 0,0 so the scale
 // keyframes grow the avatar downward from its head-top (0,0), placing feet
 // at outer.y + 28*scale (just below the floor at y=300). Earlier we set
 // 'center bottom' here and walkers floated ~200px above the floor.
-    // 280ms — both walkers jump toward the crate
+    // 1400ms — both walkers jump toward their own crate (slowed: .4s → .8s)
     setTimeout(()=>{
-      alexAnim.style.animation='introJumpAlex .4s cubic-bezier(.3,.7,.4,1) forwards';
-      junAnim.style.animation='introJumpJun .4s cubic-bezier(.3,.7,.4,1) forwards';
-    },280);
-    // 600ms — contact: crate explodes, single bright collect tone
+      alexAnim.style.animation='introJumpAlex .8s cubic-bezier(.3,.7,.4,1) forwards';
+      junAnim.style.animation='introJumpJun .8s cubic-bezier(.3,.7,.4,1) forwards';
+    },1400);
+    // 2200ms — contact: both crates explode, single bright collect tone
     setTimeout(()=>{
-      if(ue5Box){
-        ue5Box.style.animation='none';void ue5Box.offsetWidth;
-        ue5Box.style.animation='ue5BoxExplode .35s ease-out forwards';
-      }
+      ue5Boxes.forEach(b=>{
+        if(!b)return;
+        b.style.animation='none';void b.offsetWidth;
+        b.style.animation='ue5BoxExplode .7s ease-out forwards';
+      });
       playUE5CollectSfx();
-    },600);
-    // 680ms — UE5 sub-text reveal (anchored to the visible collect moment)
-    setTimeout(()=>{const el=document.getElementById('intro-sub-ue5');if(el)el.style.opacity='1';},680);
-    // 720ms — flash + sparkles + classic power-up SFX + scale-up
+    },2200);
+    // 2360ms — UE5 sub-text reveal (anchored to the visible collect moment)
+    setTimeout(()=>{const el=document.getElementById('intro-sub-ue5');if(el)el.style.opacity='1';},2360);
+    // 2440ms — flash + sparkles + classic power-up SFX + scale-up (slowed flash/power-up)
     setTimeout(()=>{
-      flash.style.opacity='0';void flash.offsetWidth;flash.style.animation='introFlash .45s ease-out forwards';
+      flash.style.opacity='0';void flash.offsetWidth;flash.style.animation='introFlash .9s ease-out forwards';
       sparkles.style.opacity='1';
-      sparkles.querySelectorAll('circle').forEach(p=>{p.style.animation='none';void p.offsetWidth;p.style.animation='introSparkle 1.1s ease-out forwards';});
+      sparkles.querySelectorAll('circle').forEach(p=>{p.style.animation='none';void p.offsetWidth;p.style.animation='introSparkle 1.6s ease-out forwards';});
       playIntroPowerUpSfx();
-      alexAnim.style.animation='introPowerUpAlex .8s ease-out forwards';
-      junAnim.style.animation='introPowerUpJun .8s ease-out forwards';
-    },720);
-    // 1520ms — fall back to floor
-    setTimeout(()=>{alexAnim.style.animation='introFallDownAlex .55s cubic-bezier(.55,0,.8,1) forwards';junAnim.style.animation='introFallDownJun .55s cubic-bezier(.55,0,.8,1) forwards';},1520);
-    // 2220ms — run-and-fire burst (each in their half, hopping, firing UE5 fireballs)
+      alexAnim.style.animation='introPowerUpAlex 1.6s ease-out forwards';
+      junAnim.style.animation='introPowerUpJun 1.6s ease-out forwards';
+    },2440);
+    // 4040ms — fall back to floor (slowed: .55s → 1.1s)
+    setTimeout(()=>{alexAnim.style.animation='introFallDownAlex 1.1s cubic-bezier(.55,0,.8,1) forwards';junAnim.style.animation='introFallDownJun 1.1s cubic-bezier(.55,0,.8,1) forwards';},4040);
+    // 5240ms — run-and-fire burst (each in their half, hopping, firing UE5 fireballs)
     setTimeout(()=>{
       alexAnim.style.animation='none';junAnim.style.animation='none';
       function runBurst(anim,startInnerX,dirInit,fireOriginX,lo,hi){
@@ -1657,7 +1692,7 @@ function shootFireball(svg,startX,startY,dir){
       }
       runBurst(alexAnim,60,1,80,-60,80);    // Alex stays in left half
       runBurst(junAnim,-60,-1,320,-80,60);  // Jun stays in right half (mirrored)
-    },2220);
+    },5240);
   }
 
   setTimeout(()=>{slideSteps.set(duoSlide,{current:0,steps:[showBio,playDuoUE5PowerUp,showStats]});},0);
@@ -1895,7 +1930,7 @@ const ring=svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(0,212,255,.8
 const rs=performance.now();(function ar(now){const k=Math.min(1,(now-rs)/2200);const e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;ring.setAttribute('stroke-dashoffset',CIRC*(1-e));if(k<1)requestAnimationFrame(ar);})(rs);
 const cc={x:(CA.x+CB.x)/2+30,y:(CA.y+CB.y)/2+20};const cord=svgE('path',{d:`M${CA.x} ${CA.y} Q${cc.x} ${cc.y} ${CB.x} ${CB.y}`,fill:'none',stroke:'rgba(245,158,11,.55)','stroke-width':'1.8','stroke-dasharray':'200','stroke-dashoffset':'200','stroke-linecap':'round',filter:'url(#gl)'});svg.appendChild(cord);
 setTimeout(()=>{const t0=performance.now();(function ac(now){const k=Math.min(1,(now-t0)/800);cord.setAttribute('stroke-dashoffset',200*(1-k));if(k<1)requestAnimationFrame(ac);})(t0);},2400);
-for(let i=0;i<SECTIONS.length;i++){const p=mPos(i),dx=p.x-MX,dy=p.y-MY,len=Math.hypot(dx,dy),ld=34,lx=p.x+(dx/len)*ld,ly=p.y+(dy/len)*ld;const anc=p.x>MX+20?'start':p.x<MX-20?'end':'middle';const g=svgE('g',{opacity:'0',style:'cursor:pointer'});g.style.transition='opacity .4s';g.appendChild(svgE('circle',{cx:p.x,cy:p.y,r:'16',fill:'rgba(0,212,255,.02)',stroke:'rgba(0,212,255,.08)','stroke-width':'0.5'}));g.appendChild(svgE('circle',{cx:p.x,cy:p.y,r:'4.5',fill:'rgba(0,212,255,.15)',stroke:'rgba(0,212,255,.65)','stroke-width':'1.5'}));const yr=svgE('text',{x:lx,y:ly,'text-anchor':anc,fill:'rgba(0,212,255,.8)','font-family':'Space Grotesk,sans-serif','font-size':'10.5','font-weight':'600','letter-spacing':'1.2'});yr.textContent=SECTIONS[i].year;g.appendChild(yr);const tl=svgE('text',{x:lx,y:ly+14,'text-anchor':anc,fill:'rgba(255,255,255,.4)','font-family':'Space Grotesk,sans-serif','font-size':'7','font-weight':'500','letter-spacing':'1'});tl.textContent=LSHORT[i];g.appendChild(tl);g.addEventListener('click',()=>{if(window._moveMode)return;const li=lessonIdxs[i];if(li!==undefined)goTo(li);});svg.appendChild(g);setTimeout(()=>g.setAttribute('opacity','1'),600+i*300);}
+for(let i=0;i<SECTIONS.length;i++){const p=mPos(i),dx=p.x-MX,dy=p.y-MY,len=Math.hypot(dx,dy),ld=34,lx=p.x+(dx/len)*ld,ly=p.y+(dy/len)*ld;const anc=p.x>MX+20?'start':p.x<MX-20?'end':'middle';const g=svgE('g',{opacity:'0',style:'cursor:pointer'});g.style.transition='opacity .4s';g.appendChild(svgE('circle',{cx:p.x,cy:p.y,r:'16',fill:'rgba(0,212,255,.02)',stroke:'rgba(0,212,255,.08)','stroke-width':'0.5'}));g.appendChild(svgE('circle',{cx:p.x,cy:p.y,r:'4.5',fill:'rgba(0,212,255,.15)',stroke:'rgba(0,212,255,.65)','stroke-width':'1.5'}));const yr=svgE('text',{x:lx,y:ly,'text-anchor':anc,fill:'rgba(0,212,255,.8)','font-family':'Space Grotesk,sans-serif','font-size':'10.5','font-weight':'600','letter-spacing':'1.2'});yr.textContent=SECTIONS[i].year;g.appendChild(yr);const tl=svgE('text',{x:lx,y:ly+14,'text-anchor':anc,fill:'rgba(255,255,255,.4)','font-family':'Space Grotesk,sans-serif','font-size':'7','font-weight':'500','letter-spacing':'1'});tl.textContent=LSHORT[i];g.appendChild(tl);g.addEventListener('click',()=>{if(window._moveMode)return;let li=lessonIdxs[i];if(li===undefined){const found=allSlides.findIndex(sl=>sl.dataset.type==='case'&&sl.dataset.section===String(i));if(found>=0)li=found;}if(li!==undefined)goTo(li);});svg.appendChild(g);setTimeout(()=>g.setAttribute('opacity','1'),600+i*300);}
 const bg=svgE('g',{opacity:'0',style:'cursor:pointer'});bg.style.transition='opacity .4s';bg.appendChild(svgE('circle',{cx:CB.x,cy:CB.y,r:'6',fill:'rgba(245,158,11,.3)',stroke:'rgba(245,158,11,.7)','stroke-width':'1.5'}));const bl=svgE('text',{x:CB.x+14,y:CB.y+4,fill:'rgba(245,158,11,.8)','font-family':'Space Grotesk,sans-serif','font-size':'10','font-weight':'600','letter-spacing':'1'});bl.textContent=String(BONUS.year).toUpperCase()==='BONUS'?'BONUS':BONUS.year+' BONUS';bg.appendChild(bl);bg.addEventListener('click',()=>{if(window._moveMode)return;const bi=allSlides.findIndex(s=>s.dataset.type==='bonus');if(bi>=0)goTo(bi);});svg.appendChild(bg);setTimeout(()=>bg.setAttribute('opacity','1'),3200);
 const ct=svgE('text',{x:MX,y:MY-10,'text-anchor':'middle',fill:'rgba(255,255,255,.12)','font-family':'Space Grotesk,sans-serif','font-size':'14','font-weight':'600','letter-spacing':'4'});ct.textContent='IS XR RIGHT';svg.appendChild(ct);const ct2=svgE('text',{x:MX,y:MY+12,'text-anchor':'middle',fill:'rgba(255,255,255,.08)','font-family':'Space Grotesk,sans-serif','font-size':'10','font-weight':'500','letter-spacing':'2'});ct2.textContent='FOR YOUR PROJECT?';svg.appendChild(ct2);}
 new MutationObserver(()=>{if(mapS.classList.contains('active'))startMap();}).observe(mapS,{attributes:true,attributeFilter:['class']});
