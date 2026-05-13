@@ -47,16 +47,29 @@ const SECTIONS = [
       { layout:'big', title:'Agenda', subtitle:'This isn\u2019t a sales pitch.',
         bigCaption:'Our goal is to get you thinking about opportunities you might have in your own practice to develop reusable tools and workflows \u2014 and we\u2019re demonstrating how we\u2019ve done that internally, by way of example.<br><br><ul class="agenda-list"><li>The Secret Graveyard \u2014 the unfinished tools every studio hides.</li><li>The Pattern \u2014 what\u2019s worth productizing.</li><li>Four products, four questions, one cycle.</li><li>Where are you in the cycle?</li></ul>',
         deckTarget:'p15' },
-      // slide 4 \u2014 Who we are (Alex + Jun duo). NOTE: sprite power-up scene.
-      { layout:'intro-duo', title:'Who we are', variant:'matched',
-        duo:{ alex:{label:'Alex Coulombe',role:'Founder \u00b7 Agile Lens', accent:'#00d4ff'},
-              jun:{label:'Jun Yeh',role:'Agile Lens', accent:'#a78bfa', img:'media/nxtbld/jun.png'} },
-        deckTarget:'p16' },
-      // slide 4 \u2014 ALT version: contrast palette
-      { layout:'intro-duo', title:'Who we are', variant:'contrast', alt:'Contrast palette',
-        duo:{ alex:{label:'Alex Coulombe',role:'Founder \u00b7 Agile Lens', accent:'#5a7c5a'},
-              jun:{label:'Jun Yeh',role:'Agile Lens', accent:'#f59e0b', img:'media/nxtbld/jun.png'} },
-        deckTarget:'p16' },
+      // slide 4 (+ folded slide 5) \u2014 Who we are. Alex+Jun duo intro-hxr port.
+      // NOTE on source: sprite power-up scene + Unreal Engine fireballs.
+      // Framed as Agile Lens (the studio) per user direction. Slide 5 folded in.
+      { layout:'intro-hxr',
+        eyebrow:'Speakers \u00b7 Founders',
+        title:'Agile Lens',
+        sub:'A 10-year-old XR studio in NYC. We\u2019ve shipped 100+ spatial experiences for the world\u2019s most ambitious clients \u2014 and we still get our best ideas from architecture and theater.',
+        subUE5:'Gold authorized UE5 instructor. Host of Unreal NYC &amp; The Unofficial Unreal Engine podcast.',
+        duo:{
+          alex:{ name:'Alex Coulombe', role:'Founder',
+                 sprite:{ withBeard:true, withGlasses:false } },
+          jun: { name:'Jun Yeh',       role:'XR Producer',
+                 sprite:{ withBeard:false, withGlasses:false,
+                          hairColor:'#1a1a1a', hairDark:'#0a0a0a', hairLight:'#3a3a3a', hairShadow:'#000',
+                          shirtColor:'#a78bfa', shirtDark:'#7c5ce0' } }
+        },
+        stats:[
+          { n:'10',  l:'Years \u00b7 Agile Lens' },
+          { n:'100+',l:'Projects Shipped' },
+          { n:'8',   l:'Years in Unreal' },
+          { n:'2',   l:'Founders + Team' }
+        ],
+        deckTarget:'p16+p17 (slide 5 folded)' },
       // slide 6 \u2014 Trilogy callback. NOTE: QR codes for the two prior NXT BLD talks.
       { layout:'placed', title:'Third in a Trilogy', subtitle:'If you like this one, check out the other two.',
         placedItems:[
@@ -568,30 +581,41 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .agenda-list li{padding:8px 0 8px 28px;position:relative;font-size:clamp(.95rem,1.3vw,1.15rem);color:rgba(240,244,255,.85);line-height:1.5}
 .agenda-list li::before{content:'';position:absolute;left:0;top:14px;width:14px;height:1.5px;background:var(--teal)}
 
-/* Intro-duo (slide 4 — Alex + Jun powering up) */
-.intro-duo-stage{position:absolute;inset:0;display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(20px,3vw,48px);padding:clamp(40px,8vh,120px) clamp(40px,5vw,80px);align-items:center;z-index:1}
-.duo-side{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;animation:duoBob 4s ease-in-out infinite}
-.duo-side.duo-jun{animation-delay:.5s}
-.duo-photo{width:clamp(180px,22vh,260px);height:clamp(180px,22vh,260px);border-radius:50%;object-fit:cover;border:4px solid var(--duo-accent);box-shadow:0 0 0 6px rgba(0,0,0,.4),0 0 60px var(--duo-accent),0 0 120px var(--duo-accent);filter:saturate(1.05)}
-.duo-avatar{width:clamp(180px,22vh,260px);height:clamp(180px,22vh,260px);border-radius:50%;display:flex;align-items:center;justify-content:center;border:4px solid var(--duo-accent);box-shadow:0 0 0 6px rgba(0,0,0,.4),0 0 60px var(--duo-accent),0 0 120px var(--duo-accent)}
-.duo-avatar span{font-size:clamp(80px,12vh,140px);font-weight:900;color:rgba(255,255,255,.92);font-family:var(--font);text-shadow:0 4px 24px rgba(0,0,0,.5)}
-.duo-glow{position:absolute;top:-20px;left:-20px;right:-20px;bottom:-20px;border-radius:50%;background:radial-gradient(circle,var(--duo-accent) 0%,transparent 65%);opacity:.25;animation:duoGlowPulse 2.4s ease-in-out infinite;pointer-events:none;z-index:-1}
-.duo-label{text-align:center}
-.duo-name{font-size:clamp(1.2rem,1.8vw,1.7rem);font-weight:700;color:#f0f4ff;letter-spacing:.01em}
-.duo-role{font-size:clamp(.85rem,1.1vw,1.05rem);color:var(--duo-accent);text-transform:uppercase;letter-spacing:.15em;margin-top:6px;font-weight:600}
-.duo-fireball{position:absolute;top:50%;width:clamp(60px,9vh,110px);height:clamp(60px,9vh,110px);border-radius:50%;background:radial-gradient(circle,rgba(255,200,80,.95) 0%,rgba(245,80,30,.75) 35%,rgba(168,30,30,.25) 70%,transparent 100%);filter:blur(.5px);box-shadow:0 0 40px rgba(255,200,80,.6),0 0 80px rgba(245,80,30,.4);opacity:0;animation:duoFireball 3.4s ease-in-out infinite}
-.duo-fireball-alex{right:-30%;animation-delay:0s}
-.duo-fireball-jun{left:-30%;animation-delay:1.7s}
-.duo-center{display:flex;flex-direction:column;align-items:center;gap:18px}
-.duo-ue{width:clamp(70px,9vh,120px);height:clamp(70px,9vh,120px);filter:drop-shadow(0 0 20px rgba(255,255,255,.4))}
-.duo-spark{width:8px;height:60px;background:linear-gradient(180deg,transparent 0%,rgba(0,212,255,.85) 35%,rgba(167,139,250,.85) 65%,transparent 100%);border-radius:4px;animation:duoSpark 1.6s ease-in-out infinite}
-.duo-overlay{position:absolute!important;top:36px!important;bottom:auto!important;left:50%!important;transform:translateX(-50%)!important;text-align:center;background:transparent;padding:0!important}
-.intro-duo-stage[data-variant="contrast"]{background:radial-gradient(ellipse at center,rgba(90,124,90,.06) 0%,transparent 60%)}
-@keyframes duoBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes duoGlowPulse{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:.5;transform:scale(1.08)}}
-@keyframes duoFireball{0%,40%,100%{opacity:0;transform:translate(0,-50%) scale(.4)}55%{opacity:1;transform:translate(40px,-50%) scale(1.1)}70%{opacity:.9;transform:translate(120px,-50%) scale(1.4)}90%{opacity:0;transform:translate(220px,-50%) scale(.6)}}
-.duo-fireball-jun{animation-direction:reverse}
-@keyframes duoSpark{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1.2)}}
+/* Intro-hxr — duo intro port from FMX/HXR. Two pixel-art walkers (Alex + Jun)
+   walk in, jump, grab VR headsets, power up. Then bio + stats reveal. */
+.layout-intro-hxr{padding:0!important}
+.intro-grid{display:flex;align-items:center;gap:clamp(40px,5vw,90px);width:100%;max-width:1500px;padding:clamp(50px,5vw,90px) clamp(60px,7vw,140px)}
+.intro-stage{flex:0 0 42%;max-width:560px;aspect-ratio:1/1;position:relative}
+.intro-stage svg{width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges}
+.intro-content{flex:1;text-align:left}
+.intro-eyebrow{font-size:clamp(.78rem,1.1vw,1rem);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:18px}
+.intro-title{font-size:clamp(2.6rem,5.5vw,5.2rem);font-weight:700;line-height:1.02;letter-spacing:-.02em;margin-bottom:24px;background:linear-gradient(130deg,#fff 20%,#a5d8ff 55%,#c5b6ff 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.intro-sub{font-size:clamp(1rem,1.5vw,1.3rem);color:var(--dim);line-height:1.55;margin-bottom:24px;max-width:640px}
+.intro-duo-names{display:flex;flex-direction:column;gap:6px;margin-bottom:22px;font-size:clamp(.9rem,1.2vw,1.1rem);color:rgba(240,244,255,.92)}
+.intro-duo-name em{font-style:italic;color:var(--dim);font-size:.92em}
+.intro-duo-name .dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px;vertical-align:middle;box-shadow:0 0 6px currentColor}
+.intro-duo-name .dot-alex{background:#6a8fd6;color:#6a8fd6}
+.intro-duo-name .dot-jun{background:#a78bfa;color:#a78bfa}
+.intro-stats{display:flex;gap:14px;flex-wrap:nowrap}
+.intro-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px 18px;flex:1;min-width:0}
+.intro-stat .num{display:block;font-size:clamp(1.4rem,2.2vw,2rem);font-weight:700;color:var(--teal);letter-spacing:-.02em;margin-bottom:6px}
+.intro-stat .lbl{display:block;font-size:clamp(.6rem,.82vw,.76rem);font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);line-height:1.3}
+.intro-stage .stage-floor{fill:rgba(0,212,255,.10);stroke:rgba(0,212,255,.28);stroke-width:1}
+.intro-stage .stage-walker{transform-origin:center bottom}
+/* Per-walker walk paths — Alex from left, Jun from right (mirrored) */
+@keyframes introWalkAlex{0%{transform:translate(-220px,0)}100%{transform:translate(60px,0)}}
+@keyframes introJumpAlex{0%{transform:translate(60px,0) scale(1,1)}30%{transform:translate(60px,-16px) scale(.95,1.05)}100%{transform:translate(60px,-80px) scale(1,1)}}
+@keyframes introFallDownAlex{0%{transform:translate(60px,-80px) scale(1.4)}100%{transform:translate(60px,0) scale(1.4)}}
+@keyframes introPowerUpAlex{0%{transform:translate(60px,-80px) scale(1);filter:brightness(1)}35%{transform:translate(60px,-80px) scale(1.2);filter:brightness(1.8)}60%{transform:translate(60px,-80px) scale(1.1);filter:brightness(1.3)}100%{transform:translate(60px,-80px) scale(1.4);filter:brightness(1)}}
+@keyframes introWalkJun{0%{transform:translate(220px,0)}100%{transform:translate(-60px,0)}}
+@keyframes introJumpJun{0%{transform:translate(-60px,0) scale(1,1)}30%{transform:translate(-60px,-16px) scale(.95,1.05)}100%{transform:translate(-60px,-80px) scale(1,1)}}
+@keyframes introFallDownJun{0%{transform:translate(-60px,-80px) scale(1.4)}100%{transform:translate(-60px,0) scale(1.4)}}
+@keyframes introPowerUpJun{0%{transform:translate(-60px,-80px) scale(1);filter:brightness(1)}35%{transform:translate(-60px,-80px) scale(1.2);filter:brightness(1.8)}60%{transform:translate(-60px,-80px) scale(1.1);filter:brightness(1.3)}100%{transform:translate(-60px,-80px) scale(1.4);filter:brightness(1)}}
+@keyframes introHeadsetBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes introHeadsetGrab{0%{opacity:1;transform:scale(1)}50%{opacity:1;transform:scale(1.3) translateY(-8px)}100%{opacity:0;transform:scale(0) translateY(-24px)}}
+@keyframes introSparkle{0%{opacity:0;transform:translate(0,0) scale(.3)}12%{opacity:1;transform:translate(calc(var(--tx)*.15),calc(var(--ty)*.15)) scale(1.5)}55%{opacity:1;transform:translate(calc(var(--tx)*.6),calc(var(--ty)*.6)) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.3)}}
+@keyframes introFlash{0%{opacity:0}8%{opacity:.7}100%{opacity:0}}
+@media(max-width:900px){.intro-grid{flex-direction:column;text-align:center;padding:30px 20px}.intro-stage{width:80%;max-width:340px}.intro-content{text-align:center}.intro-stats{flex-wrap:wrap}}
 
 /* Secret Graveyard collage */
 .sg-collage-stage{position:absolute;inset:0;padding:80px 60px 40px;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(3,1fr);gap:10px}
@@ -865,16 +889,15 @@ SECTIONS.forEach((sec,si)=>{
       s.innerHTML=`<div class="big-stack">${c.title?`<h2 class="big-eyebrow">${c.title.replace(/\n/g,'<br>')}</h2>`:''}${c.subtitle?`<div class="big-sub">${c.subtitle}</div>`:''}${c.bigText?`<h1 class="big-text">${c.bigText.replace(/\n/g,'<br>')}</h1>`:''}${c.bigCaption?`<p class="big-caption">${c.bigCaption}</p>`:''}</div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
     }
-    // layout: 'intro-duo' — two-character intro (Alex + Jun powering up with Unreal Engine fireballs)
-    if(c.layout==='intro-duo'&&c.duo){
-      const al=c.duo.alex,ju=c.duo.jun;
-      const sprite=(person,side)=>{
-        const isAlex=side==='alex';
-        const img=person.img?`<img class="duo-photo" src="${person.img}" alt="${person.label}">`:`<div class="duo-avatar" style="background:linear-gradient(135deg,${person.accent},#0b0d18)"><span>${person.label.slice(0,1)}</span></div>`;
-        return `<div class="duo-side duo-${side}" style="--duo-accent:${person.accent}">${img}<div class="duo-glow"></div><div class="duo-label"><div class="duo-name">${person.label}</div><div class="duo-role">${person.role}</div></div><div class="duo-fireball duo-fireball-${side}"></div></div>`;
-      };
-      s.innerHTML=`<div class="intro-duo-stage" data-variant="${c.variant||'matched'}">${sprite(al,'alex')}<div class="duo-center"><svg class="duo-ue" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="36" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="2.5"/><text x="40" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="900" font-size="22" fill="rgba(255,255,255,.9)">U</text></svg><div class="duo-spark"></div></div>${sprite(ju,'jun')}</div><div class="placed-overlay duo-overlay">${c.title?`<h3 class="placed-title">${c.title}</h3>`:''}<p class="placed-sub">Powered by Unreal Engine.</p></div>${altBadge}`;
-      deck.appendChild(s);allSlides.push(s);return;
+    // layout: 'intro-hxr' — duo intro port from FMX/HXR. Two pixel-art walkers
+    // (Alex + Jun) walk in, jump, grab VR headsets, power up. Then bio + stats
+    // reveal in slideSteps. See the duo intro IIFE below for the choreography.
+    if(c.layout==='intro-hxr'&&c.duo){
+      const statHTML=(c.stats||[]).map(st=>`<div class="intro-stat"><span class="num">${st.n}</span><span class="lbl">${st.l}</span></div>`).join('');
+      s.innerHTML=`<div class="intro-grid intro-grid-duo"><div class="intro-stage"><svg viewBox="0 0 400 400" id="intro-duo-svg"></svg></div><div class="intro-content"><div class="intro-eyebrow" id="intro-eyebrow" style="opacity:0;transition:opacity .6s">${c.eyebrow||'Speakers'}</div><h1 class="intro-title" id="intro-title" style="opacity:0;transition:opacity .6s">${(c.title||'').replace(/\n/g,'<br>')}</h1><p class="intro-sub" id="intro-sub" style="opacity:0;transition:opacity .6s">${c.sub||''}</p>${c.subUE5?`<p class="intro-sub" id="intro-sub-ue5" style="opacity:0;transition:opacity .6s;margin-top:.6em">${c.subUE5}</p>`:''}<div class="intro-duo-names" id="intro-duo-names" style="opacity:0;transition:opacity .6s"><div class="intro-duo-name"><span class="dot dot-alex"></span>${c.duo.alex.name} · <em>${c.duo.alex.role}</em></div><div class="intro-duo-name"><span class="dot dot-jun"></span>${c.duo.jun.name} · <em>${c.duo.jun.role}</em></div></div><div class="intro-stats" id="intro-stats-row" style="opacity:0;transition:opacity .6s">${statHTML}</div></div></div>${altBadge}`;
+      deck.appendChild(s);allSlides.push(s);
+      // Animation is wired by the duo intro IIFE further down (runs after this).
+      return;
     }
     // layout: 'sg-collage' — Secret Graveyard collage (consolidated from source 7-22)
     if(c.layout==='sg-collage'&&c.collage){
@@ -1076,6 +1099,203 @@ cls.innerHTML=`<div class="close-ey">Thank You</div><h2 class="close-title">If y
 <div class="close-qr-row"><div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fwww.linkedin.com%2Fin%2Falexcoulombe%2F" alt="QR Alex LinkedIn"><div class="qr-label">Alex on LinkedIn</div><div class="qr-badge b-teal">in/alexcoulombe</div></div><div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fyu-jun-yeh-4a0929183%2F" alt="QR Jun LinkedIn"><div class="qr-label">Jun on LinkedIn</div><div class="qr-badge b-purple">in/yu-jun-yeh</div></div></div>
 <div style="position:absolute;bottom:clamp(30px,4vh,60px);left:50%;transform:translateX(-50%);opacity:.35;z-index:2"><svg width="200" height="40" viewBox="0 0 869 175" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M266.385 134.295L264.681 136H249.34L247.635 134.295L239.113 112.137L235.704 110.432H193.09L189.681 112.137L181.159 134.295L179.454 136H164.114L162.409 134.295V117.25L201.613 18.3878L203.318 16.6833H225.476L227.181 18.3878L266.385 117.25V134.295ZM230.59 88.2733L215.249 47.3647H213.545L198.204 88.2733L199.909 89.9778H228.886L230.59 88.2733ZM346.604 52.4783V127.477C346.604 158.159 327.854 171.795 303.991 171.795C283.537 171.795 269.901 161.568 268.196 146.227L269.901 144.523H290.355L292.059 146.227C293.764 149.636 297.173 151.341 303.991 151.341C315.923 151.341 322.741 144.523 322.741 129.182H321.036C321.036 129.182 314.218 137.705 298.878 137.705C278.423 137.705 261.378 120.659 261.378 93.3869C261.378 66.1145 278.423 49.0692 298.878 49.0692C314.218 49.0692 321.036 57.5919 321.036 57.5919H322.741L324.445 52.4783L326.15 50.7738H344.9L346.604 52.4783ZM285.241 93.3869C285.241 107.023 290.355 117.25 303.991 117.25C317.627 117.25 322.741 107.023 322.741 93.3869C322.741 79.7507 317.627 69.5235 303.991 69.5235C290.355 69.5235 285.241 79.7507 285.241 93.3869ZM378.964 35.433L377.259 37.1376H356.805L355.1 35.433V18.3878L356.805 16.6833H377.259L378.964 18.3878V35.433ZM378.964 134.295L377.259 136H356.805L355.1 134.295V52.4783L356.805 50.7738H377.259L378.964 52.4783V134.295ZM411.31 134.295L409.605 136H389.151L387.446 134.295V18.3878L389.151 16.6833H409.605L411.31 18.3878V134.295ZM496.496 93.3869V100.205L494.791 101.91H441.951L440.247 103.614C440.247 107.023 443.656 117.25 457.292 117.25C462.405 117.25 467.519 115.546 469.223 112.137L470.928 110.432H491.382L493.087 112.137C491.382 122.364 482.86 137.705 457.292 137.705C428.315 137.705 414.679 117.25 414.679 93.3869C414.679 69.5235 428.315 49.0692 455.587 49.0692C482.86 49.0692 496.496 69.5235 496.496 93.3869ZM469.223 84.8643L470.928 83.1597C470.928 81.4552 469.223 69.5235 455.587 69.5235C441.951 69.5235 440.247 81.4552 440.247 83.1597L441.951 84.8643H469.223ZM615.779 134.295L614.075 136H537.371L535.667 134.295V18.3878L537.371 16.6833H557.825L559.53 18.3878V113.841L561.234 115.546H614.075L615.779 117.25V134.295ZM687.249 93.3869V100.205L685.545 101.91H632.705L631 103.614C631 107.023 634.409 117.25 648.045 117.25C653.159 117.25 658.273 115.546 659.977 112.137L661.682 110.432H682.136L683.84 112.137C682.136 122.364 673.613 137.705 648.045 137.705C619.068 137.705 605.432 117.25 605.432 93.3869C605.432 69.5235 619.068 49.0692 646.341 49.0692C673.613 49.0692 687.249 69.5235 687.249 93.3869ZM659.977 84.8643L661.682 83.1597C661.682 81.4552 659.977 69.5235 646.341 69.5235C632.705 69.5235 631 81.4552 631 83.1597L632.705 84.8643H659.977ZM770.778 134.295L769.073 136H748.619L746.914 134.295V84.8643C746.914 76.3416 743.505 69.5235 733.278 69.5235C721.347 69.5235 714.528 76.3416 714.528 91.6824V134.295L712.824 136H692.37L690.665 134.295V52.4783L692.37 50.7738H711.119L712.824 52.4783L714.528 57.5919H716.233C719.642 54.1828 726.46 49.0692 738.392 49.0692C758.846 49.0692 770.778 62.7054 770.778 83.1597V134.295ZM847.495 110.432C847.495 124.068 837.268 137.705 809.995 137.705C786.132 137.705 772.496 125.773 772.496 108.728L774.2 107.023H794.654L796.359 108.728C796.359 115.546 801.473 117.25 809.995 117.25C818.518 117.25 823.631 115.546 823.631 110.432C823.631 103.614 816.813 103.614 806.586 101.91C796.359 100.205 774.2 95.0914 774.2 74.6371C774.2 61.0009 784.427 49.0692 809.995 49.0692C830.449 49.0692 845.79 57.5919 845.79 74.6371L844.086 76.3416H823.631L821.927 74.6371C821.927 71.2281 818.518 69.5235 809.995 69.5235C801.473 69.5235 798.064 71.2281 798.064 76.3416C798.064 83.1597 808.291 83.1597 818.518 84.8643C828.745 86.5688 847.495 89.9778 847.495 110.432Z" fill="white"/><circle cx="71" cy="73" r="60" stroke="white" stroke-width="8" fill="none"/><line x1="115" y1="117" x2="142" y2="155" stroke="white" stroke-width="8" stroke-linecap="round"/></svg></div>`;
 deck.appendChild(cls);allSlides.push(cls);
+
+// ── Avatar sprite (ported from FMX 2026 deck, originally HXR keynote) ────────
+function buildAvatar(parent,opts={}){
+  const scale=opts.scale||1;const withBeard=!!opts.withBeard;const withGlasses=!!opts.withGlasses;
+  const root=svgE('g',{class:'avatar',...(opts.id?{id:opts.id}:{})});root.style.shapeRendering='crispEdges';
+  if(scale!==1)root.setAttribute('transform',`scale(${scale})`);parent.appendChild(root);
+  const SKIN=opts.skinColor||'#f2c79b',SKIN_DARK='#d9a77a',HAIR_LIGHT=opts.hairLight||'#a8602f',HAIR=opts.hairColor||'#8b4a2a',HAIR_DARK=opts.hairDark||'#5e2f1a',HAIR_SHADOW=opts.hairShadow||'#3a1c08',BEARD=opts.beardColor||'#6e3a1e',BEARD_LIGHT=opts.beardLight||'#8a4f2a',SHIRT=opts.shirtColor||'#6a8fd6',SHIRT_DARK=opts.shirtDark||'#4a6fb8',PANTS='#3f3025',BOOTS='#1f150c',EYE='#1a1a26',FRAME='#1a1520';
+  const px=(g,x,y,w,h,fill)=>g.appendChild(svgE('rect',{x,y,width:w,height:h,fill}));
+  const body=svgE('g',{class:'av-body'});
+  px(body,-12,-34,24,22,SKIN);px(body,-12,-16,24,4,SKIN_DARK);
+  px(body,-13,-40,26,2,HAIR_SHADOW);px(body,-15,-38,30,3,HAIR_SHADOW);px(body,-16,-36,32,4,HAIR_SHADOW);px(body,-9,-42,5,2,HAIR_SHADOW);px(body,3,-42,4,2,HAIR_SHADOW);px(body,-2,-43,5,1,HAIR_SHADOW);
+  px(body,-12,-40,24,2,HAIR_DARK);px(body,-14,-38,28,3,HAIR_DARK);px(body,-13,-34,30,3,HAIR_DARK);px(body,-8,-42,4,2,HAIR_DARK);px(body,4,-42,3,2,HAIR_DARK);px(body,-1,-43,3,1,HAIR_DARK);
+  px(body,-11,-41,22,1,HAIR);px(body,-13,-38,26,2,HAIR);px(body,-14,-36,28,2,HAIR);px(body,-8,-41,4,1,HAIR);px(body,4,-41,3,1,HAIR);
+  px(body,-13,-34,2,3,HAIR_DARK);px(body,12,-33,2,3,HAIR_DARK);px(body,-14,-31,2,4,HAIR);px(body,10,-31,1,2,HAIR);
+  px(body,-8,-40,3,1,HAIR_LIGHT);px(body,4,-40,2,1,HAIR_LIGHT);px(body,-10,-38,2,1,HAIR_LIGHT);px(body,-2,-42,2,1,HAIR_LIGHT);px(body,-7,-41,2,1,HAIR_LIGHT);
+  px(body,-12,-34,5,3,HAIR_DARK);px(body,-11,-33,4,2,HAIR);px(body,-7,-34,3,2,HAIR_DARK);px(body,-7,-33,2,1,HAIR);px(body,-4,-34,2,4,HAIR_DARK);px(body,-4,-33,1,3,HAIR);px(body,-1,-34,3,2,HAIR_DARK);px(body,-1,-33,2,1,HAIR);px(body,3,-34,4,3,HAIR_DARK);px(body,3,-33,3,2,HAIR);px(body,7,-34,5,4,HAIR_DARK);px(body,10,-31,3,3,HAIR);
+  px(body,-12,-31,2,1,HAIR_LIGHT);px(body,8,-33,2,1,HAIR_LIGHT);
+  px(body,-8,-27,8,3,HAIR_DARK);px(body,3,-28,9,4,HAIR_DARK);
+  px(body,-7,-24,3,4,EYE);px(body,4,-24,3,4,EYE);px(body,-6,-23,1,2,'#fff');px(body,5,-23,1,2,'#fff');
+  px(body,-3,-17,6,1,'#9c5040');
+  if(withBeard){px(body,-12,-22,4,5,BEARD);px(body,8,-22,4,5,BEARD);px(body,-12,-20,5,3,BEARD);px(body,7,-20,5,3,BEARD);px(body,-12,-17,4,1,BEARD);px(body,8,-17,4,1,BEARD);px(body,-7,-19,14,2,BEARD);px(body,-6,-19,12,1,BEARD_LIGHT);px(body,-2,-16,4,1,BEARD);px(body,-12,-16,24,2,BEARD);px(body,-12,-14,24,2,BEARD);px(body,-10,-12,20,1,BEARD);}
+  if(withGlasses){
+    px(body,-9,-26,6,1,FRAME);px(body,-9,-20,6,1,FRAME);px(body,-9,-26,1,7,FRAME);px(body,-4,-26,1,7,FRAME);
+    px(body,3,-26,6,1,FRAME);px(body,3,-20,6,1,FRAME);px(body,3,-26,1,7,FRAME);px(body,8,-26,1,7,FRAME);
+    px(body,-4,-24,7,1,FRAME);
+    px(body,-11,-25,2,1,FRAME);px(body,9,-25,2,1,FRAME);
+  }
+  px(body,-4,-12,8,3,SKIN_DARK);
+  px(body,-12,-9,24,18,SHIRT);px(body,-12,-9,24,3,SHIRT_DARK);px(body,-12,6,24,3,SHIRT_DARK);
+  px(body,-12,9,12,14,PANTS);px(body,0,9,12,14,PANTS);px(body,-2,9,4,14,'#2a1f18');
+  px(body,-12,23,12,5,BOOTS);px(body,0,23,12,5,BOOTS);
+  root.appendChild(body);
+  return root;
+}
+
+// ── Audio + tally helpers for the intro animation ───────────────────────────
+let _introAudioCtx=null;
+function playIntroPowerUpSfx(){
+  try{if(!_introAudioCtx)_introAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  const ctx=_introAudioCtx;if(ctx.state==='suspended')ctx.resume();
+  const now=ctx.currentTime;
+  const tone=(freq,start,dur,type='square',vol=0.12)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=freq;o.connect(g);g.connect(ctx.destination);g.gain.setValueAtTime(vol,now+start);g.gain.exponentialRampToValueAtTime(0.001,now+start+dur);o.start(now+start);o.stop(now+start+dur+0.01);};
+  const seq=[[130,.00,.09],[196,.08,.09],[262,.16,.09],[349,.24,.09],[523,.32,.09],[698,.40,.09],[1047,.48,.12],[784,.61,.18,'sine',.08],[1047,.80,.25,'sine',.1]];
+  seq.forEach(([f,s,d,t,v])=>tone(f,s,d,t||'square',v||0.12));}catch(e){}
+}
+let _tallyAudioCtx=null;
+function playTallyTick(){try{if(!_tallyAudioCtx)_tallyAudioCtx=new(window.AudioContext||window.webkitAudioContext)();const ctx=_tallyAudioCtx;if(ctx.state==='suspended')ctx.resume();const now=ctx.currentTime;const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=880;g.gain.setValueAtTime(.04,now);g.gain.exponentialRampToValueAtTime(.001,now+.06);o.connect(g);g.connect(ctx.destination);o.start(now);o.stop(now+.07);}catch(e){}}
+function playTallyChing(){try{if(!_tallyAudioCtx)_tallyAudioCtx=new(window.AudioContext||window.webkitAudioContext)();const ctx=_tallyAudioCtx;if(ctx.state==='suspended')ctx.resume();const now=ctx.currentTime;[[1047,0,.18],[1319,.05,.18],[1568,.1,.25]].forEach(([f,s,d])=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.06,now+s);g.gain.exponentialRampToValueAtTime(.001,now+s+d);o.connect(g);g.connect(ctx.destination);o.start(now+s);o.stop(now+s+d+.01);});}catch(e){}}
+function animateTally(el){
+  const orig=el.dataset.tally||el.textContent.trim();el.dataset.tally=orig;
+  const m=orig.match(/^(\d+)(\+?)$/);if(!m)return;
+  const target=parseInt(m[1],10),suffix=m[2]||'',dur=1000,start=performance.now();
+  el.style.display='inline-block';el.style.willChange='transform';
+  let _last=-1;
+  function frame(t){const k=Math.min(1,(t-start)/dur),eased=1-Math.pow(1-k,3),cur=Math.round(eased*target);
+    el.textContent=cur+(k>=1?suffix:'');
+    if(cur!==_last&&k<1){playTallyTick();_last=cur;}
+    let y=0,sx=1,sy=1;
+    if(k<.85){y=-Math.sin((k/.85)*Math.PI)*14;}
+    else{const lk=(k-.85)/.15;sy=1-.12*Math.sin(lk*Math.PI);sx=1+.12*Math.sin(lk*Math.PI);}
+    el.style.transform=`translateY(${y.toFixed(2)}px) scale(${sx.toFixed(3)},${sy.toFixed(3)})`;
+    if(k<1)requestAnimationFrame(frame);else{el.style.transform='';playTallyChing();}}
+  requestAnimationFrame(frame);
+}
+function primeTallies(slide){if(!slide)return;slide.querySelectorAll('.num').forEach(el=>{const orig=el.dataset.tally||el.textContent.trim();el.dataset.tally=orig;if(/^\d+\+?$/.test(orig))el.textContent='0';});}
+function playTallies(slide){if(!slide)return;slide.querySelectorAll('.num').forEach(animateTally);}
+
+function paintWornHeadset(parentBody){
+  if(!parentBody)return;
+  parentBody.querySelector('.worn-headset')?.remove();
+  const hs=svgE('g',{class:'worn-headset'});hs.style.shapeRendering='crispEdges';
+  const px=(x,y,w,h,fill)=>hs.appendChild(svgE('rect',{x,y,width:w,height:h,fill}));
+  px(-13,-27,26,1,'#0a0a14');px(-13,-26,26,9,'#1a1a26');px(-13,-17,26,1,'#0a0a14');
+  px(-8,-24,5,5,'#00d4ff');px(3,-24,5,5,'#00d4ff');
+  px(-7,-23,1,1,'#fff');px(4,-23,1,1,'#fff');
+  px(-13,-23,1,3,'#3a3a4e');px(12,-23,1,3,'#3a3a4e');
+  parentBody.appendChild(hs);
+}
+
+// ── Duo intro IIFE — Alex + Jun walk in, jump, grab headsets, power up ───────
+(function(){
+  const duoSlide=allSlides.find(s=>s.classList.contains('layout-intro-hxr'));
+  if(!duoSlide)return;
+  const svg=duoSlide.querySelector('#intro-duo-svg');
+  if(!svg)return;
+  // Pull sprite config from SECTIONS (the build loop doesn't pass it forward)
+  let duoCase=null;
+  for(const sec of SECTIONS){const f=sec.cases.find(c=>c.layout==='intro-hxr');if(f){duoCase=f;break;}}
+  if(!duoCase)return;
+  const alexCfg=duoCase.duo.alex.sprite||{};
+  const junCfg=duoCase.duo.jun.sprite||{};
+
+  // Floor
+  svg.appendChild(svgE('rect',{x:30,y:300,width:340,height:6,class:'stage-floor',rx:'2'}));
+
+  // Two headsets — Alex's at x=140, Jun's at x=260
+  function makeHeadset(id,x){
+    const blockPos=svgE('g',{class:'headset-block',id:id+'-block-pos',transform:`translate(${x},200)`});
+    const blockG=svgE('g',{id:id+'-block-anim'});blockPos.appendChild(blockG);
+    blockG.appendChild(svgE('rect',{x:-22,y:-22,width:44,height:44,fill:'#f59e0b',stroke:'#b45309','stroke-width':'2',rx:'3'}));
+    blockG.appendChild(svgE('rect',{x:-18,y:-18,width:36,height:36,fill:'none',stroke:'#fde68a','stroke-width':'1',rx:'1'}));
+    blockG.appendChild(svgE('rect',{x:-13,y:-7,width:26,height:14,rx:'5',fill:'#1a1a26'}));
+    blockG.appendChild(svgE('circle',{cx:-6,cy:0,r:'3',fill:'#00d4ff'}));
+    blockG.appendChild(svgE('circle',{cx:6,cy:0,r:'3',fill:'#00d4ff'}));
+    blockG.appendChild(svgE('rect',{x:-13,y:-9,width:26,height:2,fill:'#0a0a14'}));
+    blockG.style.transformOrigin='center';
+    blockG.style.animation='introHeadsetBob 1.6s ease-in-out infinite';
+    svg.appendChild(blockPos);
+  }
+  makeHeadset('alex',140);
+  makeHeadset('jun',260);
+
+  // Two walkers. Outer translate sets the on-stage anchor (270 = floor level).
+  // Inner anim handles walk/jump/power-up via keyframes (introWalkAlex / -Jun).
+  function makeWalker(id,outerX,spriteOpts){
+    const walkerG=svgE('g',{id:id+'-walker',class:'stage-walker',transform:`translate(${outerX},270)`});
+    walkerG.style.transformOrigin='center';
+    const walkerAnim=svgE('g',{id:id+'-anim'});
+    walkerG.appendChild(walkerAnim);
+    walkerAnim.style.opacity='0';
+    buildAvatar(walkerAnim,spriteOpts);
+    svg.appendChild(walkerG);
+    return walkerAnim;
+  }
+  const alexAnim=makeWalker('alex-intro',80,alexCfg);
+  const junAnim=makeWalker('jun-intro',320,junCfg);
+
+  // Sparkles — single burst from the center between headsets
+  const sparkles=svgE('g',{id:'duo-intro-sparkles',opacity:'0'});
+  const FW=['#fde68a','#00d4ff','#a78bfa','#f59e0b','#fff','#fb7185'];
+  const BX=200,BY=200;
+  for(let i=0;i<32;i++){
+    const angle=(i/32)*Math.PI*2+(Math.random()-.5)*.4;
+    const dist=70+Math.random()*55;
+    const dx=Math.cos(angle)*dist,dy=Math.sin(angle)*dist;
+    const r=(1.2+Math.random()*2.2).toFixed(1);
+    const sp=svgE('circle',{cx:BX,cy:BY,r,fill:FW[Math.floor(Math.random()*FW.length)],'data-dx':dx.toFixed(1),'data-dy':dy.toFixed(1)});
+    sp.style.transformOrigin=`${BX}px ${BY}px`;sparkles.appendChild(sp);
+  }
+  svg.appendChild(sparkles);
+
+  // Flash overlay
+  const flash=svgE('rect',{id:'duo-intro-flash',x:0,y:0,width:400,height:400,fill:'#fff',opacity:'0','pointer-events':'none'});
+  svg.appendChild(flash);
+
+  function playDuoIntro(){
+    const alexBlock=document.getElementById('alex-block-anim');
+    const junBlock=document.getElementById('jun-block-anim');
+    if(!alexBlock||!junBlock)return;
+    // Reset
+    [alexAnim,junAnim].forEach(a=>{a.style.animation='none';a.style.opacity='0';a.querySelector('.av-body')?.querySelector('.worn-headset')?.remove();});
+    [alexBlock,junBlock].forEach(b=>{b.style.opacity='1';b.style.animation='introHeadsetBob 1.6s ease-in-out infinite';});
+    sparkles.style.opacity='0';sparkles.querySelectorAll('circle').forEach(c=>c.style.animation='none');
+    flash.style.animation='none';flash.style.opacity='0';
+    ['intro-eyebrow','intro-title','intro-sub','intro-sub-ue5','intro-duo-names','intro-stats-row'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity='0';});
+    if(slideSteps.get(duoSlide))slideSteps.get(duoSlide).current=0;
+    void alexAnim.offsetWidth;void junAnim.offsetWidth;
+    alexAnim.style.transformOrigin='center bottom';junAnim.style.transformOrigin='center bottom';
+    const D=300;
+    setTimeout(()=>{alexAnim.style.opacity='1';junAnim.style.opacity='1';},D);
+    setTimeout(()=>{alexAnim.style.animation='introWalkAlex 2s linear 0s 1 normal both';junAnim.style.animation='introWalkJun 2s linear 0s 1 normal both';},D);
+    setTimeout(()=>{alexAnim.style.animation='introJumpAlex .4s cubic-bezier(.3,.7,.4,1) 0s 1 normal both';junAnim.style.animation='introJumpJun .4s cubic-bezier(.3,.7,.4,1) 0s 1 normal both';},D+2000);
+    setTimeout(()=>{
+      flash.style.animation='introFlash .45s ease-out forwards';
+      alexBlock.style.animation='introHeadsetGrab .5s ease-out forwards';
+      junBlock.style.animation='introHeadsetGrab .5s ease-out forwards';
+      sparkles.style.opacity='1';
+      sparkles.querySelectorAll('circle').forEach(p=>{
+        p.style.setProperty('--tx',`${p.getAttribute('data-dx')}px`);
+        p.style.setProperty('--ty',`${p.getAttribute('data-dy')}px`);
+        p.style.animation='introSparkle 1.1s ease-out forwards';
+      });
+      playIntroPowerUpSfx();
+      alexAnim.style.animation='introPowerUpAlex .8s ease-out forwards';
+      junAnim.style.animation='introPowerUpJun .8s ease-out forwards';
+    },D+2400);
+    setTimeout(()=>{paintWornHeadset(alexAnim.querySelector('.av-body'));paintWornHeadset(junAnim.querySelector('.av-body'));},D+2900);
+    setTimeout(()=>{alexAnim.style.animation='introFallDownAlex .55s cubic-bezier(.55,0,.8,1) forwards';junAnim.style.animation='introFallDownJun .55s cubic-bezier(.55,0,.8,1) forwards';},D+3200);
+    setTimeout(()=>{alexAnim.style.animation='none';alexAnim.style.transform='translate(60px,0) scale(1.4)';junAnim.style.animation='none';junAnim.style.transform='translate(-60px,0) scale(1.4)';},D+3780);
+  }
+
+  function showBio(){
+    ['intro-eyebrow','intro-title','intro-sub','intro-sub-ue5','intro-duo-names'].forEach((id,i)=>{
+      setTimeout(()=>{const el=document.getElementById(id);if(el)el.style.opacity='1';},i*200);
+    });
+  }
+  function showStats(){
+    const stats=document.getElementById('intro-stats-row');if(stats)stats.style.opacity='1';
+    primeTallies(duoSlide);
+    setTimeout(()=>playTallies(duoSlide),300);
+  }
+
+  setTimeout(()=>{slideSteps.set(duoSlide,{current:0,steps:[showBio,showStats]});},0);
+  primeTallies(duoSlide);
+  new MutationObserver(()=>{if(duoSlide.classList.contains('active'))playDuoIntro();}).observe(duoSlide,{attributes:true,attributeFilter:['class']});
+  if(duoSlide.classList.contains('active'))playDuoIntro();
+})();
 
 // Navigation
 let current=1,total=allSlides.length,direction=1;
