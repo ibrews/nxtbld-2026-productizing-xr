@@ -34,7 +34,10 @@ Spatial Deck is a single-file HTML presentation framework. Everything lives in `
 - Max 5 images per project in media cyclers (keeps file sizes reasonable).
 
 ### Git & GitHub
-- Commit after every meaningful change. Push frequently.
+- **Always push immediately after every commit.** Alex and Jun work from separate Claude instances simultaneously — local-only commits cause merge conflicts.
+- If a push is rejected (remote has new commits): `git pull --rebase` then `git push`.
+- If the rebase has conflicts: auto-resolve when safe (non-overlapping edits, formatting-only). Flag in `REVIEW_NEEDED.md` when tricky — e.g. both sides modified the same slide in `SECTIONS`, the same IIFE, or the same CSS block. Describe what each side changed.
+- Only skip the push if Alex explicitly says so.
 - GitHub file size limit: 100MB. Transcode large videos before committing.
 - Use `.gitignore` for files that can't go to GitHub.
 - Update `HANDOFF_PROMPT.md` after significant architectural changes.
