@@ -1339,6 +1339,19 @@ const mapS=document.createElement('div');mapS.className='slide slide-map';mapS.d
 mapS.innerHTML=`<div class="map-label">The Journey, Mapped</div><svg id="map-svg" viewBox="0 0 1000 600"></svg>`;
 deck.appendChild(mapS);allSlides.push(mapS);
 
+// ── Trilogy QR: apply move-mode transforms (scale + translate) ──
+(function(){
+  const tri=allSlides.find(s=>s.querySelector?.('.trilogy-stage'));
+  if(!tri)return;
+  const cards=tri.querySelectorAll('.trilogy-card');
+  if(cards.length<2)return;
+  function applyT(el,tx,ty,sc){if(!el)return;el.style.transformBox='fill-box';el.style.transformOrigin='center center';el.style.transform=`translate(${tx}px,${ty}px) scale(${sc})`;}
+  applyT(cards[0].querySelector('.trilogy-qr'),-34,-56,1.47);
+  applyT(cards[0].querySelector('.trilogy-qr-cap'),-70,-2,1);
+  applyT(cards[1].querySelector('.trilogy-qr'),-34,-56,1.47);
+  applyT(cards[1].querySelector('.trilogy-qr-cap'),-70,-2,1);
+})();
+
 // ── Pattern-cycle: stagger node pulse + flow animation delays ──
 (function(){
   const pcSlide=allSlides.find(s=>s.querySelector?.('.pattern-svg'));
