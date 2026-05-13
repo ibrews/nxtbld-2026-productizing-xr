@@ -161,7 +161,7 @@ const SECTIONS = [
         ],
         deckTarget:'p38' },
       // slide 27 \u2014 Origin. Source now has 3 images (added during latest sync).
-      { layout:'placed', title:'Floor Tour', subtitle:'Origin \u00b7 prototype stills',
+      { layout:'placed', title:'Floor Tour', subtitle:'Origin',
         placedItems:[
           { type:'img', src:'media/nxtbld/floor-27-a.png', x:4, y:18, w:30, h:66 },
           { type:'mp4', src:'media/nxtbld/floor-27-b.mp4', x:36, y:18, w:30, h:66 },
@@ -694,6 +694,9 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 @keyframes introHeadsetGrab{0%{opacity:1;transform:scale(1)}50%{opacity:1;transform:scale(1.3) translateY(-8px)}100%{opacity:0;transform:scale(0) translateY(-24px)}}
 @keyframes introSparkle{0%{opacity:0;transform:translate(0,0) scale(.3)}12%{opacity:1;transform:translate(calc(var(--tx)*.15),calc(var(--ty)*.15)) scale(1.5)}55%{opacity:1;transform:translate(calc(var(--tx)*.6),calc(var(--ty)*.6)) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.3)}}
 @keyframes introFlash{0%{opacity:0}8%{opacity:.7}100%{opacity:0}}
+@keyframes ue5BoxFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-5px) rotate(2deg)}}
+@keyframes ue5BoxFadeIn{0%{opacity:0;transform:scale(.4)}60%{opacity:1;transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
+@keyframes ue5BoxExplode{0%{opacity:1;transform:scale(1)}40%{opacity:1;transform:scale(1.8);filter:brightness(2.2)}100%{opacity:0;transform:scale(2.6);filter:brightness(3)}}
 @media(max-width:900px){.intro-grid{flex-direction:column;text-align:center;padding:30px 20px}.intro-stage{width:80%;max-width:340px}.intro-content{text-align:center}.intro-stats{flex-wrap:wrap}}
 
 /* Secret Graveyard collage */
@@ -1354,11 +1357,19 @@ function paintLongHair(parentBody,opts){
   // Darker tip at the bottom of each curtain (subtle depth)
   px(-16,0,4,3,HAIR_DARK);
   px(12,0,4,3,HAIR_DARK);
-  // Center-parted bangs: two half-curtains with scalp visible at the part
+  // Asymmetric part — slightly left of center, with a left-side swoop
+  // covering more of the forehead. Bangs stop above y=-26 so eyes (y=-24) stay clear.
   const SKIN=opts.skinColor||'#f2c79b';
-  px(-9,-32,7,2,HAIR);   // left bang: -9 to -2
-  px(3,-32,7,2,HAIR);    // right bang: 3 to 10
-  px(-2,-32,5,1,SKIN);   // center part — skin visible at split
+  // Left swoop — wider, fuller, sweeps from far-left across toward the part
+  px(-14,-32,12,2,HAIR);   // upper-left bang, wide
+  px(-14,-30,11,2,HAIR);   // second row of left swoop, slightly shorter
+  px(-13,-28,9,1,HAIR);    // third row curving toward the part (thinner so eyes stay clear)
+  px(-12,-27,5,1,HAIR);    // tip of swoop near forehead — does NOT pass y=-26
+  // Right side — less hair, tighter, starts further from the part
+  px(2,-32,9,2,HAIR);      // right bang, narrower span
+  px(3,-30,7,1,HAIR);      // small second row on right
+  // The part — narrow, off-center to the LEFT (x=-2 to x=2)
+  px(-2,-32,4,1,SKIN);     // skin visible at off-center part
 }
 
 // Web-Audio zap SFX for fireball bursts (ported from FMX)
@@ -1421,6 +1432,69 @@ function shootFireball(svg,startX,startY,dir){
   makeHeadset('alex',140);
   makeHeadset('jun',260);
 
+  // UE5 power-up crate — glowing amber/gold cube with "UE5" face. Hidden until
+  // the UE5 substep fires; both walkers jump to it and it "explodes" into fireballs.
+  // SVG glow filter (defined once on the duo SVG)
+  (function(){
+    if(svg.querySelector('#ue5-glow'))return;
+    const defs=svgE('defs',{});
+    const filt=svgE('filter',{id:'ue5-glow',x:'-50%',y:'-50%',width:'200%',height:'200%'});
+    filt.appendChild(svgE('feGaussianBlur',{stdDeviation:'2.4','result':'blur'}));
+    const merge=svgE('feMerge',{});
+    merge.appendChild(svgE('feMergeNode',{in:'blur'}));
+    merge.appendChild(svgE('feMergeNode',{in:'SourceGraphic'}));
+    filt.appendChild(merge);
+    defs.appendChild(filt);
+    svg.appendChild(defs);
+  })();
+  function makeUE5Box(x,y){
+    const g=svgE('g',{id:'ue5-powerup-box',transform:`translate(${x},${y})`,opacity:'0'});
+    g.style.transformOrigin='center';
+    const inner=svgE('g',{filter:'url(#ue5-glow)'});
+    // Outer glow halo (low-opacity wide rect)
+    inner.appendChild(svgE('rect',{x:-16,y:-14,width:32,height:28,fill:'#FFE082',opacity:'.35',rx:'3'}));
+    // Dark crate base
+    inner.appendChild(svgE('rect',{x:-12,y:-10,width:24,height:20,fill:'#1a1408',stroke:'#f59e0b','stroke-width':'2',rx:'2'}));
+    // Inner amber accent border
+    inner.appendChild(svgE('rect',{x:-9,y:-7,width:18,height:14,fill:'none',stroke:'#FFE082','stroke-width':'1',rx:'1'}));
+    // "UE5" pixel text — 3 tiny rect blocks reading U-E-5
+    const tcol='#FFE082';
+    // U
+    inner.appendChild(svgE('rect',{x:-7,y:-4,width:1,height:5,fill:tcol}));
+    inner.appendChild(svgE('rect',{x:-4,y:-4,width:1,height:5,fill:tcol}));
+    inner.appendChild(svgE('rect',{x:-6,y:0,width:2,height:1,fill:tcol}));
+    // E
+    inner.appendChild(svgE('rect',{x:-2,y:-4,width:1,height:5,fill:tcol}));
+    inner.appendChild(svgE('rect',{x:-1,y:-4,width:3,height:1,fill:tcol}));
+    inner.appendChild(svgE('rect',{x:-1,y:-2,width:2,height:1,fill:tcol}));
+    inner.appendChild(svgE('rect',{x:-1,y:0,width:3,height:1,fill:tcol}));
+    // 5
+    inner.appendChild(svgE('rect',{x:4,y:-4,width:3,height:1,fill:tcol}));
+    inner.appendChild(svgE('rect',{x:4,y:-3,width:1,height:2,fill:tcol}));
+    inner.appendChild(svgE('rect',{x:4,y:-2,width:3,height:1,fill:tcol}));
+    inner.appendChild(svgE('rect',{x:6,y:-1,width:1,height:2,fill:tcol}));
+    inner.appendChild(svgE('rect',{x:4,y:0,width:3,height:1,fill:tcol}));
+    g.appendChild(inner);
+    g.style.animation='ue5BoxFloat 1.4s ease-in-out infinite';
+    svg.appendChild(g);
+    return g;
+  }
+  const ue5Box=makeUE5Box(200,238);
+
+  // Bright power-up "collect" tone
+  function playUE5CollectSfx(){
+    try{if(!_fbAudioCtx)_fbAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    const ctx=_fbAudioCtx;if(ctx.state==='suspended')ctx.resume();
+    const now=ctx.currentTime;
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.type='triangle';
+    o.frequency.setValueAtTime(660,now);
+    o.frequency.exponentialRampToValueAtTime(1320,now+.18);
+    o.connect(g);g.connect(ctx.destination);
+    g.gain.setValueAtTime(.09,now);g.gain.exponentialRampToValueAtTime(.001,now+.24);
+    o.start(now);o.stop(now+.26);}catch(e){}
+  }
+
   // Two walkers. Outer translate sets the on-stage anchor (270 = floor level).
   // Inner anim handles walk/jump/power-up via keyframes (introWalkAlex / -Jun).
   function makeWalker(id,outerX,spriteOpts){
@@ -1467,6 +1541,8 @@ function shootFireball(svg,startX,startY,dir){
     [alexBlock,junBlock].forEach(b=>{b.style.opacity='1';b.style.animation='introHeadsetBob 1.6s ease-in-out infinite';});
     sparkles.style.opacity='0';sparkles.querySelectorAll('circle').forEach(c=>c.style.animation='none');
     flash.style.animation='none';flash.style.opacity='0';
+    // Reset UE5 box so re-entering the slide cleanly re-plays the substep
+    if(ue5Box){ue5Box.style.animation='ue5BoxFloat 1.4s ease-in-out infinite';ue5Box.style.opacity='0';}
     ['intro-eyebrow','intro-title','intro-sub','intro-sub-ue5','intro-duo-names','intro-stats-row'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity='0';});
     if(slideSteps.get(duoSlide))slideSteps.get(duoSlide).current=0;
     void alexAnim.offsetWidth;void junAnim.offsetWidth;
@@ -1514,19 +1590,34 @@ function shootFireball(svg,startX,startY,dir){
   // Reveals the UE5 sub-text ("Gold authorized UE5 instructor...") on entry.
   function playDuoUE5PowerUp(){
     if(!alexAnim||!junAnim)return;
-    setTimeout(()=>{const el=document.getElementById('intro-sub-ue5');if(el)el.style.opacity='1';},80);
+    // 0ms — UE5 power-up crate fades in at center stage
+    if(ue5Box){
+      ue5Box.style.animation='none';void ue5Box.offsetWidth;
+      ue5Box.style.opacity='1';
+      ue5Box.style.animation='ue5BoxFadeIn .35s ease-out forwards, ue5BoxFloat 1.4s ease-in-out .35s infinite';
+    }
     alexAnim.style.animation='none';junAnim.style.animation='none';
     void alexAnim.offsetWidth;void junAnim.offsetWidth;
     // transform-origin intentionally NOT set — keep default 0,0 so the scale
 // keyframes grow the avatar downward from its head-top (0,0), placing feet
 // at outer.y + 28*scale (just below the floor at y=300). Earlier we set
 // 'center bottom' here and walkers floated ~200px above the floor.
-    // Jump
+    // 280ms — both walkers jump toward the crate
     setTimeout(()=>{
       alexAnim.style.animation='introJumpAlex .4s cubic-bezier(.3,.7,.4,1) forwards';
       junAnim.style.animation='introJumpJun .4s cubic-bezier(.3,.7,.4,1) forwards';
     },280);
-    // Flash + sparkles + power-up
+    // 600ms — contact: crate explodes, single bright collect tone
+    setTimeout(()=>{
+      if(ue5Box){
+        ue5Box.style.animation='none';void ue5Box.offsetWidth;
+        ue5Box.style.animation='ue5BoxExplode .35s ease-out forwards';
+      }
+      playUE5CollectSfx();
+    },600);
+    // 680ms — UE5 sub-text reveal (anchored to the visible collect moment)
+    setTimeout(()=>{const el=document.getElementById('intro-sub-ue5');if(el)el.style.opacity='1';},680);
+    // 720ms — flash + sparkles + classic power-up SFX + scale-up
     setTimeout(()=>{
       flash.style.opacity='0';void flash.offsetWidth;flash.style.animation='introFlash .45s ease-out forwards';
       sparkles.style.opacity='1';
@@ -1534,10 +1625,10 @@ function shootFireball(svg,startX,startY,dir){
       playIntroPowerUpSfx();
       alexAnim.style.animation='introPowerUpAlex .8s ease-out forwards';
       junAnim.style.animation='introPowerUpJun .8s ease-out forwards';
-    },680);
-    // Fall back to floor
-    setTimeout(()=>{alexAnim.style.animation='introFallDownAlex .55s cubic-bezier(.55,0,.8,1) forwards';junAnim.style.animation='introFallDownJun .55s cubic-bezier(.55,0,.8,1) forwards';},1480);
-    // Run-and-fire burst — each in their half, hopping, firing UE5 fireballs
+    },720);
+    // 1520ms — fall back to floor
+    setTimeout(()=>{alexAnim.style.animation='introFallDownAlex .55s cubic-bezier(.55,0,.8,1) forwards';junAnim.style.animation='introFallDownJun .55s cubic-bezier(.55,0,.8,1) forwards';},1520);
+    // 2220ms — run-and-fire burst (each in their half, hopping, firing UE5 fireballs)
     setTimeout(()=>{
       alexAnim.style.animation='none';junAnim.style.animation='none';
       function runBurst(anim,startInnerX,dirInit,fireOriginX,lo,hi){
@@ -1560,7 +1651,7 @@ function shootFireball(svg,startX,startY,dir){
       }
       runBurst(alexAnim,60,1,80,-60,80);    // Alex stays in left half
       runBurst(junAnim,-60,-1,320,-80,60);  // Jun stays in right half (mirrored)
-    },2180);
+    },2220);
   }
 
   setTimeout(()=>{slideSteps.set(duoSlide,{current:0,steps:[showBio,playDuoUE5PowerUp,showStats]});},0);
