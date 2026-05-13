@@ -45,3 +45,8 @@ _Reset/missing keys use the built-in `D` defaults._
 **Selector:** `#deck > div.slide.case-slide:nth-of-type(8) > div.sg-frag-stage`
 **TRANSFORM scale 1.00 → 0.96 — position: left:16.9%, top:52.1%**
 **Note:** make the clientview text smaller
+
+## 9. case THE GRAVEYARD #8
+**Selector:** `#deck > div.slide.case-slide:nth-of-type(8) > div.sg-frag-stage > div.sg-frag-grid:nth-of-type(1) > div.sg-frag.sg-frag-2:nth-of-type(3)`
+**left:16.2%, top:51.5% on slide #8**
+**Note:** TEXT EDIT: "“DELETE ME”…" → "“0925_Screenshot_D”"
