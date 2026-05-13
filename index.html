@@ -704,14 +704,12 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 @keyframes patNodeFade{0%,100%{opacity:.55}25%{opacity:1}}
 @keyframes patNodeFinal{0%,75%,100%{opacity:.4}88%{opacity:1;filter:drop-shadow(0 0 20px rgba(244,63,94,.7))}}
 /* UE5 blueprint pulse — per-color node glows */
-.pat-node-purple{animation:patNodePulseAmber 3.2s ease-in-out infinite}
+.pat-node-purple{animation:patNodePulsePurple 3.2s ease-in-out infinite}
 .pat-node-amber{animation:patNodePulseAmber 3s ease-in-out infinite}
 .pat-node-teal{animation:patNodePulseTeal 3.4s ease-in-out infinite}
+@keyframes patNodePulsePurple{0%,100%{filter:drop-shadow(0 0 3px rgba(167,139,250,0))}50%{filter:drop-shadow(0 0 10px rgba(167,139,250,.55))}}
 @keyframes patNodePulseAmber{0%,100%{filter:drop-shadow(0 0 3px rgba(245,158,11,0))}50%{filter:drop-shadow(0 0 10px rgba(245,158,11,.55))}}
 @keyframes patNodePulseTeal{0%,100%{filter:drop-shadow(0 0 3px rgba(0,212,255,0))}50%{filter:drop-shadow(0 0 10px rgba(0,212,255,.55))}}
-/* override pat-node-purple to use purple glow */
-.pat-node-purple{animation:patNodePulsePurple 3.2s ease-in-out infinite}
-@keyframes patNodePulsePurple{0%,100%{filter:drop-shadow(0 0 3px rgba(167,139,250,0))}50%{filter:drop-shadow(0 0 10px rgba(167,139,250,.55))}}
 /* flowing dash on connector paths */
 @keyframes patFlowDash{to{stroke-dashoffset:-40}}
 .pat-flow{animation:patFlowDash 1.6s linear infinite}
@@ -1181,6 +1179,14 @@ deck.appendChild(bon);allSlides.push(bon);
 const mapS=document.createElement('div');mapS.className='slide slide-map';mapS.dataset.type='map';
 mapS.innerHTML=`<div class="map-label">The Journey, Mapped</div><svg id="map-svg" viewBox="0 0 1000 600"></svg>`;
 deck.appendChild(mapS);allSlides.push(mapS);
+
+// ── Pattern-cycle: stagger node pulse + flow animation delays ──
+(function(){
+  const pcSlide=allSlides.find(s=>s.querySelector?.('.pattern-svg'));
+  if(!pcSlide)return;
+  pcSlide.querySelectorAll('.pat-node').forEach((n,i)=>{n.style.animationDelay=(i*0.4)+'s';});
+  pcSlide.querySelectorAll('.pat-flow').forEach((p,i)=>{p.style.animationDelay=(i*0.3)+'s';});
+})();
 
 // Close slide \u2014 p115. Body text verbatim. NOTE: contact info in FMX style.
 const cls=document.createElement('div');cls.className='slide';cls.dataset.type='close';cls.dataset.deckTarget='p115';
