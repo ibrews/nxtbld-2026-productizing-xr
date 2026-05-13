@@ -9,3 +9,8 @@ __pycache__/
 *.pyc
 .nano-banana-config.json
 notes-config.json
+
+# sync_gslides.py — manifest + per-slide JSON are committed; binaries are not
+source/deck.pptx
+source/deck.pptx.tmp
+source/media/

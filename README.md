@@ -614,6 +614,42 @@ python3 tools/merge_sections.py tools/imported-<deck>-<hash>.json
 - `merge_sections.py` splices the result between `// ── IMPORTED START ──` / `// ── IMPORTED END ──` sentinels in the SECTIONS array. Running it again replaces the block, so re-imports are idempotent.
 - Use `--no-llm` to skip normalization and get raw extracted text verbatim.
 
+### Google Slides sync (ongoing)
+
+`import_pptx.py` is a one-shot — great for the *first* pass, painful when the source deck is still being edited. For ongoing sync against a Google Slides source that you and a collaborator keep tweaking, use:
+
+```bash
+# First time
+python3 tools/sync_gslides.py init "https://docs.google.com/presentation/d/<ID>/edit"
+
+# Every time the source changes
+python3 tools/sync_gslides.py pull
+python3 tools/sync_gslides.py pull --dry-run   # diff only
+
+# Mark a slide done (or lock it from auto-revert)
+python3 tools/sync_gslides.py mark p13 generated
+python3 tools/sync_gslides.py mark p16 locked --note "hand-tuned"
+
+# What needs work?
+python3 tools/sync_gslides.py status --pending
+```
+
+Identity is tracked by the **Google Slides page-id** preserved in the PPTX export (shape names like `Google Shape;54;p13` carry a stable `pXX` per slide that doesn't renumber on reorder). State per slide:
+
+- `pending` — needs work (new, or content changed)
+- `generated` — implemented in `SECTIONS`; auto-reverts to `pending` if the source slide's text/media/notes hash changes
+- `locked` — hand-tuned, won't auto-revert (diff is still reported)
+
+Slides are tracked across moves, inserts, and deletes. The PPTX gets fetched via the public `…/export/pptx` URL — no auth needed if the doc is shared "anyone with the link." For private docs, drop `source/deck.pptx` manually and pass `--no-download`.
+
+Outputs:
+- `gslides-manifest.json` (committed) — per-slide state, hashes, history
+- `source/deck.pptx` (gitignored) — last-pulled PPTX
+- `source/slides/<idx>-<page-id>.json` (committed) — extracted text + media refs + speaker notes, one file per slide, for git-diffable history
+- `source/media/` (gitignored) — extracted images/videos
+
+Pairs well with `import_pptx.py` for the initial build: run `import_pptx.py` once to seed `SECTIONS`, then switch to `sync_gslides.py` for ongoing edits.
+
 ### Markdown import
 
 Draft a talk in markdown, get a deck:
@@ -816,7 +852,8 @@ spatial-deck/
 ├── tools/           ← Fleet-powered importers (Claude Design handoff)
 │   ├── fleet_client.py    ← Ollama wrapper for the local LLM fleet
 │   ├── import_tokens.py   ← Design-token → :root{} patcher
-│   ├── import_pptx.py     ← .pptx → SECTIONS chapter JSON
+│   ├── import_pptx.py     ← .pptx → SECTIONS chapter JSON (one-shot)
+│   ├── sync_gslides.py    ← Google Slides ongoing sync (diff-aware, page-id keyed)
 │   ├── import_md.py       ← Markdown → SECTIONS chapter JSON
 │   ├── import_html.py     ← HTML deck → SECTIONS chapter JSON
 │   ├── import_pdf.py      ← PDF (pdfplumber) → SECTIONS chapter JSON
