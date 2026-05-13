@@ -75,16 +75,18 @@ const SECTIONS = [
         ],
         deckTarget:'p16+p17 (slide 5 folded)' },
       // slide 6 \u2014 Trilogy callback. NOTE: QR codes for the two prior NXT BLD talks.
-      { layout:'placed', title:'Third in a Trilogy', subtitle:'If you like this one, check out the other two.',
-        placedItems:[
-          { type:'qr-card', x:18, y:30, w:30, h:54,
+      // Thumbnails are PPTX-embedded screenshots from the actual talks.
+      { layout:'trilogy', title:'Third in a Trilogy',
+        subtitle:'If you like this one, check out the other two.',
+        talks:[
+          { thumb:'media/nxtbld/trilogy-talk2.png',
             url:'https://www.youtube.com/watch?v=13y52rZw9ns',
-            label:'How VR Helped Us Design a Theatre from the Inside Out',
-            year:'NXT BLD I' },
-          { type:'qr-card', x:52, y:30, w:30, h:54,
+            title:'How VR Helped Us Design a\nTheater from the Inside Out',
+            year:'NXT BLD I \u00b7 2020' },
+          { thumb:'media/nxtbld/trilogy-talk1.png',
             url:'https://youtu.be/ulJaAzDqn9w',
-            label:'An Architect in the Metaverse',
-            year:'NXT BLD II' },
+            title:'An Architect in the Metaverse:\nSocial VR, NFTs &amp; New Opportunities',
+            year:'NXT BLD II \u00b7 2022' },
         ],
         deckTarget:'p18' },
     ] },
@@ -103,8 +105,9 @@ const SECTIONS = [
         ],
         deckTarget:'p19+p20+p21+p22+p23+p24+p25+p26+p27+p28+p29+p30+p31+p32+p33+p34' },
       // SG-2 \u2014 Text fragments. The filenames tell the story.
+      // Each fragment gets a distinct color via .sg-frag-N classes.
       { layout:'sg-fragments', title:'The filenames tell the story.',
-        fragments:['\u201ctemporary\u201d','\u201cv2_final\u201d','\u201cclient-specific\u201d','\u201cdon\u2019t delete this folder\u201d'],
+        fragments:['\u201ctemporary\u201d','\u201cv12_finalFINAL\u201d','\u201cclient-specific\u201d','\u201cdon\u2019t delete this folder\u201d'],
         punchline:'Every studio has these.',
         deckTarget:'p19' },
     ] },
@@ -648,10 +651,11 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .sg-frag-title{font-size:clamp(1.6rem,3vw,2.6rem);color:rgba(240,244,255,.8);font-weight:600;letter-spacing:-.01em;text-align:center;max-width:1100px}
 .sg-frag-grid{display:grid;grid-template-columns:repeat(2,minmax(280px,500px));gap:clamp(20px,2.5vw,40px);justify-content:center}
 .sg-frag{font-family:'Courier New',monospace;font-size:clamp(1.4rem,3vw,2.4rem);font-weight:700;color:rgba(244,63,94,.95);padding:18px 28px;background:rgba(244,63,94,.06);border-left:4px solid rgba(244,63,94,.6);border-radius:0 4px 4px 0;text-align:left}
-.sg-frag-0{transform:rotate(-1deg)}
-.sg-frag-1{transform:rotate(.8deg)}
-.sg-frag-2{transform:rotate(-.6deg)}
-.sg-frag-3{transform:rotate(1.2deg);color:rgba(245,158,11,.95);border-left-color:rgba(245,158,11,.6);background:rgba(245,158,11,.06)}
+/* Each fragment gets a distinct accent + tilt for visual variety */
+.sg-frag-0{transform:rotate(-1.2deg);color:rgba(244,63,94,.96);border-left-color:rgba(244,63,94,.7);background:rgba(244,63,94,.08)}
+.sg-frag-1{transform:rotate(.9deg);color:rgba(245,158,11,.96);border-left-color:rgba(245,158,11,.7);background:rgba(245,158,11,.08)}
+.sg-frag-2{transform:rotate(-.7deg);color:rgba(0,212,255,.96);border-left-color:rgba(0,212,255,.7);background:rgba(0,212,255,.08)}
+.sg-frag-3{transform:rotate(1.4deg);color:rgba(167,139,250,.96);border-left-color:rgba(167,139,250,.7);background:rgba(167,139,250,.08)}
 .sg-frag-punch{font-size:clamp(1.4rem,2.5vw,2.2rem);font-weight:700;color:#f0f4ff;text-align:center;margin-top:20px;letter-spacing:-.01em}
 
 /* Pattern cycle diagram (slide 23) */
@@ -669,6 +673,25 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .pat-node-final{animation:patNodeFinal 12s ease-in-out infinite}
 @keyframes patNodeFade{0%,100%{opacity:.55}25%{opacity:1}}
 @keyframes patNodeFinal{0%,75%,100%{opacity:.4}88%{opacity:1;filter:drop-shadow(0 0 20px rgba(244,63,94,.7))}}
+
+/* Trilogy slide — 2-up cards of prior NXT BLD talks (slide 6) */
+.layout-trilogy{padding:0!important}
+.trilogy-stage{position:absolute;inset:0;display:flex;flex-direction:column;padding:clamp(36px,5vh,64px) clamp(40px,5vw,90px);gap:clamp(18px,2.5vh,32px)}
+.trilogy-head{text-align:center;flex-shrink:0}
+.trilogy-title{font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;color:#f0f4ff;letter-spacing:-.015em;line-height:1.1;margin-bottom:8px}
+.trilogy-sub{font-size:clamp(.95rem,1.3vw,1.2rem);color:rgba(240,244,255,.65);font-style:italic}
+.trilogy-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.5vw,40px);min-height:0}
+.trilogy-card{display:flex;flex-direction:column;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(0,212,255,.25);border-radius:14px;padding:clamp(14px,1.5vw,22px);min-height:0;overflow:hidden;text-decoration:none;color:inherit;transition:transform .25s,border-color .25s}
+.trilogy-card:hover{transform:translateY(-4px);border-color:rgba(0,212,255,.55)}
+.trilogy-thumb{flex:1;min-height:0;border-radius:8px;overflow:hidden;background:rgba(0,0,0,.4);box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.trilogy-thumb img{width:100%;height:100%;object-fit:cover}
+.trilogy-meta{flex-shrink:0}
+.trilogy-year{font-size:clamp(.7rem,.95vw,.85rem);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.trilogy-tname{font-size:clamp(.95rem,1.4vw,1.25rem);font-weight:600;color:#f0f4ff;line-height:1.32}
+.trilogy-qr-row{display:flex;align-items:center;gap:14px;flex-shrink:0;padding-top:10px;border-top:1px solid rgba(255,255,255,.08)}
+.trilogy-qr{width:clamp(60px,7vw,84px);height:auto;background:#fff;padding:5px;border-radius:6px;flex-shrink:0}
+.trilogy-qr-cap{font-size:clamp(.78rem,1vw,.95rem);color:rgba(240,244,255,.65);font-style:italic;line-height:1.35}
+@media(max-width:900px){.trilogy-grid{grid-template-columns:1fr}.trilogy-thumb{aspect-ratio:16/9}}
 
 /* Toolbox grid (slide 25) — 4 product cards */
 .toolbox-stage{position:absolute;inset:0;padding:80px 50px 40px;display:flex;flex-direction:column;align-items:center;gap:28px}
@@ -939,6 +962,16 @@ SECTIONS.forEach((sec,si)=>{
         <path d="M500,306 Q500,380 270,440" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
         <path d="M270,440 L420,440" stroke="rgba(244,63,94,.7)" stroke-width="2.2" fill="none" marker-end="url(#pat-arr)"/>
       </svg>${c.bigCaption?`<p class="pattern-caption">${c.bigCaption}</p>`:''}</div>${altBadge}`;
+      deck.appendChild(s);allSlides.push(s);return;
+    }
+    // layout: 'trilogy' — 2-up cards of prior NXT BLD talks (slide 6).
+    // Each card: talk thumbnail (PPTX-embedded), year/title, QR to YouTube.
+    if(c.layout==='trilogy'&&c.talks){
+      const cards=c.talks.map(t=>{
+        const qrSrc='https://api.qrserver.com/v1/create-qr-code/?size=240x240&data='+encodeURIComponent(t.url);
+        return `<a class="trilogy-card" href="${t.url}" target="_blank" rel="noopener"><div class="trilogy-thumb"><img src="${t.thumb}" alt="${t.title.replace(/\n/g,' ')}" loading="lazy"></div><div class="trilogy-meta"><div class="trilogy-year">${t.year||''}</div><div class="trilogy-tname">${t.title.replace(/\n/g,'<br>')}</div></div><div class="trilogy-qr-row"><img class="trilogy-qr" src="${qrSrc}" alt="QR"><span class="trilogy-qr-cap">Scan or click to watch</span></div></a>`;
+      }).join('');
+      s.innerHTML=`<div class="trilogy-stage"><div class="trilogy-head"><h2 class="trilogy-title">${c.title||''}</h2>${c.subtitle?`<p class="trilogy-sub">${c.subtitle}</p>`:''}</div><div class="trilogy-grid">${cards}</div></div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
     }
     // layout: 'toolbox-grid' — 4 products with their questions (slide 25)
