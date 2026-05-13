@@ -150,12 +150,14 @@ const SECTIONS = [
         bigText:'\u201cWill this space fit our needs?\u201d',
         bigCaption:'Product 1 of 4 \u2014 VR walkthroughs of unbuilt spaces, generated from a floor plan.',
         deckTarget:'p38 (intro)' },
-      // slide 26 \u2014 NOTE: floor plan \u2192 VR experience
+      // slide 26 \u2014 NOTE: floor plan \u2192 VR experience.
+      // Source filenames are swapped vs. their contents: floor-26-vr.png is the actual 2D floor plan,
+      // floor-26-plan.jpg is the VR-experience screenshot. Use them in the correct visual slots here.
       { layout:'placed', title:'Floor Tour', subtitle:'\u201cWill this space fit our needs?\u201d',
         placedItems:[
-          { type:'img', src:'media/nxtbld/floor-26-plan.jpg', x:6, y:18, w:42, h:66, label:'Floor plan' },
+          { type:'img', src:'media/nxtbld/floor-26-vr.png', x:6, y:18, w:42, h:66, label:'Floor plan' },
           { type:'arrow', x:48, y:46, w:6, h:10 },
-          { type:'img', src:'media/nxtbld/floor-26-vr.png', x:55, y:18, w:42, h:66, label:'In VR' },
+          { type:'img', src:'media/nxtbld/floor-26-plan.jpg', x:55, y:18, w:42, h:66, label:'In VR' },
         ],
         deckTarget:'p38' },
       // slide 27 \u2014 Origin. Source now has 3 images (added during latest sync).
