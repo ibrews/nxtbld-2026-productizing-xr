@@ -800,9 +800,9 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .pat-node:nth-child(5){animation-delay:4.5s}
 .pat-node:nth-child(6){animation-delay:6s}
 .pat-node:nth-child(7){animation-delay:7.5s}
-.pat-node-final{animation:patNodeFinal 12s ease-in-out infinite}
+.pat-node-final{animation:patNodePulseRose 1.3s ease-in-out infinite}
 @keyframes patNodeFade{0%,100%{opacity:.75}25%{opacity:1}}
-@keyframes patNodeFinal{0%,75%,100%{opacity:.4}88%{opacity:1;filter:drop-shadow(0 0 20px rgba(244,63,94,.7))}}
+@keyframes patNodePulseRose{0%,100%{opacity:.85;filter:drop-shadow(0 0 6px rgba(244,63,94,.5))}50%{opacity:1;filter:drop-shadow(0 0 22px rgba(244,63,94,1)) drop-shadow(0 0 50px rgba(244,63,94,.8)) drop-shadow(0 0 90px rgba(244,63,94,.45))}}
 /* UE5 blueprint pulse — per-color node glows */
 .pat-node-purple{animation:patNodePulsePurple 1.6s ease-in-out infinite}
 .pat-node-amber{animation:patNodePulseAmber 1.5s ease-in-out infinite}
@@ -1356,7 +1356,7 @@ deck.appendChild(mapS);allSlides.push(mapS);
 (function(){
   const pcSlide=allSlides.find(s=>s.querySelector?.('.pattern-svg'));
   if(!pcSlide)return;
-  pcSlide.querySelectorAll('.pat-node').forEach((n,i)=>{n.style.animationDelay=(i*0.4)+'s';});
+  pcSlide.querySelectorAll('.pat-node:not(.pat-node-final)').forEach((n,i)=>{n.style.animationDelay=(i*0.4)+'s';});
   pcSlide.querySelectorAll('.pat-flow').forEach((p,i)=>{p.style.animationDelay=(i*0.3)+'s';});
 })();
 
