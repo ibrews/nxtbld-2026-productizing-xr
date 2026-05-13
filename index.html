@@ -63,7 +63,7 @@ const SECTIONS = [
           alex:{ name:'Alex Coulombe', role:'CEO',
                  sprite:{ withBeard:true, withGlasses:false } },
           jun: { name:'Yu-Jun Yeh',    role:'Lead Creative Technologist',
-                 sprite:{ withBeard:false, withGlasses:false, longHair:true,
+                 sprite:{ withBeard:false, withGlasses:false, longHair:true, noBrows:true,
                           hairColor:'#1a1a1a', hairDark:'#0a0a0a', hairLight:'#3a3a3a', hairShadow:'#000',
                           shirtColor:'#a78bfa', shirtDark:'#7c5ce0' } }
         },
@@ -534,7 +534,8 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 @keyframes bgGh3{0%{transform:translate(0,0)}25%{transform:translate(-12vw,-12vh)}50%{transform:translate(8vw,-22vh)}75%{transform:translate(14vw,-8vh)}100%{transform:translate(0,0)}}
 @keyframes bgGh4{0%{transform:translate(0,0)}25%{transform:translate(22vw,-4vh)}50%{transform:translate(36vw,12vh)}75%{transform:translate(18vw,18vh)}100%{transform:translate(0,0)}}
 /* Nebula */
-.bg-overlay--nebula .blob{filter:blur(120px)}
+.bg-overlay--nebula .blob{filter:blur(120px);will-change:transform,opacity;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(0)}
+.bg-overlay--nebula{will-change:transform}
 .bg-overlay--nebula .swirl{position:absolute;inset:-25%;background:conic-gradient(from 0deg,rgba(0,212,255,.05),rgba(167,139,250,.04),rgba(245,158,11,.05),rgba(244,63,94,.04),rgba(0,212,255,.05));filter:blur(80px);will-change:transform;animation:bgNebSwirl 80s linear infinite}
 .bg-overlay--nebula .b1{width:45%;aspect-ratio:1;background:radial-gradient(circle,rgba(0,212,255,.45),rgba(0,212,255,0));top:-5%;left:0;animation:bgNeb1 30s linear infinite}
 .bg-overlay--nebula .b2{width:42%;aspect-ratio:1;background:radial-gradient(circle,rgba(167,139,250,.42),rgba(167,139,250,0));bottom:-5%;right:5%;animation:bgNeb2 36s linear infinite}
@@ -568,7 +569,10 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .cycle-rotor{animation:cycleRotate 36s linear infinite;transform-origin:center;transform-box:fill-box}
 .cycle-arrow{animation:cycleArrowOrbit 8s ease-in-out infinite;transform-origin:center}
 .cycle-pulse{animation:cyclePulse 4.2s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
-.cycle-icon{animation:cycleIconFade 8s ease-in-out infinite;transform-origin:center}
+.cycle-icon{animation:cycleIconFade 8s ease-in-out infinite}
+/* Inner counter-rotation keeps each icon upright while it orbits with the rotor */
+.cycle-icon-inner{animation:cycleCounterRotate 36s linear infinite;transform-origin:center;transform-box:fill-box}
+@keyframes cycleCounterRotate{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
 .cycle-icon:nth-child(2){animation-delay:0s}
 .cycle-icon:nth-child(3){animation-delay:1.33s}
 .cycle-icon:nth-child(4){animation-delay:2.66s}
@@ -579,16 +583,32 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 @keyframes cycleArrowOrbit{0%,100%{transform:rotate(0)}50%{transform:rotate(180deg)}}
 @keyframes cyclePulse{0%,100%{opacity:.65}50%{opacity:1}}
 @keyframes cycleIconFade{0%,100%{opacity:.45;filter:none}50%{opacity:1;filter:drop-shadow(0 0 6px currentColor)}}
-/* Push cover talk-title above the cycle ring; brighten gradient to match HXR style */
-.slide[data-type="cover"] .event-tag,.slide[data-type="cover"] .talk-title,.slide[data-type="cover"] .talk-subtitle,.slide[data-type="cover"] .speaker-card,.slide[data-type="cover"] .cover-logo-wrap{position:relative;z-index:2}
-.slide[data-type="cover"] .talk-title{font-size:clamp(3.2rem,8vw,8.5rem);line-height:1;background:linear-gradient(130deg,#fff 8%,#fff 38%,#a5d8ff 62%,#c5b6ff 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.cover-logo-wrap{position:absolute;bottom:clamp(28px,4vh,56px);left:50%;transform:translateX(-50%);opacity:.55;z-index:2;pointer-events:none}
-.cover-logo-wrap img{width:clamp(180px,18vw,260px);height:auto;display:block;filter:brightness(0) invert(1)}
+/* Push cover talk-title above the cycle ring; brighten gradient + slow shimmer */
+.slide[data-type="cover"] .event-tag,.slide[data-type="cover"] .talk-title,.slide[data-type="cover"] .talk-subtitle,.slide[data-type="cover"] .speaker-card{position:relative;z-index:2}
+.slide[data-type="cover"] .talk-title{font-size:clamp(3.2rem,8vw,8.5rem);line-height:1;background:linear-gradient(130deg,#fff 4%,#fff 30%,#a5d8ff 55%,#c5b6ff 80%,#fff 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:titleShimmer 9s ease-in-out infinite}
+@keyframes titleShimmer{0%,100%{background-position:0% 50%;filter:brightness(1)}50%{background-position:100% 50%;filter:brightness(1.12) drop-shadow(0 0 30px rgba(165,216,255,.35))}}
+/* Cover logo — bulletproof horizontal centering (left:0;right:0;margin:auto) */
+.cover-logo-wrap{position:absolute;bottom:clamp(28px,4vh,56px);left:0;right:0;margin:0 auto;width:max-content;opacity:.55;z-index:2;pointer-events:none;text-align:center}
+.cover-logo-wrap img{width:clamp(180px,18vw,260px);height:auto;display:block;margin:0 auto;filter:brightness(0) invert(1)}
 
-/* Agenda list (slide 3, layout:'big' with bigCaption HTML) */
-.agenda-list{list-style:none;padding:0;margin:18px 0 0;text-align:left;display:inline-block}
-.agenda-list li{padding:8px 0 8px 28px;position:relative;font-size:clamp(.95rem,1.3vw,1.15rem);color:rgba(240,244,255,.85);line-height:1.5}
-.agenda-list li::before{content:'';position:absolute;left:0;top:14px;width:14px;height:1.5px;background:var(--teal)}
+/* Agenda list — bigger text + animated cycling markers (reinforces the cycle metaphor) */
+.agenda-list{list-style:none;padding:0;margin:24px 0 0;text-align:left;display:inline-block}
+.agenda-list li{padding:14px 0 14px 56px;position:relative;font-size:clamp(1.35rem,2.1vw,1.85rem);color:rgba(240,244,255,.92);line-height:1.4;font-weight:500;letter-spacing:-.005em}
+/* Outer pulsing ring */
+.agenda-list li::before{content:'';position:absolute;left:6px;top:50%;width:30px;height:30px;margin-top:-15px;border:1.6px solid var(--teal);border-radius:50%;opacity:.55;animation:agendaBulletPulse 2.4s ease-in-out infinite}
+/* Orbiting dot — the "cycle" element */
+.agenda-list li::after{content:'';position:absolute;left:21px;top:50%;width:6px;height:6px;margin-top:-3px;background:var(--teal);border-radius:50%;box-shadow:0 0 8px var(--teal);animation:agendaBulletOrbit 5s linear infinite;transform-origin:0 0}
+.agenda-list li:nth-child(2)::before,.agenda-list li:nth-child(2)::after{animation-delay:-.4s}
+.agenda-list li:nth-child(3)::before,.agenda-list li:nth-child(3)::after{animation-delay:-.8s}
+.agenda-list li:nth-child(4)::before,.agenda-list li:nth-child(4)::after{animation-delay:-1.2s}
+.agenda-list li:nth-child(5)::before,.agenda-list li:nth-child(5)::after{animation-delay:-1.6s}
+.agenda-list li:nth-child(6)::before,.agenda-list li:nth-child(6)::after{animation-delay:-2.0s}
+.agenda-list li:nth-child(7)::before,.agenda-list li:nth-child(7)::after{animation-delay:-2.4s}
+.agenda-list li:nth-child(8)::before,.agenda-list li:nth-child(8)::after{animation-delay:-2.8s}
+@keyframes agendaBulletPulse{0%,100%{transform:scale(1);opacity:.45}50%{transform:scale(1.18);opacity:.95}}
+@keyframes agendaBulletOrbit{from{transform:rotate(0deg) translateX(11px)}to{transform:rotate(360deg) translateX(11px)}}
+/* layout:'big' subtitle nudge — agenda has none so this just keeps spacing right */
+.case-slide.layout-big .big-eyebrow{font-size:clamp(2.6rem,5vw,4.2rem)}
 
 /* Intro-hxr — duo intro port from FMX/HXR. Two pixel-art walkers (Alex + Jun)
    walk in, jump, grab VR headsets, power up. Then bio + stats reveal. */
@@ -891,13 +911,13 @@ cov.innerHTML=`<div class="event-tag">NXT BLD 2026 &middot; May 14, 2026</div><d
   <circle cx="0" cy="0" r="80" fill="url(#cycle-glow)" class="cycle-pulse"/>
   <circle cx="0" cy="0" r="68" fill="none" stroke="rgba(0,212,255,.15)" stroke-width=".6" stroke-dasharray="2 3"/>
   <g class="cycle-rotor">
-    <!-- 6 icons evenly placed: building, blueprint, VR headset, render, laptop, spreadsheet -->
-    <g class="cycle-icon" transform="translate(0,-68)"><rect x="-12" y="-12" width="24" height="24" rx="2" fill="none" stroke="#a5d8ff" stroke-width="1.6"/><line x1="-8" y1="-6" x2="8" y2="-6" stroke="#a5d8ff" stroke-width=".8"/><line x1="-8" y1="0" x2="8" y2="0" stroke="#a5d8ff" stroke-width=".8"/><line x1="-8" y1="6" x2="8" y2="6" stroke="#a5d8ff" stroke-width=".8"/><line x1="-4" y1="-12" x2="-4" y2="12" stroke="#a5d8ff" stroke-width=".8"/><line x1="4" y1="-12" x2="4" y2="12" stroke="#a5d8ff" stroke-width=".8"/></g>
-    <g class="cycle-icon" transform="rotate(60) translate(0,-68) rotate(-60)"><path d="M-12,-10 L12,-10 L12,10 L-12,10 Z M-12,-4 L12,-4 M-12,4 L12,4 M-4,-10 L-4,10 M4,-10 L4,10" fill="none" stroke="#9b8cff" stroke-width="1.4"/></g>
-    <g class="cycle-icon" transform="rotate(120) translate(0,-68) rotate(-120)"><path d="M-14,-2 Q-14,-12 0,-12 Q14,-12 14,-2 L14,4 Q14,8 11,8 L-11,8 Q-14,8 -14,4 Z" fill="none" stroke="#f59e0b" stroke-width="1.4"/><circle cx="-7" cy="2" r="3" fill="none" stroke="#f59e0b" stroke-width="1"/><circle cx="7" cy="2" r="3" fill="none" stroke="#f59e0b" stroke-width="1"/></g>
-    <g class="cycle-icon" transform="rotate(180) translate(0,-68) rotate(-180)"><path d="M-12,8 L0,-12 L12,8 Z M-6,8 L-2,2 L2,8 M4,2 L7,5 L4,8" fill="none" stroke="#a78bfa" stroke-width="1.4"/><circle cx="-7" cy="-2" r="1.4" fill="#a78bfa"/></g>
-    <g class="cycle-icon" transform="rotate(240) translate(0,-68) rotate(-240)"><rect x="-14" y="-8" width="28" height="16" rx="1.5" fill="none" stroke="#00d4ff" stroke-width="1.4"/><rect x="-10" y="-5" width="20" height="10" fill="none" stroke="#00d4ff" stroke-width=".8"/><rect x="-18" y="9" width="36" height="2.5" rx=".5" fill="none" stroke="#00d4ff" stroke-width="1.2"/></g>
-    <g class="cycle-icon" transform="rotate(300) translate(0,-68) rotate(-300)"><path d="M-12,12 L-12,-2 L-8,-2 L-8,-8 L-4,-8 L-4,2 L0,2 L0,-12 L4,-12 L4,-4 L8,-4 L8,2 L12,2 L12,12 Z" fill="none" stroke="#f43f5e" stroke-width="1.4"/><rect x="-10" y="2" width="1.6" height="2" fill="#f43f5e"/><rect x="-6.5" y="-4" width="1.6" height="2" fill="#f43f5e"/><rect x="-6.5" y="0" width="1.6" height="2" fill="#f43f5e"/><rect x="-2.5" y="-8" width="1.6" height="2" fill="#f43f5e"/><rect x="-2.5" y="-3" width="1.6" height="2" fill="#f43f5e"/><rect x="1.5" y="-4" width="1.6" height="2" fill="#f43f5e"/><rect x="5.5" y="0" width="1.6" height="2" fill="#f43f5e"/><rect x="9" y="4" width="1.6" height="2" fill="#f43f5e"/></g>
+    <!-- 6 icons. Outer group: position around circle. Inner group: counter-rotates to stay upright. -->
+    <g class="cycle-icon" transform="translate(0,-68)"><g class="cycle-icon-inner"><rect x="-12" y="-12" width="24" height="24" rx="2" fill="none" stroke="#a5d8ff" stroke-width="1.6"/><line x1="-8" y1="-6" x2="8" y2="-6" stroke="#a5d8ff" stroke-width=".8"/><line x1="-8" y1="0" x2="8" y2="0" stroke="#a5d8ff" stroke-width=".8"/><line x1="-8" y1="6" x2="8" y2="6" stroke="#a5d8ff" stroke-width=".8"/><line x1="-4" y1="-12" x2="-4" y2="12" stroke="#a5d8ff" stroke-width=".8"/><line x1="4" y1="-12" x2="4" y2="12" stroke="#a5d8ff" stroke-width=".8"/></g></g>
+    <g class="cycle-icon" transform="rotate(60) translate(0,-68)"><g class="cycle-icon-inner"><path d="M-12,-10 L12,-10 L12,10 L-12,10 Z M-12,-4 L12,-4 M-12,4 L12,4 M-4,-10 L-4,10 M4,-10 L4,10" fill="none" stroke="#9b8cff" stroke-width="1.4"/></g></g>
+    <g class="cycle-icon" transform="rotate(120) translate(0,-68)"><g class="cycle-icon-inner"><path d="M-14,-2 Q-14,-12 0,-12 Q14,-12 14,-2 L14,4 Q14,8 11,8 L-11,8 Q-14,8 -14,4 Z" fill="none" stroke="#f59e0b" stroke-width="1.4"/><circle cx="-7" cy="2" r="3" fill="none" stroke="#f59e0b" stroke-width="1"/><circle cx="7" cy="2" r="3" fill="none" stroke="#f59e0b" stroke-width="1"/></g></g>
+    <g class="cycle-icon" transform="rotate(180) translate(0,-68)"><g class="cycle-icon-inner"><path d="M-12,8 L0,-12 L12,8 Z M-6,8 L-2,2 L2,8 M4,2 L7,5 L4,8" fill="none" stroke="#a78bfa" stroke-width="1.4"/><circle cx="-7" cy="-2" r="1.4" fill="#a78bfa"/></g></g>
+    <g class="cycle-icon" transform="rotate(240) translate(0,-68)"><g class="cycle-icon-inner"><rect x="-14" y="-8" width="28" height="16" rx="1.5" fill="none" stroke="#00d4ff" stroke-width="1.4"/><rect x="-10" y="-5" width="20" height="10" fill="none" stroke="#00d4ff" stroke-width=".8"/><rect x="-18" y="9" width="36" height="2.5" rx=".5" fill="none" stroke="#00d4ff" stroke-width="1.2"/></g></g>
+    <g class="cycle-icon" transform="rotate(300) translate(0,-68)"><g class="cycle-icon-inner"><path d="M-12,12 L-12,-2 L-8,-2 L-8,-8 L-4,-8 L-4,2 L0,2 L0,-12 L4,-12 L4,-4 L8,-4 L8,2 L12,2 L12,12 Z" fill="none" stroke="#f43f5e" stroke-width="1.4"/><rect x="-10" y="2" width="1.6" height="2" fill="#f43f5e"/><rect x="-6.5" y="-4" width="1.6" height="2" fill="#f43f5e"/><rect x="-6.5" y="0" width="1.6" height="2" fill="#f43f5e"/><rect x="-2.5" y="-8" width="1.6" height="2" fill="#f43f5e"/><rect x="-2.5" y="-3" width="1.6" height="2" fill="#f43f5e"/><rect x="1.5" y="-4" width="1.6" height="2" fill="#f43f5e"/><rect x="5.5" y="0" width="1.6" height="2" fill="#f43f5e"/><rect x="9" y="4" width="1.6" height="2" fill="#f43f5e"/></g></g>
   </g>
   <g class="cycle-arrow"><circle cx="0" cy="-86" r="2.5" fill="#00d4ff" filter="url(#cycle-soft)"/></g>
 </svg></div><h1 class="talk-title">Productizing XR<br>for Architecture</h1><p class="talk-subtitle">Where Are You in the Cycle?</p><div class="speaker-card"><div><div class="speaker-name">Alex Coulombe &amp; Yu-Jun Yeh</div><div class="speaker-co">Agile Lens · NXT BLD 2026</div></div></div><div class="cover-logo-wrap"><img src="media/nxtbld/agilelens_logo.svg" alt="Agile Lens"></div>`;
@@ -1159,6 +1179,10 @@ function buildAvatar(parent,opts={}){
   px(body,-8,-27,8,3,HAIR_DARK);px(body,3,-28,9,4,HAIR_DARK);
   px(body,-7,-24,3,4,EYE);px(body,4,-24,3,4,EYE);px(body,-6,-23,1,2,'#fff');px(body,5,-23,1,2,'#fff');
   px(body,-3,-17,6,1,'#9c5040');
+  // Heavy brows — drawn unless opts.noBrows is set (Jun has a gentler face)
+  if(!opts.noBrows){
+    px(body,-8,-27,8,3,HAIR_DARK);px(body,3,-28,9,4,HAIR_DARK);
+  }
   if(withBeard){px(body,-12,-22,4,5,BEARD);px(body,8,-22,4,5,BEARD);px(body,-12,-20,5,3,BEARD);px(body,7,-20,5,3,BEARD);px(body,-12,-17,4,1,BEARD);px(body,8,-17,4,1,BEARD);px(body,-7,-19,14,2,BEARD);px(body,-6,-19,12,1,BEARD_LIGHT);px(body,-2,-16,4,1,BEARD);px(body,-12,-16,24,2,BEARD);px(body,-12,-14,24,2,BEARD);px(body,-10,-12,20,1,BEARD);}
   if(withGlasses){
     px(body,-9,-26,6,1,FRAME);px(body,-9,-20,6,1,FRAME);px(body,-9,-26,1,7,FRAME);px(body,-4,-26,1,7,FRAME);
@@ -1171,6 +1195,11 @@ function buildAvatar(parent,opts={}){
   px(body,-12,9,12,14,PANTS);px(body,0,9,12,14,PANTS);px(body,-2,9,4,14,'#2a1f18');
   px(body,-12,23,12,5,BOOTS);px(body,0,23,12,5,BOOTS);
   root.appendChild(body);
+  // Arms (down at the sides) — shirt sleeve + skin hand on each side
+  const arms=svgE('g',{class:'av-arms-down'});
+  px(arms,-18,-8,6,14,SHIRT);px(arms,-18,4,6,4,SKIN);
+  px(arms,12,-8,6,14,SHIRT);px(arms,12,4,6,4,SKIN);
+  root.appendChild(arms);
   return root;
 }
 
