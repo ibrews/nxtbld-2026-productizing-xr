@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Is XR Right For Your Project? — A Spatial Deck Presentation</title>
+<title>Productizing XR for Architecture — NXT BLD 2026</title>
 <meta name="description" content="A framework for spatial decisions — before you pick a headset or a studio. Built with Spatial Deck.">
 <meta property="og:title" content="Is XR Right For Your Project?">
 <meta property="og:description" content="3 lessons. 6 case studies. A framework for spatial decisions.">
@@ -31,45 +31,125 @@
               renders as frosted-glass overlay (bottom-left).
    'IFRAME:'  Prefix c.img with 'IFRAME:' to embed a URL (YouTube, etc.)
    ======================================================================= */
+// \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+// NXT BLD 2026 \u2014 Productizing XR for Architecture
+// SECTIONS auto-managed from Google Slides via tools/sync_gslides.py.
+// Per-slide source: source/slides/<idx>-<page_id>.json
+// State + deck_target tracked in gslides-manifest.json.
+// VERBATIM RULE: non-NOTE source text is preserved as-is. Anything
+// generated comes from a NOTE: directive on its source slide.
+// \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 const SECTIONS = [
-  { year: 'CH 1', accent: 'teal',
-    lesson: { title:'Define the Spatial Problem First.\nThe Technology Follows.', short:'SPACE > TECH', tagline:'Every successful XR project starts with a question about space \u2014 not a question about headsets. \u201cWhat does it feel like to stand here?\u201d beats \u201cShould we use Quest or Vision Pro?\u201d every time.', tags:'Architecture \u00b7 Theater \u00b7 Pre-Visualization' },
+  { year: 'HELLO', accent: 'teal',
+    lesson: { title:'Hello.', short:'HELLO', tagline:'Alex Coulombe &amp; Jun Yeh \u00b7 Agile Lens', tags:'Productizing XR for Architecture \u00b7 NXT BLD 2026' },
     cases: [
-      { title:'The Building That Didn\u2019t Exist Yet', subtitle:'Pre-construction visualization for a 200-room hotel',
-        img:'images/ch1-case1-archviz.png', bullets:['The client\u2019s architect shipped 400 pages of drawings. Nobody could agree on the lobby ceiling height.','Forty-five minutes in VR replaced three months of revision cycles','The breakthrough wasn\u2019t the headset \u2014 it was standing inside an unbuilt room and pointing at a problem'] },
-      { title:'The Rehearsal That Saved the Set', subtitle:'A theater company tests blocking before load-in',
-        img:'images/ch1-case2-theater.png', bullets:['Physical set pieces cost $40K to build. Virtual ones cost an afternoon.','The director found a sightline problem on day one \u2014 not opening night','The actors didn\u2019t need to be gamers. They needed to walk, look, and point.'] },
+      // slide 3 \u2014 Agenda (NOTE: directive)
+      { layout:'big', title:'Agenda', subtitle:'This isn\u2019t a sales pitch.',
+        bigCaption:'Our goal is to get you thinking about opportunities you might have in your own practice to develop reusable tools and workflows \u2014 and we\u2019re demonstrating how we\u2019ve done that internally, by way of example.<br><br><ul class="agenda-list"><li>The Secret Graveyard \u2014 the unfinished tools every studio hides.</li><li>The Pattern \u2014 what\u2019s worth productizing.</li><li>Four products, four questions, one cycle.</li><li>Where are you in the cycle?</li></ul>',
+        deckTarget:'p15' },
+      // slide 4 \u2014 Who we are (Alex + Jun duo). NOTE: sprite power-up scene.
+      { layout:'intro-duo', title:'Who we are', variant:'matched',
+        duo:{ alex:{label:'Alex Coulombe',role:'Founder \u00b7 Agile Lens', accent:'#00d4ff'},
+              jun:{label:'Jun Yeh',role:'Agile Lens', accent:'#a78bfa', img:'media/nxtbld/jun.png'} },
+        deckTarget:'p16' },
+      // slide 4 \u2014 ALT version: contrast palette
+      { layout:'intro-duo', title:'Who we are', variant:'contrast', alt:'Contrast palette',
+        duo:{ alex:{label:'Alex Coulombe',role:'Founder \u00b7 Agile Lens', accent:'#5a7c5a'},
+              jun:{label:'Jun Yeh',role:'Agile Lens', accent:'#f59e0b', img:'media/nxtbld/jun.png'} },
+        deckTarget:'p16' },
+      // slide 6 \u2014 Trilogy callback. NOTE: QR codes for the two prior NXT BLD talks.
+      { layout:'placed', title:'Third in a Trilogy', subtitle:'If you like this one, check out the other two.',
+        placedItems:[
+          { type:'qr-card', x:18, y:30, w:30, h:54,
+            url:'https://www.youtube.com/watch?v=13y52rZw9ns',
+            label:'How VR Helped Us Design a Theatre from the Inside Out',
+            year:'NXT BLD I' },
+          { type:'qr-card', x:52, y:30, w:30, h:54,
+            url:'https://youtu.be/ulJaAzDqn9w',
+            label:'An Architect in the Metaverse',
+            year:'NXT BLD II' },
+        ],
+        deckTarget:'p18' },
     ] },
-  { year: 'CH 2', accent: 'purple',
-    lesson: { title:'Match the Platform\nto the Friction Budget.', short:'FRICTION BUDGET', tagline:'Your users have a finite tolerance for setup, tutorials, and cables. Photorealism doesn\u2019t matter if the headset never leaves the pelican case. Pick the platform that your actual audience will actually put on.', tags:'Quest \u00b7 PCVR \u00b7 OpenXR \u00b7 WebXR' },
+
+  { year: 'THE GRAVEYARD', accent: 'rose',
+    lesson: { title:'The Secret Graveyard.', short:'GRAVEYARD', tagline:'Every studio has these. Internal tools, hacked viewers, half-finished configurators \u2014 the things you built once, called <em>\u201ctemporary\u201d</em>, and never deleted.', tags:'Consolidated from source slides 7\u201322' },
     cases: [
-      { title:'PCVR vs. Standalone', subtitle:'It\u2019s not about specs \u2014 it\u2019s about friction',
-        img:'images/ch2-case1-platforms.png', bullets:['Standalone (Quest): 10-second setup, runs anywhere, good enough for 90% of training and review','Tethered PCVR: photorealistic fidelity, but someone has to manage cables and a gaming PC','Wireless backpack PCVR: best of both \u2014 if your project justifies the hardware investment'] },
-      { title:'The OpenXR Question', subtitle:'Build once, or build for the room you\u2019re in?',
-        img:'images/ch2-case2-flowchart.svg', bullets:['OpenXR promises write-once, deploy-anywhere. Reality: input mapping and performance still diverge.','If your audience is fixed (e.g., a sales center), optimize for one platform ruthlessly','If your audience is unknown (e.g., a downloadable app), OpenXR + graceful fallbacks is the move'] },
+      // SG-1 \u2014 Toolbox collage. Consolidates source 7-22 visual material per slide 7's NOTE.
+      { layout:'sg-collage', title:'The Toolbox Nobody Talks About',
+        subtitle:'Internal tools \u00b7 hacked Unreal viewers \u00b7 prototype UIs \u00b7 VR walkthroughs \u00b7 spreadsheets \u00b7 half-finished configurators',
+        collage:[
+          'media/nxtbld/image6.png','media/nxtbld/image17.jpg','media/nxtbld/image5.png',
+          'media/nxtbld/image15.png','media/nxtbld/image3.png','media/nxtbld/image7.png',
+          'media/nxtbld/image11.png','media/nxtbld/image34.mp4','media/nxtbld/image24.png',
+          'media/nxtbld/image8.png','media/nxtbld/image20.png','media/nxtbld/image16.png',
+        ],
+        deckTarget:'p19+p20+p21+p22+p23+p24+p25+p26+p27+p28+p29+p30+p31+p32+p33+p34' },
+      // SG-2 \u2014 Text fragments. The filenames tell the story.
+      { layout:'sg-fragments', title:'The filenames tell the story.',
+        fragments:['\u201ctemporary\u201d','\u201cv2_final\u201d','\u201cclient-specific\u201d','\u201cdon\u2019t delete this folder\u201d'],
+        punchline:'Every studio has these.',
+        deckTarget:'p19' },
     ] },
-  { year: 'CH 3', accent: 'amber',
-    lesson: { title:'Iteration Speed Is\nthe Only Spec That Matters.', short:'ITERATION SPEED', tagline:'Polygon counts and refresh rates are table stakes. The studio that can show you a change on Tuesday that you asked about on Monday \u2014 that\u2019s the one that finishes the project. Everything else is a demo reel.', tags:'Unreal Engine \u00b7 Real-Time \u00b7 Multiplayer' },
+
+  { year: 'THE PATTERN', accent: 'purple',
+    lesson: { title:'The Pattern.', short:'PATTERN', tagline:'Stop throwing away unfinished/temp solutions.', tags:'Slide 23 \u00b7 A speaks' },
     cases: [
-      { title:'Five Questions for Any XR Studio', subtitle:'A checklist before you sign the SOW',
-        img:'images/ch3-case1-checklist.svg', bullets:['Can they show you a working prototype in two weeks, or just a pitch deck in two months?','Do they build in a real-time engine (Unreal, Unity) or pre-render everything? Real-time means you can iterate.','Ask: \u201cWhat happens when we change the floor plan halfway through?\u201d The answer tells you everything.'] },
-      { title:'The Red Flags', subtitle:'How to spot a studio that\u2019ll burn your budget',
-        img:'images/ch3-case2-redflags.png', bullets:['They demo on hardware you\u2019ll never own. If the pitch is on a $10K rig, ask what deployment looks like.','\u201cWe\u2019ll figure out multiplayer later.\u201d Networking is architectural \u2014 it can\u2019t be bolted on in month six.','No one on the team has shipped a project that ran for more than one day. Trade shows \u2260 production.'] },
+      // slide 23 \u2014 The Pattern. NOTE: cycle diagram (client \u2192 build \u2192 clarity \u2192 new request \u2192 ...)
+      { layout:'pattern-cycle', title:'The Pattern', bigCaption:'Stop throwing away unfinished/temp solutions.',
+        deckTarget:'p35' },
+      // slide 24 \u2014 What's Worth Productizing? Body text verbatim.
+      { layout:'big', title:'What\u2019s Worth Productizing?', subtitle:'Same question, different clients.',
+        bigText:'Reusable process,\nnot reusable output.',
+        bigCaption:'Hone what your clients celebrate to be useful to other clients.',
+        deckTarget:'p36' },
+      // slide 25 \u2014 Build and organize your toolbox. Body lists 4 products + questions verbatim.
+      { layout:'toolbox-grid', title:'Build and organize your toolbox.',
+        tools:[
+          { name:'Floor Tour',         q:'\u201cDoes this space feel right?\u201d',     img:'media/nxtbld/image14.png' },
+          { name:'Blueprint Immersive',q:'\u201cDoes this layout works best?\u201d',    img:'media/nxtbld/image9.png'  },
+          { name:'Hyperreal Estate',   q:'\u201cDoes this design feel complete?\u201d', img:'media/nxtbld/image83.mp4'},
+          { name:'Holodeck Anywhere',  q:'\u201cDoes this emotionally connect?\u201d',  img:'media/nxtbld/image37.jpg'},
+        ],
+        deckTarget:'p37' },
     ] },
-  { year: 'CH 4', accent: 'rose',
-    lesson: { title:'Your Deck Is Data.\nTreat It Like Code.', short:'DECK AS CODE', tagline:'Spatial Deck\u2019s <code>tools/</code> directory turns slides into a pipeline: a local Ollama fleet handles structured-JSON cleanup while frontier models stay reserved for judgment. Every importer has a mirror exporter, every change has a diff, every chapter has a peer review.<br><br>You don\u2019t rewrite a deck anymore \u2014 you <em>refactor</em> it.', tags:'Fleet \u00b7 Ollama \u00b7 Python \u00b7 Zero-Build' },
+
+  { year: 'FLOOR TOUR', accent: 'amber',
+    lesson: { title:'Floor Tour.', short:'FLOOR TOUR', tagline:'\u201cWill this space fit our needs?\u201d', tags:'Product 1 of 4' },
     cases: [
-      { title:'Bring Any Format In.\nGet Any Format Out.', subtitle:'Markdown \u2194 HTML \u2194 PPTX \u2194 PDF \u2014 round-trip, not one-way',
-        img:'images/ch4-case1-roundtrip.svg', bullets:['Importers: <code>import_md</code> / <code>import_html</code> / <code>import_pptx</code> / <code>import_pdf</code> / <code>import_tokens</code> \u2014 all emit the same SECTIONS-shape JSON','Exporters: <code>export_md</code> / <code>export_html</code> / <code>export_pptx</code> \u2014 round-trip verified (<code>diff_decks</code> reports 0 changes)','Structural extraction in pure Python; the fleet only rewrites prose. Single-pass, never \u201cplease fix your JSON.\u201d'] },
-      { title:'Let a Local Model\nRead Your Deck.', subtitle:'Peer review + lint + alt-text + timing \u2014 all offline, all fleet-powered',
-        img:'images/ch4-case2-peerreview.svg', bullets:['<code>peer_review.py</code>: two model families (llama3.1:8b \u00b7 qwen2.5-coder:14b) critique the same chapter \u2014 agreement is signal, disagreement is the interesting edge','<code>lint_deck</code>, <code>estimate_timing</code>, <code>gen_alt_text</code>, <code>extract_palette</code>: single-purpose QA tools, JSON-patch output only, never mutate <code>index.html</code> in one shot','Claude stays reserved for what local models fail at: architectural decisions, narrative judgment, UX trade-offs'] },
-      { title:'Merge, Diff, Ship.', subtitle:'Multi-deck merge + sentinel splicing + conflict reporting',
-        img:'images/ch4-case3-mergediff.svg', bullets:['<code>merge_decks.py</code>: concat N sources, flag year collisions, duplicate titles, Jaccard near-duplicates \u2014 writes a <code>.conflicts.md</code> for the editorial pass','<code>merge_sections.py</code>: idempotent splice between <code>// \u2500\u2500 IMPORTED START/END \u2500\u2500</code> sentinels \u2014 re-import as many times as you like','<code>diff_decks.py</code>: chapter/case-level diffs with bullet <code>difflib</code>. Your PR reviewer will thank you.'] },
+      // slide 26 \u2014 NOTE: floor plan \u2192 VR experience
+      { layout:'placed', title:'Floor Tour', subtitle:'\u201cWill this space fit our needs?\u201d',
+        placedItems:[
+          { type:'img', src:'media/nxtbld/image45.jpg', x:6, y:18, w:42, h:66, label:'Floor plan' },
+          { type:'arrow', x:48, y:46, w:6, h:10 },
+          { type:'img', src:'media/nxtbld/image12.png', x:55, y:18, w:42, h:66, label:'In VR' },
+        ],
+        deckTarget:'p38' },
+      // slide 27 \u2014 Origin
+      { layout:'placed', title:'Floor Tour', subtitle:'Origin \u00b7 prototype stills',
+        placedItems:[
+          { type:'img', src:'media/nxtbld/image22.png', x:6, y:18, w:42, h:66 },
+          { type:'mp4', src:'media/nxtbld/image25.mp4', x:53, y:18, w:42, h:66 },
+        ],
+        deckTarget:'p39' },
+      // slide 28 \u2014 no title in source, J speaks. 2 source images side by side.
+      { layout:'placed', title:'', subtitle:'',
+        placedItems:[
+          { type:'img', src:'media/nxtbld/image18.png', x:6, y:10, w:42, h:80 },
+          { type:'img', src:'media/nxtbld/image19.png', x:53, y:10, w:42, h:80 },
+        ],
+        deckTarget:'p40' },
+      // slide 29 \u2014 Productized version. Body: "GIF or video showing it in use"
+      { layout:'placed', title:'Floor Tour', subtitle:'Productized version',
+        placedItems:[
+          { type:'img', src:'media/nxtbld/image14.png', x:18, y:14, w:64, h:74 },
+        ],
+        deckTarget:'p41' },
     ] },
 ];
 
-const BONUS = { year:'BONUS', title:'The Best XR Project\nIs the One You Don\u2019t Need.',
-  tagline:'Sometimes a 3D PDF, a Matterport scan, or a well-placed monitor does the job. The most honest answer a studio can give you is \u201cyou don\u2019t need us for this.\u201d If they never say that \u2014 they\u2019re selling headsets, not solutions.' };
+const BONUS = { year:'BONUS', title:'Build it twice?\nMaybe you already have a product.',
+  tagline:'If you\u2019ve started building the same workflow for the third time, you\u2019re not bespoke-ing \u2014 you\u2019re productizing. The Secret Graveyard isn\u2019t failure. It\u2019s the first draft of your toolbox.' };
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"}}</script>
 
@@ -453,6 +533,136 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 @keyframes bgExt2{0%{transform:translate(0,0)}25%{transform:translate(-40vw,-25vh)}50%{transform:translate(-60vw,15vh)}75%{transform:translate(-30vw,40vh)}100%{transform:translate(0,0)}}
 @keyframes bgExt3{0%{transform:translate(0,0)}25%{transform:translate(40vw,-30vh)}50%{transform:translate(60vw,-50vh)}75%{transform:translate(20vw,-30vh)}100%{transform:translate(0,0)}}
 @keyframes bgExt4{0%{transform:translate(0,0)}25%{transform:translate(-25vw,25vh)}50%{transform:translate(20vw,-25vh)}75%{transform:translate(35vw,15vh)}100%{transform:translate(0,0)}}
+
+/* ──────────────────────────────────────────────────────────────
+   NXT BLD 2026 — custom layouts for sync_gslides slide build
+   ────────────────────────────────────────────────────────────── */
+
+/* [ALT] badge — for alternative slides per VERBATIM-rule directive */
+.alt-badge{position:absolute;top:18px;right:22px;z-index:5;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:rgba(245,158,11,.9);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.4);padding:5px 12px;border-radius:4px;backdrop-filter:blur(8px)}
+.slide.is-alt{box-shadow:inset 0 0 0 1px rgba(245,158,11,.15)}
+
+/* Cover cycle animation (slide 1 — NOTE directive) */
+.cover-cycle-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:0;opacity:.55;pointer-events:none}
+.cover-cycle{width:min(78vh,78vw);height:min(78vh,78vw);max-width:840px;max-height:840px}
+.cycle-rotor{animation:cycleRotate 36s linear infinite;transform-origin:center;transform-box:fill-box}
+.cycle-arrow{animation:cycleArrowOrbit 8s ease-in-out infinite;transform-origin:center}
+.cycle-pulse{animation:cyclePulse 4.2s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+.cycle-icon{animation:cycleIconFade 8s ease-in-out infinite;transform-origin:center}
+.cycle-icon:nth-child(2){animation-delay:0s}
+.cycle-icon:nth-child(3){animation-delay:1.33s}
+.cycle-icon:nth-child(4){animation-delay:2.66s}
+.cycle-icon:nth-child(5){animation-delay:4s}
+.cycle-icon:nth-child(6){animation-delay:5.33s}
+.cycle-icon:nth-child(7){animation-delay:6.66s}
+@keyframes cycleRotate{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes cycleArrowOrbit{0%,100%{transform:rotate(0)}50%{transform:rotate(180deg)}}
+@keyframes cyclePulse{0%,100%{opacity:.65}50%{opacity:1}}
+@keyframes cycleIconFade{0%,100%{opacity:.45;filter:none}50%{opacity:1;filter:drop-shadow(0 0 6px currentColor)}}
+/* Push cover talk-title above the cycle ring */
+.slide[data-type="cover"] .event-tag,.slide[data-type="cover"] .talk-title,.slide[data-type="cover"] .talk-subtitle,.slide[data-type="cover"] .speaker-card{position:relative;z-index:2}
+.slide[data-type="cover"] .talk-title{text-shadow:0 0 30px rgba(6,8,16,.85),0 0 60px rgba(6,8,16,.6)}
+
+/* Agenda list (slide 3, layout:'big' with bigCaption HTML) */
+.agenda-list{list-style:none;padding:0;margin:18px 0 0;text-align:left;display:inline-block}
+.agenda-list li{padding:8px 0 8px 28px;position:relative;font-size:clamp(.95rem,1.3vw,1.15rem);color:rgba(240,244,255,.85);line-height:1.5}
+.agenda-list li::before{content:'';position:absolute;left:0;top:14px;width:14px;height:1.5px;background:var(--teal)}
+
+/* Intro-duo (slide 4 — Alex + Jun powering up) */
+.intro-duo-stage{position:absolute;inset:0;display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(20px,3vw,48px);padding:clamp(40px,8vh,120px) clamp(40px,5vw,80px);align-items:center;z-index:1}
+.duo-side{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;animation:duoBob 4s ease-in-out infinite}
+.duo-side.duo-jun{animation-delay:.5s}
+.duo-photo{width:clamp(180px,22vh,260px);height:clamp(180px,22vh,260px);border-radius:50%;object-fit:cover;border:4px solid var(--duo-accent);box-shadow:0 0 0 6px rgba(0,0,0,.4),0 0 60px var(--duo-accent),0 0 120px var(--duo-accent);filter:saturate(1.05)}
+.duo-avatar{width:clamp(180px,22vh,260px);height:clamp(180px,22vh,260px);border-radius:50%;display:flex;align-items:center;justify-content:center;border:4px solid var(--duo-accent);box-shadow:0 0 0 6px rgba(0,0,0,.4),0 0 60px var(--duo-accent),0 0 120px var(--duo-accent)}
+.duo-avatar span{font-size:clamp(80px,12vh,140px);font-weight:900;color:rgba(255,255,255,.92);font-family:var(--font);text-shadow:0 4px 24px rgba(0,0,0,.5)}
+.duo-glow{position:absolute;top:-20px;left:-20px;right:-20px;bottom:-20px;border-radius:50%;background:radial-gradient(circle,var(--duo-accent) 0%,transparent 65%);opacity:.25;animation:duoGlowPulse 2.4s ease-in-out infinite;pointer-events:none;z-index:-1}
+.duo-label{text-align:center}
+.duo-name{font-size:clamp(1.2rem,1.8vw,1.7rem);font-weight:700;color:#f0f4ff;letter-spacing:.01em}
+.duo-role{font-size:clamp(.85rem,1.1vw,1.05rem);color:var(--duo-accent);text-transform:uppercase;letter-spacing:.15em;margin-top:6px;font-weight:600}
+.duo-fireball{position:absolute;top:50%;width:clamp(60px,9vh,110px);height:clamp(60px,9vh,110px);border-radius:50%;background:radial-gradient(circle,rgba(255,200,80,.95) 0%,rgba(245,80,30,.75) 35%,rgba(168,30,30,.25) 70%,transparent 100%);filter:blur(.5px);box-shadow:0 0 40px rgba(255,200,80,.6),0 0 80px rgba(245,80,30,.4);opacity:0;animation:duoFireball 3.4s ease-in-out infinite}
+.duo-fireball-alex{right:-30%;animation-delay:0s}
+.duo-fireball-jun{left:-30%;animation-delay:1.7s}
+.duo-center{display:flex;flex-direction:column;align-items:center;gap:18px}
+.duo-ue{width:clamp(70px,9vh,120px);height:clamp(70px,9vh,120px);filter:drop-shadow(0 0 20px rgba(255,255,255,.4))}
+.duo-spark{width:8px;height:60px;background:linear-gradient(180deg,transparent 0%,rgba(0,212,255,.85) 35%,rgba(167,139,250,.85) 65%,transparent 100%);border-radius:4px;animation:duoSpark 1.6s ease-in-out infinite}
+.duo-overlay{position:absolute!important;top:36px!important;bottom:auto!important;left:50%!important;transform:translateX(-50%)!important;text-align:center;background:transparent;padding:0!important}
+.intro-duo-stage[data-variant="contrast"]{background:radial-gradient(ellipse at center,rgba(90,124,90,.06) 0%,transparent 60%)}
+@keyframes duoBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes duoGlowPulse{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:.5;transform:scale(1.08)}}
+@keyframes duoFireball{0%,40%,100%{opacity:0;transform:translate(0,-50%) scale(.4)}55%{opacity:1;transform:translate(40px,-50%) scale(1.1)}70%{opacity:.9;transform:translate(120px,-50%) scale(1.4)}90%{opacity:0;transform:translate(220px,-50%) scale(.6)}}
+.duo-fireball-jun{animation-direction:reverse}
+@keyframes duoSpark{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1.2)}}
+
+/* Secret Graveyard collage */
+.sg-collage-stage{position:absolute;inset:0;padding:80px 60px 40px;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(3,1fr);gap:10px}
+.sg-tile{position:relative;overflow:hidden;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(244,63,94,.18);transform:rotate(var(--r,0deg));animation:sgFloat 8s ease-in-out infinite}
+.sg-tile:nth-child(odd){--r:-1.5deg}
+.sg-tile:nth-child(even){--r:1.2deg}
+.sg-tile:nth-child(3n){animation-delay:1.2s}
+.sg-tile:nth-child(3n+1){animation-delay:2.4s}
+.sg-tile img,.sg-tile video{width:100%;height:100%;object-fit:cover;opacity:.85;filter:saturate(.85)}
+.sg-tile-0{grid-column:span 2}
+.sg-tile-2{grid-row:span 2}
+.sg-tile-4{grid-column:span 2}
+.sg-tile-7{grid-row:span 2}
+.sg-sticky{position:absolute;background:rgba(245,200,30,.92);color:#1a1a1a;font-family:'Caveat',cursive,system-ui;font-weight:700;font-size:clamp(.85rem,1.5vw,1.4rem);padding:8px 14px;border-radius:2px;transform:rotate(var(--r,-3deg));box-shadow:0 4px 12px rgba(0,0,0,.4);z-index:3;pointer-events:none}
+.sg-sticky-0{top:10%;left:8%;--r:-4deg}
+.sg-sticky-1{top:48%;right:6%;--r:3deg}
+.sg-sticky-2{bottom:18%;left:12%;--r:-2deg}
+.sg-sticky-3{top:14%;right:30%;--r:2.5deg;background:rgba(244,63,94,.92);color:#fff}
+.sg-overlay{background:linear-gradient(180deg,rgba(6,8,16,.95) 0%,rgba(6,8,16,.7) 70%,transparent 100%);padding:20px 30px 50px!important;top:0!important;bottom:auto!important}
+@keyframes sgFloat{0%,100%{transform:rotate(var(--r,0deg)) translateY(0)}50%{transform:rotate(var(--r,0deg)) translateY(-6px)}}
+
+/* Secret Graveyard fragments — typography slide */
+.sg-frag-stage{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px;gap:40px}
+.sg-frag-title{font-size:clamp(1.6rem,3vw,2.6rem);color:rgba(240,244,255,.8);font-weight:600;letter-spacing:-.01em;text-align:center;max-width:1100px}
+.sg-frag-grid{display:grid;grid-template-columns:repeat(2,minmax(280px,500px));gap:clamp(20px,2.5vw,40px);justify-content:center}
+.sg-frag{font-family:'Courier New',monospace;font-size:clamp(1.4rem,3vw,2.4rem);font-weight:700;color:rgba(244,63,94,.95);padding:18px 28px;background:rgba(244,63,94,.06);border-left:4px solid rgba(244,63,94,.6);border-radius:0 4px 4px 0;text-align:left}
+.sg-frag-0{transform:rotate(-1deg)}
+.sg-frag-1{transform:rotate(.8deg)}
+.sg-frag-2{transform:rotate(-.6deg)}
+.sg-frag-3{transform:rotate(1.2deg);color:rgba(245,158,11,.95);border-left-color:rgba(245,158,11,.6);background:rgba(245,158,11,.06)}
+.sg-frag-punch{font-size:clamp(1.4rem,2.5vw,2.2rem);font-weight:700;color:#f0f4ff;text-align:center;margin-top:20px;letter-spacing:-.01em}
+
+/* Pattern cycle diagram (slide 23) */
+.pattern-stage{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 40px;gap:24px}
+.pattern-eyebrow{font-size:clamp(1.6rem,3vw,2.6rem);color:#f0f4ff;font-weight:700;letter-spacing:-.01em;text-align:center}
+.pattern-svg{width:min(90vw,1100px);height:auto;max-height:65vh}
+.pattern-caption{font-size:clamp(1rem,1.4vw,1.25rem);color:rgba(240,244,255,.7);text-align:center;font-style:italic;max-width:900px}
+.pat-node{animation:patNodeFade 12s ease-in-out infinite}
+.pat-node:nth-child(2){animation-delay:0s}
+.pat-node:nth-child(3){animation-delay:1.5s}
+.pat-node:nth-child(4){animation-delay:3s}
+.pat-node:nth-child(5){animation-delay:4.5s}
+.pat-node:nth-child(6){animation-delay:6s}
+.pat-node:nth-child(7){animation-delay:7.5s}
+.pat-node-final{animation:patNodeFinal 12s ease-in-out infinite}
+@keyframes patNodeFade{0%,100%{opacity:.55}25%{opacity:1}}
+@keyframes patNodeFinal{0%,75%,100%{opacity:.4}88%{opacity:1;filter:drop-shadow(0 0 20px rgba(244,63,94,.7))}}
+
+/* Toolbox grid (slide 25) — 4 product cards */
+.toolbox-stage{position:absolute;inset:0;padding:80px 50px 40px;display:flex;flex-direction:column;align-items:center;gap:28px}
+.toolbox-title{font-size:clamp(1.6rem,2.8vw,2.4rem);color:#f0f4ff;font-weight:700;text-align:center;letter-spacing:-.01em}
+.toolbox-grid{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;width:100%;max-width:1500px;min-height:0}
+.toolbox-card{background:rgba(255,255,255,.04);border:1px solid rgba(167,139,250,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;transition:transform .3s,border-color .3s;overflow:hidden;min-height:0}
+.toolbox-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.6)}
+.toolbox-img{flex:1;min-height:0;border-radius:8px;overflow:hidden;background:rgba(0,0,0,.4)}
+.toolbox-img img,.toolbox-img video{width:100%;height:100%;object-fit:cover}
+.toolbox-name{font-size:clamp(.95rem,1.3vw,1.2rem);font-weight:700;color:#f0f4ff}
+.toolbox-q{font-size:clamp(.8rem,1.05vw,.95rem);color:rgba(167,139,250,.95);font-style:italic;line-height:1.35}
+
+/* Placed-overlay extras (label per item, arrow type) */
+.placed-item-label{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,158,11,.95);white-space:nowrap}
+.placed-arrow svg{width:100%;height:100%}
+.placed-qr-card{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;background:rgba(255,255,255,.05);border:1px solid rgba(0,212,255,.3);border-radius:14px;gap:10px}
+.placed-qr-card img{width:60%;max-width:160px;height:auto;border-radius:6px;background:#fff;padding:6px}
+.placed-qr-card .qr-label{font-size:clamp(.78rem,1vw,.95rem);font-weight:600;color:#f0f4ff;text-align:center;line-height:1.3}
+.placed-qr-card .qr-badge{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase}
+
+/* Close-slide additions for 2 QR cards */
+.close-qr-row{display:flex;gap:24px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-top:20px}
+.close-qr-row .qr-card{max-width:200px}
+.qr-badge.b-purple{color:var(--purple);background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3)}
 </style>
 </head>
 <body>
@@ -618,9 +828,26 @@ function playBing(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscillator(),
   loadNotesConfig().then(cfg=>{if(!cfg){_syncStatus.textContent='no notes-config.json';return;}_syncStatus.textContent='configured · '+cfg.deckId;syncCall('getNotes',{}).then(d=>{_applyNotesData(d);_refreshNotesUi();_syncStatus.textContent='synced · '+(d.slides||[]).length+' slides';}).catch(e=>{_syncStatus.textContent='sync error: '+e.message;});});
 })();
 
-// Cover
+// Cover — slide 1 (p13). Title + tagline verbatim. NOTE: looping product-cycle animation.
 const cov=document.createElement('div');cov.className='slide active';cov.dataset.type='cover';
-cov.innerHTML=`<div class="event-tag">Spatial Deck &middot; Open-Source Presentation Framework</div><h1 class="talk-title">Is XR Right<br>For Your Project?</h1><p class="talk-subtitle">A framework for spatial decisions &mdash; before you pick a headset or a studio</p><div class="speaker-card"><div><div class="speaker-name">A Spatial Deck Presentation</div><div class="speaker-co">github.com/spatial-deck</div></div></div>`;
+cov.innerHTML=`<div class="event-tag">NXT BLD 2026 &middot; Productizing XR for Architecture</div><div class="cover-cycle-wrap"><svg class="cover-cycle" viewBox="-100 -100 200 200" aria-hidden="true">
+  <defs>
+    <radialGradient id="cycle-glow"><stop offset="0%" stop-color="rgba(0,212,255,.45)"/><stop offset="100%" stop-color="rgba(0,212,255,0)"/></radialGradient>
+    <filter id="cycle-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
+  </defs>
+  <circle cx="0" cy="0" r="80" fill="url(#cycle-glow)" class="cycle-pulse"/>
+  <circle cx="0" cy="0" r="68" fill="none" stroke="rgba(0,212,255,.15)" stroke-width=".6" stroke-dasharray="2 3"/>
+  <g class="cycle-rotor">
+    <!-- 6 icons evenly placed: building, blueprint, VR headset, render, laptop, spreadsheet -->
+    <g class="cycle-icon" transform="translate(0,-68)"><rect x="-12" y="-12" width="24" height="24" rx="2" fill="none" stroke="#a5d8ff" stroke-width="1.6"/><line x1="-8" y1="-6" x2="8" y2="-6" stroke="#a5d8ff" stroke-width=".8"/><line x1="-8" y1="0" x2="8" y2="0" stroke="#a5d8ff" stroke-width=".8"/><line x1="-8" y1="6" x2="8" y2="6" stroke="#a5d8ff" stroke-width=".8"/><line x1="-4" y1="-12" x2="-4" y2="12" stroke="#a5d8ff" stroke-width=".8"/><line x1="4" y1="-12" x2="4" y2="12" stroke="#a5d8ff" stroke-width=".8"/></g>
+    <g class="cycle-icon" transform="rotate(60) translate(0,-68) rotate(-60)"><path d="M-12,-10 L12,-10 L12,10 L-12,10 Z M-12,-4 L12,-4 M-12,4 L12,4 M-4,-10 L-4,10 M4,-10 L4,10" fill="none" stroke="#9b8cff" stroke-width="1.4"/></g>
+    <g class="cycle-icon" transform="rotate(120) translate(0,-68) rotate(-120)"><path d="M-14,-2 Q-14,-12 0,-12 Q14,-12 14,-2 L14,4 Q14,8 11,8 L-11,8 Q-14,8 -14,4 Z" fill="none" stroke="#f59e0b" stroke-width="1.4"/><circle cx="-7" cy="2" r="3" fill="none" stroke="#f59e0b" stroke-width="1"/><circle cx="7" cy="2" r="3" fill="none" stroke="#f59e0b" stroke-width="1"/></g>
+    <g class="cycle-icon" transform="rotate(180) translate(0,-68) rotate(-180)"><path d="M-12,8 L0,-12 L12,8 Z M-6,8 L-2,2 L2,8 M4,2 L7,5 L4,8" fill="none" stroke="#a78bfa" stroke-width="1.4"/><circle cx="-7" cy="-2" r="1.4" fill="#a78bfa"/></g>
+    <g class="cycle-icon" transform="rotate(240) translate(0,-68) rotate(-240)"><rect x="-14" y="-8" width="28" height="16" rx="1.5" fill="none" stroke="#00d4ff" stroke-width="1.4"/><rect x="-10" y="-5" width="20" height="10" fill="none" stroke="#00d4ff" stroke-width=".8"/><rect x="-18" y="9" width="36" height="2.5" rx=".5" fill="none" stroke="#00d4ff" stroke-width="1.2"/></g>
+    <g class="cycle-icon" transform="rotate(300) translate(0,-68) rotate(-300)"><rect x="-12" y="-12" width="24" height="24" rx="1" fill="none" stroke="#f43f5e" stroke-width="1.4"/><line x1="-12" y1="-6" x2="12" y2="-6" stroke="#f43f5e" stroke-width=".7"/><line x1="-12" y1="0" x2="12" y2="0" stroke="#f43f5e" stroke-width=".7"/><line x1="-12" y1="6" x2="12" y2="6" stroke="#f43f5e" stroke-width=".7"/><line x1="-4" y1="-12" x2="-4" y2="12" stroke="#f43f5e" stroke-width=".7"/><line x1="4" y1="-12" x2="4" y2="12" stroke="#f43f5e" stroke-width=".7"/></g>
+  </g>
+  <g class="cycle-arrow"><circle cx="0" cy="-86" r="2.5" fill="#00d4ff" filter="url(#cycle-soft)"/></g>
+</svg></div><h1 class="talk-title">Productizing XR<br>for Architecture</h1><p class="talk-subtitle">Where Are You in the Cycle?</p><div class="speaker-card"><div><div class="speaker-name">Alex Coulombe &amp; Jun Yeh</div><div class="speaker-co">Agile Lens · NXT BLD 2026</div></div></div>`;
 deck.appendChild(cov);allSlides.push(cov);
 
 // Build sections
@@ -630,19 +857,93 @@ SECTIONS.forEach((sec,si)=>{
   ls.innerHTML=`<div class="year-ghost">${sec.year}</div><div class="lesson-ey"><span class="ey-yr">${sec.year}</span><span class="ey-sep">&middot;</span><span class="ey-badge">Lesson ${si+1} / ${SECTIONS.length}</span></div><h2 class="lesson-title">${sec.lesson.title}</h2><p class="lesson-tagline">${sec.lesson.tagline.replace(/<br><br>/g,'<br><span class="para-gap"></span>')}</p>${sec.lesson.tags?`<div class="lesson-tags">${sec.lesson.tags}</div>`:''}<div class="lesson-rule"></div>`;
   deck.appendChild(ls);allSlides.push(ls);lessonIdxs.push(allSlides.length-1);
   sec.cases.forEach(c=>{
-    const s=document.createElement('div');s.className=`slide case-slide${ac}${c.layout?' layout-'+c.layout:''}${c.gridCover?' grid-cover':''}`;s.dataset.type='case';s.dataset.year=sec.year;s.dataset.section=si;
+    const s=document.createElement('div');s.className=`slide case-slide${ac}${c.layout?' layout-'+c.layout:''}${c.gridCover?' grid-cover':''}${c.alt?' is-alt':''}`;s.dataset.type='case';s.dataset.year=sec.year;s.dataset.section=si;
+    if(c.deckTarget)s.dataset.deckTarget=c.deckTarget;
+    const altBadge=c.alt?`<div class="alt-badge">[ALT] ${c.alt===true?'':c.alt}</div>`:'';
     // layout: 'big' — full-slide statement text (bigText, optional title/subtitle/bigCaption)
     if(c.layout==='big'){
-      s.innerHTML=`<div class="big-stack">${c.title?`<h2 class="big-eyebrow">${c.title.replace(/\n/g,'<br>')}</h2>`:''}${c.subtitle?`<div class="big-sub">${c.subtitle}</div>`:''}${c.bigText?`<h1 class="big-text">${c.bigText.replace(/\n/g,'<br>')}</h1>`:''}${c.bigCaption?`<p class="big-caption">${c.bigCaption}</p>`:''}</div>`;
+      s.innerHTML=`<div class="big-stack">${c.title?`<h2 class="big-eyebrow">${c.title.replace(/\n/g,'<br>')}</h2>`:''}${c.subtitle?`<div class="big-sub">${c.subtitle}</div>`:''}${c.bigText?`<h1 class="big-text">${c.bigText.replace(/\n/g,'<br>')}</h1>`:''}${c.bigCaption?`<p class="big-caption">${c.bigCaption}</p>`:''}</div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
     }
-    // layout: 'placed' — PPTX-coordinate absolute positioning
-    // placedImages: [[src, left%, top%, width%, height%, optional_object-position], ...]
-    if(c.layout==='placed'&&c.placedImages){
-      const _mt=src=>{if(src.endsWith('.mp4')||src.endsWith('.webm'))return `<video src="${src}" autoplay loop muted playsinline>`;return `<img src="${src}" loading="lazy">`;};
-      const items=c.placedImages.map(([src,l,t,w,h,op])=>{const tag=_mt(src);const st=op?tag.replace(/>$/,` style="object-position:${op}">`):tag;return `<div class="placed-item" style="left:${l}%;top:${t}%;width:${w}%;height:${h}%">${st}</div>`;}).join('');
+    // layout: 'intro-duo' — two-character intro (Alex + Jun powering up with Unreal Engine fireballs)
+    if(c.layout==='intro-duo'&&c.duo){
+      const al=c.duo.alex,ju=c.duo.jun;
+      const sprite=(person,side)=>{
+        const isAlex=side==='alex';
+        const img=person.img?`<img class="duo-photo" src="${person.img}" alt="${person.label}">`:`<div class="duo-avatar" style="background:linear-gradient(135deg,${person.accent},#0b0d18)"><span>${person.label.slice(0,1)}</span></div>`;
+        return `<div class="duo-side duo-${side}" style="--duo-accent:${person.accent}">${img}<div class="duo-glow"></div><div class="duo-label"><div class="duo-name">${person.label}</div><div class="duo-role">${person.role}</div></div><div class="duo-fireball duo-fireball-${side}"></div></div>`;
+      };
+      s.innerHTML=`<div class="intro-duo-stage" data-variant="${c.variant||'matched'}">${sprite(al,'alex')}<div class="duo-center"><svg class="duo-ue" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="36" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="2.5"/><text x="40" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="900" font-size="22" fill="rgba(255,255,255,.9)">U</text></svg><div class="duo-spark"></div></div>${sprite(ju,'jun')}</div><div class="placed-overlay duo-overlay">${c.title?`<h3 class="placed-title">${c.title}</h3>`:''}<p class="placed-sub">Powered by Unreal Engine.</p></div>${altBadge}`;
+      deck.appendChild(s);allSlides.push(s);return;
+    }
+    // layout: 'sg-collage' — Secret Graveyard collage (consolidated from source 7-22)
+    if(c.layout==='sg-collage'&&c.collage){
+      const _mt=src=>(src.endsWith('.mp4')||src.endsWith('.webm'))?`<video src="${src}" autoplay loop muted playsinline></video>`:`<img src="${src}" loading="lazy">`;
+      const tiles=c.collage.map((src,i)=>`<div class="sg-tile sg-tile-${i%6}">${_mt(src)}</div>`).join('');
+      const stickyFragments=['v2_final','temporary','client-specific','don’t delete this folder'];
+      const stickies=stickyFragments.map((t,i)=>`<div class="sg-sticky sg-sticky-${i}">${t}</div>`).join('');
+      s.innerHTML=`<div class="sg-collage-stage">${tiles}${stickies}</div><div class="placed-overlay sg-overlay">${c.title?`<h3 class="placed-title">${c.title}</h3>`:''}${c.subtitle?`<p class="placed-sub">${c.subtitle}</p>`:''}</div>${altBadge}`;
+      deck.appendChild(s);allSlides.push(s);return;
+    }
+    // layout: 'sg-fragments' — typography slide of filename fragments
+    if(c.layout==='sg-fragments'&&c.fragments){
+      const frags=c.fragments.map((f,i)=>`<div class="sg-frag sg-frag-${i}">${f}</div>`).join('');
+      s.innerHTML=`<div class="sg-frag-stage">${c.title?`<h2 class="sg-frag-title">${c.title}</h2>`:''}<div class="sg-frag-grid">${frags}</div>${c.punchline?`<div class="sg-frag-punch">${c.punchline}</div>`:''}</div>${altBadge}`;
+      deck.appendChild(s);allSlides.push(s);return;
+    }
+    // layout: 'pattern-cycle' — diagram of the productizing cycle (NOTE on slide 23)
+    if(c.layout==='pattern-cycle'){
+      s.innerHTML=`<div class="pattern-stage">${c.title?`<h2 class="pattern-eyebrow">${c.title}</h2>`:''}<svg class="pattern-svg" viewBox="0 0 1000 540" aria-hidden="true">
+        <defs><marker id="pat-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="rgba(167,139,250,.8)"/></marker></defs>
+        <g class="pat-node" transform="translate(140,90)"><rect x="-110" y="-36" width="220" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#1</text></g>
+        <g class="pat-node" transform="translate(500,90)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Build quick &amp; dirty tool</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">demonstrate options</text></g>
+        <g class="pat-node" transform="translate(860,90)"><rect x="-100" y="-36" width="200" height="72" rx="14" fill="rgba(0,212,255,.08)" stroke="rgba(0,212,255,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Clarity</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">scope locked</text></g>
+        <g class="pat-node" transform="translate(140,270)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">New client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#2</text></g>
+        <g class="pat-node" transform="translate(500,270)"><rect x="-150" y="-36" width="300" height="72" rx="14" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Temporary feature in tool</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">duct-tape this once</text></g>
+        <g class="pat-node" transform="translate(140,440)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Third client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#3</text></g>
+        <g class="pat-node pat-node-final" transform="translate(620,440)"><rect x="-200" y="-42" width="400" height="84" rx="16" fill="rgba(244,63,94,.10)" stroke="rgba(244,63,94,.85)" stroke-width="2"/><text text-anchor="middle" y="-6" fill="#f0f4ff" font-size="18" font-weight="700">Whole new tool</text><text text-anchor="middle" y="20" fill="rgba(240,244,255,.7)" font-size="13">→ THIS is the productization moment</text></g>
+        <path d="M250,90 L370,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)"/>
+        <path d="M630,90 L760,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)"/>
+        <path d="M860,126 Q860,200 270,270" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
+        <path d="M270,270 L350,270" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)"/>
+        <path d="M500,306 Q500,380 270,440" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
+        <path d="M270,440 L420,440" stroke="rgba(244,63,94,.7)" stroke-width="2.2" fill="none" marker-end="url(#pat-arr)"/>
+      </svg>${c.bigCaption?`<p class="pattern-caption">${c.bigCaption}</p>`:''}</div>${altBadge}`;
+      deck.appendChild(s);allSlides.push(s);return;
+    }
+    // layout: 'toolbox-grid' — 4 products with their questions (slide 25)
+    if(c.layout==='toolbox-grid'&&c.tools){
+      const _mt=src=>(src.endsWith('.mp4')||src.endsWith('.webm'))?`<video src="${src}" autoplay loop muted playsinline></video>`:`<img src="${src}" loading="lazy">`;
+      const cards=c.tools.map(t=>`<div class="toolbox-card"><div class="toolbox-img">${_mt(t.img)}</div><div class="toolbox-name">${t.name}</div><div class="toolbox-q">${t.q}</div></div>`).join('');
+      s.innerHTML=`<div class="toolbox-stage">${c.title?`<h2 class="toolbox-title">${c.title}</h2>`:''}<div class="toolbox-grid">${cards}</div></div>${altBadge}`;
+      deck.appendChild(s);allSlides.push(s);return;
+    }
+    // layout: 'placed' — supports legacy placedImages OR new placedItems format
+    if(c.layout==='placed'&&(c.placedImages||c.placedItems)){
+      let items='';
+      if(c.placedImages){
+        const _mt=src=>{if(src.endsWith('.mp4')||src.endsWith('.webm'))return `<video src="${src}" autoplay loop muted playsinline>`;return `<img src="${src}" loading="lazy">`;};
+        items=c.placedImages.map(([src,l,t,w,h,op])=>{const tag=_mt(src);const st=op?tag.replace(/>$/,` style="object-position:${op}">`):tag;return `<div class="placed-item" style="left:${l}%;top:${t}%;width:${w}%;height:${h}%">${st}</div>`;}).join('');
+      } else {
+        items=c.placedItems.map(it=>{
+          const st=`style="left:${it.x}%;top:${it.y}%;width:${it.w}%;height:${it.h}%"`;
+          if(it.type==='qr-card'){
+            const qrSrc='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(it.url);
+            return `<div class="placed-item placed-qr" ${st}><div class="qr-card placed-qr-card"><img src="${qrSrc}" alt="QR"><div class="qr-label">${it.label||''}</div>${it.year?`<div class="qr-badge b-teal">${it.year}</div>`:''}</div></div>`;
+          }
+          if(it.type==='arrow'){
+            return `<div class="placed-item placed-arrow" ${st}><svg viewBox="0 0 60 40" preserveAspectRatio="none"><path d="M5,20 L50,20 M40,8 L50,20 L40,32" stroke="rgba(245,158,11,.85)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+          }
+          if(it.type==='mp4'||(it.src&&(it.src.endsWith('.mp4')||it.src.endsWith('.webm')))){
+            const lbl=it.label?`<div class="placed-item-label">${it.label}</div>`:'';
+            return `<div class="placed-item" ${st}><video src="${it.src}" autoplay loop muted playsinline></video>${lbl}</div>`;
+          }
+          const lbl=it.label?`<div class="placed-item-label">${it.label}</div>`:'';
+          return `<div class="placed-item" ${st}><img src="${it.src}" loading="lazy">${lbl}</div>`;
+        }).join('');
+      }
       const head=(c.title||c.subtitle)?`<div class="placed-overlay">${c.title?`<h3 class="placed-title">${c.title.replace(/\n/g,'<br>')}</h3>`:''}${c.subtitle?`<p class="placed-sub">${c.subtitle}</p>`:''}</div>`:'';
-      s.innerHTML=`<div class="placed-stage">${items}</div>${head}`;
+      s.innerHTML=`<div class="placed-stage">${items}</div>${head}${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
     }
     let imgHTML;
@@ -654,7 +955,7 @@ SECTIONS.forEach((sec,si)=>{
     } else {
       imgHTML=`<div class="media-cycler-mount" style="width:100%;height:100%"></div>`;
     }
-    s.innerHTML=`<div class="case-image">${imgHTML}</div><div class="case-content"><div class="case-ytag">Case Study &middot; ${sec.lesson.short||''}</div><h2 class="case-title">${c.title}</h2><p class="case-sub">${c.subtitle}</p><ul class="case-bl">${c.bullets.map(b=>`<li>${b.replace(/\n/g,'<br>')}</li>`).join('')}</ul></div>`;
+    s.innerHTML=`<div class="case-image">${imgHTML}</div><div class="case-content"><div class="case-ytag">Case Study &middot; ${sec.lesson.short||''}</div><h2 class="case-title">${c.title}</h2><p class="case-sub">${c.subtitle||''}</p><ul class="case-bl">${(c.bullets||[]).map(b=>`<li>${b.replace(/\n/g,'<br>')}</li>`).join('')}</ul></div>${altBadge}`;
     deck.appendChild(s);allSlides.push(s);
   });
 });
@@ -768,11 +1069,11 @@ const mapS=document.createElement('div');mapS.className='slide slide-map';mapS.d
 mapS.innerHTML=`<div class="map-label">The Journey, Mapped</div><svg id="map-svg" viewBox="0 0 1000 600"></svg>`;
 deck.appendChild(mapS);allSlides.push(mapS);
 
-// Close slide with inline Agile Lens SVG logo
-const cls=document.createElement('div');cls.className='slide';cls.dataset.type='close';
-cls.innerHTML=`<div class="close-ey">Thank You</div><h2 class="close-title">Let\u2019s Talk.</h2><p class="close-sub">Thinking spatially?</p>
-<div class="contact-row"><div class="contact-pill"><span class="lbl">Web</span>example.com</div><div class="contact-pill"><span class="lbl">Email</span>hi@example.com</div></div>
-<div class="close-qr-row"><div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://github.com/ibrews/spatial-deck" alt="QR"><div class="qr-label">Spatial Deck</div><div class="qr-badge b-teal">Fork it! Ship your own deck!</div></div></div>
+// Close slide \u2014 slide 97 (p109). Body text verbatim. NOTE: contact info in FMX style.
+const cls=document.createElement('div');cls.className='slide';cls.dataset.type='close';cls.dataset.deckTarget='p109';
+cls.innerHTML=`<div class="close-ey">Thank You</div><h2 class="close-title">If you\u2019ve already built it twice,<br>you may already have a product.</h2><p class="close-sub">Chat with us more outside \u2014 we\u2019ve got demos!</p>
+<div class="contact-row"><div class="contact-pill"><span class="lbl">Web</span>agilelens.com</div><div class="contact-pill"><span class="lbl">Email</span>alex@agilelens.com</div><div class="contact-pill"><span class="lbl">Email</span>jun@agilelens.com</div></div>
+<div class="close-qr-row"><div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fwww.linkedin.com%2Fin%2Falexcoulombe%2F" alt="QR Alex LinkedIn"><div class="qr-label">Alex on LinkedIn</div><div class="qr-badge b-teal">in/alexcoulombe</div></div><div class="qr-card"><img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fyu-jun-yeh-4a0929183%2F" alt="QR Jun LinkedIn"><div class="qr-label">Jun on LinkedIn</div><div class="qr-badge b-purple">in/yu-jun-yeh</div></div></div>
 <div style="position:absolute;bottom:clamp(30px,4vh,60px);left:50%;transform:translateX(-50%);opacity:.35;z-index:2"><svg width="200" height="40" viewBox="0 0 869 175" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M266.385 134.295L264.681 136H249.34L247.635 134.295L239.113 112.137L235.704 110.432H193.09L189.681 112.137L181.159 134.295L179.454 136H164.114L162.409 134.295V117.25L201.613 18.3878L203.318 16.6833H225.476L227.181 18.3878L266.385 117.25V134.295ZM230.59 88.2733L215.249 47.3647H213.545L198.204 88.2733L199.909 89.9778H228.886L230.59 88.2733ZM346.604 52.4783V127.477C346.604 158.159 327.854 171.795 303.991 171.795C283.537 171.795 269.901 161.568 268.196 146.227L269.901 144.523H290.355L292.059 146.227C293.764 149.636 297.173 151.341 303.991 151.341C315.923 151.341 322.741 144.523 322.741 129.182H321.036C321.036 129.182 314.218 137.705 298.878 137.705C278.423 137.705 261.378 120.659 261.378 93.3869C261.378 66.1145 278.423 49.0692 298.878 49.0692C314.218 49.0692 321.036 57.5919 321.036 57.5919H322.741L324.445 52.4783L326.15 50.7738H344.9L346.604 52.4783ZM285.241 93.3869C285.241 107.023 290.355 117.25 303.991 117.25C317.627 117.25 322.741 107.023 322.741 93.3869C322.741 79.7507 317.627 69.5235 303.991 69.5235C290.355 69.5235 285.241 79.7507 285.241 93.3869ZM378.964 35.433L377.259 37.1376H356.805L355.1 35.433V18.3878L356.805 16.6833H377.259L378.964 18.3878V35.433ZM378.964 134.295L377.259 136H356.805L355.1 134.295V52.4783L356.805 50.7738H377.259L378.964 52.4783V134.295ZM411.31 134.295L409.605 136H389.151L387.446 134.295V18.3878L389.151 16.6833H409.605L411.31 18.3878V134.295ZM496.496 93.3869V100.205L494.791 101.91H441.951L440.247 103.614C440.247 107.023 443.656 117.25 457.292 117.25C462.405 117.25 467.519 115.546 469.223 112.137L470.928 110.432H491.382L493.087 112.137C491.382 122.364 482.86 137.705 457.292 137.705C428.315 137.705 414.679 117.25 414.679 93.3869C414.679 69.5235 428.315 49.0692 455.587 49.0692C482.86 49.0692 496.496 69.5235 496.496 93.3869ZM469.223 84.8643L470.928 83.1597C470.928 81.4552 469.223 69.5235 455.587 69.5235C441.951 69.5235 440.247 81.4552 440.247 83.1597L441.951 84.8643H469.223ZM615.779 134.295L614.075 136H537.371L535.667 134.295V18.3878L537.371 16.6833H557.825L559.53 18.3878V113.841L561.234 115.546H614.075L615.779 117.25V134.295ZM687.249 93.3869V100.205L685.545 101.91H632.705L631 103.614C631 107.023 634.409 117.25 648.045 117.25C653.159 117.25 658.273 115.546 659.977 112.137L661.682 110.432H682.136L683.84 112.137C682.136 122.364 673.613 137.705 648.045 137.705C619.068 137.705 605.432 117.25 605.432 93.3869C605.432 69.5235 619.068 49.0692 646.341 49.0692C673.613 49.0692 687.249 69.5235 687.249 93.3869ZM659.977 84.8643L661.682 83.1597C661.682 81.4552 659.977 69.5235 646.341 69.5235C632.705 69.5235 631 81.4552 631 83.1597L632.705 84.8643H659.977ZM770.778 134.295L769.073 136H748.619L746.914 134.295V84.8643C746.914 76.3416 743.505 69.5235 733.278 69.5235C721.347 69.5235 714.528 76.3416 714.528 91.6824V134.295L712.824 136H692.37L690.665 134.295V52.4783L692.37 50.7738H711.119L712.824 52.4783L714.528 57.5919H716.233C719.642 54.1828 726.46 49.0692 738.392 49.0692C758.846 49.0692 770.778 62.7054 770.778 83.1597V134.295ZM847.495 110.432C847.495 124.068 837.268 137.705 809.995 137.705C786.132 137.705 772.496 125.773 772.496 108.728L774.2 107.023H794.654L796.359 108.728C796.359 115.546 801.473 117.25 809.995 117.25C818.518 117.25 823.631 115.546 823.631 110.432C823.631 103.614 816.813 103.614 806.586 101.91C796.359 100.205 774.2 95.0914 774.2 74.6371C774.2 61.0009 784.427 49.0692 809.995 49.0692C830.449 49.0692 845.79 57.5919 845.79 74.6371L844.086 76.3416H823.631L821.927 74.6371C821.927 71.2281 818.518 69.5235 809.995 69.5235C801.473 69.5235 798.064 71.2281 798.064 76.3416C798.064 83.1597 808.291 83.1597 818.518 84.8643C828.745 86.5688 847.495 89.9778 847.495 110.432Z" fill="white"/><circle cx="71" cy="73" r="60" stroke="white" stroke-width="8" fill="none"/><line x1="115" y1="117" x2="142" y2="155" stroke="white" stroke-width="8" stroke-linecap="round"/></svg></div>`;
 deck.appendChild(cls);allSlides.push(cls);
 

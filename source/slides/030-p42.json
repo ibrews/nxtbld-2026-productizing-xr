@@ -4,11 +4,13 @@
   "title": "Floor Tour",
   "text_runs": [
     "Floor Tour",
-    "Origin Story",
+    "Why this ROI works",
     "",
-    "Show prototype stills, shots from experimenting (maybe at the temporary Austin holodeck site, just for dramatic effect)"
+    "Gives you VR spatial feedback before you’ve even started any 3D files.",
+    "Works with your existing floor plan files, renders, and photos",
+    "Designed for self-service; lightweight app that runs on a standalone wireless device - designed for architecture pros and their clients"
   ],
   "directives": [],
   "media_refs": [],
-  "speaker_notes": "Floor Tour was built to be "
+  "speaker_notes": ""
 }

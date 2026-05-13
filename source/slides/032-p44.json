@@ -1,16 +1,17 @@
 {
   "index": 32,
   "page_id": "p44",
-  "title": "Floor Tour",
+  "title": "Blueprint Immersive",
   "text_runs": [
-    "Floor Tour",
-    "Why this ROI works",
-    "",
-    "Gives you VR spatial feedback before you’ve even started any 3D files.",
-    "Works with your existing floor plan files, renders, and photos",
-    "Designed for self-service; lightweight app that runs on a standalone wireless device - designed for architecture pros and their clients"
+    "Blueprint Immersive",
+    "Grew out of dozens of similar projects from 2013 - 2023",
+    ""
   ],
   "directives": [],
-  "media_refs": [],
+  "media_refs": [
+    "ppt/media/image29.png",
+    "ppt/media/image46.png",
+    "ppt/media/image48.png"
+  ],
   "speaker_notes": ""
 }

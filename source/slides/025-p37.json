@@ -1,16 +1,28 @@
 {
   "index": 25,
   "page_id": "p37",
-  "title": "Floor Tour",
+  "title": "Build and organize your toolbox",
   "text_runs": [
+    "Build and organize your toolbox",
     "Floor Tour",
-    "“Will this space fit our needs?”",
-    "",
-    "NOTE: Show side by side of top-down floor plan and screenshot from inside Floor Tour"
+    "“Does this space feel right?”",
+    "Blueprint Immersive",
+    "“Does this layout works best?”",
+    "Hyperreal Estate",
+    "“Does this design feel complete?”",
+    "Holodeck Anywhere",
+    "“Does this emotionally connect?",
+    "”",
+    "NOTE: Perhaps generate an animation as a second step for this slide where each of these images morphs into a labeled tool in a nicely organized toolbox."
   ],
   "directives": [
-    "NOTE: Show side by side of top-down floor plan and screenshot from inside Floor Tour"
+    "NOTE: Perhaps generate an animation as a second step for this slide where each of these images morphs into a labeled tool in a nicely organized toolbox."
   ],
-  "media_refs": [],
-  "speaker_notes": ""
+  "media_refs": [
+    "ppt/media/image14.png",
+    "ppt/media/image9.png",
+    "ppt/media/image83.gif",
+    "ppt/media/image37.jpg"
+  ],
+  "speaker_notes": "A"
 }

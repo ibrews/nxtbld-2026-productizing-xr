@@ -1,15 +1,18 @@
 {
   "index": 26,
   "page_id": "p38",
-  "title": "",
+  "title": "Floor Tour",
   "text_runs": [
-    "",
-    ""
+    "Floor Tour",
+    "“Will this space fit our needs?”",
+    "NOTE: show floor plan (left image) becoming VR experience (right image)."
   ],
-  "directives": [],
+  "directives": [
+    "NOTE: show floor plan (left image) becoming VR experience (right image)."
+  ],
   "media_refs": [
-    "ppt/media/image20.gif",
-    "ppt/media/image43.gif"
+    "ppt/media/image45.jpg",
+    "ppt/media/image12.png"
   ],
-  "speaker_notes": ""
+  "speaker_notes": "J"
 }

@@ -1,12 +1,17 @@
 {
   "index": 29,
   "page_id": "p41",
-  "title": "",
-  "text_runs": [],
+  "title": "Floor Tour",
+  "text_runs": [
+    "Floor Tour",
+    "Productized version",
+    "",
+    "GIF or video showing it in use",
+    ""
+  ],
   "directives": [],
   "media_refs": [
-    "ppt/media/image26.png",
-    "ppt/media/image18.png"
+    "ppt/media/image14.png"
   ],
-  "speaker_notes": ""
+  "speaker_notes": "J\nDo we want to make a qr code to link to the app lab or anything? "
 }

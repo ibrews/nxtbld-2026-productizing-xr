@@ -3,12 +3,30 @@
   "page_id": "p19",
   "title": "The Secret Graveyard",
   "text_runs": [
-    "The Secret Graveyard"
+    "The Secret Graveyard",
+    "NOTE: using generated diagrams/ generated images/ and images/gifs from the subsequent ",
+    "slides",
+    " titled “Secret Graveyard” construct 1-3 slides of a ",
+    "toolbox",
+    " of:",
+    "Visual:",
+    " A collage/grid of:",
+    "internal tools",
+    "hacked Unreal viewers",
+    "prototype UIs",
+    "VR walkthrough screenshots",
+    "spreadsheets",
+    "half-finished configurators",
+    "Text fragments:",
+    "“temporary”",
+    "“v2_final”",
+    "“client-specific”",
+    "“don’t delete this folder”",
+    "The Point: Every studio has these. "
   ],
-  "directives": [],
-  "media_refs": [
-    "ppt/media/image10.png",
-    "ppt/media/image25.jpg"
+  "directives": [
+    "NOTE: using generated diagrams/ generated images/ and images/gifs from the subsequent"
   ],
-  "speaker_notes": ""
+  "media_refs": [],
+  "speaker_notes": "J"
 }

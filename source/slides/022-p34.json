@@ -1,20 +1,13 @@
 {
   "index": 22,
   "page_id": "p34",
-  "title": "The Pattern",
+  "title": "The Secret Graveyard",
   "text_runs": [
-    "The Pattern",
-    "",
-    "",
-    "Text: ",
-    "Stop throwing away unfinished/temp solutions",
-    "NOTE:",
-    "Generate clear diagram showing:",
-    "Client request -> build quick and dirty tool to demonstrate options -> clarity -> new client request -> new temporary feature in tool to demonstrate solution -> third client request -> whole new tool for demonstration"
+    "The Secret Graveyard"
   ],
-  "directives": [
-    "NOTE:"
+  "directives": [],
+  "media_refs": [
+    "ppt/media/image16.png"
   ],
-  "media_refs": [],
   "speaker_notes": ""
 }

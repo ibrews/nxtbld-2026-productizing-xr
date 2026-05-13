@@ -1,12 +1,15 @@
 {
   "index": 27,
   "page_id": "p39",
-  "title": "",
-  "text_runs": [],
+  "title": "Floor Tour",
+  "text_runs": [
+    "Floor Tour",
+    "Origin"
+  ],
   "directives": [],
   "media_refs": [
-    "ppt/media/image49.jpg",
-    "ppt/media/image19.png"
+    "ppt/media/image22.png",
+    "ppt/media/image25.gif"
   ],
-  "speaker_notes": ""
+  "speaker_notes": "A\nShow prototype stills, shots from experimenting (maybe at the temporary Austin holodeck site, just for dramatic effect)"
 }

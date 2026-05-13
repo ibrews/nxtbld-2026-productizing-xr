@@ -1,28 +1,16 @@
 {
   "index": 24,
   "page_id": "p36",
-  "title": "Build and organize your toolbox",
+  "title": "What’s Worth Productizing?",
   "text_runs": [
-    "Build and organize your toolbox",
-    "Floor Tour",
-    "“Does this space feel right?”",
-    "Blueprint Immersive",
-    "“Does this layout works best?”",
-    "Hyperreal Estate",
-    "“Does this design feel complete?”",
-    "Holodeck Anywhere",
-    "“Does this emotionally connect?",
-    "”",
-    "NOTE: Perhaps generate an animation as a second step for this slide where each of these images morphs into a labeled tool in a nicely organized toolbox. The text can also mor"
+    "What’s Worth Productizing?",
+    "Same question, different clients.",
+    "",
+    "Reusable process, not reusable output.",
+    "",
+    "Hone what your clients celebrate to be useful to other clients."
   ],
-  "directives": [
-    "NOTE: Perhaps generate an animation as a second step for this slide where each of these images morphs into a labeled tool in a nicely organized toolbox. The text can also mor"
-  ],
-  "media_refs": [
-    "ppt/media/image9.png",
-    "ppt/media/image17.png",
-    "ppt/media/image50.gif",
-    "ppt/media/image46.jpg"
-  ],
-  "speaker_notes": ""
+  "directives": [],
+  "media_refs": [],
+  "speaker_notes": "J"
 }

@@ -1,13 +1,15 @@
 {
   "index": 33,
   "page_id": "p45",
-  "title": "Blueprint Immersive",
+  "title": "",
   "text_runs": [
-    "Blueprint Immersive",
-    "“Which layouts do we actually like?”",
+    "",
     ""
   ],
   "directives": [],
-  "media_refs": [],
+  "media_refs": [
+    "ppt/media/image23.gif",
+    "ppt/media/image32.gif"
+  ],
   "speaker_notes": ""
 }
