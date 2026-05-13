@@ -1,11 +1,16 @@
 {
   "index": 87,
   "page_id": "p99",
-  "title": "",
-  "text_runs": [],
-  "directives": [],
+  "title": "https://drive.google.com/file/d/1SXAUxtVYJlNcSHke3oN7EHQodWTBYZo3/view?usp=drive_link",
+  "text_runs": [
+    "NOTE: ",
+    "https://drive.google.com/file/d/1SXAUxtVYJlNcSHke3oN7EHQodWTBYZo3/view?usp=drive_link"
+  ],
+  "directives": [
+    "NOTE:"
+  ],
   "media_refs": [
-    "ppt/media/image82.png"
+    "ppt/media/image83.jpg"
   ],
   "speaker_notes": ""
 }

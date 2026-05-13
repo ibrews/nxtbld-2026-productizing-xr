@@ -1,12 +1,22 @@
 {
   "index": 73,
   "page_id": "p85",
-  "title": "Gifs at various resolutions here:",
+  "title": "COMPARISON MODELS",
   "text_runs": [
-    "Gifs at various resolutions here:",
-    "https://drive.google.com/drive/folders/1DyUxmxK2f9o9hMFO4QquVCFk7i8QhKbU?usp=drive_link"
+    "COMPARISON MODELS",
+    "Opt 1 v Opt 2",
+    " ",
+    "Opt 1 v Opt 3",
+    "Opt 2 v Opt 3",
+    "Opt 3 Day v Opt 3 Night"
   ],
   "directives": [],
-  "media_refs": [],
-  "speaker_notes": ""
+  "media_refs": [
+    "ppt/media/image71.jpg",
+    "ppt/media/image65.png",
+    "ppt/media/image73.jpg",
+    "ppt/media/image80.jpg",
+    "ppt/media/image79.jpg"
+  ],
+  "speaker_notes": "Please double check if we can use these - I believe we aren’t allowed to show anything from the actual property"
 }

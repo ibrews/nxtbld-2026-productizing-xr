@@ -1,14 +1,12 @@
 {
   "index": 93,
   "page_id": "p105",
-  "title": "Holodeck Anywhere",
-  "text_runs": [
-    "Holodeck Anywhere",
-    "",
-    "The experience",
-    "Images in headset and external"
-  ],
+  "title": "",
+  "text_runs": [],
   "directives": [],
-  "media_refs": [],
-  "speaker_notes": ""
+  "media_refs": [
+    "ppt/media/image46.gif",
+    "ppt/media/image18.png"
+  ],
+  "speaker_notes": "https://drive.google.com/file/d/1wHbNiKbU0T5PBD9zcGbRn0J5RYdLG5hA/view?usp=drive_link"
 }

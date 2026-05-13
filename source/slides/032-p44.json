@@ -5,9 +5,14 @@
   "text_runs": [
     "Blueprint Immersive",
     "“Which layouts do we actually like?”",
-    ""
+    "",
+    "Note: video lives: https://drive.google.com/file/d/1uhRl0E5OVqpB7_nYMHjQXoKXqW7-7VA1/view?usp=sharing"
   ],
-  "directives": [],
-  "media_refs": [],
+  "directives": [
+    "Note: video lives: https://drive.google.com/file/d/1uhRl0E5OVqpB7_nYMHjQXoKXqW7-7VA1/view?usp=sharing"
+  ],
+  "media_refs": [
+    "ppt/media/image23.jpg"
+  ],
   "speaker_notes": ""
 }

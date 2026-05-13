@@ -4,15 +4,9 @@
   "title": "The Pipeline",
   "text_runs": [
     "The Pipeline",
-    "Shared infrastructure diagram",
-    "Ingestion, colocation, etc",
-    "Note: Make a cleaner version of this diagram"
+    "This only works if the pipeline compounds"
   ],
-  "directives": [
-    "Note: Make a cleaner version of this diagram"
-  ],
-  "media_refs": [
-    "ppt/media/image90.png"
-  ],
+  "directives": [],
+  "media_refs": [],
   "speaker_notes": ""
 }

@@ -1,14 +1,18 @@
 {
   "index": 98,
   "page_id": "p110",
-  "title": "AI is compressing the ladder",
+  "title": "The Pipeline",
   "text_runs": [
-    "AI is compressing the ladder",
-    "Previous floor tour budget can now get a BPI outcome",
-    "No idea if this is true, but, ya know, something like this because he said he wanted to ",
-    "include AI in the discussion"
+    "The Pipeline",
+    "Shared infrastructure diagram",
+    "Ingestion, colocation, etc",
+    "Note: Make a cleaner version of this diagram"
   ],
-  "directives": [],
-  "media_refs": [],
+  "directives": [
+    "Note: Make a cleaner version of this diagram"
+  ],
+  "media_refs": [
+    "ppt/media/image90.png"
+  ],
   "speaker_notes": ""
 }

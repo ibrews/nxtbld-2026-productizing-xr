@@ -10,6 +10,8 @@
     "Designed for self-service; lightweight app that runs on a standalone wireless device - designed for architecture pros and their clients"
   ],
   "directives": [],
-  "media_refs": [],
+  "media_refs": [
+    "ppt/media/image26.png"
+  ],
   "speaker_notes": "J"
 }
