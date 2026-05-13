@@ -1,7 +1,7 @@
 # NXT BLD 2026 — Productizing XR for Architecture · AI Agent Handoff
 
 > **READ THIS FILE TOP TO BOTTOM BEFORE TOUCHING ANY SLIDES.**
-> Last updated: 2026-05-13 · Session 2 (~15 deck slides built, slide 3 sprite fixed, SG intro restored, skip-slides honored)
+> Last updated: 2026-05-13 · Session 3 (22-slide deck: 4 chapter intros added, annotation text-edit bug fixed, slide 3 hair + UE5 boxes redesigned, slide 10 real toolbox morph, slide 20 map nav fix, slide 21 sprites pop-in)
 
 ---
 
@@ -27,49 +27,83 @@ python3 tools/sync_gslides.py pull              # apply
 python3 tools/sync_gslides.py status --pending  # what's left
 ```
 
-The dev server is already configured in `.claude/launch.json` upstream (name: `spatial-deck-3000`). It serves this repo at <http://localhost:3000>. **Cmd+Shift+R the preview tab** — there's an aggressive HTTP cache.
+The dev server config lives at `.claude/launch.json` (name: `spatial-deck-3000`, port 3000, Python `http.server`, `autoPort:false`). Serves at <http://localhost:3000>. **Cmd+Shift+R the preview tab** — there's an aggressive HTTP cache.
+
+If port 3000 is in use, `lsof -i :3000` then kill the existing process before calling `preview_start`. The previous-session Python server lingers.
 
 ---
 
-## Current state (after Session 2)
+## Current state (after Session 3)
 
-15 deck slides + cover + close, of ~111 source slides:
+22 deck slides, of ~112 source slides. Numbering shifted from Session 2 because 4 product-chapter intro slides were inserted.
 
 | # | Slide | Source | Layout |
 |---|---|---|---|
+| 0 | Settings (Spatial Deck Creator v0.0.5) | — | settings |
 | 1 | Cover (cycle anim + Agile Lens logo) | p13 | custom HTML |
 | 2 | Agenda (8 bullets + cycling markers) | p15 | `big` |
-| 3 | Alex+Jun duo intro (pixel sprites + UE5 power-up) | p16 (+p17 folded) | `intro-hxr` |
-| 4 | Third in a Trilogy (2 QR cards + thumbnails) | p18 | `trilogy` |
+| 3 | Alex+Jun duo intro (sprites + UE5 power-up) | p16 (+p17 folded) | `intro-hxr` |
+| 4 | NXT BLD: Third in a Trilogy (large QRs right-anchored) | p18 | `trilogy` |
 | 5 | The Secret Graveyard intro | p19 | `big` |
-| 6 | The Toolbox Nobody Talks About (12-tile collage, skips honored) | p20–p34 (excl p25, p27) | `sg-collage` |
-| 7 | The filenames tell the story | p19 typography | `sg-fragments` |
-| 8 | The Pattern (7-node SVG flowchart) | p35 | `pattern-cycle` |
-| 9 | What's Worth Productizing? | p36 | `big` |
-| 10 | Build and organize your toolbox (4 cards) | p37 | `toolbox-grid` |
-| 11–14 | Floor Tour series | p38–p41 | `placed` |
-| 15 | Bonus (upstream) | — | spatial-deck base |
-| 16 | Map (upstream) | — | spatial-deck base |
-| 17 | Close (contact pills + 2 LinkedIn QRs) | was p109, now p102 in latest sync | custom HTML |
+| 6 | The Toolbox Nobody Talks About (12-tile collage) | p20–p34 (excl p25, p27) | `sg-collage` |
+| 7 | The filenames tell the story ("temp"/"v12_finalFINAL"/"DELETE ME"/"donotdelete" — user-edited verbatim) | p19 typography | `sg-fragments` |
+| 8 | The Pattern (7-node SVG flowchart + UE5 blueprint pulse animation) | p35 | `pattern-cycle` |
+| 9 | What's Worth Productizing? (3-tier hierarchy) | p36 | `big` |
+| 10 | Build and organize your toolbox + Right Arrow → toolbox-morph substep (cards fly into a real toolbox SVG with 4 color-coded chips and "Same toolbox. *Different questions.*" tagline) | p37 | `toolbox-grid` |
+| 11 | Floor Tour intro (NEW chapter intro) | p38 intro | `big` |
+| 12 | Floor plan → arrow → VR (file content swap fixed) | p38 | `placed` |
+| 13 | Floor Tour Origin (3 images; ⚠ 4th GIF dropped by PPTX export) | p39 | `placed` |
+| 14 | RSC + VR comparison (hierarchy fixed: VR 3× area of RSC logo) | p40 | `placed` |
+| 15 | Floor Tour Productized version | p41 | `placed` |
+| 16 | Blueprint Immersive intro (NEW) — accent `teal` | p44 | `big` |
+| 17 | Hyperreal Estate intro (NEW) — accent `rose` | p67 | `big` |
+| 18 | Holodeck Anywhere intro (NEW) — accent `purple` | p88 | `big` |
+| 19 | Bonus (upstream lesson) | — | spatial-deck base |
+| 20 | Map / The Journey (7 chapter nodes + BONUS, click-nav fixed) | — | spatial-deck base |
+| 21 | Close (contact + QRs + **pop-in Alex+Jun sprites**) | p115 | custom HTML |
+
+---
+
+## Drive video URLs (Drive metadata is stripped by PPTX export — captured manually)
+
+These slides reference videos hosted on Google Drive. The PPTX dropped the video binaries; some URLs were captured in slide text/notes by Alex so we could recover them:
+
+| Source page | Context | Drive URL |
+|---|---|---|
+| p26 | Secret Graveyard | `drive.google.com/file/d/1o7qIJzwDX25qRWAi60ofs2Fdc8IXNsZ_` |
+| p44 | Blueprint Immersive — "Which layouts do we actually like?" | `drive.google.com/file/d/1uhRl0E5OVqpB7_nYMHjQXoKXqW7-7VA1` |
+| p61 | "Import Datasmith" | `drive.google.com/file/d/1DcUnMRNP1Ug8q_zIXIV89XBg99THZq7o` |
+| p63 | "Jump to seat" | `drive.google.com/file/d/19XlCnYgDuLcsO0K67J6Vye0dqX7-xP2V` |
+| p64 | "Design options" (same as p44) | `drive.google.com/file/d/1uhRl0E5OVqpB7_nYMHjQXoKXqW7-7VA1` |
+| p74 | *(untitled)* | `drive.google.com/file/d/1RAdPw-eigVu5-16mWSJEG7a7tX7I3A1-` |
+| p76 | *(untitled)* | `drive.google.com/file/d/1exxhg7yv2lkpxoGq-9DT297JstNNW8wQ` |
+| p84 | "Gifs at various resolutions" — Drive **folder** | `drive.google.com/drive/folders/1DyUxmxK2f9o9hMFO4QquVCFk7i8QhKbU` |
+| p99 | *(untitled)* | `drive.google.com/file/d/1SXAUxtVYJlNcSHke3oN7EHQodWTBYZo3` |
+| p100 | *(untitled)* | `drive.google.com/file/d/1edKWxk0zROShb-hXweH5MeIx9SPtBwRl` |
+| p105 | *(in speaker_notes only)* | `drive.google.com/file/d/1wHbNiKbU0T5PBD9zcGbRn0J5RYdLG5hA` |
+
+p74, p76, p99, p100, p105 are completely untitled — Alex needs to identify which product chapter each one belongs to before building.
 
 ---
 
 ## Top priority for the NEXT session
 
-**1. Ingest the latest Google Slides updates — especially the videos.** Alex has been adding videos. The user said:
+**1. Build the unbuilt product-chapter content.** ~80 source slides waiting. After each chapter's intro slide (already built):
+- Blueprint Immersive content (p44–p66, ~22 slides)
+- Hyperreal Estate content (p67–p86, ~12 slides — p86 now NOT skipped, see "Skip slide drift" below)
+- Holodeck Anywhere content (p88–p108, ~20 slides)
+- The Pipeline (p109–p110)
+- AI chapter (p111–p112) — ⚠ p111 has draft text "No idea if this is true…" that violates VERBATIM
+- "Where Are You in the Cycle?" callback (p113)
+- "Secret 5th Rung" (p114)
 
-> "looking at all the updates to google slides (especially all the videos I've added, noted by google drive links since that metadata seems to get lost when a google slides deck gets downloaded)"
+**2. Slide 13 missing 4th image.** Source p39 has a 4th `<p:pic>` (`Villa Floorplan Walkthrough F.gif`) at top-right, but the PPTX export stripped its binary (picture frame exists, `r:embed` missing). Either (a) re-export `source/deck.pptx` from Google Slides — may be transient, or (b) Alex manually downloads the GIF and drops it at `media/nxtbld/floor-27-d.{png|gif}`, then wire into placedItems at ~x:55, y:2, w:42, h:24.
 
-So when you `pull`:
-- `sync_gslides.py` will catch new slides + text + image changes
-- **But Google Drive video embeds get LOST in the PPTX export** — they appear as black-box placeholders in the source. To recover the real Drive URLs, **manually open the live Google Slides** and check each modified/new slide for embedded videos. Cross-reference with the slide's notes for any drive.google.com link the user typed.
-- Update `source/slides/<page-id>.json` manually with the Drive URLs if helpful, or just note them in your session context.
+**3. Speaker notes additions never surfaced.** Audit found scripted opening lines for slides 9 (J), 11 (J), 12 (A), 13 (A) that aren't in the deck's speaker-notes display. Surface them.
 
-**2. Fresh QA notes pass.** Alex will share new feedback after looking at the current rebuilt deck. Expect notes on slides 3 (duo intro), 5–7 (Secret Graveyard sequence), 8 (The Pattern), 11–14 (Floor Tour), 17 (close).
+**4. p17 client logo wall.** Currently folded into slide 3. Source still asks for it. Decide: separate slide or keep folded.
 
-**3. Slides 30–101 not built yet.** ~80 source slides waiting. The product chapters (Blueprint Immersive, Hyperreal Estate, Holodeck Anywhere), the callback "Where Are You in the Cycle?" (source p107), the "Secret 5th Rung" (source p108), plus the close at the new p102.
-
-**4. Close slide page-id mismatch.** Currently `index.html` line ~1136 has `cls.dataset.deckTarget='p109'` but the latest sync moved it to p102. Update.
+**5. p36 "drop in keywords" NOTE directive.** Add `colocation` / `Data ingestion` / `multiuser` / `Optimization pipeline` visual to slide 9.
 
 ---
 
@@ -81,8 +115,10 @@ So when you `pull`:
 ### VERBATIM rule
 Source slide body text NOT prefixed with `NOTE:` must appear on the deck slide as-is. **Do not invent or paraphrase.** If you have a real alternative, build an ADDITIONAL slide with `alt:'<reason>'` flag right after — it renders with an `[ALT]` corner badge.
 
+**Exception (slide 7):** Alex explicitly overrode source fragments via annotation tool. Current fragments are `"temp"` / `"v12_finalFINAL"` / `"DELETE ME"` / `"donotdelete"` — these are user direction, NOT source. Don't revert.
+
 ### NOTE: directives
-Source body text prefixed with `NOTE:` is an instruction TO YOU describing something to generate (animation, diagram, sprite scene, layout). The text after `NOTE:` is the spec for that generation, NOT slide copy.
+Source body text prefixed with `NOTE:` is an instruction TO YOU describing something to generate (animation, diagram, sprite scene, layout). The text after `NOTE:` is the spec, NOT slide copy.
 
 ### Google Slides "Skip slide" → never use content from these
 The Google Slides "Skip slide" feature marks slides as `<p:sld show="0">` in the PPTX. **Never put their text or media in the deck.** To find them:
@@ -95,40 +131,45 @@ for f in /tmp/check/ppt/slides/slide*.xml; do
 done | sort -n
 ```
 
-As of 2026-05-13: source slides 2, 13, 15, 45, 46, 47, 48, 74 are skipped. **The SG collage on deck slide 6 already excludes p25 + p27** (source slides 13 + 15).
+**Skip slide drift between syncs:** as of 2026-05-13 sync, skipped slides are 2, 13, 15, 45, 46, 47, 48, **73**. Previously slide 74 was skipped instead of 73. Means p85 "COMPARISON MODELS" is now hidden but p86 "Hyperreal Estate" is now live. Re-run the check every sync — Alex toggles skip flags.
 
 ### Media filename stability across syncs
-**The PPTX export renumbers `image*.png` between pulls.** What was `image10.png` in one pull is a totally different image in the next. **Never reference `source/media/imageN.*` directly from `index.html`.** Always copy to `media/nxtbld/<semantic-name>.png` first. Current scheme:
+**The PPTX export renumbers `image*.png` between pulls.** What was `image10.png` in one pull is a totally different image in the next. **Never reference `source/media/imageN.*` directly from `index.html`.** Always copy to `media/nxtbld/<semantic-name>.png` first.
 
-- `jun.png` — Yu-Jun's headshot (slide 4 first media)
-- `trilogy-talk1.png` (NXT BLD II, Architect in Metaverse) / `trilogy-talk2.png` (NXT BLD I, How VR Helped Theater) — talk thumbnails
-- `sg-01.png` … `sg-16.png` — Secret Graveyard collage tiles, slotted by non-skipped slide order (gaps where slides 13 + 15 are skipped)
-- `toolbox-1.png`, `toolbox-2.png`, `toolbox-3.mp4`, `toolbox-4.jpg` — slide 25 (4 products)
-- `floor-26-plan.jpg`, `floor-26-vr.png`, `floor-27-{a,b,c}.{png,mp4}`, `floor-28-{a,b}.png`, `floor-29-{a,b}.png` — Floor Tour series
+**Worse: file *contents* can also shift even when names match.** During Session 3 we discovered `media/nxtbld/floor-26-plan.jpg` actually contained the VR shot and `floor-26-vr.png` contained the floor plan — the filenames had become wrong after a prior sync. Fix was to swap `src:` paths in the placedItems rather than rename files. Always sanity-check images by content when slides look wrong.
+
+Current scheme:
+- `jun.png` — Yu-Jun's headshot (slide 4 first media, unused after trilogy rebuild)
+- `trilogy-talk1.png` (NXT BLD II) / `trilogy-talk2.png` (NXT BLD I) — talk thumbnails
+- `sg-01.png`…`sg-16.png` — Secret Graveyard collage tiles, slotted by non-skipped slide order
+- `toolbox-1.png`, `toolbox-2.png`, `toolbox-3.mp4`, `toolbox-4.jpg` — slide 10 products
+- `floor-26-plan.jpg` (actually VR shot), `floor-26-vr.png` (actually plan), `floor-27-{a,b,c}.{png,mp4}`, `floor-28-{a,b}.png`, `floor-29-{a,b}.png`
 - `agilelens_logo.svg` — cover logo (white-on-dark via `filter:brightness(0) invert(1)`)
-- `GoldAuthorized.png` + `ue5logo.png` at REPO ROOT — UE5 fireball projectiles for slide 3's UE5 power-up substep
+- `GoldAuthorized.png` + `ue5logo.png` at REPO ROOT — UE5 fireball projectiles
 
 ---
 
 ## DO NOT
 
-1. Generate slide body text that isn't called for by a `NOTE:` directive. Verbatim from source.
+1. Generate slide body text that isn't called for by a `NOTE:` directive. Verbatim from source. (Slide 7 is a documented user-override exception.)
 2. Use any content from slides marked `show="0"` (Google Slides "Skip slide").
 3. Reference `source/media/imageN.*` directly from `index.html` — image numbers shift between syncs.
-4. Add per-chapter lesson slides. The build loop intentionally skips them. Chapter intros are regular `layout:'big'` cases.
+4. Add per-chapter lesson slides. The build loop intentionally skips them. Chapter intros are regular `layout:'big'` cases (e.g., slides 11, 16, 17, 18).
 5. Manually edit `source/slides/*.json` or `gslides-manifest.json` — both are generated. Edit Google Slides and `pull`.
-6. **Set `transform-origin: center bottom` on the avatar inner anim** — it resolves to the SVG viewport center, not the avatar's, and causes walkers to float ~200px above the floor. Leave at default (0,0). (See "Lessons learned" below — this was an entire session's hunt to find.)
-7. Commit files >10MB without checking `.gitignore`. Source/deck.pptx is gitignored.
-8. Trust the preview SUBAGENT's filesystem grep — they inherit the *session's* cwd which is `/Users/alex/git/fmx-2026-spatial-storytelling/`, not this repo. They will report wrong things. Use the `mcp__Claude_Preview__*` tools DIRECTLY for verification.
+6. **Set `transform-origin: center bottom` on the avatar inner anim** — it resolves to the SVG viewport center, not the avatar's, and causes walkers to float ~200px above the floor. Leave at default (0,0). (See "Lessons learned" below.)
+7. Commit files >10MB without checking `.gitignore`. `source/deck.pptx` is gitignored.
+8. Trust the preview SUBAGENT's filesystem grep — they inherit the *session's* cwd. Use the `mcp__Claude_Preview__*` tools DIRECTLY for verification.
+9. **Fan out parallel background agents on the same dense single-file repo without thinking about it.** Three concurrent agents writing `index.html` is technically OK because Edit uses exact-string matching, but a 4th agent dispatch when context is large will burn the 500-tool-call limit. Prefer 2 agents max in flight unless tasks touch fully disjoint file regions.
 
 ## DO
 
-1. **Re-sync at the start of every session.** `pull --dry-run` then `pull`.
+1. **Re-sync at the start of every session.** `pull --dry-run` then `pull`. Audit text + media changes for ALREADY-BUILT slides before adding new ones.
 2. **Cmd+Shift+R** the preview tab before judging anything visual.
 3. **Use the preview MCP tools directly** — `preview_start`, `preview_eval`, `preview_screenshot`, `preview_snapshot`, `preview_resize`. The preview subagents bounce off cwd confusion.
 4. **Resize preview to 1920×1080** before judging sprite slides — the `.intro-grid` switches to column layout below 900px.
-5. **Press Right Arrow on slide 3** to advance through substeps: `showBio` → `playDuoUE5PowerUp` (fireball storm + subUE5 reveal) → `showStats` (count-up tally with chime).
+5. **Press Right Arrow on slide 3** to advance through substeps. Substep flow has changed — see "Duo intro substeps" below.
 6. **Mark slides `generated` as you implement them** — `python3 tools/sync_gslides.py mark <page-id> generated --deck-target "SECTIONS[N].cases[M]"`.
+7. **Spawn background agents for substantive work** with `run_in_background:true` so the user can keep typing notes. End your turn quickly after spawning. Don't verify in the same turn as the spawn.
 
 ---
 
@@ -136,24 +177,57 @@ As of 2026-05-13: source slides 2, 13, 15, 45, 46, 47, 48, 74 are skipped. **The
 
 | Layout | Where | Purpose |
 |---|---|---|
-| `intro-hxr` | slide 3 | Two pixel-art walker sprites (Alex + Yu-Jun) walk in, jump, grab VR headsets, power up, then UE5 power-up substep with fireballs |
-| `trilogy` | slide 4 | 2-up: thumbnail + year/title + QR per talk |
+| `intro-hxr` | slide 3 | Two pixel-art walker sprites walk in, jump, grab VR headsets, power up — then UE5 substep: re-jump to TWO UE5 boxes (at headset positions x=140, x=260) and fireball storm |
+| `trilogy` | slide 4 | 2-up: thumbnail + year/title + LARGE QR (max 140px, right-anchored via `flex-direction:row-reverse`) |
 | `sg-collage` | slide 6 | 12-tile collage with sticky-note text overlays |
 | `sg-fragments` | slide 7 | 4 stylized filenames in 2×2 grid (distinct colors) + punchline |
-| `pattern-cycle` | slide 8 | 7-node SVG flowchart of the productize-vs-rebuild cycle |
-| `toolbox-grid` | slide 10 | 4 product cards with name + question tagline |
-| `placed` (extended) | slides 11–14 | Now accepts `placedItems:[{type,src,x,y,w,h,...}]` with `img`/`mp4`/`arrow`/`qr-card` types in addition to legacy `placedImages` arrays |
+| `pattern-cycle` | slide 8 | 7-node SVG flowchart with UE5-blueprint-style pulse + flow animations |
+| `toolbox-grid` | slide 10 | 4 product cards (`aspect-ratio:4/3` images) with Right Arrow → toolbox-morph substep |
+| `big` | slides 2, 5, 9, 11, 16, 17, 18 | Statement slides. Accent classes: `amber` / `teal` / `rose` / `purple` |
+| `placed` (extended) | slides 12–15 | `placedItems:[{type,src,x,y,w,h,...}]` with `img`/`mp4`/`arrow`/`qr-card` types |
+| close + sprites | slide 21 | Contact pills + QRs + pop-in Alex/Jun avatars (left/right) |
 
-Animation helpers (in the duo intro IIFE near the bottom of `index.html`'s main script): `buildAvatar` (pixel-art SVG, supports `withBeard`/`withGlasses`/`longHair`/`noBrows` flags), `paintLongHair` (Jun's curtains), `paintWornHeadset` (the VR visor painted on after power-up), `shootFireball` (UE5/GoldAuthorized projectiles), `playIntroPowerUpSfx`/`playZapSfx`/`playTallyChing` (Web Audio synth).
+**Animation helpers** (in IIFEs near the bottom of the main script):
+- `buildAvatar(parent, opts)` — pixel-art SVG, supports `withBeard`/`withGlasses`/`longHair`/`noBrows` flags
+- `paintLongHair(body, opts)` — **asymmetric center-parted style** (Jun): more swoop on left, less on right, scalp visible at x=-2..2
+- `paintWornHeadset(body)` — VR visor painted after power-up
+- `makeUE5Box(x, y)` + `playUE5CollectSfx()` — glowing crate at headset positions for the UE5 substep
+- `shootFireball(svg, x, y, dir)` — random UE5/GoldAuthorized projectile
+- Web Audio: `playIntroPowerUpSfx`, `playZapSfx`, `playTallyTick`, `playTallyChing`, `playBing`, `playToolboxThud`
 
 ---
 
-## Duo intro substeps (slide 3)
+## Duo intro substeps (slide 3) — updated timing
 
-1. **Auto on slide entry** (MutationObserver on `.active` class): walkers walk in from offstage, jump, grab headsets, flash + sparkle, power up, fall back at scale 1.4 with worn VR headsets.
-2. **Right Arrow** → `showBio`: eyebrow/title ("Agile Lens")/sub/names fade in.
-3. **Right Arrow again** → `playDuoUE5PowerUp`: re-jump + flash + power up + ~4s of hop-around-firing UE5 fireballs while the UE5 sub-text fades in.
+1. **Auto on slide entry** (MutationObserver on `.active`): walkers walk in from offstage, jump to two VR headset boxes at x=140 (Alex) and x=260 (Jun), grab them, flash + sparkle, power up, fall back at scale 1.4 with worn VR headsets.
+2. **Right Arrow** → `showBio`: eyebrow ("WHO WE ARE?") / title ("Agile Lens") / sub ("Architects turned XR-chitects…") / sub-UE5 / names fade in.
+3. **Right Arrow again** → `playDuoUE5PowerUp`: **TWO UE5 boxes** fade in at the same x positions as the headsets used to occupy (140, 260, y=200). Walkers re-jump (1400ms), boxes explode (2200ms), flash + power-up (2440ms), fall (4040ms), then ~4s fireball storm (5240ms+). Timings doubled from Session 2 so "UE5" reads clearly before explode.
 4. **Right Arrow once more** → `showStats`: 4 stat tiles tally from 0 (16/10/8/100+) with tick-per-number + closing chime.
+
+**Substep reset on slide return.** `goTo()` now calls `entry.reset && entry.reset(); entry.current = 0` when entering a slide that has registered `slideSteps`. Slide 10 has an explicit `resetToolboxMorph`. Slide 3 resets via the existing MutationObserver path. Re-entering a slide replays its animation.
+
+---
+
+## Close slide (slide 21) sprite pop-in
+
+- Two `<svg class="close-sprite close-sprite-alex/-jun">` containers added to the close-slide HTML, positioned `position:absolute; bottom:clamp(80px,12vh,170px)` with `left`/`right` anchors.
+- IIFE paints them via `buildAvatar` (Alex: `withBeard:true`; Jun: matching slide 3 config), then `paintLongHair` for Jun.
+- MutationObserver on `.active`: on entry, Alex pops at 200ms, Jun at 500ms with `playBing()` chime. On leave, removes `.popped` class so re-entry replays.
+- The `.popped` keyframe is elastic: opacity 0→1, scale 0.3→1.1→1, translateY −20px→0 over 600ms.
+
+---
+
+## Annotation system
+
+**Text-edit persistence was fixed in Session 3** (commit `114f9a3`). `endEdit()` now captures `newText` vs `origText`, builds a `type:'text-edit'` entry with `selector` + `context` + `position`, upserts into the annotations array, and persists via `aS()` + `aRender()`. Previously it only fired a toast.
+
+Move/transform annotations capture position changes via the move-mode handler. They were already working. They export as transforms like:
+```
+TRANSFORM scale 0.92 → 1.05 — position: left:0.4%, top:19.9%
+TRANSFORM translate Δ(+48px, +6px) → final position: left:2.2%, top:21.3%
+```
+
+To bake an annotation into source: extract the final `left:X%, top:Y%` for `x` and `y`, multiply `w`/`h` by the scale factor.
 
 ---
 
@@ -167,6 +241,9 @@ nxtbld-2026-productizing-xr/
 ├── gslides-manifest.json         ← per-slide state, committed
 ├── GoldAuthorized.png            ← UE5 fireball asset (root, referenced by JS)
 ├── ue5logo.png                   ← UE5 fireball asset (root, referenced by JS)
+├── .claude/
+│   ├── CLAUDE.md
+│   └── launch.json               ← preview-server config (python3 http.server 3000)
 ├── source/
 │   ├── deck.pptx                 ← gitignored — last PPTX pull (~236 MB)
 │   ├── slides/<idx>-<page>.json  ← per-slide source, committed (git-diffable)
@@ -183,19 +260,27 @@ nxtbld-2026-productizing-xr/
 
 ## Known issues / TODOs
 
-- [ ] **Google Drive video links lost in PPTX export.** Manually cross-reference live Google Slides URLs for each video. `sync_gslides.py` can't capture these because Google encodes them as OLE placeholders.
-- [ ] **Close slide page-id mismatch.** Hardcoded `'p109'` in `index.html` (close slide); latest sync moved Ending/Thank you to `p102`. Update.
+- [ ] **Build chapter content for Blueprint Immersive, Hyperreal Estate, Holodeck Anywhere, Pipeline, AI, Where Are You, Secret 5th Rung.** ~80 source slides waiting.
+- [ ] **Slide 13 missing 4th image** — PPTX export stripped binary for `Villa Floorplan Walkthrough F.gif`. Re-export deck.pptx OR manually download and drop at `media/nxtbld/floor-27-d.{png|gif}`.
+- [ ] **Speaker notes — surface scripted opening lines** for slides 9, 11, 12, 13 in the deck's notes display.
+- [ ] **p17 client logo wall** — currently folded into slide 3. Source asks for it. Decide: separate slide or keep folded.
+- [ ] **p36 keywords directive** — add `colocation` / `Data ingestion` / `multiuser` / `Optimization pipeline` visual to slide 9.
+- [ ] **p111 draft text** — "No idea if this is true, but…" violates VERBATIM. Get clarification from Alex before building.
 - [ ] **`notes-config.json` 404 spam** in browser network panel. Benign — speaker-notes sync polling. Ship a stub or guard the fetch.
-- [ ] **Slide 25 "Build your toolbox" morph animation.** Source NOTE asks for the 4 product images to morph into a labeled toolbox as a second step. Currently static 4-card grid. Add as a `slideSteps` step.
-- [ ] **Slides 30–101 not built.** Blueprint Immersive, Hyperreal Estate, Holodeck Anywhere, "Where Are You in the Cycle?" callback (p107), "Secret 5th Rung" (p108), close (p102). ~80 source slides.
-- [ ] **Cycle icons on cover** — currently spreadsheet, blueprint, VR headset, render-triangle, laptop, city-skyline. May want different icons as the cycle metaphor evolves.
+- [ ] **Cycle icons on cover** — may want different icons as the cycle metaphor evolves.
 
 ---
 
-## Lessons learned this session (worth keeping)
+## Lessons learned (worth keeping)
 
-1. **`transform-origin: center bottom` on an SVG `<g>` resolves to the SVG VIEWPORT's center-bottom, not the element's BBox center-bottom.** This caused walkers to float ~200px above the floor for an entire session. Fix: leave inner anim's transform-origin at default (0,0) and let scale grow the avatar downward from its head-top.
-2. **PPTX `image*.png` filenames are not stable across exports.** Always copy to `media/nxtbld/<semantic-name>` first. Bit me twice.
-3. **Google Slides "Skip slide" → PPTX `<p:sld show="0">`.** Detect and exclude when picking source content.
-4. **The preview subagent inherits the session's cwd.** When my cwd is `/Users/alex/git/fmx-2026-spatial-storytelling/` and the agent does a filesystem grep, it sees FMX content and reports wrong things. Use `mcp__Claude_Preview__*` tools directly when verifying.
-5. **A 9px `--floor` clip looks "stood on the floor" visually.** Don't overthink walker-floor positioning math; it just needs to look like the feet are at the line.
+1. **`transform-origin: center bottom` on an SVG `<g>` resolves to the SVG VIEWPORT's center-bottom, not the element's BBox center-bottom.** This caused walkers to float ~200px above the floor for an entire session.
+2. **PPTX `image*.png` filenames are not stable across exports — AND file contents can become misaligned with semantic-named copies.** Always copy to `media/nxtbld/<semantic-name>` first AND sanity-check by visual content when slides look wrong.
+3. **Google Slides "Skip slide" → PPTX `<p:sld show="0">`.** Detect and exclude.
+4. **Google Slides → PPTX export drops Drive video binaries AND occasionally Drive image binaries.** Picture frames remain with no `r:embed`. Re-export sometimes fixes it.
+5. **The preview subagent inherits the session's cwd.** Use `mcp__Claude_Preview__*` tools directly.
+6. **`mix-blend-mode: color-dodge` over animated blurred blobs flickers because overlap saturates → color-dodge denominator → 0 → spike white.** Fix: `isolation:isolate` on the `.bg` container + reduce blob opacity (b1 0.45→0.32, b2 0.42→0.30, b3 0.28→0.22).
+7. **The pixel-art brow draws were duplicated — once unconditionally in the hair block, once inside `if(!opts.noBrows)`.** Removing the conditional alone didn't remove Jun's brows. Always check for shadow duplicates when a "skip" flag isn't working.
+8. **Annotations don't persist text edits unless `endEdit()` writes to the annotations array.** Toast alone is not persistence. Look for the upsert logic, not just the UI feedback.
+9. **Background agents on a single dense file work fine in parallel if their regions don't overlap, but watch the 500-tool-call session limit.** Each agent burns ~20–60 tool calls. Three concurrent agents + main-thread verification + new note dispatch eats the budget fast.
+10. **Don't verify in the same turn as you spawn an agent** — your turn stays "running" and blocks the user from typing the next note.
+11. **The map slide's `lessonIdxs` array was declared but never populated** after a refactor removed lesson slides. Click handlers silently no-op'd. When a feature "should just work" and doesn't, grep for the variable feeding the conditional — it may be a vestigial empty array.
