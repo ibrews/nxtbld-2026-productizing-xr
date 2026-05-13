@@ -55,3 +55,8 @@ _Reset/missing keys use the built-in `D` defaults._
 **Selector:** `#deck > div.slide.case-slide:nth-of-type(9) > div.pattern-stage > svg.pattern-svg > path.pat-flow.pat-flow-dash:nth-of-type(3)`
 **TRANSFORM translate Δ(-22px, +16px) → final position: left:37.9%, top:33.5%**
 **Note:** TRANSFORM translate Δ(-22px, +16px) → final position: left:37.9%, top:33.5%
+
+## 11. case BLUEPRINT IMMERSIVE #17
+**Selector:** `#deck > div.slide.case-slide:nth-of-type(17) > div.big-stack > h1.big-text > div`
+**left:19.3%, top:50.5% on slide #17**
+**Note:** TEXT EDIT: "“layout work best?”" → "“layout works best?”"

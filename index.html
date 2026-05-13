@@ -166,12 +166,13 @@ const SECTIONS = [
           { type:'img', src:'media/nxtbld/floor-26-plan.jpg', x:55, y:18, w:42, h:66, label:'In VR' },
         ],
         deckTarget:'p38' },
-      // slide 27 \u2014 Origin. Source now has 3 images (added during latest sync).
+      // slide 27 \u2014 Origin. 4 items: 2 stills on top, 2 videos on bottom (floor-27-b portrait, floor-27-d widescreen). All animated content as mp4 for size/perf.
       { layout:'placed', title:'Floor Tour', subtitle:'Origin',
         placedItems:[
-          { type:'img', src:'media/nxtbld/floor-27-a.png', x:4, y:18, w:30, h:66 },
-          { type:'mp4', src:'media/nxtbld/floor-27-b.mp4', x:36, y:18, w:30, h:66 },
-          { type:'img', src:'media/nxtbld/floor-27-c.png', x:68, y:18, w:28, h:66 },
+          { type:'img', src:'media/nxtbld/floor-27-a.png', x:4,  y:8,  w:42, h:42 },
+          { type:'img', src:'media/nxtbld/floor-27-c.png', x:54, y:8,  w:42, h:42 },
+          { type:'mp4', src:'media/nxtbld/floor-27-b.mp4', x:8,  y:54, w:22, h:42 },
+          { type:'mp4', src:'media/nxtbld/floor-27-d.mp4', x:36, y:56, w:56, h:38 },
         ],
         deckTarget:'p39' },
       // slide 28 \u2014 now titled "Floor Tour" in source (was empty). 2 images.
@@ -182,13 +183,17 @@ const SECTIONS = [
           { type:'img', src:'media/nxtbld/floor-28-b.png', x:73, y:35, w:22, h:30 },
         ],
         deckTarget:'p40' },
-      // slide 29 \u2014 Productized version. Body: "GIF or video showing it in use"
+      // slide 29 (p41) \u2014 SKIPPED per source/author. Implementation removed.
+      // slide 30 (p42) \u2014 Productized version. 5 items: hero PNG + 2 mp4s (converted from source gifs) on top row + 2 floor-plan PNGs on bottom row.
       { layout:'placed', title:'Floor Tour', subtitle:'Productized version',
         placedItems:[
-          { type:'img', src:'media/nxtbld/floor-29-a.png', x:2.2, y:21.3, w:44.1, h:77.7 },
-          { type:'img', src:'media/nxtbld/floor-29-b.png', x:75.2, y:38.3, w:33.6, h:59.2 },
+          { type:'img', src:'media/nxtbld/floor-30-a.png', x:4,  y:14, w:30, h:42 },
+          { type:'mp4', src:'media/nxtbld/floor-30-b.mp4', x:36, y:14, w:30, h:42 },
+          { type:'mp4', src:'media/nxtbld/floor-30-c.mp4', x:68, y:14, w:28, h:42 },
+          { type:'img', src:'media/nxtbld/floor-30-d.png', x:18, y:58, w:30, h:38 },
+          { type:'img', src:'media/nxtbld/floor-30-e.png', x:52, y:58, w:30, h:38 },
         ],
-        deckTarget:'p41' },
+        deckTarget:'p42' },
     ] },
 
   { year: 'BLUEPRINT IMMERSIVE', accent: 'teal',
@@ -196,7 +201,7 @@ const SECTIONS = [
     cases: [
       // chapter intro — announces Blueprint Immersive before content slides (not yet built)
       { layout:'big', title:'Blueprint Immersive',
-        bigText:'“Does this layout work best?”',
+        bigText:'“Which layout works best?”',
         bigCaption:'Product 2 of 4 — runtime Datasmith importing of design options for instant in-VR comparison.',
         deckTarget:'p44' },
     ] },
