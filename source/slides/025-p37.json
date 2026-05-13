@@ -19,10 +19,10 @@
     "NOTE: Perhaps generate an animation as a second step for this slide where each of these images morphs into a labeled tool in a nicely organized toolbox."
   ],
   "media_refs": [
-    "ppt/media/image11.png",
-    "ppt/media/image20.png",
-    "ppt/media/image64.gif",
-    "ppt/media/image29.jpg"
+    "ppt/media/image15.png",
+    "ppt/media/image22.png",
+    "ppt/media/image67.gif",
+    "ppt/media/image27.jpg"
   ],
   "speaker_notes": "A\nFrame: \"Once you start productizing, you realize one tool isn't enough. Different stages of a project need different things.\"\nSlide reveal: four rungs as a visual ladder, each with its diagnostic question:\nFloor Tour: “\nDoes this floor size feel good?  Will it fit our needs?\n”\nBlueprint Immersive: \"\nWhich (Revit) layouts do we like most?\n \"\nHyperreal Estate: \"\nDoes this final (Revit) layout feel correct in 3D?  What lighting?  What interactions?\n \"\nHolodeck: \"\nCustomer, can you feel yourself buying this?\n \"\nRead the questions aloud. Audience starts mentally placing their own projects."
 }

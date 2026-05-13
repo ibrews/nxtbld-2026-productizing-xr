@@ -1,13 +1,17 @@
 {
   "index": 53,
   "page_id": "p65",
-  "title": "Blueprint Immersive",
+  "title": "https://drive.google.com/file/d/1909gEn2qZACugOn2ATogD0QpnjDo5mEB/view?usp=drive_link",
   "text_runs": [
-    "Blueprint Immersive",
-    "Product state:",
-    "Feature list, maybe runway"
+    "Note: ",
+    "https://drive.google.com/file/d/1909gEn2qZACugOn2ATogD0QpnjDo5mEB/view?usp=drive_link",
+    "Custom color swatch"
   ],
-  "directives": [],
-  "media_refs": [],
-  "speaker_notes": ""
+  "directives": [
+    "Note:"
+  ],
+  "media_refs": [
+    "ppt/media/image59.jpg"
+  ],
+  "speaker_notes": "J"
 }

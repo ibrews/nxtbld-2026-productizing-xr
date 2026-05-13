@@ -3,11 +3,14 @@
   "page_id": "p62",
   "title": "Jump to seat",
   "text_runs": [
+    "Note: video lives at https://drive.google.com/file/d/19XlCnYgDuLcsO0K67J6Vye0dqX7-xP2V/view?usp=sharing",
     "Jump to seat"
   ],
-  "directives": [],
-  "media_refs": [
-    "ppt/media/image63.png"
+  "directives": [
+    "Note: video lives at https://drive.google.com/file/d/19XlCnYgDuLcsO0K67J6Vye0dqX7-xP2V/view?usp=sharing"
   ],
-  "speaker_notes": ""
+  "media_refs": [
+    "ppt/media/image61.jpg"
+  ],
+  "speaker_notes": "J"
 }

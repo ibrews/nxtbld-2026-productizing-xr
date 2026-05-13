@@ -1,14 +1,11 @@
 {
   "index": 57,
   "page_id": "p69",
-  "title": "Hyperreal Estate",
-  "text_runs": [
-    "Hyperreal Estate",
-    "Pretty visuals, maybe footage from Xander of day/night cycles, etc",
-    "",
-    "Minimal/no text"
-  ],
+  "title": "",
+  "text_runs": [],
   "directives": [],
-  "media_refs": [],
+  "media_refs": [
+    "ppt/media/image55.png"
+  ],
   "speaker_notes": ""
 }
