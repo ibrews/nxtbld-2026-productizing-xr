@@ -703,6 +703,19 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .pat-node-final{animation:patNodeFinal 12s ease-in-out infinite}
 @keyframes patNodeFade{0%,100%{opacity:.55}25%{opacity:1}}
 @keyframes patNodeFinal{0%,75%,100%{opacity:.4}88%{opacity:1;filter:drop-shadow(0 0 20px rgba(244,63,94,.7))}}
+/* UE5 blueprint pulse — per-color node glows */
+.pat-node-purple{animation:patNodePulseAmber 3.2s ease-in-out infinite}
+.pat-node-amber{animation:patNodePulseAmber 3s ease-in-out infinite}
+.pat-node-teal{animation:patNodePulseTeal 3.4s ease-in-out infinite}
+@keyframes patNodePulseAmber{0%,100%{filter:drop-shadow(0 0 3px rgba(245,158,11,0))}50%{filter:drop-shadow(0 0 10px rgba(245,158,11,.55))}}
+@keyframes patNodePulseTeal{0%,100%{filter:drop-shadow(0 0 3px rgba(0,212,255,0))}50%{filter:drop-shadow(0 0 10px rgba(0,212,255,.55))}}
+/* override pat-node-purple to use purple glow */
+.pat-node-purple{animation:patNodePulsePurple 3.2s ease-in-out infinite}
+@keyframes patNodePulsePurple{0%,100%{filter:drop-shadow(0 0 3px rgba(167,139,250,0))}50%{filter:drop-shadow(0 0 10px rgba(167,139,250,.55))}}
+/* flowing dash on connector paths */
+@keyframes patFlowDash{to{stroke-dashoffset:-40}}
+.pat-flow{animation:patFlowDash 1.6s linear infinite}
+.pat-flow-dash{animation:patFlowDash 2.2s linear infinite}
 
 /* Trilogy slide — 2-up cards of prior NXT BLD talks (slide 6) */
 .layout-trilogy{padding:0!important}
@@ -729,10 +742,17 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .toolbox-grid{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;width:100%;max-width:1500px;min-height:0}
 .toolbox-card{background:rgba(255,255,255,.04);border:1px solid rgba(167,139,250,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;transition:transform .3s,border-color .3s;overflow:hidden;min-height:0}
 .toolbox-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.6)}
-.toolbox-img{flex:1;min-height:0;border-radius:8px;overflow:hidden;background:rgba(0,0,0,.4)}
-.toolbox-img img,.toolbox-img video{width:100%;height:100%;object-fit:cover}
+.toolbox-img{flex:none;aspect-ratio:4/3;border-radius:8px;overflow:hidden;background:rgba(0,0,0,.4)}
+.toolbox-img img,.toolbox-img video{width:100%;height:100%;object-fit:cover;object-position:center top}
 .toolbox-name{font-size:clamp(.95rem,1.3vw,1.2rem);font-weight:700;color:#f0f4ff}
 .toolbox-q{font-size:clamp(.8rem,1.05vw,.95rem);color:rgba(167,139,250,.95);font-style:italic;line-height:1.35}
+.toolbox-diagram-mode .toolbox-title{opacity:0;transition:opacity .4s}
+.toolbox-diagram-mode .toolbox-grid{grid-template-columns:repeat(2,1fr);max-width:900px;gap:24px;transition:all .6s ease}
+.toolbox-diagram-mode .toolbox-card{transform:scale(0.92);transition:transform .5s ease}
+.toolbox-banner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(1.4rem,3vw,2.8rem);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--amber,#f59e0b);text-shadow:0 0 40px rgba(245,158,11,.5);opacity:0;pointer-events:none;text-align:center;transition:opacity .6s .3s,transform .6s .3s;transform:translate(-50%,-50%) scale(.8)}
+.toolbox-diagram-mode .toolbox-banner{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.toolbox-corner-label{position:absolute;top:6px;left:10px;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal,#00d4ff);opacity:0;transition:opacity .4s .5s}
+.toolbox-diagram-mode .toolbox-corner-label{opacity:1}
 
 /* Placed-overlay extras (label per item, arrow type) */
 .placed-item-label{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,158,11,.95);white-space:nowrap}
@@ -978,19 +998,19 @@ SECTIONS.forEach((sec,si)=>{
     if(c.layout==='pattern-cycle'){
       s.innerHTML=`<div class="pattern-stage">${c.title?`<h2 class="pattern-eyebrow">${c.title}</h2>`:''}<svg class="pattern-svg" viewBox="0 0 1000 540" aria-hidden="true">
         <defs><marker id="pat-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="rgba(167,139,250,.8)"/></marker></defs>
-        <g class="pat-node" transform="translate(140,90)"><rect x="-110" y="-36" width="220" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#1</text></g>
-        <g class="pat-node" transform="translate(500,90)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Build quick &amp; dirty tool</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">demonstrate options</text></g>
-        <g class="pat-node" transform="translate(860,90)"><rect x="-100" y="-36" width="200" height="72" rx="14" fill="rgba(0,212,255,.08)" stroke="rgba(0,212,255,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Clarity</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">scope locked</text></g>
-        <g class="pat-node" transform="translate(140,270)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">New client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#2</text></g>
-        <g class="pat-node" transform="translate(500,270)"><rect x="-150" y="-36" width="300" height="72" rx="14" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Temporary feature in tool</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">duct-tape this once</text></g>
-        <g class="pat-node" transform="translate(140,440)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Third client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#3</text></g>
+        <g class="pat-node pat-node-purple" transform="translate(140,90)"><rect x="-110" y="-36" width="220" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#1</text></g>
+        <g class="pat-node pat-node-amber" transform="translate(500,90)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Build quick &amp; dirty tool</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">demonstrate options</text></g>
+        <g class="pat-node pat-node-teal" transform="translate(860,90)"><rect x="-100" y="-36" width="200" height="72" rx="14" fill="rgba(0,212,255,.08)" stroke="rgba(0,212,255,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Clarity</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">scope locked</text></g>
+        <g class="pat-node pat-node-purple" transform="translate(140,270)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">New client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#2</text></g>
+        <g class="pat-node pat-node-amber" transform="translate(500,270)"><rect x="-150" y="-36" width="300" height="72" rx="14" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Temporary feature in tool</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">duct-tape this once</text></g>
+        <g class="pat-node pat-node-purple" transform="translate(140,440)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Third client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#3</text></g>
         <g class="pat-node pat-node-final" transform="translate(620,440)"><rect x="-200" y="-42" width="400" height="84" rx="16" fill="rgba(244,63,94,.10)" stroke="rgba(244,63,94,.85)" stroke-width="2"/><text text-anchor="middle" y="-6" fill="#f0f4ff" font-size="18" font-weight="700">Whole new tool</text><text text-anchor="middle" y="20" fill="rgba(240,244,255,.7)" font-size="13">→ THIS is the productization moment</text></g>
-        <path d="M250,90 L370,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)"/>
-        <path d="M630,90 L760,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)"/>
-        <path d="M860,126 Q860,200 270,270" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
-        <path d="M270,270 L350,270" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)"/>
-        <path d="M500,306 Q500,380 270,440" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
-        <path d="M270,440 L420,440" stroke="rgba(244,63,94,.7)" stroke-width="2.2" fill="none" marker-end="url(#pat-arr)"/>
+        <path class="pat-flow" d="M250,90 L370,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
+        <path class="pat-flow" d="M630,90 L760,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
+        <path class="pat-flow pat-flow-dash" d="M860,126 Q860,200 270,270" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
+        <path class="pat-flow" d="M270,270 L350,270" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
+        <path class="pat-flow pat-flow-dash" d="M500,306 Q500,380 270,440" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
+        <path class="pat-flow" d="M270,440 L420,440" stroke="rgba(244,63,94,.7)" stroke-width="2.2" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
       </svg>${c.bigCaption?`<p class="pattern-caption">${c.bigCaption}</p>`:''}</div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
     }
@@ -1487,6 +1507,29 @@ function shootFireball(svg,startX,startY,dir){
   primeTallies(duoSlide);
   new MutationObserver(()=>{if(duoSlide.classList.contains('active'))playDuoIntro();}).observe(duoSlide,{attributes:true,attributeFilter:['class']});
   if(duoSlide.classList.contains('active'))playDuoIntro();
+})();
+
+// ── Toolbox diagram substep — 4 cards morph into 2×2 suite diagram ───────────
+(function(){
+  setTimeout(function(){
+    const tbSlide=allSlides.find(s=>s.querySelector&&s.querySelector('.toolbox-grid'));
+    if(!tbSlide)return;
+    const stage=tbSlide.querySelector('.toolbox-stage');
+    if(!stage)return;
+    const banner=document.createElement('div');
+    banner.className='toolbox-banner';
+    banner.textContent='Your Toolbox';
+    stage.style.position='relative';
+    stage.appendChild(banner);
+    tbSlide.querySelectorAll('.toolbox-card').forEach(function(card,i){
+      const lbl=document.createElement('div');
+      lbl.className='toolbox-corner-label';
+      lbl.textContent='0'+(i+1);
+      card.style.position='relative';
+      card.appendChild(lbl);
+    });
+    slideSteps.set(tbSlide,{current:0,steps:[function step1(){stage.classList.add('toolbox-diagram-mode');}]});
+  },0);
 })();
 
 // Navigation
