@@ -799,7 +799,7 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .toolbox-chip.c-teal{color:var(--teal);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 24px rgba(0,212,255,.25)}
 .toolbox-chip.c-rose{color:var(--rose);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 24px rgba(244,63,94,.25)}
 .toolbox-chip.c-purple{color:var(--purple);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 24px rgba(167,139,250,.25)}
-.toolbox-tagline{position:absolute;left:50%;top:14%;transform:translate(-50%,-20px);opacity:0;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:#f0f4ff;text-align:center;letter-spacing:-.005em;pointer-events:none;transition:opacity .55s .6s,transform .55s .6s;z-index:4}
+.toolbox-tagline{position:absolute;left:50%;top:6%;transform:translate(-50%,-20px);opacity:0;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:#f0f4ff;text-align:center;letter-spacing:-.005em;pointer-events:none;transition:opacity .55s .6s,transform .55s .6s;z-index:4}
 .toolbox-tagline em{color:var(--amber);font-style:italic;font-weight:600}
 .toolbox-morph-mode .toolbox-tagline{opacity:1;transform:translate(-50%,0)}
 
@@ -1616,10 +1616,10 @@ function shootFireball(svg,startX,startY,dir){
     // Chip target positions: fan above the toolbox (relative to slide center)
     // toolbox sits at left:50% bottom:8% with width 300. Chips fan around upper rim.
     const chipPos=[
-      {x:-440,y:90},   // far-left
-      {x:-230,y:-90},  // upper-left
-      {x: 230,y:-90},  // upper-right
-      {x: 440,y:90}    // far-right
+      {x:-460,y:110},  // far-left
+      {x:-240,y:-130}, // upper-left
+      {x: 240,y:-130}, // upper-right
+      {x: 460,y:110}   // far-right
     ];
     function flyCardToBox(card,delay){
       // Compute card centre vs slide centre to derive flight delta
