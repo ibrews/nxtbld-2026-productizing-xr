@@ -1,11 +1,13 @@
 {
   "index": 44,
   "page_id": "p56",
-  "title": "",
-  "text_runs": [],
+  "title": "Painting",
+  "text_runs": [
+    "Painting"
+  ],
   "directives": [],
   "media_refs": [
-    "ppt/media/image39.png"
+    "ppt/media/image49.png"
   ],
   "speaker_notes": ""
 }

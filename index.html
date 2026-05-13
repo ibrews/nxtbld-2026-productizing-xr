@@ -92,18 +92,26 @@ const SECTIONS = [
     ] },
 
   { year: 'THE GRAVEYARD', accent: 'rose',
-    lesson: { title:'The Secret Graveyard.', short:'GRAVEYARD', tagline:'Every studio has these. Internal tools, hacked viewers, half-finished configurators \u2014 the things you built once, called <em>\u201ctemporary\u201d</em>, and never deleted.', tags:'Consolidated from source slides 7\u201322' },
+    lesson: { title:'The Secret Graveyard.', short:'GRAVEYARD', tagline:'Every studio has these.', tags:'(chapter intro is now a regular case, not a lesson slide)' },
     cases: [
-      // SG-1 \u2014 Toolbox collage. Consolidates source 7-22 visual material per slide 7's NOTE.
+      // SG-intro \u2014 Used to be a lesson slide; restored as a regular case per user
+      // request ("don't remove the SG intro, just edit it").
+      { layout:'big', title:'The Secret Graveyard.',
+        subtitle:'Every studio has these.',
+        bigCaption:'Internal tools \u00b7 hacked Unreal viewers \u00b7 prototype UIs \u00b7 VR walkthroughs \u00b7 half-finished configurators \u2014 the things you built once, called <em>"temporary"</em>, and never deleted.',
+        deckTarget:'p19 (intro)' },
+      // SG-1 \u2014 Toolbox collage. Consolidates source 8-22 per slide 7's NOTE.
+      // EXCLUDES source slides 13 + 15 (marked show="0" / skipped in Google Slides).
+      // Images named sg-NN by slot for stability across PPTX image renumbering.
       { layout:'sg-collage', title:'The Toolbox Nobody Talks About',
-        subtitle:'Internal tools \u00b7 hacked Unreal viewers \u00b7 prototype UIs \u00b7 VR walkthroughs \u00b7 spreadsheets \u00b7 half-finished configurators',
+        subtitle:'Internal tools \u00b7 hacked Unreal viewers \u00b7 prototype UIs \u00b7 VR walkthroughs \u00b7 half-finished configurators',
         collage:[
-          'media/nxtbld/image6.png','media/nxtbld/image17.jpg','media/nxtbld/image5.png',
-          'media/nxtbld/image15.png','media/nxtbld/image3.png','media/nxtbld/image7.png',
-          'media/nxtbld/image11.png','media/nxtbld/image34.mp4','media/nxtbld/image24.png',
-          'media/nxtbld/image8.png','media/nxtbld/image20.png','media/nxtbld/image16.png',
+          'media/nxtbld/sg-01.png','media/nxtbld/sg-02.jpg','media/nxtbld/sg-03.png',
+          'media/nxtbld/sg-05.png','media/nxtbld/sg-06.png','media/nxtbld/sg-07.png',
+          'media/nxtbld/sg-08.mp4','media/nxtbld/sg-10.png','media/nxtbld/sg-11.png',
+          'media/nxtbld/sg-12.mp4','media/nxtbld/sg-14.jpg','media/nxtbld/sg-16.png',
         ],
-        deckTarget:'p19+p20+p21+p22+p23+p24+p25+p26+p27+p28+p29+p30+p31+p32+p33+p34' },
+        deckTarget:'p20+p21+p22+p23+p24+p26+p28+p29+p30+p31+p32+p34 (p25, p27 skipped)' },
       // SG-2 \u2014 Text fragments. The filenames tell the story.
       // Each fragment gets a distinct color via .sg-frag-N classes.
       { layout:'sg-fragments', title:'The filenames tell the story.',
@@ -126,10 +134,10 @@ const SECTIONS = [
       // slide 25 \u2014 Build and organize your toolbox. Body lists 4 products + questions verbatim.
       { layout:'toolbox-grid', title:'Build and organize your toolbox.',
         tools:[
-          { name:'Floor Tour',         q:'\u201cDoes this space feel right?\u201d',     img:'media/nxtbld/image14.png' },
-          { name:'Blueprint Immersive',q:'\u201cDoes this layout works best?\u201d',    img:'media/nxtbld/image9.png'  },
-          { name:'Hyperreal Estate',   q:'\u201cDoes this design feel complete?\u201d', img:'media/nxtbld/image83.mp4'},
-          { name:'Holodeck Anywhere',  q:'\u201cDoes this emotionally connect?\u201d',  img:'media/nxtbld/image37.jpg'},
+          { name:'Floor Tour',         q:'\u201cDoes this space feel right?\u201d',     img:'media/nxtbld/toolbox-1.png' },
+          { name:'Blueprint Immersive',q:'\u201cDoes this layout works best?\u201d',    img:'media/nxtbld/toolbox-2.png' },
+          { name:'Hyperreal Estate',   q:'\u201cDoes this design feel complete?\u201d', img:'media/nxtbld/toolbox-3.mp4'},
+          { name:'Holodeck Anywhere',  q:'\u201cDoes this emotionally connect?\u201d',  img:'media/nxtbld/toolbox-4.jpg'},
         ],
         deckTarget:'p37' },
     ] },
@@ -140,29 +148,31 @@ const SECTIONS = [
       // slide 26 \u2014 NOTE: floor plan \u2192 VR experience
       { layout:'placed', title:'Floor Tour', subtitle:'\u201cWill this space fit our needs?\u201d',
         placedItems:[
-          { type:'img', src:'media/nxtbld/image45.jpg', x:6, y:18, w:42, h:66, label:'Floor plan' },
+          { type:'img', src:'media/nxtbld/floor-26-plan.jpg', x:6, y:18, w:42, h:66, label:'Floor plan' },
           { type:'arrow', x:48, y:46, w:6, h:10 },
-          { type:'img', src:'media/nxtbld/image12.png', x:55, y:18, w:42, h:66, label:'In VR' },
+          { type:'img', src:'media/nxtbld/floor-26-vr.png', x:55, y:18, w:42, h:66, label:'In VR' },
         ],
         deckTarget:'p38' },
-      // slide 27 \u2014 Origin
+      // slide 27 \u2014 Origin. Source now has 3 images (added during latest sync).
       { layout:'placed', title:'Floor Tour', subtitle:'Origin \u00b7 prototype stills',
         placedItems:[
-          { type:'img', src:'media/nxtbld/image22.png', x:6, y:18, w:42, h:66 },
-          { type:'mp4', src:'media/nxtbld/image25.mp4', x:53, y:18, w:42, h:66 },
+          { type:'img', src:'media/nxtbld/floor-27-a.png', x:4, y:18, w:30, h:66 },
+          { type:'mp4', src:'media/nxtbld/floor-27-b.mp4', x:36, y:18, w:30, h:66 },
+          { type:'img', src:'media/nxtbld/floor-27-c.png', x:68, y:18, w:28, h:66 },
         ],
         deckTarget:'p39' },
-      // slide 28 \u2014 no title in source, J speaks. 2 source images side by side.
-      { layout:'placed', title:'', subtitle:'',
+      // slide 28 \u2014 now titled "Floor Tour" in source (was empty). 2 images.
+      { layout:'placed', title:'Floor Tour', subtitle:'',
         placedItems:[
-          { type:'img', src:'media/nxtbld/image18.png', x:6, y:10, w:42, h:80 },
-          { type:'img', src:'media/nxtbld/image19.png', x:53, y:10, w:42, h:80 },
+          { type:'img', src:'media/nxtbld/floor-28-a.png', x:6, y:10, w:42, h:80 },
+          { type:'img', src:'media/nxtbld/floor-28-b.png', x:53, y:10, w:42, h:80 },
         ],
         deckTarget:'p40' },
       // slide 29 \u2014 Productized version. Body: "GIF or video showing it in use"
       { layout:'placed', title:'Floor Tour', subtitle:'Productized version',
         placedItems:[
-          { type:'img', src:'media/nxtbld/image14.png', x:18, y:14, w:64, h:74 },
+          { type:'img', src:'media/nxtbld/floor-29-a.png', x:6, y:14, w:42, h:74 },
+          { type:'img', src:'media/nxtbld/floor-29-b.png', x:53, y:14, w:42, h:74 },
         ],
         deckTarget:'p41' },
     ] },
@@ -1378,7 +1388,10 @@ function shootFireball(svg,startX,startY,dir){
     ['intro-eyebrow','intro-title','intro-sub','intro-sub-ue5','intro-duo-names','intro-stats-row'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity='0';});
     if(slideSteps.get(duoSlide))slideSteps.get(duoSlide).current=0;
     void alexAnim.offsetWidth;void junAnim.offsetWidth;
-    alexAnim.style.transformOrigin='center bottom';junAnim.style.transformOrigin='center bottom';
+    // transform-origin intentionally NOT set — keep default 0,0 so the scale
+// keyframes grow the avatar downward from its head-top (0,0), placing feet
+// at outer.y + 28*scale (just below the floor at y=300). Earlier we set
+// 'center bottom' here and walkers floated ~200px above the floor.
     const D=300;
     setTimeout(()=>{alexAnim.style.opacity='1';junAnim.style.opacity='1';},D);
     setTimeout(()=>{alexAnim.style.animation='introWalkAlex 2s linear 0s 1 normal both';junAnim.style.animation='introWalkJun 2s linear 0s 1 normal both';},D);
@@ -1422,7 +1435,10 @@ function shootFireball(svg,startX,startY,dir){
     setTimeout(()=>{const el=document.getElementById('intro-sub-ue5');if(el)el.style.opacity='1';},80);
     alexAnim.style.animation='none';junAnim.style.animation='none';
     void alexAnim.offsetWidth;void junAnim.offsetWidth;
-    alexAnim.style.transformOrigin='center bottom';junAnim.style.transformOrigin='center bottom';
+    // transform-origin intentionally NOT set — keep default 0,0 so the scale
+// keyframes grow the avatar downward from its head-top (0,0), placing feet
+// at outer.y + 28*scale (just below the floor at y=300). Earlier we set
+// 'center bottom' here and walkers floated ~200px above the floor.
     // Jump
     setTimeout(()=>{
       alexAnim.style.animation='introJumpAlex .4s cubic-bezier(.3,.7,.4,1) forwards';

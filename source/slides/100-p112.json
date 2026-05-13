@@ -1,13 +1,20 @@
 {
   "index": 100,
   "page_id": "p112",
-  "title": "",
-  "text_runs": [],
-  "directives": [],
-  "media_refs": [
-    "ppt/media/image78.jpg",
-    "ppt/media/image93.png",
-    "ppt/media/image88.jpg"
+  "title": "Where are you in the cycle?",
+  "text_runs": [
+    "Where are you in the cycle?",
+    "Callback slide:",
+    "Floor Tour",
+    "“Does this space feel right?”",
+    "Blueprint Immersive",
+    "“Does this layout works best?”",
+    "Hyperreal Estate",
+    "“Does this design feel complete?”",
+    "Holodeck Anywhere",
+    "“Does this emotionally connect?”"
   ],
+  "directives": [],
+  "media_refs": [],
   "speaker_notes": ""
 }

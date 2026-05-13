@@ -1,22 +1,11 @@
 {
   "index": 69,
   "page_id": "p81",
-  "title": "COMPARISON MODELS",
-  "text_runs": [
-    "COMPARISON MODELS",
-    "Opt 1 v Opt 2",
-    " ",
-    "Opt 1 v Opt 3",
-    "Opt 2 v Opt 3",
-    "Opt 3 Day v Opt 3 Night"
-  ],
+  "title": "",
+  "text_runs": [],
   "directives": [],
   "media_refs": [
-    "ppt/media/image64.jpg",
-    "ppt/media/image55.png",
-    "ppt/media/image68.jpg",
-    "ppt/media/image73.jpg",
-    "ppt/media/image84.jpg"
+    "ppt/media/image73.jpg"
   ],
-  "speaker_notes": "Please double check if we can use these - I believe we aren’t allowed to show anything from the actual property"
+  "speaker_notes": ""
 }

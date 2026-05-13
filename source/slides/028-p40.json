@@ -1,12 +1,14 @@
 {
   "index": 28,
   "page_id": "p40",
-  "title": "",
-  "text_runs": [],
+  "title": "Floor Tour",
+  "text_runs": [
+    "Floor Tour"
+  ],
   "directives": [],
   "media_refs": [
-    "ppt/media/image18.png",
-    "ppt/media/image19.png"
+    "ppt/media/image25.png",
+    "ppt/media/image16.png"
   ],
-  "speaker_notes": "J"
+  "speaker_notes": "A: \ninspired\n as well by the simplicity of \noutlining floor plans for the RSC"
 }

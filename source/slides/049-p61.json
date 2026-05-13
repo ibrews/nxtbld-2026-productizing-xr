@@ -1,18 +1,17 @@
 {
   "index": 49,
   "page_id": "p61",
-  "title": "Blueprint Immersive",
+  "title": "https://drive.google.com/file/d/1DcUnMRNP1Ug8q_zIXIV89XBg99THZq7o/view?usp=sharing",
   "text_runs": [
-    "Blueprint Immersive",
-    "Origins",
-    "",
-    "FDA Theatre Planning",
-    "Datasmith runtime importing",
-    "Option toggles",
-    "-Professional tool built for the industry",
-    "Images of raw revit, runtime imported environments, palette tools"
+    "Note: video for this slide lives: ",
+    "https://drive.google.com/file/d/1DcUnMRNP1Ug8q_zIXIV89XBg99THZq7o/view?usp=sharing",
+    "Import Datasmith"
   ],
-  "directives": [],
-  "media_refs": [],
+  "directives": [
+    "Note: video for this slide lives:"
+  ],
+  "media_refs": [
+    "ppt/media/image44.jpg"
+  ],
   "speaker_notes": ""
 }

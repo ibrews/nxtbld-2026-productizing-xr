@@ -1,11 +1,13 @@
 {
   "index": 53,
   "page_id": "p65",
-  "title": "",
-  "text_runs": [],
-  "directives": [],
-  "media_refs": [
-    "ppt/media/image44.png"
+  "title": "Blueprint Immersive",
+  "text_runs": [
+    "Blueprint Immersive",
+    "Product state:",
+    "Feature list, maybe runway"
   ],
+  "directives": [],
+  "media_refs": [],
   "speaker_notes": ""
 }

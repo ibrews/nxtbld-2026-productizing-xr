@@ -9,10 +9,15 @@
     "cycle",
     " ",
     "animation",
-    " here with various icons and emergent behavior. It doesn’t need to make complete sense, but it should be compelling."
+    " here with various icons and emergent behavior. It doesn’t need to make complete sense, but it should be compelling.",
+    "Note: Whenever there’s video, auto start the video. Unless ",
+    "noted",
+    " otherwise, loop the video",
+    ""
   ],
   "directives": [
-    "NOTE: create a compelling looping product"
+    "NOTE: create a compelling looping product",
+    "Note: Whenever there’s video, auto start the video. Unless"
   ],
   "media_refs": [],
   "speaker_notes": "A J"

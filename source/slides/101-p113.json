@@ -1,11 +1,12 @@
 {
   "index": 101,
   "page_id": "p113",
-  "title": "",
-  "text_runs": [],
-  "directives": [],
-  "media_refs": [
-    "ppt/media/image93.png"
+  "title": "Secret 5th Rung",
+  "text_runs": [
+    "Secret 5th Rung",
+    "What is the tool you’ve quietly rebuilt 3 times already?"
   ],
-  "speaker_notes": ""
+  "directives": [],
+  "media_refs": [],
+  "speaker_notes": "Once you’ve created the same project 3 times, turn it into a template– look at \nsecond\n slide. #2"
 }

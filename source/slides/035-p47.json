@@ -2,10 +2,14 @@
   "index": 35,
   "page_id": "p47",
   "title": "",
-  "text_runs": [],
+  "text_runs": [
+    "",
+    ""
+  ],
   "directives": [],
   "media_refs": [
-    "ppt/media/image28.png"
+    "ppt/media/image32.gif",
+    "ppt/media/image40.gif"
   ],
   "speaker_notes": ""
 }

@@ -1,18 +1,16 @@
 {
   "index": 51,
   "page_id": "p63",
-  "title": "Blueprint Immersive",
+  "title": "Jump to seat",
   "text_runs": [
-    "Blueprint Immersive",
-    "Why this ROI works",
-    "",
-    "Quick/easy sightline experience, sense of space in VR.",
-    "Uses the Revit files your team is ",
-    "already",
-    " developing.",
-    "Designed for self-service."
+    "Note: video lives at https://drive.google.com/file/d/19XlCnYgDuLcsO0K67J6Vye0dqX7-xP2V/view?usp=sharing",
+    "Jump to seat"
   ],
-  "directives": [],
-  "media_refs": [],
-  "speaker_notes": ""
+  "directives": [
+    "Note: video lives at https://drive.google.com/file/d/19XlCnYgDuLcsO0K67J6Vye0dqX7-xP2V/view?usp=sharing"
+  ],
+  "media_refs": [
+    "ppt/media/image53.jpg"
+  ],
+  "speaker_notes": "J"
 }

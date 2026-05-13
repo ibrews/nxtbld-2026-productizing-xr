@@ -1,15 +1,19 @@
 {
   "index": 33,
   "page_id": "p45",
-  "title": "",
+  "title": "Blueprint Immersive",
   "text_runs": [
-    "",
+    "Blueprint Immersive",
+    "Grew out of dozens of similar projects from 2013 - 2023",
     ""
   ],
   "directives": [],
   "media_refs": [
-    "ppt/media/image23.gif",
-    "ppt/media/image32.gif"
+    "ppt/media/image30.png",
+    "ppt/media/image42.png",
+    "ppt/media/image54.png",
+    "ppt/media/image109.png",
+    "ppt/media/image33.jpg"
   ],
-  "speaker_notes": ""
+  "speaker_notes": "A"
 }

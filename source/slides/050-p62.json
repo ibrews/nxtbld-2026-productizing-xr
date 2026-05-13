@@ -1,13 +1,13 @@
 {
   "index": 50,
   "page_id": "p62",
-  "title": "Blueprint Immersive",
+  "title": "Jump to seat",
   "text_runs": [
-    "Blueprint Immersive",
-    "Product state:",
-    "Feature list, maybe runway"
+    "Jump to seat"
   ],
   "directives": [],
-  "media_refs": [],
+  "media_refs": [
+    "ppt/media/image51.png"
+  ],
   "speaker_notes": ""
 }

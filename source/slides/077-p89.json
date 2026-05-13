@@ -1,11 +1,12 @@
 {
   "index": 77,
   "page_id": "p89",
-  "title": "",
-  "text_runs": [],
-  "directives": [],
-  "media_refs": [
-    "ppt/media/image61.png"
+  "title": "Holodeck Anywhere",
+  "text_runs": [
+    "Holodeck Anywhere",
+    "“Can the customer feel themselves buying this?”"
   ],
+  "directives": [],
+  "media_refs": [],
   "speaker_notes": ""
 }

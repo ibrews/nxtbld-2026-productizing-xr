@@ -3,15 +3,12 @@
   "page_id": "p41",
   "title": "Floor Tour",
   "text_runs": [
-    "Floor Tour",
-    "Productized version",
-    "",
-    "GIF or video showing it in use",
-    ""
+    "Floor Tour"
   ],
   "directives": [],
   "media_refs": [
-    "ppt/media/image14.png"
+    "ppt/media/image20.png",
+    "ppt/media/image23.png"
   ],
-  "speaker_notes": "J\nDo we want to make a qr code to link to the app lab or anything? "
+  "speaker_notes": "J"
 }

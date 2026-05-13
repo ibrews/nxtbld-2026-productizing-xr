@@ -8,9 +8,12 @@
     "",
     "Reusable process, not reusable output.",
     "",
-    "Hone what your clients celebrate to be useful to other clients."
+    "Hone what your clients celebrate to be useful to other clients.",
+    "Note: drop in keywords like “colocation” “Data ingestion” “multiuser” “Optimization pipeline”"
   ],
-  "directives": [],
+  "directives": [
+    "Note: drop in keywords like “colocation” “Data ingestion” “multiuser” “Optimization pipeline”"
+  ],
   "media_refs": [],
-  "speaker_notes": "J"
+  "speaker_notes": "J\nAs a company primarily focus on tailored solutions for our enterprise clients, we know every client and every projects are different. Our goal is not to fit all kinds of needs into one unified ultimate solution, but to identify repeated asks and modularize our tool box. We focus on reusable process, not reusable output."
 }

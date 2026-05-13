@@ -1,22 +1,23 @@
 {
   "deck_url": "https://docs.google.com/presentation/d/1cbYlmcqXFU-lgHIM-259cZyx2ircKLoz6vUopCKsxvA/edit",
   "deck_id": "1cbYlmcqXFU-lgHIM-259cZyx2ircKLoz6vUopCKsxvA",
-  "last_sync": "2026-05-13T12:21:57Z",
+  "last_sync": "2026-05-13T14:38:47Z",
   "slides": [
     {
       "key": "p13",
       "page_id": "p13",
       "index": 1,
       "title": "Productizing XR for Architecture",
-      "text_hash": "dfffa4180d05408705e8ea853af368588026c32a",
+      "text_hash": "12ef3bc70a9af7e574117d9fad5498752b396e0f",
       "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "speaker_notes_hash": "c13e84dc3104ca0f01f8fb17b6ca67f8f18a3223",
       "media_refs": [],
       "has_directive": true,
       "directives": [
-        "NOTE: create a compelling looping product"
+        "NOTE: create a compelling looping product",
+        "Note: Whenever there’s video, auto start the video. Unless"
       ],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "cover",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -33,6 +34,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": ""
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -96,16 +104,16 @@
       "index": 4,
       "title": "Who we are",
       "text_hash": "1999d6a4ac5fd2d5a6ed27a1ce58239b73fce449",
-      "media_hash": "e7a4818bd31c293a776471809660e56e0118c1bd",
+      "media_hash": "eb931b5bb9d5b095dbba6aa23ba5053623bf6525",
       "speaker_notes_hash": "6dcd4ce23d88e2ee9568ba546c007c63d9131c1b",
       "media_refs": [
-        "ppt/media/image10.png"
+        "ppt/media/image1.png"
       ],
       "has_directive": true,
       "directives": [
         "NOTE: one slide that has Alex and Jun as sprites powering up with Unreal Engine and shooting our Unreal Engine fireballs (like in the HXR talk but + Jun, headshot here as reference)"
       ],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[0].cases[1] (matched) + cases[2] (contrast ALT)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -130,6 +138,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": ""
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -174,17 +189,17 @@
       "index": 6,
       "title": "Who we are",
       "text_hash": "f6a6ea96d6ecccf528e7ce135e3959ea13ed464d",
-      "media_hash": "516c964a8d145b2d0c1ba7e71633d5ddc7ceb441",
+      "media_hash": "6083f76189015da00a9873fdc3429c076abdea18",
       "speaker_notes_hash": "6dcd4ce23d88e2ee9568ba546c007c63d9131c1b",
       "media_refs": [
-        "ppt/media/image13.png",
-        "ppt/media/image1.png"
+        "ppt/media/image3.png",
+        "ppt/media/image5.png"
       ],
       "has_directive": true,
       "directives": [
         "NOTE: demonstrating how this is my third talk at NXTBLD and this should be quite a unique trilogy, so if you like this talk, be sure to check out the other two (generate QR codes for:"
       ],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[0].cases[3] (Trilogy QR codes)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -210,6 +225,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": ""
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -256,15 +278,15 @@
       "index": 8,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "4c5977ef6171794d05ecd7b63f5debaad30a1d07",
+      "media_hash": "dd5ff3090fd7425b739a572bfd24e9974904917d",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image6.png",
-        "ppt/media/image17.jpg"
+        "ppt/media/image22.png",
+        "ppt/media/image18.jpg"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -288,6 +310,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -298,15 +327,15 @@
       "index": 9,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "9eb6c5043f18cf64072cd922240e35bce95e66f8",
+      "media_hash": "e2317aafbbe38d48d817ebd37938732d46560653",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image5.png",
-        "ppt/media/image2.png"
+        "ppt/media/image10.png",
+        "ppt/media/image9.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -330,6 +359,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -340,14 +376,14 @@
       "index": 10,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "7adbde5e302a23208158c65a537e31f4f4e73a74",
+      "media_hash": "ad14f5e8f98d527a0b7d8358a739e0de4643fad3",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image15.png"
+        "ppt/media/image2.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -371,6 +407,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -381,14 +424,14 @@
       "index": 11,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "472fe68f93090915be39bcc21338857ec8f3a8d2",
+      "media_hash": "f49cdba69005caa72ef40eab287d9a4f50bc9b19",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image3.png"
+        "ppt/media/image6.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -412,6 +455,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -422,14 +472,14 @@
       "index": 12,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "b2ee814290eee4382d1ebc87023e217516a18f4a",
+      "media_hash": "8b2381695c05ecbab3a2282b0f437bf9fcc2ce68",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image7.png"
+        "ppt/media/image8.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -453,6 +503,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -505,14 +562,14 @@
       "index": 14,
       "title": "The Secret Graveyard",
       "text_hash": "0ceb708bc6f4f4a7bee0d60b5e446850a1821339",
-      "media_hash": "d8ea903b06299694502233f922c85b18e490fc1a",
+      "media_hash": "766b15615eb116d442d3c4dd1db2c718eeb7c2c9",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image34.gif"
+        "ppt/media/image31.gif"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -537,6 +594,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -629,14 +693,14 @@
       "index": 17,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "8b2381695c05ecbab3a2282b0f437bf9fcc2ce68",
+      "media_hash": "7b197ed54ad0c42e1bef127dd7458793803e397d",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image8.png"
+        "ppt/media/image4.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -660,6 +724,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -670,14 +741,14 @@
       "index": 18,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "01c9c2123fe1fcffcf83195beaffa44a6486b0dd",
+      "media_hash": "5205386bf471d1cc7390c5077303850c9c06ba6c",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image20.png"
+        "ppt/media/image29.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -701,6 +772,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -711,15 +789,15 @@
       "index": 19,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "5fff716fed88d7c09e14044eca59936ec7947157",
+      "media_hash": "cb09dc240cf023c498c0888c000e858d491f2cfb",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image26.gif",
-        "ppt/media/image42.gif"
+        "ppt/media/image12.gif",
+        "ppt/media/image27.gif"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -743,6 +821,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -753,14 +838,14 @@
       "index": 20,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "31d7c7e63cf37938d160220767d9c4372db34818",
+      "media_hash": "0bd3900e6c23a1262cd87dd2f3cb65ed71e54afe",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image33.jpg"
+        "ppt/media/image26.jpg"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -784,6 +869,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -794,14 +886,14 @@
       "index": 21,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "7b197ed54ad0c42e1bef127dd7458793803e397d",
+      "media_hash": "b2ee814290eee4382d1ebc87023e217516a18f4a",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image4.png"
+        "ppt/media/image7.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -825,6 +917,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -835,14 +934,14 @@
       "index": 22,
       "title": "The Secret Graveyard",
       "text_hash": "915d1db3332ed9c1871a0e73bd0de1cd8182fcce",
-      "media_hash": "3236ed588959617ca8a3689e39e45f04c0a10854",
+      "media_hash": "e89f79f43b93764b0b8faf3b9f417e795167cbde",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image16.png"
+        "ppt/media/image13.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[1].cases[0] (SG collage)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -867,6 +966,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": "Consolidated into Secret Graveyard"
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": "Consolidated into Secret Graveyard"
@@ -911,13 +1017,15 @@
       "page_id": "p36",
       "index": 24,
       "title": "What’s Worth Productizing?",
-      "text_hash": "f89455ea120901565f9795736ea83191ace49ec7",
+      "text_hash": "bcd82e233ead0c0369d4be987155b6d24610273e",
       "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "58668e7669fd564d99db5d581fcdb6a5618440b5",
+      "speaker_notes_hash": "30ec47d49af9fa542b766e59b405be01c90d5c1a",
       "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "generated",
+      "has_directive": true,
+      "directives": [
+        "Note: drop in keywords like “colocation” “Data ingestion” “multiuser” “Optimization pipeline”"
+      ],
+      "state": "pending",
       "deck_target": "SECTIONS[2].cases[1] (What's Worth Productizing?)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -936,6 +1044,14 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": ""
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "speaker-notes changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -946,19 +1062,19 @@
       "index": 25,
       "title": "Build and organize your toolbox",
       "text_hash": "aa05786d96436a0d58258c7f27f6fb8829d6f6db",
-      "media_hash": "b62002c5670a6e3d30e7189c1933befe60bc26c8",
+      "media_hash": "fec3b92dc9f63a484d6b7c0c312d649ccaf2d290",
       "speaker_notes_hash": "6dcd4ce23d88e2ee9568ba546c007c63d9131c1b",
       "media_refs": [
         "ppt/media/image14.png",
-        "ppt/media/image9.png",
-        "ppt/media/image83.gif",
+        "ppt/media/image19.png",
+        "ppt/media/image66.gif",
         "ppt/media/image37.jpg"
       ],
       "has_directive": true,
       "directives": [
         "NOTE: Perhaps generate an animation as a second step for this slide where each of these images morphs into a labeled tool in a nicely organized toolbox."
       ],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[2].cases[2] (Toolbox grid — morph anim deferred to v2)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -984,6 +1100,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": ""
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -994,17 +1117,17 @@
       "index": 26,
       "title": "Floor Tour",
       "text_hash": "1247366ba05a7f6a104b30ba6cfd9b3cb60c82e7",
-      "media_hash": "bbc93456942b5144698e95e5737788ea8d7c5725",
-      "speaker_notes_hash": "58668e7669fd564d99db5d581fcdb6a5618440b5",
+      "media_hash": "a7cb952102c1ba0e55adc20b5341607c6681efd9",
+      "speaker_notes_hash": "788f220c41a19c0a9cc888492ce2dfda40a6eed6",
       "media_refs": [
-        "ppt/media/image45.jpg",
-        "ppt/media/image12.png"
+        "ppt/media/image36.jpg",
+        "ppt/media/image15.png"
       ],
       "has_directive": true,
       "directives": [
         "NOTE: show floor plan (left image) becoming VR experience (right image)."
       ],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[3].cases[0] (Floor plan → VR)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -1030,6 +1153,14 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": ""
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed",
+            "speaker-notes changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -1040,15 +1171,16 @@
       "index": 27,
       "title": "Floor Tour",
       "text_hash": "148b2ee881860f0f366d62aab8eea4098f725d05",
-      "media_hash": "97b131ea4f3741ed4a4776bb134963f9097849fc",
+      "media_hash": "0a218fec847d488241bbaab86dfda7976112020b",
       "speaker_notes_hash": "2b71d58555f5253c1448c9769df6c984d8a0f55c",
       "media_refs": [
-        "ppt/media/image22.png",
-        "ppt/media/image25.gif"
+        "ppt/media/image17.png",
+        "ppt/media/image34.gif",
+        "ppt/media/image104.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[3].cases[1] (Origin)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -1074,6 +1206,13 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": ""
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -1082,17 +1221,17 @@
       "key": "p40",
       "page_id": "p40",
       "index": 28,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "ba4c14f7f700a491df823156e11b2c00b6885a6a",
-      "speaker_notes_hash": "58668e7669fd564d99db5d581fcdb6a5618440b5",
+      "title": "Floor Tour",
+      "text_hash": "1ff238cb4acb09dc3ca221cbcd56c50e9b90159d",
+      "media_hash": "71a799376a7812d5f667a4d9213bd9d6cc9251e1",
+      "speaker_notes_hash": "5c7b2f6f58ebfb553a937449308b8e43ba1c676e",
       "media_refs": [
-        "ppt/media/image18.png",
-        "ppt/media/image19.png"
+        "ppt/media/image25.png",
+        "ppt/media/image16.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[3].cases[2] (image-only pair)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -1117,6 +1256,15 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": ""
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed",
+            "speaker-notes changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -1126,15 +1274,16 @@
       "page_id": "p41",
       "index": 29,
       "title": "Floor Tour",
-      "text_hash": "2bfb1e53f6d328b6b3a9d51c473e732936c53c38",
-      "media_hash": "35927e2c57ed2b1451a9b8a9c70ac42b16e96fc1",
-      "speaker_notes_hash": "56244bc104136d09f22934fe6ba341c4a1c011c9",
+      "text_hash": "1ff238cb4acb09dc3ca221cbcd56c50e9b90159d",
+      "media_hash": "a204c854c170e2e73db5a1ba94d51fb1da2ee06e",
+      "speaker_notes_hash": "58668e7669fd564d99db5d581fcdb6a5618440b5",
       "media_refs": [
-        "ppt/media/image14.png"
+        "ppt/media/image20.png",
+        "ppt/media/image23.png"
       ],
       "has_directive": false,
       "directives": [],
-      "state": "generated",
+      "state": "pending",
       "deck_target": "SECTIONS[3].cases[3] (Productized version)",
       "generated_at": "2026-05-13T12:21:57Z",
       "first_seen": "2026-05-13T11:24:46Z",
@@ -1160,6 +1309,15 @@
           "event": "mark:pending→generated",
           "by": "session",
           "note": ""
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed",
+            "speaker-notes changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -1169,10 +1327,14 @@
       "page_id": "p42",
       "index": 30,
       "title": "Floor Tour",
-      "text_hash": "8862f4f1b63ea9c6e7a898797da1ce1be64f7ea7",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
+      "text_hash": "2bfb1e53f6d328b6b3a9d51c473e732936c53c38",
+      "media_hash": "3d3dde60fd42f3d0d1a7c3b79b5656d5e119a2e7",
+      "speaker_notes_hash": "6b704d110ec8af2e3b83a16b75345208e12eaf85",
+      "media_refs": [
+        "ppt/media/image14.png",
+        "ppt/media/image78.gif",
+        "ppt/media/image39.gif"
+      ],
       "has_directive": false,
       "directives": [],
       "state": "pending",
@@ -1187,6 +1349,15 @@
             "text changed",
             "speaker-notes changed"
           ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed",
+            "speaker-notes changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -1195,6 +1366,40 @@
       "key": "p43",
       "page_id": "p43",
       "index": 31,
+      "title": "Floor Tour",
+      "text_hash": "8862f4f1b63ea9c6e7a898797da1ce1be64f7ea7",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "58668e7669fd564d99db5d581fcdb6a5618440b5",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "speaker-notes changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p44",
+      "page_id": "p44",
+      "index": 32,
       "title": "Blueprint Immersive",
       "text_hash": "3e9c8396ff637708724668691fd677f842cdefd1",
       "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
@@ -1211,36 +1416,6 @@
           "at": "2026-05-13T11:56:33Z",
           "event": "auto-revert-to-pending",
           "reasons": [
-            "text changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p44",
-      "page_id": "p44",
-      "index": 32,
-      "title": "Blueprint Immersive",
-      "text_hash": "daf60be7890408c77f7cb9198ebe1b355f475b21",
-      "media_hash": "49c99494b75a9e25793c81196e36845f84c28284",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image29.png",
-        "ppt/media/image46.png",
-        "ppt/media/image48.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
             "text changed",
             "media changed"
           ]
@@ -1249,6 +1424,14 @@
           "at": "2026-05-13T11:57:48Z",
           "event": "auto-revert-to-pending",
           "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
             "media changed"
           ]
         }
@@ -1259,13 +1442,16 @@
       "key": "p45",
       "page_id": "p45",
       "index": 33,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "da7371663fb57f02c2c834bb761d8efaf84e3498",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "title": "Blueprint Immersive",
+      "text_hash": "daf60be7890408c77f7cb9198ebe1b355f475b21",
+      "media_hash": "152a9164b94c41979d09449d0218b9d0df694a77",
+      "speaker_notes_hash": "6dcd4ce23d88e2ee9568ba546c007c63d9131c1b",
       "media_refs": [
-        "ppt/media/image23.gif",
-        "ppt/media/image32.gif"
+        "ppt/media/image30.png",
+        "ppt/media/image42.png",
+        "ppt/media/image54.png",
+        "ppt/media/image109.png",
+        "ppt/media/image33.jpg"
       ],
       "has_directive": false,
       "directives": [],
@@ -1288,6 +1474,15 @@
           "reasons": [
             "media changed"
           ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed",
+            "speaker-notes changed"
+          ]
         }
       ],
       "manual_notes": ""
@@ -1296,13 +1491,11 @@
       "key": "p46",
       "page_id": "p46",
       "index": 34,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "008123ed315561c32589d362668ed3ac3270627b",
+      "title": "Blueprint Immersive",
+      "text_hash": "8d65e1b2b7d68b4c098b303bb3cec869b9ad21b0",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image97.png"
-      ],
+      "media_refs": [],
       "has_directive": false,
       "directives": [],
       "state": "pending",
@@ -1314,6 +1507,14 @@
           "at": "2026-05-13T11:56:33Z",
           "event": "auto-revert-to-pending",
           "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
             "media changed"
           ]
         }
@@ -1326,10 +1527,11 @@
       "index": 35,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "040a9a5e74a1d86e75105f7f0eef571b645e2603",
+      "media_hash": "d29fee0c6b71ba59844ce72acb35c6ba74bce79f",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image28.png"
+        "ppt/media/image32.gif",
+        "ppt/media/image40.gif"
       ],
       "has_directive": false,
       "directives": [],
@@ -1340,6 +1542,13 @@
       "history": [
         {
           "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
           "event": "auto-revert-to-pending",
           "reasons": [
             "media changed"
@@ -1354,10 +1563,10 @@
       "index": 36,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "fe8d4024a298f9a49c54b5f0a163b3d189d44f35",
+      "media_hash": "6e74b891c070910a520a9af3bc0a98b0250cbfb2",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image27.png"
+        "ppt/media/image110.png"
       ],
       "has_directive": false,
       "directives": [],
@@ -1368,6 +1577,13 @@
       "history": [
         {
           "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
           "event": "auto-revert-to-pending",
           "reasons": [
             "media changed"
@@ -1380,529 +1596,6 @@
       "key": "p49",
       "page_id": "p49",
       "index": 37,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "8ac9b987be68e3b4814dd623942ff46991160713",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image36.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p50",
-      "page_id": "p50",
-      "index": 38,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "67492b624fe69c23d66c414fca9b77cbd9af8b04",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image66.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "fallback:da39a3ee5e6b:39",
-      "page_id": null,
-      "index": 39,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "f9d1794a08f1d5838124c583a7fbcebac1ee033f",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image38.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p52",
-      "page_id": "p52",
-      "index": 40,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "28c9ca54b5587d559e6cf629cfad97333fb0181f",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image49.png",
-        "ppt/media/image38.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p53",
-      "page_id": "p53",
-      "index": 41,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "5c199c0f1bc3bc7b05868c964f37b1713720f5aa",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image31.png",
-        "ppt/media/image30.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p54",
-      "page_id": "p54",
-      "index": 42,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "e0e73b0f9ea9966c052b335e49ddd61809d16843",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image47.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p55",
-      "page_id": "p55",
-      "index": 43,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "6014aa40ed817a06e985705664b71dd9f1f69a02",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image35.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p56",
-      "page_id": "p56",
-      "index": 44,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "60325a7feec947f935cc803afbfb683db1578227",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image39.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p57",
-      "page_id": "p57",
-      "index": 45,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "8564bf0c3799d01b973862711e3bf4988f87f163",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image43.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p58",
-      "page_id": "p58",
-      "index": 46,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "8b166000b8486bb1557b10c0ff4b67b8885e5ebf",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image52.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p59",
-      "page_id": "p59",
-      "index": 47,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "9acb03c0d986dd9a84ba00d43c7f0cb4991c4521",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image58.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "fallback:da39a3ee5e6b:48",
-      "page_id": null,
-      "index": 48,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p61",
-      "page_id": "p61",
-      "index": 49,
-      "title": "Blueprint Immersive",
-      "text_hash": "8d65e1b2b7d68b4c098b303bb3cec869b9ad21b0",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p62",
-      "page_id": "p62",
-      "index": 50,
-      "title": "Blueprint Immersive",
-      "text_hash": "5b8d16231754cdf7e39498cf0ab45bac0ef338f4",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p63",
-      "page_id": "p63",
-      "index": 51,
-      "title": "Blueprint Immersive",
-      "text_hash": "26506b5b8f46d3a9ecfb72410d7576992ae56677",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p64",
-      "page_id": "p64",
-      "index": 52,
-      "title": "Hyperreal Estate",
-      "text_hash": "71763164eefa5b17c38f0eacdaf88ee7fd3a5b5e",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p65",
-      "page_id": "p65",
-      "index": 53,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "41c520f24c75b3fa86deca4f21277c788c103123",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image44.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p66",
-      "page_id": "p66",
-      "index": 54,
-      "title": "Hyperreal Estate",
-      "text_hash": "cbbca6855bc7d90bfb2f1e7435433f4049335ad6",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "fallback:da39a3ee5e6b:55",
-      "page_id": null,
-      "index": 55,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_hash": "b418b9e259540a6f43ee70b1ee197e8ac2a34f06",
@@ -1930,20 +1623,27 @@
           "reasons": [
             "media changed"
           ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": ""
     },
     {
-      "key": "p68",
-      "page_id": "p68",
-      "index": 56,
+      "key": "p50",
+      "page_id": "p50",
+      "index": 38,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "6032bbb2c4dac0d2a6af0a5ac8a1db9d62d12dc7",
+      "media_hash": "040a9a5e74a1d86e75105f7f0eef571b645e2603",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image63.png"
+        "ppt/media/image28.png"
       ],
       "has_directive": false,
       "directives": [],
@@ -1965,259 +1665,41 @@
           "reasons": [
             "media changed"
           ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": ""
     },
     {
-      "key": "p69",
-      "page_id": "p69",
-      "index": 57,
+      "key": "p51",
+      "page_id": "p51",
+      "index": 39,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "d86444e4024691a84828a17220be86328ac9a9bb",
+      "media_hash": "6014aa40ed817a06e985705664b71dd9f1f69a02",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image50.png"
+        "ppt/media/image35.png"
       ],
       "has_directive": false,
       "directives": [],
       "state": "pending",
       "deck_target": null,
       "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
+      "first_seen": "2026-05-13T14:38:47Z",
+      "history": [],
       "manual_notes": ""
     },
     {
-      "key": "p70",
-      "page_id": "p70",
-      "index": 58,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "28b572c76d6743048b79ea258ec7b4b19f0c82f6",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image51.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p71",
-      "page_id": "p71",
-      "index": 59,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "dbb564279a3509764ca25f93c2f0e86ada702ad6",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image54.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p72",
-      "page_id": "p72",
-      "index": 60,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "6676bb86f30eb06a9831791b9191a80ccac82b62",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image59.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p73",
-      "page_id": "p73",
-      "index": 61,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "5118b3d776d0930b5b9e45d226ee99dc1c615c8a",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image57.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p74",
-      "page_id": "p74",
-      "index": 62,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "309fe80e4217a153a301000e0fda91dc7027d238",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image60.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p75",
-      "page_id": "p75",
-      "index": 63,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "780942cd3db31eceee5fd2c51646b9c86086313e",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image53.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p76",
-      "page_id": "p76",
-      "index": 64,
+      "key": "p52",
+      "page_id": "p52",
+      "index": 40,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_hash": "2449878693b8114e2b6fe05e2e4df277b0bc186e",
@@ -2245,20 +1727,48 @@
           "reasons": [
             "media changed"
           ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": ""
     },
     {
-      "key": "p77",
-      "page_id": "p77",
-      "index": 65,
+      "key": "fallback:da39a3ee5e6b:41",
+      "page_id": null,
+      "index": 41,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "8ac03139dc7c49e44485ca079482578931b1d8ca",
+      "media_hash": "20ad95144b51d8a0d92fa29d6c8af38dcb3b6c59",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image69.jpg"
+        "ppt/media/image45.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T14:38:47Z",
+      "history": [],
+      "manual_notes": ""
+    },
+    {
+      "key": "p54",
+      "page_id": "p54",
+      "index": 42,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "20875d72fda5ee644840dab54feaff38b3c63eac",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image48.png",
+        "ppt/media/image45.png"
       ],
       "has_directive": false,
       "directives": [],
@@ -2280,30 +1790,9 @@
           "reasons": [
             "media changed"
           ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p78",
-      "page_id": "p78",
-      "index": 66,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "435f0d95568171a45f5d9bdcaefe9888e2257477",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image62.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
+        },
         {
-          "at": "2026-05-13T11:56:33Z",
+          "at": "2026-05-13T14:38:47Z",
           "event": "auto-revert-to-pending",
           "reasons": [
             "media changed"
@@ -2313,15 +1802,16 @@
       "manual_notes": ""
     },
     {
-      "key": "p79",
-      "page_id": "p79",
-      "index": 67,
+      "key": "p55",
+      "page_id": "p55",
+      "index": 43,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "829768276b33ce5939ab2418a3d4e313b07d7930",
+      "media_hash": "83ec461c7e87dbdac20c85528a18fc81decdccaf",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image67.jpg"
+        "ppt/media/image38.png",
+        "ppt/media/image50.png"
       ],
       "has_directive": false,
       "directives": [],
@@ -2343,16 +1833,329 @@
           "reasons": [
             "media changed"
           ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": ""
     },
     {
-      "key": "p80",
-      "page_id": "p80",
-      "index": 68,
-      "title": "Gifs at various resolutions here:",
-      "text_hash": "1c63ad5d6a796be8492e4481a63aae2453340b90",
+      "key": "p56",
+      "page_id": "p56",
+      "index": 44,
+      "title": "Painting",
+      "text_hash": "d69cc39cfa02efed00f045fca9cf3c031d09b572",
+      "media_hash": "36199737a0ff24bbaa120e27efd8872596bf1dc2",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image49.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p57",
+      "page_id": "p57",
+      "index": 45,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "e0ab4a9018ef34c04835c8e2a9e4f9931031eac2",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image46.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p58",
+      "page_id": "p58",
+      "index": 46,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "e0e73b0f9ea9966c052b335e49ddd61809d16843",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image47.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p59",
+      "page_id": "p59",
+      "index": 47,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "7797062c135c68bcef239f75de3232e2565dd457",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image55.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p60",
+      "page_id": "p60",
+      "index": 48,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "8b166000b8486bb1557b10c0ff4b67b8885e5ebf",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image52.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T14:38:47Z",
+      "history": [],
+      "manual_notes": ""
+    },
+    {
+      "key": "p61",
+      "page_id": "p61",
+      "index": 49,
+      "title": "https://drive.google.com/file/d/1DcUnMRNP1Ug8q_zIXIV89XBg99THZq7o/view?usp=sharing",
+      "text_hash": "593f851f4e2c0fed12b668310f52e05929776767",
+      "media_hash": "34bf5033e02536b8820592497a0a4795ff8f400a",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image44.jpg"
+      ],
+      "has_directive": true,
+      "directives": [
+        "Note: video for this slide lives:"
+      ],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p62",
+      "page_id": "p62",
+      "index": 50,
+      "title": "Jump to seat",
+      "text_hash": "211f7eae15df4b3935fe8357481d554efa812235",
+      "media_hash": "28b572c76d6743048b79ea258ec7b4b19f0c82f6",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image51.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p63",
+      "page_id": "p63",
+      "index": 51,
+      "title": "Jump to seat",
+      "text_hash": "c01599f8c6cc715d3565b3a9c6d1747af7b81ca8",
+      "media_hash": "780942cd3db31eceee5fd2c51646b9c86086313e",
+      "speaker_notes_hash": "58668e7669fd564d99db5d581fcdb6a5618440b5",
+      "media_refs": [
+        "ppt/media/image53.jpg"
+      ],
+      "has_directive": true,
+      "directives": [
+        "Note: video lives at https://drive.google.com/file/d/19XlCnYgDuLcsO0K67J6Vye0dqX7-xP2V/view?usp=sharing"
+      ],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed",
+            "speaker-notes changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p64",
+      "page_id": "p64",
+      "index": 52,
+      "title": "Design options",
+      "text_hash": "bcdfe9fc2e0784576a0a4e4590307e06468bb518",
+      "media_hash": "309fe80e4217a153a301000e0fda91dc7027d238",
+      "speaker_notes_hash": "58668e7669fd564d99db5d581fcdb6a5618440b5",
+      "media_refs": [
+        "ppt/media/image60.jpg"
+      ],
+      "has_directive": true,
+      "directives": [
+        "Note: video lives: https://drive.google.com/file/d/1uhRl0E5OVqpB7_nYMHjQXoKXqW7-7VA1/view?usp=sharing"
+      ],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed",
+            "speaker-notes changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p65",
+      "page_id": "p65",
+      "index": 53,
+      "title": "Blueprint Immersive",
+      "text_hash": "5b8d16231754cdf7e39498cf0ab45bac0ef338f4",
       "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [],
@@ -2362,30 +2165,6 @@
       "deck_target": null,
       "generated_at": null,
       "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p81",
-      "page_id": "p81",
-      "index": 69,
-      "title": "COMPARISON MODELS",
-      "text_hash": "37e13a7045f6b1faa388f4b5d385633c6d2ee6a0",
-      "media_hash": "a2466c44155869581e305dab574a5fe70062d8b1",
-      "speaker_notes_hash": "9e11de0ca2d89a14391a8d217d5293e24d51a22b",
-      "media_refs": [
-        "ppt/media/image64.jpg",
-        "ppt/media/image55.png",
-        "ppt/media/image68.jpg",
-        "ppt/media/image73.jpg",
-        "ppt/media/image84.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
       "history": [
         {
           "at": "2026-05-13T11:56:33Z",
@@ -2400,16 +2179,50 @@
           "reasons": [
             "media changed"
           ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
         }
       ],
       "manual_notes": ""
     },
     {
-      "key": "p82",
-      "page_id": "p82",
-      "index": 70,
+      "key": "p66",
+      "page_id": "p66",
+      "index": 54,
+      "title": "Blueprint Immersive",
+      "text_hash": "26506b5b8f46d3a9ecfb72410d7576992ae56677",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p67",
+      "page_id": "p67",
+      "index": 55,
       "title": "Hyperreal Estate",
-      "text_hash": "ca6f2ff5e62ca20b6a22bcd3f33c0b2be9dc42d9",
+      "text_hash": "71763164eefa5b17c38f0eacdaf88ee7fd3a5b5e",
       "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [],
@@ -2418,192 +2231,14 @@
       "state": "pending",
       "deck_target": null,
       "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
+      "first_seen": "2026-05-13T14:38:47Z",
       "history": [],
       "manual_notes": ""
     },
     {
-      "key": "p83",
-      "page_id": "p83",
-      "index": 71,
-      "title": "Hyperreal Estate",
-      "text_hash": "ba927b19f0ac195b5271eeb27b0e8e939cccfb7e",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p84",
-      "page_id": "p84",
-      "index": 72,
-      "title": "Holodeck Anywhere",
-      "text_hash": "23cd5f69fff08f67152e8f3e3191122a24fbd26f",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p85",
-      "page_id": "p85",
-      "index": 73,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "d3eca8a4d97bf059c02ce35d0b8f7c864ffc3e2c",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image80.jpg",
-        "ppt/media/image86.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p86",
-      "page_id": "p86",
-      "index": 74,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "b8690c710175338cae7ca58f0cef64b4486edbc9",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image95.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p87",
-      "page_id": "p87",
-      "index": 75,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "f95fc9756c5393cdd0aae662821bf811a097e953",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image90.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p88",
-      "page_id": "p88",
-      "index": 76,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "3876929b44cecd1aa606e6ef0376d95a02254399",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image85.jpg",
-        "ppt/media/image81.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p89",
-      "page_id": "p89",
-      "index": 77,
+      "key": "p68",
+      "page_id": "p68",
+      "index": 56,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_hash": "f9433b38fe9f6ad5845f70f5c71cd120c8f191ab",
@@ -2631,21 +2266,88 @@
           "reasons": [
             "media changed"
           ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
         }
       ],
       "manual_notes": ""
     },
     {
-      "key": "p90",
-      "page_id": "p90",
-      "index": 78,
+      "key": "p69",
+      "page_id": "p69",
+      "index": 57,
+      "title": "Hyperreal Estate",
+      "text_hash": "cbbca6855bc7d90bfb2f1e7435433f4049335ad6",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "fallback:da39a3ee5e6b:58",
+      "page_id": null,
+      "index": 58,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "8b75dc7d4457f651adf4380724ea89e536a6b2c8",
+      "media_hash": "030a8be2328c6355587dd6231d02d69ba025bf32",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image92.jpg",
-        "ppt/media/image77.jpg"
+        "ppt/media/image57.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T14:38:47Z",
+      "history": [],
+      "manual_notes": ""
+    },
+    {
+      "key": "p71",
+      "page_id": "p71",
+      "index": 59,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "9c7f3b3593c454413f5773d64c4f58557f57f59f",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image59.png"
       ],
       "has_directive": false,
       "directives": [],
@@ -2663,6 +2365,765 @@
         },
         {
           "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p72",
+      "page_id": "p72",
+      "index": 60,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "9acb03c0d986dd9a84ba00d43c7f0cb4991c4521",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image58.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p73",
+      "page_id": "p73",
+      "index": 61,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "82b724dec52fef36f29fa5791e6629883bcb72f5",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image62.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p74",
+      "page_id": "p74",
+      "index": 62,
+      "title": "",
+      "text_hash": "d94731119dbd1d8536bb551f1326b4c1fd9e0e76",
+      "media_hash": "174c0c09b1e0787fdc408f5498903df26d64138f",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image56.jpg"
+      ],
+      "has_directive": true,
+      "directives": [
+        "NOTE: https://drive.google.com/file/d/1RAdPw-eigVu5-16mWSJEG7a7tX7I3A1-/view?usp=drive_link"
+      ],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p75",
+      "page_id": "p75",
+      "index": 63,
+      "title": "",
+      "text_hash": "d94731119dbd1d8536bb551f1326b4c1fd9e0e76",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": true,
+      "directives": [
+        "NOTE: https://drive.google.com/file/d/1RAdPw-eigVu5-16mWSJEG7a7tX7I3A1-/view?usp=drive_link"
+      ],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p76",
+      "page_id": "p76",
+      "index": 64,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "84a0cce7f470fb02cf55048bb58d06daedb0d351",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image72.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p77",
+      "page_id": "p77",
+      "index": 65,
+      "title": "",
+      "text_hash": "e5aa0c0f2360d36d0e2cf4f902e5531fc22ff991",
+      "media_hash": "f713b1240438cf9012377ba348c653e84b9c08b9",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image68.jpg",
+        "ppt/media/image99.gif"
+      ],
+      "has_directive": true,
+      "directives": [
+        "Note: https://drive.google.com/file/d/1exxhg7yv2lkpxoGq-9DT297JstNNW8wQ/view?usp=drive_link"
+      ],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p78",
+      "page_id": "p78",
+      "index": 66,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "66c5d4f90771c4d4a230e54f95e7848d13903328",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image75.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p79",
+      "page_id": "p79",
+      "index": 67,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "8ac03139dc7c49e44485ca079482578931b1d8ca",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image69.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p80",
+      "page_id": "p80",
+      "index": 68,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "9f656c355715a99daee0d494c7a5182e1405abd8",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image83.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p81",
+      "page_id": "p81",
+      "index": 69,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "0222a0445b2385cabb0725cf25d92c98fdc62237",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image73.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed",
+            "speaker-notes changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p82",
+      "page_id": "p82",
+      "index": 70,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "e3a4f531d9b127ea2ad8feec83cd17700d4dff3f",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image76.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p83",
+      "page_id": "p83",
+      "index": 71,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "474532fc2a864c09e3743b9a97008a9331470bea",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image70.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p84",
+      "page_id": "p84",
+      "index": 72,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "c12ef260234f65556fe6affced35c1a534be8423",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image79.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p85",
+      "page_id": "p85",
+      "index": 73,
+      "title": "Gifs at various resolutions here:",
+      "text_hash": "1c63ad5d6a796be8492e4481a63aae2453340b90",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p86",
+      "page_id": "p86",
+      "index": 74,
+      "title": "COMPARISON MODELS",
+      "text_hash": "37e13a7045f6b1faa388f4b5d385633c6d2ee6a0",
+      "media_hash": "045d7239d4320a43b84f088fca258c38ee54ac62",
+      "speaker_notes_hash": "9e11de0ca2d89a14391a8d217d5293e24d51a22b",
+      "media_refs": [
+        "ppt/media/image67.jpg",
+        "ppt/media/image63.png",
+        "ppt/media/image71.jpg",
+        "ppt/media/image80.jpg",
+        "ppt/media/image74.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed",
+            "speaker-notes changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p87",
+      "page_id": "p87",
+      "index": 75,
+      "title": "Hyperreal Estate",
+      "text_hash": "ca6f2ff5e62ca20b6a22bcd3f33c0b2be9dc42d9",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p88",
+      "page_id": "p88",
+      "index": 76,
+      "title": "Hyperreal Estate",
+      "text_hash": "ba927b19f0ac195b5271eeb27b0e8e939cccfb7e",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p89",
+      "page_id": "p89",
+      "index": 77,
+      "title": "Holodeck Anywhere",
+      "text_hash": "23cd5f69fff08f67152e8f3e3191122a24fbd26f",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p90",
+      "page_id": "p90",
+      "index": 78,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "01cbb88ea0693abfe47ebc53d46f0c8daede2963",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image93.jpg",
+        "ppt/media/image98.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
           "event": "auto-revert-to-pending",
           "reasons": [
             "media changed"
@@ -2677,10 +3138,10 @@
       "index": 79,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "f6bf1645750d7ce5a737338e4a5911a984ede6df",
+      "media_hash": "69b8893e1550e11b8a387449c384c76518a1d583",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image89.jpg"
+        "ppt/media/image102.jpg"
       ],
       "has_directive": false,
       "directives": [],
@@ -2698,6 +3159,13 @@
         },
         {
           "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
           "event": "auto-revert-to-pending",
           "reasons": [
             "media changed"
@@ -2712,10 +3180,10 @@
       "index": 80,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "f72577e9d4f05c501271a04cf5553a9d74e43e1a",
+      "media_hash": "6d5ff20a52620badfb77b3acc5e914a645aaba36",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image75.png"
+        "ppt/media/image101.jpg"
       ],
       "has_directive": false,
       "directives": [],
@@ -2733,6 +3201,13 @@
         },
         {
           "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
           "event": "auto-revert-to-pending",
           "reasons": [
             "media changed"
@@ -2747,10 +3222,11 @@
       "index": 81,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "3d9c61c95da0405aa2e7acec7cc4af5254f6874d",
+      "media_hash": "bd75dc8ab98586c51bce04b222df26370eb238b0",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image70.png"
+        "ppt/media/image88.jpg",
+        "ppt/media/image85.jpg"
       ],
       "has_directive": false,
       "directives": [],
@@ -2768,6 +3244,13 @@
         },
         {
           "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
           "event": "auto-revert-to-pending",
           "reasons": [
             "media changed"
@@ -2782,10 +3265,10 @@
       "index": 82,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "27b6d51e0abf996a838acbc44e348bc18d33c7ae",
+      "media_hash": "ba1df5f5afb45d0626c5e3b34f9b5a9fb62154d3",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image72.png"
+        "ppt/media/image77.png"
       ],
       "has_directive": false,
       "directives": [],
@@ -2803,6 +3286,13 @@
         },
         {
           "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
           "event": "auto-revert-to-pending",
           "reasons": [
             "media changed"
@@ -2817,16 +3307,28 @@
       "index": 83,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "1b4ff01fbe53a73cf29c0dc6490a4e071d16453d",
-      "media_refs": [],
+      "media_hash": "e38e2273c56cee6e50f355edadc0c075f25d0e52",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image100.jpg",
+        "ppt/media/image81.jpg"
+      ],
       "has_directive": false,
       "directives": [],
       "state": "pending",
       "deck_target": null,
       "generated_at": null,
       "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed",
+            "speaker-notes changed"
+          ]
+        }
+      ],
       "manual_notes": ""
     },
     {
@@ -2835,10 +3337,10 @@
       "index": 84,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "7668508a2fc3bedfc3a7530cc8e13c3abc150364",
+      "media_hash": "ba256d29ee880f3a7b0e40c885dd99fa7c85e7d5",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image71.png"
+        "ppt/media/image97.jpg"
       ],
       "has_directive": false,
       "directives": [],
@@ -2846,24 +3348,34 @@
       "deck_target": null,
       "generated_at": null,
       "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
       "manual_notes": ""
     },
     {
-      "key": "fallback:da39a3ee5e6b:85",
-      "page_id": null,
+      "key": "p97",
+      "page_id": "p97",
       "index": 85,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "dd7d694de9f801cc2e3063bf3dc1c65deb2434dd",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
+      "media_refs": [
+        "ppt/media/image84.png"
+      ],
       "has_directive": false,
       "directives": [],
       "state": "pending",
       "deck_target": null,
       "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
+      "first_seen": "2026-05-13T14:38:47Z",
       "history": [],
       "manual_notes": ""
     },
@@ -2873,10 +3385,10 @@
       "index": 86,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "17b8be033ca689e5447e110c1e041df0ca8f1c19",
+      "media_hash": "876fc12938a1cc3656f26cb375837e1c3bdc728c",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image91.jpg"
+        "ppt/media/image87.png"
       ],
       "has_directive": false,
       "directives": [],
@@ -2894,6 +3406,13 @@
         },
         {
           "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
           "event": "auto-revert-to-pending",
           "reasons": [
             "media changed"
@@ -2906,479 +3425,6 @@
       "key": "p99",
       "page_id": "p99",
       "index": 87,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "4853c2b9ff4d6b37be727ef0787882db6d72589b",
-      "speaker_notes_hash": "06b59df9b3a84d7107b7cbaa49a009889dd0fa5e",
-      "media_refs": [
-        "ppt/media/image25.gif",
-        "ppt/media/image22.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p100",
-      "page_id": "p100",
-      "index": 88,
-      "title": "Holodeck Anywhere",
-      "text_hash": "620bc3b739a9f5a1d12a2b14251a724de06f55c6",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p101",
-      "page_id": "p101",
-      "index": 89,
-      "title": "Holodeck Anywhere",
-      "text_hash": "b636cd3803de206f56709a344da08a506881e2c6",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p102",
-      "page_id": "p102",
-      "index": 90,
-      "title": "Holodeck Anywhere",
-      "text_hash": "ccc6db65cea20cc6d1314a40c3760d97d239f0ed",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p103",
-      "page_id": "p103",
-      "index": 91,
-      "title": "The Pipeline",
-      "text_hash": "5fac0cfec78d5d71b799a40a38ee0c82e9ff1e75",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p104",
-      "page_id": "p104",
-      "index": 92,
-      "title": "The Pipeline",
-      "text_hash": "0d187c33c853f8101e168ebb46cfd7744954a5c0",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p105",
-      "page_id": "p105",
-      "index": 93,
-      "title": "AI is compressing the ladder",
-      "text_hash": "15d6005fd5e65484cfa43dbc7a78c2ac35bacc74",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p106",
-      "page_id": "p106",
-      "index": 94,
-      "title": "What AI has changed / What it hasn’t",
-      "text_hash": "414fed530534fc630b55e2e2b6217c896d69c0a7",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p107",
-      "page_id": "p107",
-      "index": 95,
-      "title": "Where are you in the cycle?",
-      "text_hash": "f4327d3d9f26f5c3e4baeed4c54844cc55c88750",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "text changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p108",
-      "page_id": "p108",
-      "index": 96,
-      "title": "Secret 5th Rung",
-      "text_hash": "56fe0209e287f01f4381d84feda6c849869fa5b3",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "fa12c847dfbd8ae44ab732d146cce28c7604fa91",
-      "media_refs": [],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [],
-      "manual_notes": ""
-    },
-    {
-      "key": "p109",
-      "page_id": "p109",
-      "index": 97,
-      "title": "Ending/Thank you",
-      "text_hash": "6c942eb43aebb17807b8fd9792bda73f7ee083f3",
-      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [],
-      "has_directive": true,
-      "directives": [
-        "NOTE: add logos/contact information in the style of FMX deck,"
-      ],
-      "state": "generated",
-      "deck_target": "close slide (FMX-style contact + 2 LinkedIn QRs)",
-      "generated_at": "2026-05-13T12:21:57Z",
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "text changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T12:21:57Z",
-          "event": "mark:pending→generated",
-          "by": "session",
-          "note": ""
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p110",
-      "page_id": "p110",
-      "index": 98,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "0632e312118c105a8f9da5a462441d7f8f45b42c",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image76.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p111",
-      "page_id": "p111",
-      "index": 99,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "08858c19d4fc046b39980dac48f8833eeb374709",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image98.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p112",
-      "page_id": "p112",
-      "index": 100,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "1133809cc109b0e4e4cf125e637409909ca80688",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image78.jpg",
-        "ppt/media/image93.png",
-        "ppt/media/image88.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p113",
-      "page_id": "p113",
-      "index": 101,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "f3bd426b1a4650b64ca80dc233382513011426ba",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image93.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p114",
-      "page_id": "p114",
-      "index": 102,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "71fab1c2001ce1b931b56b2e71c80ab47c02d5c1",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image87.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p115",
-      "page_id": "p115",
-      "index": 103,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "f479c7b5bb8883fb151ff0d7d071ee0d04dd1df6",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image79.png"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p116",
-      "page_id": "p116",
-      "index": 104,
-      "title": "",
-      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "d6c17905addc7dfec8ffb64ba215e576306d5fd4",
-      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_refs": [
-        "ppt/media/image94.jpg"
-      ],
-      "has_directive": false,
-      "directives": [],
-      "state": "pending",
-      "deck_target": null,
-      "generated_at": null,
-      "first_seen": "2026-05-13T11:24:46Z",
-      "history": [
-        {
-          "at": "2026-05-13T11:56:33Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        },
-        {
-          "at": "2026-05-13T11:57:48Z",
-          "event": "auto-revert-to-pending",
-          "reasons": [
-            "media changed"
-          ]
-        }
-      ],
-      "manual_notes": ""
-    },
-    {
-      "key": "p117",
-      "page_id": "p117",
-      "index": 105,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_hash": "93e95d0f775efdd8d2d240aa6a196669adf97847",
@@ -3406,20 +3452,512 @@
           "reasons": [
             "media changed"
           ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed",
+            "speaker-notes changed"
+          ]
         }
       ],
       "manual_notes": ""
     },
     {
-      "key": "p118",
-      "page_id": "p118",
-      "index": 106,
+      "key": "p100",
+      "page_id": "p100",
+      "index": 88,
       "title": "",
       "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "media_hash": "6894e7cd5bef06b5497aad2457d3ddb6240876c7",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "1b4ff01fbe53a73cf29c0dc6490a4e071d16453d",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "speaker-notes changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p101",
+      "page_id": "p101",
+      "index": 89,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "634151d62e51a712bb73a9cb641f81e902c07ea5",
       "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "media_refs": [
-        "ppt/media/image96.jpg"
+        "ppt/media/image86.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "fallback:da39a3ee5e6b:90",
+      "page_id": null,
+      "index": 90,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T14:38:47Z",
+      "history": [],
+      "manual_notes": ""
+    },
+    {
+      "key": "p103",
+      "page_id": "p103",
+      "index": 91,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "e9c11220df7cf245b3961ac75e7545d28586d076",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image103.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p104",
+      "page_id": "p104",
+      "index": 92,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "f7c531bf329099b939ba04139f10f38a83adf6bb",
+      "speaker_notes_hash": "06b59df9b3a84d7107b7cbaa49a009889dd0fa5e",
+      "media_refs": [
+        "ppt/media/image34.gif",
+        "ppt/media/image17.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed",
+            "speaker-notes changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p105",
+      "page_id": "p105",
+      "index": 93,
+      "title": "Holodeck Anywhere",
+      "text_hash": "620bc3b739a9f5a1d12a2b14251a724de06f55c6",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p106",
+      "page_id": "p106",
+      "index": 94,
+      "title": "Holodeck Anywhere",
+      "text_hash": "b636cd3803de206f56709a344da08a506881e2c6",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p107",
+      "page_id": "p107",
+      "index": 95,
+      "title": "Holodeck Anywhere",
+      "text_hash": "ccc6db65cea20cc6d1314a40c3760d97d239f0ed",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p108",
+      "page_id": "p108",
+      "index": 96,
+      "title": "The Pipeline",
+      "text_hash": "5fac0cfec78d5d71b799a40a38ee0c82e9ff1e75",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "speaker-notes changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p109",
+      "page_id": "p109",
+      "index": 97,
+      "title": "The Pipeline",
+      "text_hash": "84a0732d790c55e4a0c28b8a505d22a8ef388a75",
+      "media_hash": "83e782e9e60ffd446323da524f2da28afd811c50",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image90.png"
+      ],
+      "has_directive": true,
+      "directives": [
+        "Note: Make a cleaner version of this diagram"
+      ],
+      "state": "pending",
+      "deck_target": "close slide (FMX-style contact + 2 LinkedIn QRs)",
+      "generated_at": "2026-05-13T12:21:57Z",
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T12:21:57Z",
+          "event": "mark:pending→generated",
+          "by": "session",
+          "note": ""
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p110",
+      "page_id": "p110",
+      "index": 98,
+      "title": "AI is compressing the ladder",
+      "text_hash": "15d6005fd5e65484cfa43dbc7a78c2ac35bacc74",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p111",
+      "page_id": "p111",
+      "index": 99,
+      "title": "What AI has changed / What it hasn’t",
+      "text_hash": "414fed530534fc630b55e2e2b6217c896d69c0a7",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p112",
+      "page_id": "p112",
+      "index": 100,
+      "title": "Where are you in the cycle?",
+      "text_hash": "f4327d3d9f26f5c3e4baeed4c54844cc55c88750",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p113",
+      "page_id": "p113",
+      "index": 101,
+      "title": "Secret 5th Rung",
+      "text_hash": "56fe0209e287f01f4381d84feda6c849869fa5b3",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "fa12c847dfbd8ae44ab732d146cce28c7604fa91",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed",
+            "speaker-notes changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p114",
+      "page_id": "p114",
+      "index": 102,
+      "title": "Ending/Thank you",
+      "text_hash": "6c942eb43aebb17807b8fd9792bda73f7ee083f3",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": true,
+      "directives": [
+        "NOTE: add logos/contact information in the style of FMX deck,"
+      ],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "text changed",
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p115",
+      "page_id": "p115",
+      "index": 103,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "f3b2f4a5685f5eb659cbf84161f3d63880904716",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image91.png"
       ],
       "has_directive": false,
       "directives": [],
@@ -3434,6 +3972,474 @@
           "reasons": [
             "media changed"
           ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p116",
+      "page_id": "p116",
+      "index": 104,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "873784967d7900f9f989b9e63642ff453c3811bc",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image109.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p117",
+      "page_id": "p117",
+      "index": 105,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "deb98558c4127d3c2fb2f604d437b50c84acf9c9",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image89.jpg",
+        "ppt/media/image106.png",
+        "ppt/media/image105.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p118",
+      "page_id": "p118",
+      "index": 106,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "0dca3f57510a37445ab801a10fbf1ab662caba76",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image106.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p119",
+      "page_id": "p119",
+      "index": 107,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "31d7c7e63cf37938d160220767d9c4372db34818",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image33.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T14:38:47Z",
+      "history": [],
+      "manual_notes": ""
+    },
+    {
+      "key": "p120",
+      "page_id": "p120",
+      "index": 108,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "e3e63e676051eb8b06b5fe16fbdd07f1ff83e4c3",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image94.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T14:38:47Z",
+      "history": [],
+      "manual_notes": ""
+    },
+    {
+      "key": "p121",
+      "page_id": "p121",
+      "index": 109,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "79d63282580314802b30cc5f5330a450a8c246c4",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image107.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T14:38:47Z",
+      "history": [],
+      "manual_notes": ""
+    },
+    {
+      "key": "p122",
+      "page_id": "p122",
+      "index": 110,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "fc7b49cfdd5115c26d41ab18b3aea9176cedfd24",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image96.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T14:38:47Z",
+      "history": [],
+      "manual_notes": ""
+    },
+    {
+      "key": "p123",
+      "page_id": "p123",
+      "index": 111,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "57749ad7e12036753f108937b9e6449317a50016",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image108.jpg"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "pending",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T14:38:47Z",
+      "history": [],
+      "manual_notes": ""
+    },
+    {
+      "key": "fallback:da39a3ee5e6b:39",
+      "page_id": null,
+      "index": 39,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "f9d1794a08f1d5838124c583a7fbcebac1ee033f",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image38.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "removed",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "removed-from-source",
+          "previous_state": "pending"
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p53",
+      "page_id": "p53",
+      "index": 41,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "5c199c0f1bc3bc7b05868c964f37b1713720f5aa",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image31.png",
+        "ppt/media/image30.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "removed",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "removed-from-source",
+          "previous_state": "pending"
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "fallback:da39a3ee5e6b:48",
+      "page_id": null,
+      "index": 48,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "removed",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "removed-from-source",
+          "previous_state": "pending"
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "fallback:da39a3ee5e6b:55",
+      "page_id": null,
+      "index": 55,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "b418b9e259540a6f43ee70b1ee197e8ac2a34f06",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image41.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "removed",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "removed-from-source",
+          "previous_state": "pending"
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p70",
+      "page_id": "p70",
+      "index": 58,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "28b572c76d6743048b79ea258ec7b4b19f0c82f6",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [
+        "ppt/media/image51.png"
+      ],
+      "has_directive": false,
+      "directives": [],
+      "state": "removed",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T11:56:33Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T11:57:48Z",
+          "event": "auto-revert-to-pending",
+          "reasons": [
+            "media changed"
+          ]
+        },
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "removed-from-source",
+          "previous_state": "pending"
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "fallback:da39a3ee5e6b:85",
+      "page_id": null,
+      "index": 85,
+      "title": "",
+      "text_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "removed",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "removed-from-source",
+          "previous_state": "pending"
+        }
+      ],
+      "manual_notes": ""
+    },
+    {
+      "key": "p102",
+      "page_id": "p102",
+      "index": 90,
+      "title": "Holodeck Anywhere",
+      "text_hash": "ccc6db65cea20cc6d1314a40c3760d97d239f0ed",
+      "media_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "speaker_notes_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "media_refs": [],
+      "has_directive": false,
+      "directives": [],
+      "state": "removed",
+      "deck_target": null,
+      "generated_at": null,
+      "first_seen": "2026-05-13T11:24:46Z",
+      "history": [
+        {
+          "at": "2026-05-13T14:38:47Z",
+          "event": "removed-from-source",
+          "previous_state": "pending"
         }
       ],
       "manual_notes": ""

@@ -1,16 +1,11 @@
 {
   "index": 70,
   "page_id": "p82",
-  "title": "Hyperreal Estate",
-  "text_runs": [
-    "Hyperreal Estate",
-    "Architectural rendering that answers questions",
-    "",
-    "What if sunset?",
-    "What if walnut?",
-    "What if winter?"
-  ],
+  "title": "",
+  "text_runs": [],
   "directives": [],
-  "media_refs": [],
+  "media_refs": [
+    "ppt/media/image76.jpg"
+  ],
   "speaker_notes": ""
 }

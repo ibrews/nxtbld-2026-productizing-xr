@@ -1,22 +1,18 @@
 {
   "index": 97,
   "page_id": "p109",
-  "title": "Ending/Thank you",
+  "title": "The Pipeline",
   "text_runs": [
-    "Ending/Thank you",
-    "If you’ve already built it twice, you may already have a product.",
-    "Chat with us more outside, we’ve got demos!",
-    "NOTE: add logos/contact information in the style of FMX deck, ",
-    "alex@agilelens.com",
-    " ",
-    "jun@agilelens.com",
-    " QR codes for LinkedIn: ",
-    "https://www.linkedin.com/in/alexcoulombe/",
-    "https://www.linkedin.com/in/yu-jun-yeh-4a0929183/"
+    "The Pipeline",
+    "Shared infrastructure diagram",
+    "Ingestion, colocation, etc",
+    "Note: Make a cleaner version of this diagram"
   ],
   "directives": [
-    "NOTE: add logos/contact information in the style of FMX deck,"
+    "Note: Make a cleaner version of this diagram"
   ],
-  "media_refs": [],
+  "media_refs": [
+    "ppt/media/image90.png"
+  ],
   "speaker_notes": ""
 }

@@ -1,12 +1,16 @@
 {
   "index": 52,
   "page_id": "p64",
-  "title": "Hyperreal Estate",
+  "title": "Design options",
   "text_runs": [
-    "Hyperreal Estate",
-    "“Does this feel right in 3D?”"
+    "Note: video lives: https://drive.google.com/file/d/1uhRl0E5OVqpB7_nYMHjQXoKXqW7-7VA1/view?usp=sharing",
+    "Design options"
   ],
-  "directives": [],
-  "media_refs": [],
-  "speaker_notes": ""
+  "directives": [
+    "Note: video lives: https://drive.google.com/file/d/1uhRl0E5OVqpB7_nYMHjQXoKXqW7-7VA1/view?usp=sharing"
+  ],
+  "media_refs": [
+    "ppt/media/image60.jpg"
+  ],
+  "speaker_notes": "J"
 }
