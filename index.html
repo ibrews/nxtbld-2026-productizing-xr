@@ -934,7 +934,7 @@ function playToolboxThud(){try{const c=sfxCtx(),t=c.currentTime,o=c.createOscill
 
 // Settings slide (slot 0, hidden)
 (function(){
-  const D={paraGap:.35,taglineScale:1,titleScale:1,imgDur:6,primaryColor:'#00d4ff',secondaryColor:'#a78bfa',bgDark:'#060810',fontFamily:'Space Grotesk',transition:'slide',arrowSubstep:true,verticalMode:false,bgStyle:'none',bgBlend:'screen'};
+  const D={paraGap:.35,taglineScale:1,titleScale:1,imgDur:6,primaryColor:'#00d4ff',secondaryColor:'#a78bfa',bgDark:'#060810',fontFamily:'Space Grotesk',transition:'slide',arrowSubstep:true,verticalMode:false,bgStyle:'nebula',bgBlend:'color-dodge'};
   const saved=JSON.parse(localStorage.getItem('sd-cfg')||'{}');const C={...D,...saved};
   function apply(){const r=document.documentElement.style;r.setProperty('--para-gap',C.paraGap+'em');r.setProperty('--tagline-scale',C.taglineScale);r.setProperty('--title-scale',C.titleScale);r.setProperty('--teal',C.primaryColor);r.setProperty('--purple',C.secondaryColor);r.setProperty('--bg-dark',C.bgDark);r.setProperty('--bg',C.bgDark);if(C.fontFamily&&C.fontFamily!=='Custom')r.setProperty('--font',`'${C.fontFamily}',system-ui,sans-serif`);else if(C.customFont)r.setProperty('--font',`'${C.customFont}',system-ui,sans-serif`);window._globalImageDuration=C.imgDur*1000;window._arrowSubstep=C.arrowSubstep;const vForced=new URLSearchParams(location.search).has('vertical');document.body.classList.toggle('vertical-mode',!!C.verticalMode||vForced);window._verticalMode=!!C.verticalMode||vForced;document.body.dataset.bgStyle=C.bgStyle||'none';r.setProperty('--bg-blend',C.bgBlend||'screen');if(typeof aRender==='function')aRender();}
   apply();window._sdCfg=C;function save(){localStorage.setItem('sd-cfg',JSON.stringify(C));}
