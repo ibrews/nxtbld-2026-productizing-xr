@@ -199,11 +199,40 @@ const SECTIONS = [
   { year: 'BLUEPRINT IMMERSIVE', accent: 'teal',
     lesson: { title:'Blueprint Immersive.', short:'BLUEPRINT', tagline:'“Does this layout work best?”', tags:'Product 2 of 4' },
     cases: [
-      // chapter intro — announces Blueprint Immersive before content slides (not yet built)
+      // chapter intro — announces Blueprint Immersive
       { layout:'big', title:'Blueprint Immersive',
         bigText:'“Which layout works best?”',
         bigCaption:'Product 2 of 4 — runtime Datasmith importing of design options for instant in-VR comparison.',
         deckTarget:'p44' },
+      // slide 33 (p45) — 5-image collage; "Grew out of dozens of similar projects from 2013-2023"
+      { layout:'placed', title:'Blueprint Immersive', subtitle:'Grew out of dozens of similar projects from 2013–2023',
+        placedItems:[
+          { type:'img', src:'media/nxtbld/bp-33-a.png', x:2,  y:8,  w:32, h:36 },
+          { type:'img', src:'media/nxtbld/bp-33-b.png', x:36, y:8,  w:32, h:40 },
+          { type:'img', src:'media/nxtbld/bp-33-c.png', x:70, y:10, w:28, h:38 },
+          { type:'img', src:'media/nxtbld/bp-33-d.png', x:8,  y:54, w:42, h:40 },
+          { type:'img', src:'media/nxtbld/bp-33-e.jpg', x:54, y:54, w:42, h:40 },
+        ],
+        deckTarget:'p45' },
+      // slide 34 (p46) — Origins; bullets describe the product's lineage and intent
+      { layout:'big', title:'Blueprint Immersive',
+        bigText:'Origins.',
+        bigCaption:'<ul class="agenda-list"><li>FDA Theatre Planning</li><li>Datasmith runtime importing</li><li>Option toggles</li><li>Professional tool built for the industry</li></ul>',
+        deckTarget:'p46' },
+      // slides 35–40 (p47–p52) — Origins text re-shown then fades to 50%, asset conveyor belt scrolls in from right.
+      // Each beltItem has hardcoded w/h so the track has correct layout BEFORE media loads (no race conditions).
+      { layout:'asset-belt', title:'Blueprint Immersive', bigText:'Origins.',
+        bigCaption:'<ul class="agenda-list"><li>FDA Theatre Planning</li><li>Datasmith runtime importing</li><li>Option toggles</li><li>Professional tool built for the industry</li></ul>',
+        beltItems:[
+          { type:'mp4', src:'media/nxtbld/bp-asset-35-a.mp4', w:656,  h:368  },
+          { type:'mp4', src:'media/nxtbld/bp-asset-35-b.mp4', w:1280, h:720  },
+          { type:'img', src:'media/nxtbld/bp-asset-36.png',   w:2500, h:1288 },
+          { type:'img', src:'media/nxtbld/bp-asset-37.png',   w:2038, h:1273 },
+          { type:'img', src:'media/nxtbld/bp-asset-38.png',   w:705,  h:408  },
+          { type:'img', src:'media/nxtbld/bp-asset-39.png',   w:512,  h:275  },
+          { type:'img', src:'media/nxtbld/bp-asset-40.jpg',   w:2500, h:1407 },
+        ],
+        deckTarget:'p47+p48+p49+p50+p51+p52' },
     ] },
 
   { year: 'HYPERREAL ESTATE', accent: 'rose',
@@ -464,6 +493,18 @@ body.split-view .nav-arrows{bottom:calc(42vh + 4px)!important}
 #export-modal .em-progress{font-size:.72rem;color:var(--dim);margin-top:10px}
 .cfg-btn-export{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);color:var(--teal);font-family:var(--font);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;border-radius:6px;cursor:pointer;transition:all .15s;margin-top:8px}
 .cfg-btn-export:hover{background:rgba(0,212,255,.18)}
+/* === LAYOUT: ASSET-BELT (text overlay first, fades to 50%, then conveyor enters from right) === */
+.case-slide.layout-asset-belt{display:flex;align-items:center;justify-content:center;padding:0}
+.asset-belt-stage{position:relative;aspect-ratio:16/9;width:100%;height:auto;max-height:100%;max-width:calc(100vh*16/9);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.asset-belt-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,2vw,32px);padding:clamp(40px,5vw,90px);text-align:center;z-index:1;pointer-events:none;opacity:1}
+.asset-belt-overlay .big-eyebrow{font-size:clamp(1.4rem,2.6vw,2.4rem);font-weight:500;color:rgba(240,244,255,.78);letter-spacing:-.01em}
+.asset-belt-overlay .big-text{font-size:clamp(2.5rem,6vw,6rem);font-weight:700;letter-spacing:-.04em;line-height:1.15;background:linear-gradient(135deg,#fff 30%,#a5e8ff 70%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0}
+.asset-belt-overlay .big-caption{color:rgba(240,244,255,.85);max-width:1000px}
+@keyframes assetBeltOverlayFade{from{opacity:1}to{opacity:.5}}
+.asset-belt-track{display:flex;gap:4vw;height:62%;align-items:center;position:absolute;left:100%;top:19%;will-change:transform;z-index:10}
+.asset-belt-item{height:100%;flex-shrink:0;border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.55);background:rgba(6,8,16,.95)}
+.asset-belt-item img,.asset-belt-item video{height:100%;width:auto;display:block;object-fit:contain}
+@keyframes assetBeltScroll{from{transform:translateX(0)}to{transform:translateX(calc(-100% - 100vw))}}
 /* === LAYOUT: PLACED (PPT-coordinate absolute positioning) === */
 .case-slide.layout-placed{display:flex;align-items:center;justify-content:center;padding:0}
 .placed-stage{position:relative;aspect-ratio:16/9;width:100%;height:auto;max-height:100%;max-width:calc(100vh*16/9);overflow:hidden}
@@ -1101,6 +1142,51 @@ SECTIONS.forEach((sec,si)=>{
       const cards=c.tools.map(t=>`<div class="toolbox-card"><div class="toolbox-img">${_mt(t.img)}</div><div class="toolbox-name">${t.name}</div><div class="toolbox-q">${t.q}</div></div>`).join('');
       s.innerHTML=`<div class="toolbox-stage">${c.title?`<h2 class="toolbox-title">${c.title}</h2>`:''}<div class="toolbox-grid">${cards}</div></div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
+    }
+    // layout: 'asset-belt' — text overlay fades to 50%, then conveyor scrolls right→left and stops with last item centered.
+    // Each beltItem MUST include {w, h} (intrinsic pixel dimensions) so layout is deterministic before media loads
+    // — no async waits, no race on loadedmetadata.
+    if(c.layout==='asset-belt'&&c.beltItems){
+      const items=c.beltItems.map(it=>{
+        const ar=it.w&&it.h?` style="aspect-ratio:${it.w}/${it.h}"`:'';
+        if(it.type==='mp4'||(it.src&&(it.src.endsWith('.mp4')||it.src.endsWith('.webm')))){
+          return `<div class="asset-belt-item"${ar}><video src="${it.src}" autoplay loop muted playsinline></video></div>`;
+        }
+        return `<div class="asset-belt-item"${ar}><img src="${it.src}" loading="lazy"></div>`;
+      }).join('');
+      const overlay=(c.title||c.bigText||c.bigCaption)?`<div class="asset-belt-overlay">${c.title?`<h2 class="big-eyebrow">${c.title}</h2>`:''}${c.bigText?`<h1 class="big-text">${c.bigText.replace(/\n/g,'<br>')}</h1>`:''}${c.bigCaption?`<div class="big-caption">${c.bigCaption}</div>`:''}</div>`:'';
+      s.innerHTML=`<div class="asset-belt-stage">${overlay}<div class="asset-belt-track">${items}</div></div>${altBadge}`;
+      deck.appendChild(s);allSlides.push(s);
+      setTimeout(()=>{
+        const stage=s.querySelector('.asset-belt-stage');const track=s.querySelector('.asset-belt-track');const ovl=s.querySelector('.asset-belt-overlay');const tItems=track.querySelectorAll('.asset-belt-item');const last=tItems[tItems.length-1];const penult=tItems[tItems.length-2];if(!stage||!track||!last||!penult)return;
+        let beltAnim=null,lastAnim=null,ovlAnim=null;
+        const run=()=>{
+          if(beltAnim)beltAnim.cancel();if(lastAnim)lastAnim.cancel();if(ovlAnim)ovlAnim.cancel();
+          track.style.transform='translateX(0)';last.style.transform='translateX(0)';if(ovl)ovl.style.opacity='1';track.offsetWidth;
+          // Layout is deterministic (aspect-ratio per item) — measure immediately, no rAF/wait
+          const sr=stage.getBoundingClientRect();const lr=last.getBoundingClientRect();const pr=penult.getBoundingClientRect();
+          // centerShift: track translation needed so last-item center = stage center
+          const centerShift=(sr.left+sr.width/2)-(lr.left+lr.width/2);
+          // exitShift: track translation needed so penult right edge is just past stage left (so items 1–6 visibly exit)
+          const exitShift=sr.left-pr.right-20;
+          // trackShift = whichever is more negative (so we always keep panning past center)
+          const trackShift=Math.min(centerShift,exitShift);
+          const dur=40000;
+          // Track animation: pans the whole row from off-right to exitShift (linear)
+          beltAnim=track.animate([{transform:'translateX(0)'},{transform:`translateX(${trackShift}px)`}],{duration:dur,delay:3500,easing:'linear',fill:'forwards'});
+          // Last-item COUNTER animation: stays at translateX(0) until track passes centerShift, then counter-translates to keep it at center
+          const tCenter=trackShift!==0?Math.min(1,centerShift/trackShift):1;
+          const counter=centerShift-trackShift;
+          lastAnim=last.animate([{offset:0,transform:'translateX(0)'},{offset:tCenter,transform:'translateX(0)'},{offset:1,transform:`translateX(${counter}px)`}],{duration:dur,delay:3500,easing:'linear',fill:'forwards'});
+          if(ovl)ovlAnim=ovl.animate([{opacity:1},{opacity:.5}],{duration:2000,delay:1500,easing:'ease-in',fill:'forwards'});
+        };
+        // Trigger run() on each transition into 'active'
+        let wasActive=s.classList.contains('active');if(wasActive)run();
+        new MutationObserver(()=>{const isA=s.classList.contains('active');if(isA&&!wasActive)run();wasActive=isA;}).observe(s,{attributes:true,attributeFilter:['class']});
+        // Re-run on viewport resize (debounced) so keyframes match new stage/item/gap dimensions
+        let rzT=null;window.addEventListener('resize',()=>{if(!s.classList.contains('active'))return;clearTimeout(rzT);rzT=setTimeout(run,150);});
+      },0);
+      return;
     }
     // layout: 'placed' — supports legacy placedImages OR new placedItems format
     if(c.layout==='placed'&&(c.placedImages||c.placedItems)){
