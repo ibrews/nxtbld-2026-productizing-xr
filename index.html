@@ -459,8 +459,9 @@ const SECTIONS = [
     ] },
 ];
 
-const BONUS = { year:'TAKEAWAY', title:'Build it twice?\nMaybe you already\nhave a product.',
-  tagline:'The Secret Graveyard isn\u2019t failure. It\u2019s the first draft of your toolbox.' };
+const BONUS = { year:'SPATIAL DECK', title:'Spatial Deck.',
+  tagline:'Built once for HarvardXR \u2014 then used in three talks since (and counting). Open-sourced.<br><span class="para-gap"></span>Build it twice? Maybe you already have a product. Including this one.',
+  repoUrl:'https://github.com/ibrews/spatial-deck' };
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"}}</script>
 
@@ -525,6 +526,14 @@ body.vertical-mode .bg{position:fixed}
 .accent-amber .ey-badge{color:var(--amber)}.accent-amber .lesson-rule{background:var(--amber)}
 .accent-rose .ey-badge{color:var(--rose)}.accent-rose .lesson-rule{background:var(--rose)}
 .slide-bonus .ey-badge{color:var(--amber)}.slide-bonus .lesson-rule{background:var(--amber)}.slide-bonus .year-ghost{color:rgba(245,158,11,.04)}
+.slide-bonus .lesson-title{margin-bottom:18px}
+.slide-bonus .lesson-tagline{max-width:1100px}
+.bonus-meta{position:absolute;left:50%;bottom:clamp(36px,5vh,72px);transform:translateX(-50%);display:flex;align-items:center;gap:clamp(28px,3.5vw,64px);z-index:3}
+.bonus-meta .qr-card{flex-shrink:0;background:rgba(255,255,255,.04);border:1px solid rgba(245,158,11,.3);border-radius:14px;padding:18px 18px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 8px 28px rgba(0,0,0,.4)}
+.bonus-meta .qr-card img{width:clamp(140px,11vw,180px);height:auto;display:block;border-radius:8px;background:#fff;padding:6px}
+.bonus-meta .qr-card .qr-label{font-size:clamp(.7rem,.95vw,.9rem);font-weight:600;color:rgba(240,244,255,.85);letter-spacing:.04em}
+.bonus-meta .qr-card .qr-badge{font-size:clamp(.55rem,.7vw,.7rem);font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:3px 8px}
+.bonus-meta-shot{flex-shrink:0;width:clamp(280px,30vw,520px);height:auto;border-radius:10px;border:1px solid rgba(245,158,11,.25);box-shadow:0 8px 32px rgba(0,0,0,.5);opacity:.92}
 .slide-settings{background:rgba(3,5,12,.98)}
 .cfg-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:52px 64px;max-width:960px;width:90%;backdrop-filter:blur(20px)}
 body[data-bg-style]:not([data-bg-style="none"]) .cfg-panel{background:rgba(8,10,20,.32);backdrop-filter:blur(6px)}
@@ -1728,7 +1737,9 @@ SECTIONS.forEach((sec,si)=>{
 
 // Bonus
 const bon=document.createElement('div');bon.className='slide slide-lesson slide-bonus';bon.dataset.type='bonus';bon.dataset.year=BONUS.year;
-bon.innerHTML=`<div class="year-ghost">${BONUS.year}</div><div class="lesson-ey"><span class="ey-badge" style="color:var(--amber)">${BONUS.year}</span></div><h2 class="lesson-title">${BONUS.title}</h2><p class="lesson-tagline">${BONUS.tagline.replace(/<br><br>/g,'<br><span class="para-gap"></span>')}</p><div class="lesson-rule" style="background:var(--amber)"></div>`;
+{const qrSrc='https://api.qrserver.com/v1/create-qr-code/?size=240x240&data='+encodeURIComponent(BONUS.repoUrl);
+bon.innerHTML=`<div class="year-ghost">${BONUS.year}</div><div class="lesson-ey"><span class="ey-yr" style="color:var(--amber)">BONUS PRODUCT</span><span class="ey-sep">&middot;</span><span class="ey-badge" style="color:var(--amber)">5 / 4</span></div><h2 class="lesson-title">${BONUS.title}</h2><p class="lesson-tagline">${BONUS.tagline.replace(/<br><br>/g,'<br><span class="para-gap"></span>')}</p><div class="lesson-rule" style="background:var(--amber)"></div>
+<div class="bonus-meta"><div class="qr-card"><img src="${qrSrc}" alt="QR Spatial Deck"><div class="qr-label">Spatial Deck on GitHub</div><div class="qr-badge b-amber">github.com/ibrews/spatial-deck</div></div><img class="bonus-meta-shot" src="media/nxtbld/spatial-deck-settings.jpg" alt="Spatial Deck Creator — Presentation Settings"></div>`;}
 deck.appendChild(bon);allSlides.push(bon);
 
 // 3D Monocle on Bonus slide
