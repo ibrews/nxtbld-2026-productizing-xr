@@ -1768,14 +1768,14 @@ deck.appendChild(bon);allSlides.push(bon);
 (function(){
   const container=document.createElement('div');
   // Fade + sweep on slide enter (matches the orbit slide treatment)
-  container.style.cssText='position:absolute;left:75.7%;top:30.2%;width:300px;height:300px;pointer-events:auto;z-index:2;opacity:0;transform:translateX(40px) rotate(-12deg);transition:opacity 1.4s ease-out,transform 1.4s cubic-bezier(.65,0,.35,1)';
+  container.style.cssText='position:absolute;left:73.5%;top:24%;width:380px;height:380px;pointer-events:auto;z-index:2;opacity:0;transform:translateX(40px) rotate(-12deg);transition:opacity 1.4s ease-out,transform 1.4s cubic-bezier(.65,0,.35,1)';
   new MutationObserver(()=>{const on=bon.classList.contains('active');container.style.opacity=on?'1':'0';container.style.transform=on?'translateX(0) rotate(0deg)':'translateX(40px) rotate(-12deg)';}).observe(bon,{attributes:true,attributeFilter:['class']});
   if(bon.classList.contains('active')){container.style.opacity='1';container.style.transform='translateX(0) rotate(0deg)';}
   bon.appendChild(container);
   const canvas=document.createElement('canvas');
   canvas.width=600;canvas.height=600;
   canvas.style.cssText='width:100%;height:100%;cursor:grab';
-  canvas.style.transformBox='fill-box';canvas.style.transformOrigin='center center';canvas.style.transform='scale(0.57)';
+  canvas.style.transformBox='fill-box';canvas.style.transformOrigin='center center';canvas.style.transform='scale(0.62)';
   container.appendChild(canvas);
   let running=false,renderer,scene,camera,group,rafId;
   let isDragging=false,prevMouse={x:0,y:0},autoRotate=true,resumeTimer;
@@ -1784,7 +1784,7 @@ deck.appendChild(bon);allSlides.push(bon);
     const THREE=await import('three');
     scene=new THREE.Scene();
     camera=new THREE.PerspectiveCamera(40,1,0.1,100);
-    camera.position.set(0,0,8);
+    camera.position.set(0,0,11);
     renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
     renderer.setSize(600,600);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -1798,8 +1798,9 @@ deck.appendChild(bon);allSlides.push(bon);
     const ringMat=new THREE.MeshStandardMaterial({color:0xf59e0b,metalness:0.7,roughness:0.3});
     const lensMat=new THREE.MeshStandardMaterial({color:0x00d4ff,transparent:true,opacity:0.15,metalness:0.1,roughness:0.4,side:THREE.DoubleSide});
     const cordMat=new THREE.MeshStandardMaterial({color:0xd97706,metalness:0.6,roughness:0.35});
-    // Group
+    // Group — shift up slightly so the cord at y=-4.2 doesn't get cropped at the bottom of the canvas frustum
     group=new THREE.Group();
+    group.position.y=0.6;
     // Torus (monocle ring)
     const torus=new THREE.Mesh(new THREE.TorusGeometry(2,0.15,24,64),ringMat);
     group.add(torus);
