@@ -79,6 +79,8 @@ When the user pastes a `# Annotations` block (exported from the deck's annotatio
 
 ### Git & GitHub
 - **Always push immediately after every commit.** Alex and Jun work from separate Claude instances simultaneously — local-only commits cause merge conflicts.
+- **Commit your own work promptly; don't leave it unstaged.** Sibling terminals on this repo occasionally run broad `git add .` operations — long-lived unstaged work has been bundled into commits with unrelated messages. Commit as soon as a piece of work is verified, not at session end.
+- **Stage by explicit path** (`git add index.html`) rather than `git add .` / `-A`. Same reason: a parallel terminal can't bundle other people's hunks under your commit message if you only stage what you actually changed.
 - If a push is rejected (remote has new commits): `git pull --rebase` then `git push`.
 - If the rebase has conflicts: auto-resolve when safe (non-overlapping edits, formatting-only). Flag in `REVIEW_NEEDED.md` when tricky — e.g. both sides modified the same slide in `SECTIONS`, the same IIFE, or the same CSS block. Describe what each side changed.
 - Only skip the push if Alex explicitly says so.
