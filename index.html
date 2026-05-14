@@ -316,6 +316,19 @@ const SECTIONS = [
         bigText:'”Does this design\nfeel complete?”',
         bigCaption:'Product 3 of 4 — architectural rendering in two eyes at 90fps\nthat typically only happens on a render farm.',
         deckTarget:'p67' },
+      // Origins — 6-media collage 3×2 of Rice University engine experiments (alphabetical pop-in)
+      { layout:'placed', title:'Hyperreal Estate', subtitle:'Years of engine experiments — Unity, Unreal, before Lumen',
+        fadeDelay:1500, fadeStagger:700, fadeDuration:1000,
+        placedItems:[
+          { type:'mp4', src:'media/nxtbld/hr-orig-a.mp4', x:1,  y:4,  w:31, h:43, fadeOrder:1 },
+          { type:'img', src:'media/nxtbld/hr-orig-b.jpg', x:34, y:4,  w:31, h:43, fadeOrder:2 },
+          { type:'mp4', src:'media/nxtbld/hr-orig-c.mp4', x:67, y:4,  w:31, h:43, fadeOrder:3 },
+          { type:'mp4', src:'media/nxtbld/hr-orig-d.mp4', x:1,  y:52, w:31, h:43, fadeOrder:4 },
+          { type:'mp4', src:'media/nxtbld/hr-orig-e.mp4', x:34, y:52, w:31, h:43, fadeOrder:5 },
+          { type:'mp4', src:'media/nxtbld/hr-orig-f.mp4', x:67, y:52, w:31, h:43, fadeOrder:6 },
+          { type:'text', plain:true, html:'<h1 class=”placed-origins”>Origins.</h1>', x:15, y:38, w:70, h:24 },
+        ],
+        deckTarget:'origins-rice' },
       { layout:'placed', title:'Hyperreal Estate', subtitle:'Lumen Lighting + Reflections',
         placedItems:[
           { type:'mp4', src:'media/nxtbld/hyperreal-reflect.mp4', x:1,  y:20, w:48, h:48 },
