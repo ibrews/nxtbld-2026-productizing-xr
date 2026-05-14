@@ -7,6 +7,13 @@
       "runtimeArgs": ["-m", "http.server", "3000"],
       "port": 3000,
       "autoPort": false
+    },
+    {
+      "name": "harvardxr-3001",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3001", "--directory", "/Users/alex/harvardxr-keynote"],
+      "port": 3001,
+      "autoPort": false
     }
   ]
 }
