@@ -238,7 +238,7 @@ const SECTIONS = [
       // slide 34 (p46) — Origins bullets formerly lived here as a standalone slide; merged into the asset-belt overlay below.
       // slides 34–40 (p46–p52) — Origins title + bullets shown first, fade to 50%, then asset conveyor belt scrolls in from right.
       // Each beltItem has hardcoded w/h so the track has correct layout BEFORE media loads (no race conditions).
-      { layout:'asset-belt', title:'Blueprint Immersive', bigText:'First Attempt',
+      { layout:'asset-belt', title:'Blueprint Immersive', bigText:'First Attempt', beltDuration:20000,
         bigCaption:'<ul class="agenda-list"><li>FDA Theatre Planning</li><li>Datasmith runtime importing</li><li>Option toggles</li><li>Professional tool built for the industry</li></ul>',
         beltItems:[
           { type:'mp4', src:'media/nxtbld/bp-asset-35-a.mp4', w:656,  h:368  },
@@ -1680,7 +1680,7 @@ SECTIONS.forEach((sec,si)=>{
           const exitShift=sr.left-pr.right-20;
           // trackShift = whichever is more negative (so we always keep panning past center)
           const trackShift=Math.min(centerShift,exitShift);
-          const dur=40000;
+          const dur=c.beltDuration||40000;
           // Track animation: pans the whole row from off-right to exitShift (linear)
           beltAnim=track.animate([{transform:'translateX(0)'},{transform:`translateX(${trackShift}px)`}],{duration:dur,delay:bDly,easing:'linear',fill:'forwards'});
           // Last-item COUNTER animation: stays at translateX(0) until track passes centerShift, then counter-translates to keep it at center
