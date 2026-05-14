@@ -1769,108 +1769,34 @@ bon.innerHTML=`<div class="year-ghost">${BONUS.year}</div><div class="lesson-ey"
 <div class="bonus-meta"><div class="qr-card"><img src="${qrSrc}" alt="QR Spatial Deck"><div class="qr-label">Spatial Deck on GitHub</div><div class="qr-badge b-amber">github.com/ibrews/spatial-deck</div></div><img class="bonus-meta-shot" src="media/nxtbld/spatial-deck-github.jpg" alt="Spatial Deck on GitHub"><img class="bonus-meta-shot bonus-meta-shot--settings" src="media/nxtbld/spatial-deck-settings.jpg" alt="Spatial Deck Creator — Presentation Settings"></div>`;}
 deck.appendChild(bon);allSlides.push(bon);
 
-// 3D Monocle on Bonus slide
+// SVG Agile Lens Monocle on Bonus slide — same construction as slide 4 (orbit), scaled bigger to engage with this slide. Replaces the prior 3D Three.js corner monocle.
 (function(){
-  const container=document.createElement('div');
-  // Fade + sweep on slide enter (matches the orbit slide treatment)
-  container.style.cssText='position:absolute;left:73.5%;top:6%;width:380px;height:380px;pointer-events:auto;z-index:5;opacity:0;transform:translateX(40px) rotate(-12deg);transition:opacity 1.4s ease-out,transform 1.4s cubic-bezier(.65,0,.35,1)';
-  new MutationObserver(()=>{const on=bon.classList.contains('active');container.style.opacity=on?'1':'0';container.style.transform=on?'translateX(0) rotate(0deg)':'translateX(40px) rotate(-12deg)';}).observe(bon,{attributes:true,attributeFilter:['class']});
-  if(bon.classList.contains('active')){container.style.opacity='1';container.style.transform='translateX(0) rotate(0deg)';}
-  bon.appendChild(container);
-  const canvas=document.createElement('canvas');
-  canvas.width=600;canvas.height=600;
-  canvas.style.cssText='width:100%;height:100%;cursor:grab';
-  canvas.style.transformBox='fill-box';canvas.style.transformOrigin='center center';canvas.style.transform='scale(0.62)';
-  container.appendChild(canvas);
-  let running=false,renderer,scene,camera,group,rafId;
-  let isDragging=false,prevMouse={x:0,y:0},autoRotate=true,resumeTimer;
-  async function init(){
-    if(running)return;
-    const THREE=await import('three');
-    scene=new THREE.Scene();
-    camera=new THREE.PerspectiveCamera(40,1,0.1,100);
-    camera.position.set(0,0,11);
-    renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
-    renderer.setSize(600,600);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-    // Lights
-    scene.add(new THREE.AmbientLight(0x8888cc,0.5));
-    const dLight=new THREE.DirectionalLight(0xffffff,1.2);
-    dLight.position.set(5,5,5);scene.add(dLight);
-    const pLight=new THREE.PointLight(0x00d4ff,0.3);
-    pLight.position.set(0,0,2.5);scene.add(pLight);
-    // Materials
-    const ringMat=new THREE.MeshStandardMaterial({color:0xf59e0b,metalness:0.7,roughness:0.3});
-    const lensMat=new THREE.MeshStandardMaterial({color:0x00d4ff,transparent:true,opacity:0.15,metalness:0.1,roughness:0.4,side:THREE.DoubleSide});
-    const cordMat=new THREE.MeshStandardMaterial({color:0xd97706,metalness:0.6,roughness:0.35});
-    // Group — shift up slightly so the cord at y=-4.2 doesn't get cropped at the bottom of the canvas frustum
-    group=new THREE.Group();
-    group.position.y=0.6;
-    // Torus (monocle ring)
-    const torus=new THREE.Mesh(new THREE.TorusGeometry(2,0.15,24,64),ringMat);
-    group.add(torus);
-    // Lens disc
-    const lens=new THREE.Mesh(new THREE.CircleGeometry(1.85,48),lensMat);
-    group.add(lens);
-    // Cord curve
-    const curve=new THREE.CatmullRomCurve3([
-      new THREE.Vector3(0,-2,0),
-      new THREE.Vector3(-0.6,-2.8,0.3),
-      new THREE.Vector3(-1.2,-3.5,0.1),
-      new THREE.Vector3(-1.0,-4.2,-0.2)
-    ]);
-    const tube=new THREE.Mesh(new THREE.TubeGeometry(curve,20,0.06,8,false),cordMat);
-    group.add(tube);
-    // Eyepiece sphere
-    const eyepiece=new THREE.Mesh(new THREE.SphereGeometry(0.18,16,16),cordMat);
-    eyepiece.position.set(-1.0,-4.2,-0.2);
-    group.add(eyepiece);
-    scene.add(group);
-    // Drag rotation
-    canvas.addEventListener('mousedown',onDown);
-    canvas.addEventListener('touchstart',onTouchDown,{passive:false});
-    window.addEventListener('mousemove',onMove);
-    window.addEventListener('touchmove',onTouchMove,{passive:false});
-    window.addEventListener('mouseup',onUp);
-    window.addEventListener('touchend',onUp);
-    running=true;autoRotate=true;let baseX=0;
-    function animate(){
-      if(!running){rafId=null;return;}
-      if(autoRotate){
-        group.rotation.y+=0.005;
-        group.rotation.x=baseX+Math.sin(Date.now()*0.0008)*0.15;
-      } else {
-        baseX=group.rotation.x;
-      }
-      renderer.render(scene,camera);
-      rafId=requestAnimationFrame(animate);
-    }
-    rafId=requestAnimationFrame(animate);
-  }
-  function onDown(e){isDragging=true;prevMouse={x:e.clientX,y:e.clientY};canvas.style.cursor='grabbing';autoRotate=false;clearTimeout(resumeTimer);}
-  function onTouchDown(e){if(e.touches.length===1){e.preventDefault();isDragging=true;prevMouse={x:e.touches[0].clientX,y:e.touches[0].clientY};autoRotate=false;clearTimeout(resumeTimer);}}
-  function onMove(e){if(!isDragging||!group)return;const dx=e.clientX-prevMouse.x,dy=e.clientY-prevMouse.y;group.rotation.y+=dx*0.01;group.rotation.x+=dy*0.01;prevMouse={x:e.clientX,y:e.clientY};}
-  function onTouchMove(e){if(!isDragging||!group||e.touches.length!==1)return;e.preventDefault();const dx=e.touches[0].clientX-prevMouse.x,dy=e.touches[0].clientY-prevMouse.y;group.rotation.y+=dx*0.01;group.rotation.x+=dy*0.01;prevMouse={x:e.touches[0].clientX,y:e.touches[0].clientY};}
-  function onUp(){if(!isDragging)return;isDragging=false;canvas.style.cursor='grab';resumeTimer=setTimeout(()=>{autoRotate=true;},2000);}
-  function dispose(){
-    running=false;
-    if(rafId){cancelAnimationFrame(rafId);rafId=null;}
-    clearTimeout(resumeTimer);isDragging=false;autoRotate=true;
-    canvas.removeEventListener('mousedown',onDown);
-    canvas.removeEventListener('touchstart',onTouchDown);
-    window.removeEventListener('mousemove',onMove);
-    window.removeEventListener('touchmove',onTouchMove);
-    window.removeEventListener('mouseup',onUp);
-    window.removeEventListener('touchend',onUp);
-    if(renderer){renderer.dispose();renderer=null;}
-    if(scene){scene.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material.dispose();}});scene=null;}
-    group=null;camera=null;
-  }
-  new MutationObserver(()=>{
-    if(bon.classList.contains('active')){setTimeout(init,400);}
-    else if(running){dispose();}
-  }).observe(bon,{attributes:true,attributeFilter:['class']});
-  if(bon.classList.contains('active'))setTimeout(init,400);
+  const ns='http://www.w3.org/2000/svg';
+  const W=1920,H=1080,CX=W/2,CY=540,monocleR=380;
+  const svg=document.createElementNS(ns,'svg');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+  svg.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0;transition:opacity 1.6s ease-out';
+  // Ring strokes — sweep in clockwise from 12 o'clock via stroke-dashoffset (same trick as slide 4)
+  const CIRC=2*Math.PI*monocleR;
+  const ring1=document.createElementNS(ns,'circle');ring1.setAttribute('cx',CX);ring1.setAttribute('cy',CY);ring1.setAttribute('r',monocleR);ring1.setAttribute('fill','none');ring1.setAttribute('stroke','rgba(255,255,255,.10)');ring1.setAttribute('stroke-width','42');ring1.setAttribute('stroke-linecap','round');ring1.setAttribute('stroke-dasharray',CIRC);ring1.setAttribute('stroke-dashoffset',CIRC);ring1.setAttribute('transform',`rotate(-90 ${CX} ${CY})`);ring1.style.transition='stroke-dashoffset 1.8s cubic-bezier(.65,0,.35,1)';svg.appendChild(ring1);
+  const ring2=document.createElementNS(ns,'circle');ring2.setAttribute('cx',CX);ring2.setAttribute('cy',CY);ring2.setAttribute('r',monocleR);ring2.setAttribute('fill','none');ring2.setAttribute('stroke','rgba(245,158,11,.08)');ring2.setAttribute('stroke-width','54');ring2.setAttribute('stroke-linecap','round');ring2.setAttribute('stroke-dasharray',CIRC);ring2.setAttribute('stroke-dashoffset',CIRC);ring2.setAttribute('transform',`rotate(-90 ${CX} ${CY})`);ring2.style.transition='stroke-dashoffset 1.8s cubic-bezier(.65,0,.35,1) .15s';svg.appendChild(ring2);
+  // Hinge nubs — two small circles on the upper-right shoulders (angles -1.41 and -0.2 — copied from slide 4 so the alignment is identical)
+  const hr=monocleR+24;[-1.41,-0.2].forEach(a=>{const hx=CX+hr*Math.cos(a),hy=CY+hr*Math.sin(a);const h=document.createElementNS(ns,'circle');h.setAttribute('cx',hx);h.setAttribute('cy',hy);h.setAttribute('r','13');h.setAttribute('fill','none');h.setAttribute('stroke','rgba(255,255,255,.12)');h.setAttribute('stroke-width','8');svg.appendChild(h);});
+  // Cord + eyepiece — positioned using the same PNG geometry as slide 4 (ring center 407/432, eyepiece center 775/788 in PNG-space) scaled to our larger monocleR
+  const mScale=monocleR/374,eyeDx=(775-407)*mScale,eyeDy=(788-432)*mScale,ex=CX+eyeDx,ey=CY+eyeDy,eyeAngle=Math.atan2(eyeDy,eyeDx),cs={x:CX+monocleR*Math.cos(eyeAngle),y:CY+monocleR*Math.sin(eyeAngle)},ctrl={x:(cs.x+ex)/2+24*Math.cos(eyeAngle+Math.PI/2),y:(cs.y+ey)/2+24*Math.sin(eyeAngle+Math.PI/2)};
+  const cord=document.createElementNS(ns,'path');cord.setAttribute('d',`M${cs.x} ${cs.y} Q${ctrl.x} ${ctrl.y} ${ex} ${ey}`);cord.setAttribute('fill','none');cord.setAttribute('stroke','rgba(245,158,11,.22)');cord.setAttribute('stroke-width','7');cord.setAttribute('stroke-linecap','round');svg.appendChild(cord);
+  const ep=document.createElementNS(ns,'circle');ep.setAttribute('cx',ex);ep.setAttribute('cy',ey);ep.setAttribute('r','28');ep.setAttribute('fill','none');ep.setAttribute('stroke','rgba(245,158,11,.3)');ep.setAttribute('stroke-width','8');svg.appendChild(ep);
+  // Pulsing white-monocle PNG overlay (the same brand mark slide 4 uses) — sits on top of the ring strokes and gently pulses while the slide is active
+  const imgW=852,imgH=877,ringCX=407,ringCY=432,ms=mScale,mW=imgW*ms,mH=imgH*ms,mX=CX-ringCX*ms,mY=CY-ringCY*ms;
+  const pulseImg=document.createElementNS(ns,'image');pulseImg.setAttribute('href','monocle-white.png');pulseImg.setAttribute('x',mX+2);pulseImg.setAttribute('y',mY-8);pulseImg.setAttribute('width',mW);pulseImg.setAttribute('height',mH);pulseImg.setAttribute('opacity','0');svg.appendChild(pulseImg);
+  let pulseT=0,pulseRunning=false;
+  function pulseStep(){if(!pulseRunning)return;pulseT+=.02;pulseImg.setAttribute('opacity',(0.05+0.05*Math.sin(pulseT)).toFixed(3));requestAnimationFrame(pulseStep);}
+  // Insert behind everything else on the bonus slide
+  bon.insertBefore(svg,bon.firstChild);
+  function onEnter(){svg.style.opacity='1';ring1.setAttribute('stroke-dashoffset','0');ring2.setAttribute('stroke-dashoffset','0');if(!pulseRunning){pulseRunning=true;pulseT=0;requestAnimationFrame(pulseStep);}}
+  function onExit(){svg.style.opacity='0';ring1.setAttribute('stroke-dashoffset',CIRC);ring2.setAttribute('stroke-dashoffset',CIRC);pulseRunning=false;}
+  new MutationObserver(()=>{if(bon.classList.contains('active'))onEnter();else onExit();}).observe(bon,{attributes:true,attributeFilter:['class']});
+  if(bon.classList.contains('active'))onEnter();
 })();
 
 // Map
@@ -4045,7 +3971,6 @@ if(_notesParam){
   .pipe-d { background:radial-gradient(ellipse at 25% 30%, rgba(20,28,48,.5), rgba(6,8,16,1) 80%); padding:4.5% 5%; box-sizing:border-box; }
 
   /* Mouse-reactive translation. JS sets --mx/--my on .pipe-a from cursor position (range -0.5..0.5). The translate CSS property composes with the animation transform, so this layers on top of drift + engulf cleanly. */
-  .pipe-a { --mx:0; --my:0; }
   .pipe-a .ab-wrap { translate:calc(var(--mx) * 5vw) calc(var(--my) * 4vh); transition:translate .55s ease-out; }
   .pipe-a .pw-o    { translate:calc(var(--mx) * 7vw) calc(var(--my) * 5vh); transition:translate .50s ease-out; }
   .pipe-a .cg      { translate:calc(var(--mx) * 9vw) calc(var(--my) * 7vh); transition:translate .45s ease-out; }
