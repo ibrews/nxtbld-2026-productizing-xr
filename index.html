@@ -364,18 +364,16 @@ const SECTIONS = [
       { layout:'placed', title:'Holodeck Anywhere', subtitle:'First Tests',
         placedItems:[ { type:'img', src:'media/nxtbld/holo-first.jpg', x:8, y:16, w:84, h:68 } ],
         deckTarget:'first-tests' },
-      // slides 78-87 (selected) — "In Production" 3×2 photo grid: SKIPPED per author. Case preserved below for easy revival.
-      /* { layout:'placed', title:'Holodeck Anywhere', subtitle:'In Production',
+      // "In Production" — 3-up video row (portrait · landscape · portrait). Replaces the original 6-photo grid.
+      // The 3 source videos object-fit:contain inside identical 30×74 slots — they letterbox to their own aspects.
+      { layout:'placed', title:'Holodeck Anywhere', subtitle:'In Production',
         fadeDelay:800, fadeStagger:500, fadeDuration:700,
         placedItems:[
-          { type:'img', src:'media/nxtbld/holo-a.jpg', x:1,  y:4,  w:31, h:43, fadeOrder:1 },
-          { type:'img', src:'media/nxtbld/holo-b.jpg', x:34, y:4,  w:31, h:43, fadeOrder:2 },
-          { type:'img', src:'media/nxtbld/holo-c.jpg', x:67, y:4,  w:31, h:43, fadeOrder:3 },
-          { type:'img', src:'media/nxtbld/holo-d.jpg', x:1,  y:52, w:31, h:43, fadeOrder:4 },
-          { type:'img', src:'media/nxtbld/holo-e.jpg', x:34, y:52, w:31, h:43, fadeOrder:5 },
-          { type:'img', src:'media/nxtbld/holo-f.jpg', x:67, y:52, w:31, h:43, fadeOrder:6 },
+          { type:'mp4', src:'media/nxtbld/holo-prod-a.mp4', x:3,  y:14, w:30, h:74, fadeOrder:1 },
+          { type:'mp4', src:'media/nxtbld/holo-prod-b.mp4', x:35, y:14, w:30, h:74, fadeOrder:2 },
+          { type:'mp4', src:'media/nxtbld/holo-prod-c.mp4', x:67, y:14, w:30, h:74, fadeOrder:3 },
         ],
-        deckTarget:'p78-87 selection' }, */
+        deckTarget:'p78-87 selection' },
       // slide 78 (p90) — 4 locations (57th Street / DBox Office / Aspen / Austin) with static labels + sequentially fading images
       { layout:'placed', title:'Holodeck Anywhere',
         fadeDelay:1500, fadeStagger:700, fadeDuration:1000,
