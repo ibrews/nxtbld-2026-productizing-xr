@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/alex/git/nxtbld-2026-productizing-xr/.claude/hooks/validate-js.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
