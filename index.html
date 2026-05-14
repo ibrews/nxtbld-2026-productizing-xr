@@ -115,11 +115,11 @@ const SECTIONS = [
         subtitle:'We\u2019ll sort through that someday when we\u2019re not so busy\u2026',
         collage:[
           'media/nxtbld/sg-01.png','media/nxtbld/sg-02.jpg','media/nxtbld/sg-03.png',
-          'media/nxtbld/sg-05.png','media/nxtbld/sg-06.png','media/nxtbld/sg-17.png',
-          'media/nxtbld/sg-07.png',
+          'media/nxtbld/sg-05.png','media/nxtbld/sg-06.png','media/nxtbld/sg-07.png',
           'media/nxtbld/sg-08.mp4','media/nxtbld/sg-10.png','media/nxtbld/sg-11.png',
           'media/nxtbld/sg-12.mp4','media/nxtbld/sg-14.jpg','media/nxtbld/sg-16.png',
         ],
+        extraTile:'media/nxtbld/sg-17.png',
         deckTarget:'p20+p21+p22+p23+p24+p26+p28+p29+p30+p31+p32+p34 (p25, p27 skipped)' },
       // SG-2 \u2014 Text fragments. The filenames tell the story.
       // Each fragment gets a distinct color via .sg-frag-N classes.
@@ -908,6 +908,7 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .sg-tile-2{grid-row:span 2}
 .sg-tile-4{grid-column:span 2}
 .sg-tile-7{grid-row:span 2}
+.sg-tile-fill-tr{grid-column:6;grid-row:1}
 .sg-sticky{position:absolute;background:rgba(245,200,30,.92);color:#1a1a1a;font-family:'Caveat',cursive,system-ui;font-weight:700;font-size:clamp(.85rem,1.5vw,1.4rem);padding:8px 14px;border-radius:2px;transform:rotate(var(--r,-3deg));box-shadow:0 4px 12px rgba(0,0,0,.4);z-index:3;pointer-events:none}
 .sg-sticky-0{top:10%;left:8%;--r:-4deg}
 .sg-sticky-1{top:48%;right:6%;--r:3deg}
@@ -1241,9 +1242,10 @@ SECTIONS.forEach((sec,si)=>{
     if(c.layout==='sg-collage'&&c.collage){
       const _mt=src=>(src.endsWith('.mp4')||src.endsWith('.webm'))?`<video src="${src}" autoplay loop muted playsinline></video>`:`<img src="${src}" loading="lazy">`;
       const tiles=c.collage.map((src,i)=>`<div class="sg-tile sg-tile-${i%6}">${_mt(src)}</div>`).join('');
+      const extra=c.extraTile?`<div class="sg-tile sg-tile-fill-tr">${_mt(c.extraTile)}</div>`:'';
       const stickyFragments=['v2_final','temporary','client-specific','don’t delete this folder'];
       const stickies=stickyFragments.map((t,i)=>`<div class="sg-sticky sg-sticky-${i}">${t}</div>`).join('');
-      s.innerHTML=`<div class="sg-collage-stage">${tiles}${stickies}</div><div class="placed-overlay sg-overlay">${c.title?`<h3 class="placed-title">${c.title}</h3>`:''}${c.subtitle?`<p class="placed-sub">${c.subtitle}</p>`:''}</div>${altBadge}`;
+      s.innerHTML=`<div class="sg-collage-stage">${tiles}${extra}${stickies}</div><div class="placed-overlay sg-overlay">${c.title?`<h3 class="placed-title">${c.title}</h3>`:''}${c.subtitle?`<p class="placed-sub">${c.subtitle}</p>`:''}</div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
     }
     // layout: 'sg-fragments' — typography slide of filename fragments
