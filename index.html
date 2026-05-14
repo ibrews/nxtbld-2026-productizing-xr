@@ -1299,29 +1299,37 @@ SECTIONS.forEach((sec,si)=>{
     if(c.layout==='pipeline-diagram'){
       const svg=`<svg class="pipeline-svg" viewBox="0 0 1200 620" aria-hidden="true">
         <defs>
-          <filter id="pipe-soften" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="2.2"/></filter>
+          <filter id="pipe-blur" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="14"/></filter>
         </defs>
-        <!-- Holodeck Anywhere (purple) — wide body + small head, both in same pulse group -->
-        <g class="pipe-blob pipe-blob-hd">
-          <path d="M 60 380 C 60 330 200 320 400 318 C 480 318 510 320 528 340 C 542 380 558 442 580 462 C 604 442 620 382 632 340 C 650 322 720 318 760 318 C 1000 318 1130 340 1140 340 C 1180 380 1180 470 1140 492 C 970 512 620 512 280 506 C 80 500 22 484 28 440 C 28 410 44 390 60 380 Z" fill="rgba(167,139,250,.22)" filter="url(#pipe-soften)"/>
-          <path d="M 60 380 C 60 330 200 320 400 318 C 480 318 510 320 528 340 C 542 380 558 442 580 462 C 604 442 620 382 632 340 C 650 322 720 318 760 318 C 1000 318 1130 340 1140 340 C 1180 380 1180 470 1140 492 C 970 512 620 512 280 506 C 80 500 22 484 28 440 C 28 410 44 390 60 380 Z" fill="none" stroke="rgba(167,139,250,.65)" stroke-width="1.6"/>
-          <path d="M 920 70 C 925 22 1100 22 1108 70 C 1142 108 1150 178 1110 202 C 1058 218 950 218 912 198 C 876 168 870 100 920 70 Z" fill="rgba(167,139,250,.22)" filter="url(#pipe-soften)"/>
-          <path d="M 920 70 C 925 22 1100 22 1108 70 C 1142 108 1150 178 1110 202 C 1058 218 950 218 912 198 C 876 168 870 100 920 70 Z" fill="none" stroke="rgba(167,139,250,.65)" stroke-width="1.6"/>
+        <!-- Holodeck Anywhere (purple) — wide bottom body covering ALL caps + small top-right head -->
+        <g class="pipe-blob pipe-blob-hd" fill="rgba(167,139,250,.45)" filter="url(#pipe-blur)" style="mix-blend-mode:screen">
+          <ellipse cx="180"  cy="430" rx="170" ry="110"/>
+          <ellipse cx="430"  cy="410" rx="220" ry="130"/>
+          <ellipse cx="700"  cy="430" rx="200" ry="120"/>
+          <ellipse cx="930"  cy="420" rx="180" ry="125"/>
+          <ellipse cx="1100" cy="410" rx="140" ry="130"/>
+          <ellipse cx="1010" cy="150" rx="130" ry="95"/>
+          <ellipse cx="1070" cy="200" rx="95"  ry="75"/>
         </g>
-        <!-- Floor Tour (amber) -->
-        <g class="pipe-blob pipe-blob-ft">
-          <path d="M 72 78 C 78 22 240 22 244 78 C 268 162 296 244 308 304 C 392 332 472 362 488 412 C 498 466 444 484 380 478 C 220 494 80 494 26 478 C -10 450 -16 394 0 354 C 22 280 42 198 56 140 C 50 100 60 82 72 78 Z" fill="rgba(245,158,11,.22)" filter="url(#pipe-soften)"/>
-          <path d="M 72 78 C 78 22 240 22 244 78 C 268 162 296 244 308 304 C 392 332 472 362 488 412 C 498 466 444 484 380 478 C 220 494 80 494 26 478 C -10 450 -16 394 0 354 C 22 280 42 198 56 140 C 50 100 60 82 72 78 Z" fill="none" stroke="rgba(245,158,11,.65)" stroke-width="1.6"/>
+        <!-- Floor Tour (amber) — covers Colocation, Location-Based, Multi-user (left zone) -->
+        <g class="pipe-blob pipe-blob-ft" fill="rgba(245,158,11,.45)" filter="url(#pipe-blur)" style="mix-blend-mode:screen">
+          <ellipse cx="170" cy="270" rx="180" ry="200"/>
+          <ellipse cx="290" cy="350" rx="160" ry="150"/>
+          <ellipse cx="155" cy="150" rx="135" ry="100"/>
+          <ellipse cx="380" cy="290" rx="110" ry="160"/>
         </g>
-        <!-- Blueprint Immersive (teal) -->
-        <g class="pipe-blob pipe-blob-bp">
-          <path d="M 308 78 C 316 22 478 22 486 78 C 510 162 540 244 560 312 C 614 340 658 392 660 442 C 660 482 600 496 540 490 C 462 496 372 496 322 476 C 292 442 290 380 306 342 C 282 262 282 172 296 112 C 296 92 304 80 308 78 Z" fill="rgba(0,212,255,.22)" filter="url(#pipe-soften)"/>
-          <path d="M 308 78 C 316 22 478 22 486 78 C 510 162 540 244 560 312 C 614 340 658 392 660 442 C 660 482 600 496 540 490 C 462 496 372 496 322 476 C 292 442 290 380 306 342 C 282 262 282 172 296 112 C 296 92 304 80 308 78 Z" fill="none" stroke="rgba(0,212,255,.65)" stroke-width="1.6"/>
+        <!-- Blueprint Immersive (teal) — covers Multi-user + Save/Load, overlaps Floor Tour at Multi-user -->
+        <g class="pipe-blob pipe-blob-bp" fill="rgba(0,212,255,.45)" filter="url(#pipe-blur)" style="mix-blend-mode:screen">
+          <ellipse cx="430" cy="290" rx="160" ry="210"/>
+          <ellipse cx="395" cy="170" rx="155" ry="110"/>
+          <ellipse cx="540" cy="370" rx="155" ry="135"/>
+          <ellipse cx="620" cy="280" rx="120" ry="155"/>
         </g>
-        <!-- Hyperreal Estate (rose) -->
-        <g class="pipe-blob pipe-blob-hr">
-          <path d="M 668 78 C 676 22 852 22 858 78 C 878 152 906 232 934 290 C 1010 318 1100 358 1142 400 C 1176 460 1142 488 1080 488 C 950 494 800 494 706 478 C 670 452 660 396 690 350 C 660 260 644 172 658 112 C 658 92 664 80 668 78 Z" fill="rgba(244,63,94,.22)" filter="url(#pipe-soften)"/>
-          <path d="M 668 78 C 676 22 852 22 858 78 C 878 152 906 232 934 290 C 1010 318 1100 358 1142 400 C 1176 460 1142 488 1080 488 C 950 494 800 494 706 478 C 670 452 660 396 690 350 C 660 260 644 172 658 112 C 658 92 664 80 668 78 Z" fill="none" stroke="rgba(244,63,94,.65)" stroke-width="1.6"/>
+        <!-- Hyperreal Estate (rose) — smaller upper blob, covers 3D Data + Optimization -->
+        <g class="pipe-blob pipe-blob-hr" fill="rgba(244,63,94,.45)" filter="url(#pipe-blur)" style="mix-blend-mode:screen">
+          <ellipse cx="780" cy="240" rx="180" ry="175"/>
+          <ellipse cx="900" cy="290" rx="130" ry="155"/>
+          <ellipse cx="763" cy="150" rx="135" ry="95"/>
         </g>
         <!-- Product labels -->
         <g class="pipe-product">
