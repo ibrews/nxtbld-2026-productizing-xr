@@ -194,6 +194,18 @@ const SECTIONS = [
           { type:'img', src:'media/nxtbld/floor-30-e.png', x:52, y:58, w:30, h:38 },
         ],
         deckTarget:'p42' },
+      // slide 31 (p43) — "Why this ROI works" — 3 bullet ROI summary + supporting screenshot + animation
+      { layout:'placed', title:'Floor Tour', subtitle:'Why this ROI works',
+        placedItems:[
+          { type:'text', heading:'Why this ROI works', bullets:[
+              'Gives you VR spatial feedback before you’ve even started any 3D files.',
+              'Works with your existing floor plan files, renders, and photos.',
+              'Designed for self-service; lightweight app on a standalone wireless device — built for architecture pros and their clients.',
+            ], x:3,  y:14, w:54, h:72 },
+          { type:'img', src:'media/nxtbld/floor-31-a.png', x:60, y:8,  w:38, h:42 },
+          { type:'mp4', src:'media/nxtbld/floor-31-b.mp4', x:65, y:54, w:28, h:42 },
+        ],
+        deckTarget:'p43' },
     ] },
 
   { year: 'BLUEPRINT IMMERSIVE', accent: 'teal',
@@ -214,12 +226,8 @@ const SECTIONS = [
           { type:'img', src:'media/nxtbld/bp-33-e.jpg', x:54, y:54, w:42, h:40 },
         ],
         deckTarget:'p45' },
-      // slide 34 (p46) — Origins; bullets describe the product's lineage and intent
-      { layout:'big', title:'Blueprint Immersive',
-        bigText:'Origins.',
-        bigCaption:'<ul class="agenda-list"><li>FDA Theatre Planning</li><li>Datasmith runtime importing</li><li>Option toggles</li><li>Professional tool built for the industry</li></ul>',
-        deckTarget:'p46' },
-      // slides 35–40 (p47–p52) — Origins text re-shown then fades to 50%, asset conveyor belt scrolls in from right.
+      // slide 34 (p46) — Origins bullets formerly lived here as a standalone slide; merged into the asset-belt overlay below.
+      // slides 34–40 (p46–p52) — Origins title + bullets shown first, fade to 50%, then asset conveyor belt scrolls in from right.
       // Each beltItem has hardcoded w/h so the track has correct layout BEFORE media loads (no race conditions).
       { layout:'asset-belt', title:'Blueprint Immersive', bigText:'Origins.',
         bigCaption:'<ul class="agenda-list"><li>FDA Theatre Planning</li><li>Datasmith runtime importing</li><li>Option toggles</li><li>Professional tool built for the industry</li></ul>',
@@ -232,7 +240,60 @@ const SECTIONS = [
           { type:'img', src:'media/nxtbld/bp-asset-39.png',   w:512,  h:275  },
           { type:'img', src:'media/nxtbld/bp-asset-40.jpg',   w:2500, h:1407 },
         ],
-        deckTarget:'p47+p48+p49+p50+p51+p52' },
+        deckTarget:'p46+p47+p48+p49+p50+p51+p52' },
+      // Beat slide between the asset belt and the productized content — single word setup
+      { layout:'big',
+        bigText:'Productize.',
+        deckTarget:'beat (between belt and Painting)' },
+      // slides 41–44 — merged into one "Painting" page (5 screenshots, all 2048×1222)
+      { layout:'placed', title:'Painting',
+        placedItems:[
+          { type:'img', src:'media/nxtbld/bp-paint-a.png', x:3,  y:14, w:30, h:38 },
+          { type:'img', src:'media/nxtbld/bp-paint-b.png', x:35, y:14, w:30, h:38 },
+          { type:'img', src:'media/nxtbld/bp-paint-c.png', x:67, y:14, w:30, h:38 },
+          { type:'img', src:'media/nxtbld/bp-paint-d.png', x:18, y:56, w:30, h:38 },
+          { type:'img', src:'media/nxtbld/bp-paint-e.png', x:52, y:56, w:30, h:38 },
+        ],
+        deckTarget:'p41+p54+p55+p56 (merged)' },
+      // slides 45–48 — skipped (only static screenshots, no video; can be revisited later)
+      // slide 49 (p61) — Import Datasmith. Video from Drive 1DcUnMRNP…, 1280-wide, 1.5× baked into the file via ffmpeg setpts.
+      { layout:'placed', title:'Import Datasmith',
+        placedItems:[ { type:'mp4', src:'media/nxtbld/bp-p61.mp4', x:8, y:12, w:84, h:76 } ],
+        deckTarget:'p61' },
+      // slide 50 (p62) — Jump to seat. Video from Drive 19XlCnYgDu…, 1.5× baked.
+      { layout:'placed', title:'Jump to seat',
+        placedItems:[ { type:'mp4', src:'media/nxtbld/bp-p62.mp4', x:8, y:12, w:84, h:76 } ],
+        deckTarget:'p62' },
+      // slide 51 (p63) — Jump to seat (still only; source has no video link).
+      { layout:'placed', title:'Jump to seat',
+        placedItems:[ { type:'img', src:'media/nxtbld/bp-p63-still.png', x:8, y:12, w:84, h:76 } ],
+        deckTarget:'p63' },
+      // slide 52 (p64) — Design options. Video from Drive 1uhRl0E5OV…, 1.5× baked.
+      { layout:'placed', title:'Design options',
+        placedItems:[ { type:'mp4', src:'media/nxtbld/bp-p64.mp4', x:8, y:12, w:84, h:76 } ],
+        deckTarget:'p64' },
+      // slide 53 (p65) — Custom color swatch. Video from Drive 1909gEn2qZ…, 1.5× baked.
+      { layout:'placed', title:'Custom color swatch',
+        placedItems:[ { type:'mp4', src:'media/nxtbld/bp-p65.mp4', x:8, y:12, w:84, h:76 } ],
+        deckTarget:'p65' },
+      // slide 54 (p66) — Product state: 2-column typewriter list. Items type left col top→bottom, then right col top→bottom.
+      // AWAITING: replace items[] strings with the real feature list. Extra items just keep filling down the columns.
+      { layout:'typewriter', title:'Blueprint Immersive', subtitle:'Product state',
+        items:[
+          '— Feature placeholder 1 —',
+          '— Feature placeholder 2 —',
+          '— Feature placeholder 3 —',
+          '— Feature placeholder 4 —',
+          '— Feature placeholder 5 —',
+          '— Feature placeholder 6 —',
+        ],
+        charsPerSec:32,
+        deckTarget:'p66' },
+      // slide 55 (p67) — Why this ROI works (mirrors Floor Tour ROI slide but text-only since source has no media)
+      { layout:'big', title:'Blueprint Immersive',
+        bigText:'Why this ROI works.',
+        bigCaption:'<ul class="agenda-list"><li>Quick/easy sightline experience, sense of space in VR.</li><li>Uses the Revit files your team is <em>already</em> developing.</li><li>Designed for self-service.</li></ul>',
+        deckTarget:'p67' },
     ] },
 
   { year: 'HYPERREAL ESTATE', accent: 'rose',
@@ -253,6 +314,20 @@ const SECTIONS = [
         bigText:'”Does this emotionally connect?”',
         bigCaption:'Product 4 of 4 — co-located multiplayer VR tours for VIP buyers and stakeholders.',
         deckTarget:'p88' },
+    ] },
+
+  { year: 'THE PIPELINE', accent: 'teal',
+    lesson: { title:'The Pipeline.', short:'PIPELINE', tagline:'This only works if the pipeline compounds.', tags:'Synthesis' },
+    cases: [
+      // slide 98 (p110) — chapter tagline
+      { layout:'big', title:'The Pipeline',
+        bigText:'This only works if the pipeline compounds.',
+        deckTarget:'p110' },
+      // slide 99 (p111) — shared infrastructure diagram. Original PNG (image97.png) was a hand-drawn blob chart;
+      // this is a re-drawn SVG version mapped to the deck's accent colors. PNG kept on disk for reference.
+      { layout:'pipeline-diagram', title:'The Pipeline', subtitle:'Shared infrastructure across the four products',
+        refImage:'media/nxtbld/pipeline-diagram.png',
+        deckTarget:'p111' },
     ] },
 ];
 
@@ -493,13 +568,52 @@ body.split-view .nav-arrows{bottom:calc(42vh + 4px)!important}
 #export-modal .em-progress{font-size:.72rem;color:var(--dim);margin-top:10px}
 .cfg-btn-export{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);color:var(--teal);font-family:var(--font);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;border-radius:6px;cursor:pointer;transition:all .15s;margin-top:8px}
 .cfg-btn-export:hover{background:rgba(0,212,255,.18)}
+/* === LAYOUT: PIPELINE-DIAGRAM (Venn-overlap chart of products × shared capabilities) === */
+.case-slide.layout-pipeline-diagram{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,2.5vw,40px);padding:clamp(50px,5vw,110px)}
+.pipeline-stage{width:100%;max-width:1300px;display:flex;flex-direction:column;align-items:center;gap:clamp(12px,1.5vw,22px)}
+.pipeline-stage h2{font-size:clamp(1.4rem,2.6vw,2.4rem);font-weight:500;color:rgba(240,244,255,.78);letter-spacing:-.01em;line-height:1.2;margin:0}
+.pipeline-stage .pipeline-sub{font-size:clamp(1rem,1.6vw,1.55rem);color:rgba(240,244,255,.6);font-style:italic;text-align:center;margin:0}
+.pipeline-svg{width:100%;height:auto;max-height:62vh;aspect-ratio:1200/620}
+.pipeline-compare{display:flex;gap:clamp(16px,2vw,32px);width:100%;align-items:center;justify-content:center}
+.pipeline-compare .pipeline-side{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px;align-items:center}
+.pipeline-compare .pipeline-side-label{font-size:.85rem;color:rgba(240,244,255,.55);font-style:italic;letter-spacing:.05em;text-transform:uppercase}
+.pipeline-compare .pipeline-side img{width:100%;height:auto;border-radius:8px;opacity:.85;border:1px solid rgba(255,255,255,.06);box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.pipeline-svg .pipe-product{font-size:22px;font-weight:700;letter-spacing:.005em}
+.pipeline-svg .pipe-cap{font-size:14px;font-weight:600;fill:rgba(240,244,255,.88);letter-spacing:.06em;text-transform:uppercase}
+.pipeline-svg .pipe-cap-dot{fill:rgba(240,244,255,.5)}
+/* === LAYOUT: TYPEWRITER (2-column, types items left→right and top→bottom) === */
+.case-slide.layout-typewriter{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,2.5vw,40px);padding:clamp(50px,5vw,110px)}
+.typewriter-header{text-align:center}
+.typewriter-eyebrow{font-size:clamp(1.4rem,2.6vw,2.4rem);font-weight:500;color:rgba(240,244,255,.78);letter-spacing:-.01em;line-height:1.2;margin:0}
+.typewriter-title{font-size:clamp(2.5rem,5.5vw,5.5rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;background:linear-gradient(135deg,#fff 30%,#a5e8ff 70%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:.2em 0 0}
+.typewriter-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,80px);width:100%;max-width:1300px;font-family:'Space Grotesk',ui-monospace,monospace}
+.typewriter-col{display:flex;flex-direction:column;gap:clamp(10px,1.5vh,22px);min-width:0}
+.typewriter-item{font-size:clamp(1rem,1.8vw,1.5rem);font-weight:500;color:rgba(240,244,255,.92);line-height:1.5;text-align:left;white-space:pre-wrap;min-height:1.5em;position:relative}
+.typewriter-item::after{content:'\25AE';display:inline-block;color:var(--teal);margin-left:.1em;opacity:0;transform:translateY(-.05em);font-size:.85em;vertical-align:baseline}
+.typewriter-item.is-typing::after{opacity:1;animation:typewriterCaret .6s steps(1) infinite}
+@keyframes typewriterCaret{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+/* === LAYOUT: CREDITS (static title/subtitle at top, only the items list scrolls below) === */
+.case-slide.layout-credits{display:flex;align-items:center;justify-content:center;padding:0}
+.credits-stage{position:relative;aspect-ratio:16/9;width:100%;height:auto;max-height:100%;max-width:calc(100vh*16/9);overflow:hidden}
+/* Static header pinned to top — does NOT scroll */
+.credits-header{position:absolute;top:clamp(40px,7vh,90px);left:0;right:0;text-align:center;z-index:3;pointer-events:none;padding:0 clamp(40px,5vw,90px)}
+.credits-eyebrow{font-size:clamp(1.4rem,2.6vw,2.4rem);font-weight:500;color:rgba(240,244,255,.78);letter-spacing:-.01em;margin:0;line-height:1.2}
+.credits-title{font-size:clamp(2.5rem,5.5vw,5.5rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;background:linear-gradient(135deg,#fff 30%,#a5e8ff 70%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:.25em 0 0}
+/* Top fade so scrolling items dissolve as they pass behind the header */
+.credits-stage::before{content:'';position:absolute;top:0;left:0;right:0;height:clamp(150px,28vh,260px);background:linear-gradient(to bottom,rgba(6,8,16,.97) 0%,rgba(6,8,16,.85) 55%,rgba(6,8,16,0) 100%);z-index:2;pointer-events:none}
+/* Scrolling list of features — title/subtitle live above this and stay put */
+.credits-track{position:absolute;top:100%;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:clamp(16px,2vh,32px);padding:clamp(40px,5vw,90px);text-align:center;animation:creditsScroll 38s linear infinite;will-change:transform;z-index:1}
+.credits-section{font-size:clamp(1rem,1.6vw,1.55rem);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(0,212,255,.8);margin:2.2em 0 .4em;line-height:1.2}
+.credits-item{font-size:clamp(1.1rem,2vw,1.8rem);font-weight:500;color:rgba(240,244,255,.92);line-height:1.4;max-width:900px}
+.credits-sep{height:1px;width:160px;background:linear-gradient(to right,transparent,rgba(255,255,255,.25),transparent);margin:.4em 0}
+@keyframes creditsScroll{from{transform:translateY(0)}to{transform:translateY(calc(-100% - 100vh))}}
 /* === LAYOUT: ASSET-BELT (text overlay first, fades to 50%, then conveyor enters from right) === */
 .case-slide.layout-asset-belt{display:flex;align-items:center;justify-content:center;padding:0}
 .asset-belt-stage{position:relative;aspect-ratio:16/9;width:100%;height:auto;max-height:100%;max-width:calc(100vh*16/9);overflow:hidden;display:flex;align-items:center;justify-content:center}
-.asset-belt-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,2vw,32px);padding:clamp(40px,5vw,90px);text-align:center;z-index:1;pointer-events:none;opacity:1}
-.asset-belt-overlay .big-eyebrow{font-size:clamp(1.4rem,2.6vw,2.4rem);font-weight:500;color:rgba(240,244,255,.78);letter-spacing:-.01em}
-.asset-belt-overlay .big-text{font-size:clamp(2.5rem,6vw,6rem);font-weight:700;letter-spacing:-.04em;line-height:1.15;background:linear-gradient(135deg,#fff 30%,#a5e8ff 70%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0}
-.asset-belt-overlay .big-caption{color:rgba(240,244,255,.85);max-width:1000px}
+.asset-belt-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,2.5vw,40px);padding:clamp(50px,5vw,110px);text-align:center;z-index:1;pointer-events:none;opacity:1;max-width:1300px;margin:0 auto;left:0;right:0}
+.asset-belt-overlay .big-eyebrow{font-size:clamp(1.4rem,2.6vw,2.4rem);font-weight:500;color:rgba(240,244,255,.78);letter-spacing:-.01em;line-height:1.2}
+.asset-belt-overlay .big-text{font-size:clamp(3rem,8vw,8rem);font-weight:700;letter-spacing:-.04em;line-height:1.15;background:linear-gradient(135deg,#fff 30%,#a5e8ff 70%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0}
+.asset-belt-overlay .big-caption{font-size:clamp(1rem,1.6vw,1.55rem);color:rgba(240,244,255,.65);font-style:italic;line-height:1.45;max-width:900px}
 @keyframes assetBeltOverlayFade{from{opacity:1}to{opacity:.5}}
 .asset-belt-track{display:flex;gap:4vw;height:62%;align-items:center;position:absolute;left:100%;top:19%;will-change:transform;z-index:10}
 .asset-belt-item{height:100%;flex-shrink:0;border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.55);background:rgba(6,8,16,.95)}
@@ -510,6 +624,12 @@ body.split-view .nav-arrows{bottom:calc(42vh + 4px)!important}
 .placed-stage{position:relative;aspect-ratio:16/9;width:100%;height:auto;max-height:100%;max-width:calc(100vh*16/9);overflow:hidden}
 .placed-item{position:absolute;overflow:hidden;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.25)}
 .placed-item img,.placed-item video{width:100%;height:100%;object-fit:contain;display:block}
+.placed-text{display:flex;align-items:center;background:rgba(6,8,16,.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.08);box-shadow:0 4px 20px rgba(0,0,0,.3);padding:clamp(20px,2.5vw,44px);border-radius:14px}
+.placed-text-inner{width:100%;text-align:left}
+.placed-text-h{font-size:clamp(1.3rem,2.4vw,2.2rem);font-weight:700;color:#f0f4ff;margin:0 0 .65em;letter-spacing:-.01em;line-height:1.2}
+.placed-text-list{list-style:none;padding:0;margin:0}
+.placed-text-list li{padding:.55em 0 .55em 30px;position:relative;font-size:clamp(.9rem,1.4vw,1.25rem);color:rgba(240,244,255,.9);line-height:1.4}
+.placed-text-list li::before{content:'';position:absolute;left:0;top:1em;width:18px;height:2px;background:var(--amber);border-radius:2px}
 .placed-overlay{position:absolute;left:5%;bottom:5%;background:rgba(6,8,16,.65);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);padding:14px 28px;border-radius:12px;z-index:5;max-width:80%}
 .placed-title{font-size:clamp(1rem,1.7vw,1.5rem);font-weight:600;letter-spacing:-.01em;line-height:1.2}
 .placed-sub{font-size:clamp(.8rem,1.1vw,1rem);color:rgba(240,244,255,.75);line-height:1.4;margin-top:4px}
@@ -1148,6 +1268,116 @@ SECTIONS.forEach((sec,si)=>{
       s.innerHTML=`<div class="toolbox-stage">${c.title?`<h2 class="toolbox-title">${c.title}</h2>`:''}<div class="toolbox-grid">${cards}</div></div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
     }
+    // layout: 'pipeline-diagram' — Venn-style overlap chart of products × shared capabilities.
+    // Coverage is hand-mapped: Floor Tour → caps 1-3, Blueprint → caps 3-4, Hyperreal → caps 5-7,
+    // Holodeck → product head + wide body across ALL caps. Each blob is a smooth bezier path with a
+    // soft fill + crisp outline. Rebuild geometry if the catalogue changes.
+    if(c.layout==='pipeline-diagram'){
+      const svg=`<svg class="pipeline-svg" viewBox="0 0 1200 620" aria-hidden="true">
+        <defs>
+          <filter id="pipe-soften" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="2.2"/></filter>
+        </defs>
+        <!-- Holodeck Anywhere: wide bottom body, with a downward NOTCH at x≈580 so Save / Load sits ABOVE (excluded from) the blob -->
+        <path d="M 60 380 C 60 330 200 320 400 318 C 480 318 510 320 528 340 C 542 380 558 442 580 462 C 604 442 620 382 632 340 C 650 322 720 318 760 318 C 1000 318 1130 340 1140 340 C 1180 380 1180 470 1140 492 C 970 512 620 512 280 506 C 80 500 22 484 28 440 C 28 410 44 390 60 380 Z" fill="rgba(167,139,250,.22)" filter="url(#pipe-soften)"/>
+        <path d="M 60 380 C 60 330 200 320 400 318 C 480 318 510 320 528 340 C 542 380 558 442 580 462 C 604 442 620 382 632 340 C 650 322 720 318 760 318 C 1000 318 1130 340 1140 340 C 1180 380 1180 470 1140 492 C 970 512 620 512 280 506 C 80 500 22 484 28 440 C 28 410 44 390 60 380 Z" fill="none" stroke="rgba(167,139,250,.6)" stroke-width="1.4"/>
+        <!-- Holodeck Anywhere: small head over product label (top-right) -->
+        <path d="M 920 70 C 925 22 1100 22 1108 70 C 1142 108 1150 178 1110 202 C 1058 218 950 218 912 198 C 876 168 870 100 920 70 Z" fill="rgba(167,139,250,.22)" filter="url(#pipe-soften)"/>
+        <path d="M 920 70 C 925 22 1100 22 1108 70 C 1142 108 1150 178 1110 202 C 1058 218 950 218 912 198 C 876 168 870 100 920 70 Z" fill="none" stroke="rgba(167,139,250,.6)" stroke-width="1.4"/>
+        <!-- Floor Tour blob (amber): product (x≈155) + caps Colocation, Location-Based, Multi-User -->
+        <path d="M 72 78 C 78 22 240 22 244 78 C 268 162 296 244 308 304 C 392 332 472 362 488 412 C 498 466 444 484 380 478 C 220 494 80 494 26 478 C -10 450 -16 394 0 354 C 22 280 42 198 56 140 C 50 100 60 82 72 78 Z" fill="rgba(245,158,11,.22)" filter="url(#pipe-soften)"/>
+        <path d="M 72 78 C 78 22 240 22 244 78 C 268 162 296 244 308 304 C 392 332 472 362 488 412 C 498 466 444 484 380 478 C 220 494 80 494 26 478 C -10 450 -16 394 0 354 C 22 280 42 198 56 140 C 50 100 60 82 72 78 Z" fill="none" stroke="rgba(245,158,11,.6)" stroke-width="1.4"/>
+        <!-- Blueprint Immersive blob (teal): product (x≈390) + caps Multi-User, Save/Load -->
+        <path d="M 308 78 C 316 22 478 22 486 78 C 510 162 540 244 560 312 C 614 340 658 392 660 442 C 660 482 600 496 540 490 C 462 496 372 496 322 476 C 292 442 290 380 306 342 C 282 262 282 172 296 112 C 296 92 304 80 308 78 Z" fill="rgba(0,212,255,.22)" filter="url(#pipe-soften)"/>
+        <path d="M 308 78 C 316 22 478 22 486 78 C 510 162 540 244 560 312 C 614 340 658 392 660 442 C 660 482 600 496 540 490 C 462 496 372 496 322 476 C 292 442 290 380 306 342 C 282 262 282 172 296 112 C 296 92 304 80 308 78 Z" fill="none" stroke="rgba(0,212,255,.6)" stroke-width="1.4"/>
+        <!-- Hyperreal Estate blob (rose): product (x≈755) + caps 3D Data, Optimization, Photorealistic -->
+        <path d="M 668 78 C 676 22 852 22 858 78 C 878 152 906 232 934 290 C 1010 318 1100 358 1142 400 C 1176 460 1142 488 1080 488 C 950 494 800 494 706 478 C 670 452 660 396 690 350 C 660 260 644 172 658 112 C 658 92 664 80 668 78 Z" fill="rgba(244,63,94,.22)" filter="url(#pipe-soften)"/>
+        <path d="M 668 78 C 676 22 852 22 858 78 C 878 152 906 232 934 290 C 1010 318 1100 358 1142 400 C 1176 460 1142 488 1080 488 C 950 494 800 494 706 478 C 670 452 660 396 690 350 C 660 260 644 172 658 112 C 658 92 664 80 668 78 Z" fill="none" stroke="rgba(244,63,94,.6)" stroke-width="1.4"/>
+        <!-- PRODUCT labels (top row) — rendered above blobs so they're crisp and readable -->
+        <g class="pipe-product">
+          <text x="155" y="128" text-anchor="middle" fill="#f59e0b">Floor Tour</text>
+          <text x="395" y="128" text-anchor="middle" fill="#00d4ff">Blueprint Immersive</text>
+          <text x="763" y="128" text-anchor="middle" fill="#f43f5e">Hyperreal Estate</text>
+          <text x="1010" y="128" text-anchor="middle" fill="#a78bfa">Holodeck Anywhere</text>
+        </g>
+        <!-- CAPABILITY labels (bottom row) — inside Holodeck's wide body -->
+        <g class="pipe-cap">
+          <text x="100"  y="442" text-anchor="middle">Colocation</text>
+          <text x="260"  y="442" text-anchor="middle">Location-Based</text>
+          <text x="420"  y="442" text-anchor="middle">Multi-User</text>
+          <text x="580"  y="442" text-anchor="middle">Save / Load</text>
+          <text x="760"  y="442" text-anchor="middle">3D Data Ingestion</text>
+          <text x="940"  y="442" text-anchor="middle">Optimization</text>
+          <text x="1100" y="442" text-anchor="middle">Photorealistic</text>
+        </g>
+      </svg>`;
+      const head=(c.title||c.subtitle)?`${c.title?`<h2>${c.title}</h2>`:''}${c.subtitle?`<p class="pipeline-sub">${c.subtitle}</p>`:''}`:'';
+      const body=c.refImage
+        ? `<div class="pipeline-compare"><div class="pipeline-side"><div class="pipeline-side-label">Cleaner version</div>${svg}</div><div class="pipeline-side"><div class="pipeline-side-label">Original (for reference)</div><img src="${c.refImage}" loading="lazy"></div></div>`
+        : svg;
+      s.innerHTML=`<div class="pipeline-stage">${head}${body}</div>${altBadge}`;
+      deck.appendChild(s);allSlides.push(s);return;
+    }
+    // layout: 'typewriter' — static title/subtitle on top, then a 2-column list whose items type in sequentially:
+    // left column top→bottom first, then right column top→bottom. Restarts whenever the slide becomes active.
+    // c.items: string[]  (split into two columns by ceil(N/2)). c.charsPerSec controls speed (default 32).
+    if(c.layout==='typewriter'&&c.items){
+      const items=c.items.slice();
+      const splitAt=Math.ceil(items.length/2);
+      const left=items.slice(0,splitAt);
+      const right=items.slice(splitAt);
+      const cps=c.charsPerSec||32;
+      const colHTML=arr=>arr.map(()=>`<div class="typewriter-item" data-full=""></div>`).join('');
+      const header=(c.title||c.subtitle)?`<div class="typewriter-header">${c.title?`<h2 class="typewriter-eyebrow">${c.title}</h2>`:''}${c.subtitle?`<h1 class="typewriter-title">${c.subtitle.replace(/\n/g,'<br>')}</h1>`:''}</div>`:'';
+      s.innerHTML=`${header}<div class="typewriter-cols"><div class="typewriter-col">${colHTML(left)}</div><div class="typewriter-col">${colHTML(right)}</div></div>${altBadge}`;
+      // Stamp the source text on the DOM nodes so the animator can read it later
+      const els=Array.from(s.querySelectorAll('.typewriter-item'));
+      const leftEls=els.slice(0,left.length);const rightEls=els.slice(left.length);
+      leftEls.forEach((el,i)=>el.dataset.full=left[i]);
+      rightEls.forEach((el,i)=>el.dataset.full=right[i]);
+      // Type left col first (top→bottom), then right col (top→bottom)
+      const order=[...leftEls,...rightEls];
+      deck.appendChild(s);allSlides.push(s);
+      setTimeout(()=>{
+        let cancelToken=0;
+        const run=()=>{
+          const token=++cancelToken;
+          order.forEach(el=>{el.textContent='';el.classList.remove('is-typing');});
+          const interval=1000/cps;
+          let i=0;
+          const typeNext=()=>{
+            if(token!==cancelToken||i>=order.length)return;
+            const el=order[i];const full=el.dataset.full;let j=0;
+            el.classList.add('is-typing');
+            const step=()=>{
+              if(token!==cancelToken)return;
+              if(j<full.length){el.textContent=full.slice(0,++j);setTimeout(step,interval);}
+              else{el.classList.remove('is-typing');i++;setTimeout(typeNext,260);}
+            };
+            step();
+          };
+          typeNext();
+        };
+        let wasActive=s.classList.contains('active');if(wasActive)run();
+        new MutationObserver(()=>{const isA=s.classList.contains('active');if(isA&&!wasActive)run();wasActive=isA;}).observe(s,{attributes:true,attributeFilter:['class']});
+      },0);
+      return;
+    }
+    // layout: 'credits' — title + subtitle stay STATIC at top; only the credits[] list scrolls below them.
+    // credits[] entries may be:
+    //   - string                       → renders as a .credits-item (one line in the scroll)
+    //   - { heading: 'Section name' }  → renders as a .credits-section (small caps header)
+    //   - { sep: true }                → renders as a thin divider rule
+    if(c.layout==='credits'&&c.credits){
+      const lines=c.credits.map(it=>{
+        if(typeof it==='string')return `<div class="credits-item">${it}</div>`;
+        if(it&&it.heading)return `<div class="credits-section">${it.heading}</div>`;
+        if(it&&it.sep)return `<div class="credits-sep"></div>`;
+        return '';
+      }).join('');
+      const header=(c.title||c.subtitle)?`<div class="credits-header">${c.title?`<h2 class="credits-eyebrow">${c.title}</h2>`:''}${c.subtitle?`<h1 class="credits-title">${c.subtitle.replace(/\n/g,'<br>')}</h1>`:''}</div>`:'';
+      s.innerHTML=`<div class="credits-stage">${header}<div class="credits-track">${lines}</div></div>${altBadge}`;
+      deck.appendChild(s);allSlides.push(s);return;
+    }
     // layout: 'asset-belt' — text overlay fades to 50%, then conveyor scrolls right→left and stops with last item centered.
     // Each beltItem MUST include {w, h} (intrinsic pixel dimensions) so layout is deterministic before media loads
     // — no async waits, no race on loadedmetadata.
@@ -1209,9 +1439,13 @@ SECTIONS.forEach((sec,si)=>{
           if(it.type==='arrow'){
             return `<div class="placed-item placed-arrow" ${st}><svg viewBox="0 0 60 40" preserveAspectRatio="none"><path d="M5,20 L50,20 M40,8 L50,20 L40,32" stroke="rgba(245,158,11,.85)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
           }
+          if(it.type==='text'){
+            return `<div class="placed-item placed-text" ${st}><div class="placed-text-inner">${it.heading?`<h3 class="placed-text-h">${it.heading}</h3>`:''}${it.bullets?`<ul class="placed-text-list">${it.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`:(it.html||'')}</div></div>`;
+          }
           if(it.type==='mp4'||(it.src&&(it.src.endsWith('.mp4')||it.src.endsWith('.webm')))){
             const lbl=it.label?`<div class="placed-item-label">${it.label}</div>`:'';
-            return `<div class="placed-item" ${st}><video src="${it.src}" autoplay loop muted playsinline></video>${lbl}</div>`;
+            const rate=it.rate?` data-rate="${it.rate}"`:'';
+            return `<div class="placed-item" ${st}><video src="${it.src}" autoplay loop muted playsinline${rate}></video>${lbl}</div>`;
           }
           const lbl=it.label?`<div class="placed-item-label">${it.label}</div>`:'';
           return `<div class="placed-item" ${st}><img src="${it.src}" loading="lazy">${lbl}</div>`;
@@ -1219,6 +1453,8 @@ SECTIONS.forEach((sec,si)=>{
       }
       const head=(c.title||c.subtitle)?`<div class="placed-overlay">${c.title?`<h3 class="placed-title">${c.title.replace(/\n/g,'<br>')}</h3>`:''}${c.subtitle?`<p class="placed-sub">${c.subtitle}</p>`:''}</div>`:'';
       s.innerHTML=`<div class="placed-stage">${items}</div>${head}${altBadge}`;
+      // Apply data-rate (playbackRate) to videos that opted in via placedItems[].rate — re-apply on loadedmetadata since some browsers reset it
+      s.querySelectorAll('video[data-rate]').forEach(v=>{const r=parseFloat(v.dataset.rate);if(!isNaN(r)){v.playbackRate=r;v.addEventListener('loadedmetadata',()=>{v.playbackRate=r;});}});
       deck.appendChild(s);allSlides.push(s);return;
     }
     let imgHTML;
@@ -1949,7 +2185,10 @@ const _navSpinner=document.getElementById('nav-playing');
 let _playingTimer=null;
 window._showPlaying=function(ms){if(_playingTimer)clearTimeout(_playingTimer);_navSpinner.classList.add('active');_playingTimer=setTimeout(()=>{_navSpinner.classList.remove('active');_playingTimer=null;},ms);};
 window._hidePlaying=function(){if(_playingTimer){clearTimeout(_playingTimer);_playingTimer=null;}_navSpinner.classList.remove('active');};
-{const _og=goTo;goTo=function(n){window._hidePlaying();_og(n);const t=allSlides[current]?.dataset.type;const sd=slideSteps.get(allSlides[current]);const hasSteps=sd&&sd.steps.length>0;if(hasSteps){try{sd.reset&&sd.reset();}catch(e){}sd.current=0;}if(t==='map')window._showPlaying(6000);else if(hasSteps)window._showPlaying(2000);else if(t==='case'||t==='lesson')window._showPlaying(2500);};
+// Pause every video outside the active slide so the browser only decodes the one(s) on-screen.
+// Multiple simultaneous video decoders cause the deck-wide stutter the user noticed.
+function _gatePlayback(){const act=allSlides[current];if(!act)return;allSlides.forEach(sl=>{const isAct=sl===act;sl.querySelectorAll('video').forEach(v=>{if(isAct){try{v.play();}catch(_){}}else{try{v.pause();}catch(_){}}});});}
+{const _og=goTo;goTo=function(n){window._hidePlaying();_og(n);_gatePlayback();const t=allSlides[current]?.dataset.type;const sd=slideSteps.get(allSlides[current]);const hasSteps=sd&&sd.steps.length>0;if(hasSteps){try{sd.reset&&sd.reset();}catch(e){}sd.current=0;}if(t==='map')window._showPlaying(6000);else if(hasSteps)window._showPlaying(2000);else if(t==='case'||t==='lesson')window._showPlaying(2500);};
 const _oa=advanceStep;advanceStep=function(){const r=_oa();if(r)window._showPlaying(3000);else window._hidePlaying();return r;};}
 let _apt=null;const _apc=document.getElementById('autoplay-cb');
 function _apTick(){if(!_apc.checked)return;if(!advanceStep()){const n=nextVisible(current,1);if(n>=0)goTo(n);else{_apc.checked=false;return;}}const t=allSlides[current]?.dataset.type;_apt=setTimeout(_apTick,t==='lesson'||t==='bonus'?8000:t==='case'?12000:6000);}
