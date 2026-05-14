@@ -1482,7 +1482,7 @@ SECTIONS.forEach((sec,si)=>{
     }
     // layout: 'pattern-cycle' — diagram of the productizing cycle (NOTE on slide 23)
     if(c.layout==='pattern-cycle'){
-      s.innerHTML=`<div class="pattern-stage">${c.title?`<h2 class="pattern-eyebrow">${c.title}</h2>`:''}<svg class="pattern-svg" viewBox="0 0 1000 540" aria-hidden="true">
+      s.innerHTML=`<div class="pattern-stage">${c.title?`<h2 class="pattern-eyebrow">${c.title}</h2>`:''}<svg class="pattern-svg" style="transform:translate(9px,1px)" viewBox="0 0 1000 540" aria-hidden="true">
         <defs><marker id="pat-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="rgba(167,139,250,.8)"/></marker></defs>
         <g class="pat-node pat-node-purple" transform="translate(140,90)"><rect x="-110" y="-36" width="220" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#1</text></g>
         <g class="pat-node pat-node-amber" transform="translate(500,90)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Build quick &amp; dirty tool</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">demonstrate options</text></g>
@@ -1493,7 +1493,7 @@ SECTIONS.forEach((sec,si)=>{
         <g class="pat-node pat-node-final" transform="translate(620,440)"><rect x="-200" y="-42" width="400" height="84" rx="16" fill="rgba(244,63,94,.10)" stroke="rgba(244,63,94,.85)" stroke-width="2"/><text text-anchor="middle" y="-6" fill="#f0f4ff" font-size="18" font-weight="700">Whole new tool</text><text text-anchor="middle" y="20" fill="rgba(240,244,255,.7)" font-size="13">→ THIS is the productization moment</text></g>
         <path class="pat-flow" d="M250,90 L370,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
         <path class="pat-flow" d="M630,90 L760,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
-        <path class="pat-flow pat-flow-dash" d="M860,126 C860,210 270,160 270,270" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
+        <path class="pat-flow pat-flow-dash" style="transform:translate(-51px,-20px) scale(0.79)" d="M860,126 C860,210 270,160 270,270" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
         <path class="pat-flow" d="M270,270 L350,270" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
         <path class="pat-flow pat-flow-dash" d="M500,306 Q500,380 270,440" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
         <path class="pat-flow" d="M270,440 L420,440" stroke="rgba(244,63,94,.7)" stroke-width="2.2" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
