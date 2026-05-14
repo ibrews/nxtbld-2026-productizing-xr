@@ -377,16 +377,27 @@ const SECTIONS = [
           { type:'img', src:'media/nxtbld/holo-f.jpg', x:67, y:52, w:31, h:43, fadeOrder:6 },
         ],
         deckTarget:'p78-87 selection' },
-      // slide 78 (p90) — "57th Street" — 6 location photos (Manhattan / Park Ave / DBox office / Aspen / Austin)
-      { layout:'placed', title:'Holodeck Anywhere', subtitle:'57th Street · Park Ave · DBox office · Manhattan · Aspen · Austin',
-        fadeDelay:800, fadeStagger:500, fadeDuration:700,
+      // slide 78 (p90) — 4 locations (57th Street / DBox Office / Aspen / Austin) with static labels + sequentially fading images
+      { layout:'placed', title:'Holodeck Anywhere',
+        fadeDelay:1500, fadeStagger:700, fadeDuration:1000,
         placedItems:[
-          { type:'img', src:'media/nxtbld/ha-78-a.jpg', x:1,  y:4,  w:31, h:43, fadeOrder:1 },
-          { type:'img', src:'media/nxtbld/ha-78-b.jpg', x:34, y:4,  w:31, h:43, fadeOrder:2 },
-          { type:'img', src:'media/nxtbld/ha-78-c.jpg', x:67, y:4,  w:31, h:43, fadeOrder:3 },
-          { type:'img', src:'media/nxtbld/ha-78-d.png', x:1,  y:52, w:31, h:43, fadeOrder:4 },
-          { type:'img', src:'media/nxtbld/ha-78-e.png', x:34, y:52, w:31, h:43, fadeOrder:5 },
-          { type:'img', src:'media/nxtbld/ha-78-f.png', x:67, y:52, w:31, h:43, fadeOrder:6 },
+          // Static labels — y:3 h:16 so "Aspen Holodeck" / "Austin Holodeck" wrap to 2 lines without getting clipped
+          { type:'text', plain:true, heading:'57th Street',     x:1,    y:3, w:23, h:16 },
+          { type:'text', plain:true, heading:'DBox Office',     x:25.5, y:3, w:23, h:16 },
+          { type:'text', plain:true, heading:'Aspen Holodeck',  x:50,   y:3, w:23, h:16 },
+          { type:'text', plain:true, heading:'Austin Holodeck', x:74.5, y:3, w:23, h:16 },
+          // Col 1 — 57th Street: a + b
+          { type:'img', src:'media/nxtbld/ha-78-a.jpg',    x:1,    y:22, w:23, h:36, fadeOrder:1 },
+          { type:'img', src:'media/nxtbld/ha-78-b.jpg',    x:1,    y:60, w:23, h:36, fadeOrder:2 },
+          // Col 2 — DBox Office: c + new ha-78-dbox (iPad / VR demo)
+          { type:'img', src:'media/nxtbld/ha-78-c.jpg',    x:25.5, y:22, w:23, h:36, fadeOrder:3 },
+          { type:'img', src:'media/nxtbld/ha-78-dbox.jpg', x:25.5, y:60, w:23, h:36, fadeOrder:4 },
+          // Col 3 — Aspen Holodeck: d + new ha-78-aspen (ballroom under setup)
+          { type:'img', src:'media/nxtbld/ha-78-d.png',     x:50,   y:22, w:23, h:36, fadeOrder:5 },
+          { type:'img', src:'media/nxtbld/ha-78-aspen.png', x:50,   y:60, w:23, h:36, fadeOrder:6 },
+          // Col 4 — Austin Holodeck: e + f
+          { type:'img', src:'media/nxtbld/ha-78-e.png',    x:74.5, y:22, w:23, h:36, fadeOrder:7 },
+          { type:'img', src:'media/nxtbld/ha-78-f.png',    x:74.5, y:60, w:23, h:36, fadeOrder:8 },
         ],
         deckTarget:'p90' },
       // Aspen Pop-Up — local mp4 download of the Aspen showcase (presents offline; speaker controls playback w/ audio)
@@ -747,7 +758,7 @@ body.split-view .nav-arrows{bottom:calc(42vh + 4px)!important}
 .placed-text-list{list-style:none;padding:0;margin:0}
 .placed-text-list li{padding:.55em 0 .55em 34px;position:relative;font-size:2rem;color:rgba(240,244,255,.9);line-height:1.45}
 .placed-text-list li::before{content:'';position:absolute;left:0;top:1em;width:18px;height:2px;background:var(--amber);border-radius:2px}
-.placed-text.placed-text--plain{background:none;backdrop-filter:none;border:none;box-shadow:none;padding:clamp(8px,1vw,16px);justify-content:center}
+.placed-text.placed-text--plain{background:none;backdrop-filter:none;border:none;box-shadow:none;padding:clamp(8px,1vw,16px);justify-content:center;overflow:visible}
 .placed-text--plain .placed-text-inner{text-align:center}
 .placed-origins{font-size:clamp(3rem,7vw,6.5rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;text-align:center;background:linear-gradient(135deg,#fff 30%,#a5e8ff 70%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0}
 .placed-overlay{position:absolute;left:48px;bottom:5%;background:rgba(6,8,16,.65);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);padding:14px 28px;border-radius:12px;z-index:5;max-width:80%}
