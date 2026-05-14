@@ -218,18 +218,20 @@ const SECTIONS = [
         deckTarget:'p44' },
       // slide 33 (p45) — 5-image collage; "Grew out of dozens of similar projects from 2013-2023"
       { layout:'placed', title:'Blueprint Immersive', subtitle:'Grew out of dozens of similar projects from 2013–2023',
+        fadeDelay:300, fadeStagger:500, fadeDuration:700,
         placedItems:[
-          { type:'img', src:'media/nxtbld/bp-33-a.png', x:2,  y:8,  w:32, h:36 },
-          { type:'img', src:'media/nxtbld/bp-33-b.png', x:36, y:8,  w:32, h:40 },
-          { type:'img', src:'media/nxtbld/bp-33-c.png', x:70, y:10, w:28, h:38 },
-          { type:'img', src:'media/nxtbld/bp-33-d.png', x:8,  y:54, w:42, h:40 },
-          { type:'img', src:'media/nxtbld/bp-33-e.jpg', x:54, y:54, w:42, h:40 },
+          { type:'img', src:'media/nxtbld/bp-33-a.png', x:2,  y:6,  w:32, h:32, fadeOrder:1 },
+          { type:'img', src:'media/nxtbld/bp-33-b.png', x:36, y:6,  w:32, h:34, fadeOrder:2 },
+          { type:'img', src:'media/nxtbld/bp-33-c.png', x:70, y:8,  w:28, h:32, fadeOrder:3 },
+          { type:'img', src:'media/nxtbld/bp-33-d.png', x:8,  y:42, w:42, h:34, fadeOrder:4 },
+          { type:'img', src:'media/nxtbld/bp-33-e.jpg', x:54, y:42, w:42, h:34, fadeOrder:5 },
+          { type:'text', plain:true, html:'<h1 class="placed-origins">Origins.</h1>', x:5, y:78, w:90, h:18 },
         ],
         deckTarget:'p45' },
       // slide 34 (p46) — Origins bullets formerly lived here as a standalone slide; merged into the asset-belt overlay below.
       // slides 34–40 (p46–p52) — Origins title + bullets shown first, fade to 50%, then asset conveyor belt scrolls in from right.
       // Each beltItem has hardcoded w/h so the track has correct layout BEFORE media loads (no race conditions).
-      { layout:'asset-belt', title:'Blueprint Immersive', bigText:'Origins.',
+      { layout:'asset-belt', title:'Blueprint Immersive', bigText:'First Attempt',
         bigCaption:'<ul class="agenda-list"><li>FDA Theatre Planning</li><li>Datasmith runtime importing</li><li>Option toggles</li><li>Professional tool built for the industry</li></ul>',
         beltItems:[
           { type:'mp4', src:'media/nxtbld/bp-asset-35-a.mp4', w:656,  h:368  },
@@ -631,6 +633,9 @@ body.split-view .nav-arrows{bottom:calc(42vh + 4px)!important}
 .placed-text-list{list-style:none;padding:0;margin:0}
 .placed-text-list li{padding:.55em 0 .55em 30px;position:relative;font-size:clamp(.9rem,1.4vw,1.25rem);color:rgba(240,244,255,.9);line-height:1.4}
 .placed-text-list li::before{content:'';position:absolute;left:0;top:1em;width:18px;height:2px;background:var(--amber);border-radius:2px}
+.placed-text.placed-text--plain{background:none;backdrop-filter:none;border:none;box-shadow:none;padding:clamp(8px,1vw,16px);justify-content:center}
+.placed-text--plain .placed-text-inner{text-align:center}
+.placed-origins{font-size:clamp(3rem,7vw,6.5rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;text-align:center;background:linear-gradient(135deg,#fff 30%,#a5e8ff 70%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0}
 .placed-overlay{position:absolute;left:5%;bottom:5%;background:rgba(6,8,16,.65);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);padding:14px 28px;border-radius:12px;z-index:5;max-width:80%}
 .placed-title{font-size:clamp(1rem,1.7vw,1.5rem);font-weight:600;letter-spacing:-.01em;line-height:1.2}
 .placed-sub{font-size:clamp(.8rem,1.1vw,1rem);color:rgba(240,244,255,.75);line-height:1.4;margin-top:4px}
@@ -1443,21 +1448,32 @@ SECTIONS.forEach((sec,si)=>{
             return `<div class="placed-item placed-arrow" ${st}><svg viewBox="0 0 60 40" preserveAspectRatio="none"><path d="M5,20 L50,20 M40,8 L50,20 L40,32" stroke="rgba(245,158,11,.85)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
           }
           if(it.type==='text'){
-            return `<div class="placed-item placed-text" ${st}><div class="placed-text-inner">${it.heading?`<h3 class="placed-text-h">${it.heading}</h3>`:''}${it.bullets?`<ul class="placed-text-list">${it.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`:(it.html||'')}</div></div>`;
+            const plainCls=it.plain?' placed-text--plain':'';
+            return `<div class="placed-item placed-text${plainCls}" ${st}${(it.fadeOrder!=null)?` data-fade-order="${it.fadeOrder}"`:''}><div class="placed-text-inner">${it.heading?`<h3 class="placed-text-h">${it.heading}</h3>`:''}${it.bullets?`<ul class="placed-text-list">${it.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`:(it.html||'')}</div></div>`;
           }
+          const fo=(it.fadeOrder!=null)?` data-fade-order="${it.fadeOrder}"`:'';
           if(it.type==='mp4'||(it.src&&(it.src.endsWith('.mp4')||it.src.endsWith('.webm')))){
             const lbl=it.label?`<div class="placed-item-label">${it.label}</div>`:'';
             const rate=it.rate?` data-rate="${it.rate}"`:'';
-            return `<div class="placed-item" ${st}><video src="${it.src}" autoplay loop muted playsinline${rate}></video>${lbl}</div>`;
+            return `<div class="placed-item" ${st}${fo}><video src="${it.src}" autoplay loop muted playsinline${rate}></video>${lbl}</div>`;
           }
           const lbl=it.label?`<div class="placed-item-label">${it.label}</div>`:'';
-          return `<div class="placed-item" ${st}><img src="${it.src}" loading="lazy">${lbl}</div>`;
+          return `<div class="placed-item" ${st}${fo}><img src="${it.src}" loading="lazy">${lbl}</div>`;
         }).join('');
       }
       const head=(c.title||c.subtitle)?`<div class="placed-overlay">${c.title?`<h3 class="placed-title">${c.title.replace(/\n/g,'<br>')}</h3>`:''}${c.subtitle?`<p class="placed-sub">${c.subtitle}</p>`:''}</div>`:'';
       s.innerHTML=`<div class="placed-stage">${items}</div>${head}${altBadge}`;
       // Apply data-rate (playbackRate) to videos that opted in via placedItems[].rate — re-apply on loadedmetadata since some browsers reset it
       s.querySelectorAll('video[data-rate]').forEach(v=>{const r=parseFloat(v.dataset.rate);if(!isNaN(r)){v.playbackRate=r;v.addEventListener('loadedmetadata',()=>{v.playbackRate=r;});}});
+      // Staggered fade-in for placedItems that opt in via .fadeOrder — items start hidden, fade in one-by-one (re-triggers on slide active)
+      const fadeEls=Array.from(s.querySelectorAll('.placed-item[data-fade-order]')).sort((a,b)=>+a.dataset.fadeOrder-+b.dataset.fadeOrder);
+      if(fadeEls.length){
+        const baseDelay=(c.fadeDelay!=null)?c.fadeDelay:600;const stagger=(c.fadeStagger!=null)?c.fadeStagger:550;const dur=(c.fadeDuration!=null)?c.fadeDuration:700;
+        fadeEls.forEach(el=>{el.style.opacity='0';});
+        let anims=[];
+        const runFades=()=>{anims.forEach(a=>{try{a.cancel();}catch(_){}});anims=[];fadeEls.forEach(el=>el.style.opacity='0');setTimeout(()=>{fadeEls.forEach((el,i)=>{anims.push(el.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:dur,delay:baseDelay+i*stagger,easing:'ease-out',fill:'forwards'}));});},20);};
+        setTimeout(()=>{let wasActive=s.classList.contains('active');if(wasActive)runFades();new MutationObserver(()=>{const isA=s.classList.contains('active');if(isA&&!wasActive)runFades();wasActive=isA;}).observe(s,{attributes:true,attributeFilter:['class']});},0);
+      }
       deck.appendChild(s);allSlides.push(s);return;
     }
     let imgHTML;
