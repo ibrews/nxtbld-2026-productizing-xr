@@ -4005,7 +4005,7 @@ if(_notesParam){
   .pipe-a .ab-wrap-4 { left:58%;  top:22%; width:50%; height:66%; }
 
   /* Inner blob — solid bg + moderate blur for defined-yet-soft edges, morph + drift */
-  .pipe-a .ab { position:absolute; inset:0; opacity:0; mix-blend-mode:screen; filter:blur(20px); pointer-events:none; }
+  .pipe-a .ab { position:absolute; inset:0; opacity:0; mix-blend-mode:screen; filter:blur(15px); pointer-events:none; }
   .pipe-a .ab-1 { background:rgba(251,191,36,.85); }
   .pipe-a .ab-2 { background:rgba(34,211,238,.78); }
   .pipe-a .ab-3 { background:rgba(251,113,133,.78); }
@@ -4061,10 +4061,10 @@ if(_notesParam){
   .slide.active .pipe-a .cap-5, .slide.active .pipe-a .cg-5 .cap-ghost { animation: pa-fade .55s 1.30s forwards; }
   .slide.active .pipe-a .cap-6, .slide.active .pipe-a .cg-6 .cap-ghost { animation: pa-fade .55s 1.45s forwards; }
   .slide.active .pipe-a .cap-7, .slide.active .pipe-a .cg-7 .cap-ghost { animation: pa-fade .55s 1.60s forwards; }
-  .slide.active .pipe-a .ab-wrap-1 { animation: engulf-blob 60s 0s ease-in-out infinite; }
-  .slide.active .pipe-a .ab-wrap-2 { animation: engulf-blob 60s 15s ease-in-out infinite; }
-  .slide.active .pipe-a .ab-wrap-3 { animation: engulf-blob 60s 30s ease-in-out infinite; }
-  .slide.active .pipe-a .ab-wrap-4 { animation: engulf-blob 60s 45s ease-in-out infinite; }
+  .slide.active .pipe-a .ab-wrap-1 { animation: engulf-blob-side 60s 0s ease-in-out infinite; }
+  .slide.active .pipe-a .ab-wrap-2 { animation: engulf-blob-center 60s 15s ease-in-out infinite; }
+  .slide.active .pipe-a .ab-wrap-3 { animation: engulf-blob-center 60s 30s ease-in-out infinite; }
+  .slide.active .pipe-a .ab-wrap-4 { animation: engulf-blob-side 60s 45s ease-in-out infinite; }
   .slide.active .pipe-a .ab-1 { animation: pa-blob-fade 1.2s 1.7s forwards, morph-1 9s 2.9s ease-in-out infinite, drift-1 14s 2.9s ease-in-out infinite; }
   .slide.active .pipe-a .ab-2 { animation: pa-blob-fade 1.2s 2.0s forwards, morph-2 10s 3.2s ease-in-out infinite, drift-2 16s 3.2s ease-in-out infinite; }
   .slide.active .pipe-a .ab-3 { animation: pa-blob-fade 1.2s 2.3s forwards, morph-3 8s 3.5s ease-in-out infinite, drift-3 15s 3.5s ease-in-out infinite; }
@@ -4087,7 +4087,8 @@ if(_notesParam){
   @keyframes pa-blob-fade { from { opacity:0; } to { opacity:.92; } }
 
   /* Engulf — periodic dramatic scale-up. Blobs scale 2x to envelop all caps; text scales 1.4x in sync. */
-  @keyframes engulf-blob { 0%,100% { transform:scale(1); } 25% { transform:scale(1); } 30% { transform:scale(2.0); } 37% { transform:scale(2.05); } 44% { transform:scale(1); } 60% { transform:scale(1); } }
+  @keyframes engulf-blob-side { 0%,100% { transform:scale(1); } 25% { transform:scale(1); } 30% { transform:scale(3.0); } 37% { transform:scale(3.05); } 44% { transform:scale(1); } 60% { transform:scale(1); } }
+  @keyframes engulf-blob-center { 0%,100% { transform:scale(1); } 25% { transform:scale(1); } 30% { transform:scale(2.5); } 37% { transform:scale(2.55); } 44% { transform:scale(1); } 60% { transform:scale(1); } }
   @keyframes engulf-text { 0%,100% { transform:scale(1); } 25% { transform:scale(1); } 30% { transform:scale(1.4); } 37% { transform:scale(1.45); } 44% { transform:scale(1); } 60% { transform:scale(1); } }
 
   /* Shape morphing — dramatic border-radius cycles for amoeba-like deformation */
@@ -4227,6 +4228,11 @@ if(_notesParam){
   const slD=allSlides.find(s=>s.dataset.deckTarget==='p111d');
   if(slA){ slA.innerHTML=aHTML; slA.dataset.year='THE PIPELINE'; attachReanim(slA); }
   if(slD){ slD.innerHTML=dHTML; slD.dataset.year='THE PIPELINE'; attachReanim(slD); }
+
+  // Hide the original pipeline (p111) and Option D (p111d) — Option A is the new canonical pipeline slide.
+  const slOrig=allSlides.find(s=>s.dataset.deckTarget==='p111');
+  if(slOrig) slOrig.dataset.hidden='1';
+  if(slD)    slD.dataset.hidden='1';
 })();
 
 // ── Fullscreen-on-click for images/videos ──────────────────────────────────
