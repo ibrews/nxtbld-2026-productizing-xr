@@ -64,7 +64,7 @@ const SECTIONS = [
         eyebrow:'Who We Are?',
         title:'Agile Lens',
         sub:'Architects turned XR-chitects building spatial experiences for the world\u2019s most ambitious clients.',
-        subUE5:'Authorized UE5 instructors with Training Center.\nOrganizers of Unreal NYC and frequent Unreal Fest',
+        subUE5:'Authorized UE5 instructors with Training Center.\nOrganizers of Unreal NYC and frequent Unreal Fest speakers.',
         duo:{
           alex:{ name:'Alex Coulombe', role:'CEO',
                  sprite:{ withBeard:true, withGlasses:false } },
@@ -115,7 +115,8 @@ const SECTIONS = [
         subtitle:'We\u2019ll sort through that someday when we\u2019re not so busy\u2026',
         collage:[
           'media/nxtbld/sg-01.png','media/nxtbld/sg-02.jpg','media/nxtbld/sg-03.png',
-          'media/nxtbld/sg-05.png','media/nxtbld/sg-06.png','media/nxtbld/sg-07.png',
+          'media/nxtbld/sg-05.png','media/nxtbld/sg-06.png','media/nxtbld/sg-17.png',
+          'media/nxtbld/sg-07.png',
           'media/nxtbld/sg-08.mp4','media/nxtbld/sg-10.png','media/nxtbld/sg-11.png',
           'media/nxtbld/sg-12.mp4','media/nxtbld/sg-14.jpg','media/nxtbld/sg-16.png',
         ],
@@ -137,7 +138,7 @@ const SECTIONS = [
       // slide 24 \u2014 What's Worth Productizing? Body text verbatim.
       { layout:'big', title:'What\u2019s Worth Productizing?',
         bigText:'Reusable process,\nnot reusable output.',
-        bigCaption:'Same question, different clients \u2014 hone what your clients celebrate to be useful to others.',
+        bigCaption:'Same question, different clients \u2014 hone what your\nclients celebrate to be useful to others.',
         deckTarget:'p36' },
       // slide 25 \u2014 Build and organize your toolbox. Body lists 4 products + questions verbatim.
       { layout:'toolbox-grid', title:'Build and organize your toolbox.',
@@ -197,12 +198,12 @@ const SECTIONS = [
         ],
         deckTarget:'p42' },
       // slide 31 (p43) — "Why this ROI works" — 3 bullet ROI summary + supporting screenshot + animation
-      { layout:'placed', title:'Floor Tour', subtitle:'Why this ROI works',
+      { layout:’placed’, title:’Floor Tour’, subtitle:’Summary’,
         placedItems:[
-          { type:'text', heading:'Why this ROI works', bullets:[
-              'Gives you VR spatial feedback before you’ve even started any 3D files.',
-              'Works with your existing floor plan files, renders, and photos.',
-              'Designed for self-service; lightweight app on a standalone wireless device — built for architecture pros and their clients.',
+          { type:’text’, heading:’Why this ROI works’, bullets:[
+              ‘Gives spatial feedback before you’ve even started any 3D files.’,
+              ‘Works with existing floor plan files, renders, and photos.’,
+              ‘Designed for self-service; lightweight app on a standalone wireless device’,
             ], x:3,  y:14, w:54, h:72 },
           { type:'img', src:'media/nxtbld/floor-31-a.png', x:60, y:8,  w:38, h:42 },
           { type:'mp4', src:'media/nxtbld/floor-31-b.mp4', x:65, y:54, w:28, h:42 },
@@ -215,7 +216,7 @@ const SECTIONS = [
     cases: [
       // chapter intro — announces Blueprint Immersive
       { layout:'big', title:'Blueprint Immersive', pill:true,
-        bigText:'”Which layout works best?”',
+        bigText:'”Which layout\nworks best?”',
         bigCaption:'Product 2 of 4 — runtime Datasmith importing of design options for instant in-VR comparison.',
         deckTarget:'p44' },
       // slide 33 (p45) — 6-image collage 3×2; "Grew out of dozens of similar projects from 2013-2023"
@@ -1257,9 +1258,9 @@ SECTIONS.forEach((sec,si)=>{
         <defs><marker id="pat-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="rgba(167,139,250,.8)"/></marker></defs>
         <g class="pat-node pat-node-purple" transform="translate(140,90)"><rect x="-110" y="-36" width="220" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#1</text></g>
         <g class="pat-node pat-node-amber" transform="translate(500,90)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Build quick &amp; dirty tool</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">demonstrate options</text></g>
-        <g class="pat-node pat-node-teal" transform="translate(860,90)"><rect x="-100" y="-36" width="200" height="72" rx="14" fill="rgba(0,212,255,.08)" stroke="rgba(0,212,255,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Clarity</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">scope locked</text></g>
+        <g class="pat-node pat-node-teal" transform="translate(860,90)"><rect x="-100" y="-36" width="200" height="72" rx="14" fill="rgba(0,212,255,.08)" stroke="rgba(0,212,255,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Clarity</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">scope "locked"</text></g>
         <g class="pat-node pat-node-purple" transform="translate(140,270)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">New client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#2</text></g>
-        <g class="pat-node pat-node-amber" transform="translate(500,270)"><rect x="-150" y="-36" width="300" height="72" rx="14" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Temporary feature in tool</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">duct-tape this once</text></g>
+        <g class="pat-node pat-node-amber" transform="translate(500,270)"><rect x="-150" y="-36" width="300" height="72" rx="14" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Temporary feature in tool</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">duct-tape just this once</text></g>
         <g class="pat-node pat-node-purple" transform="translate(140,440)"><rect x="-130" y="-36" width="260" height="72" rx="14" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.7)" stroke-width="1.6"/><text text-anchor="middle" y="-4" fill="#f0f4ff" font-size="16" font-weight="600">Third client request</text><text text-anchor="middle" y="18" fill="rgba(240,244,255,.55)" font-size="13">#3</text></g>
         <g class="pat-node pat-node-final" transform="translate(620,440)"><rect x="-200" y="-42" width="400" height="84" rx="16" fill="rgba(244,63,94,.10)" stroke="rgba(244,63,94,.85)" stroke-width="2"/><text text-anchor="middle" y="-6" fill="#f0f4ff" font-size="18" font-weight="700">Whole new tool</text><text text-anchor="middle" y="20" fill="rgba(240,244,255,.7)" font-size="13">→ THIS is the productization moment</text></g>
         <path class="pat-flow" d="M250,90 L370,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
