@@ -14,6 +14,13 @@
       "runtimeArgs": ["-m", "http.server", "3001", "--directory", "/Users/alex/harvardxr-keynote"],
       "port": 3001,
       "autoPort": false
+    },
+    {
+      "name": "spatial-deck-3002",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3002", "--directory", "/Users/alex/git/spatial-deck"],
+      "port": 3002,
+      "autoPort": false
     }
   ]
 }
