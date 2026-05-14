@@ -1,11 +1,16 @@
 {
   "index": 63,
   "page_id": "p75",
-  "title": "",
-  "text_runs": [],
-  "directives": [],
-  "media_refs": [
-    "ppt/media/image68.jpg"
+  "title": "Hyperreal Estate",
+  "text_runs": [
+    "Hyperreal Estate",
+    "Why this ROI works",
+    "Conversations move from flat CG render to spatial time machine",
+    "Opportunities for nuanced material/lighting/geometry discussions",
+    "Optimized pipeline from heavy DCC scenes to real-time",
+    ""
   ],
+  "directives": [],
+  "media_refs": [],
   "speaker_notes": ""
 }

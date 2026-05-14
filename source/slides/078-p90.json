@@ -1,12 +1,24 @@
 {
   "index": 78,
   "page_id": "p90",
-  "title": "",
-  "text_runs": [],
+  "title": "57th Street",
+  "text_runs": [
+    "57th Street",
+    "Manhattan",
+    "Park Ave",
+    ", DBox office,",
+    "Manhattan",
+    "Aspen",
+    "Austin"
+  ],
   "directives": [],
   "media_refs": [
-    "ppt/media/image95.jpg",
-    "ppt/media/image98.jpg"
+    "ppt/media/image89.jpg",
+    "ppt/media/image87.jpg",
+    "ppt/media/image100.jpg",
+    "ppt/media/image81.png",
+    "ppt/media/image88.png",
+    "ppt/media/image85.png"
   ],
   "speaker_notes": ""
 }

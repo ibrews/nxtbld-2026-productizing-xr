@@ -1,16 +1,22 @@
 {
   "index": 75,
   "page_id": "p87",
-  "title": "Hyperreal Estate",
+  "title": "COMPARISON MODELS",
   "text_runs": [
-    "Hyperreal Estate",
-    "Architectural rendering that answers questions",
-    "",
-    "What if sunset?",
-    "What if walnut?",
-    "What if winter?"
+    "COMPARISON MODELS",
+    "Opt 1 v Opt 2",
+    " ",
+    "Opt 1 v Opt 3",
+    "Opt 2 v Opt 3",
+    "Opt 3 Day v Opt 3 Night"
   ],
   "directives": [],
-  "media_refs": [],
-  "speaker_notes": ""
+  "media_refs": [
+    "ppt/media/image70.jpg",
+    "ppt/media/image68.png",
+    "ppt/media/image73.jpg",
+    "ppt/media/image82.jpg",
+    "ppt/media/image80.jpg"
+  ],
+  "speaker_notes": "Please double check if we can use these - I believe we aren’t allowed to show anything from the actual property"
 }
