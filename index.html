@@ -777,6 +777,11 @@ body.split-view .nav-arrows{bottom:calc(42vh + 4px)!important}
 .placed-overlay{position:absolute;left:48px;bottom:5%;background:rgba(6,8,16,.65);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);padding:14px 28px;border-radius:12px;z-index:5;max-width:80%}
 .placed-title{font-size:clamp(1rem,1.7vw,1.5rem);font-weight:600;letter-spacing:-.01em;line-height:1.2}
 .placed-sub{font-size:clamp(.8rem,1.1vw,1rem);color:rgba(240,244,255,.75);line-height:1.4;margin-top:4px}
+/* ── "What about AI?" entrance overlay (allSlides[46]) ── */
+.wai-wrap{position:absolute;inset:0;pointer-events:none;z-index:20;overflow:hidden}
+.wai-text{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-size:clamp(4rem,8vw,8.5rem);font-weight:800;color:#fff;text-align:center;white-space:nowrap;letter-spacing:-0.02em;line-height:1;text-shadow:0 4px 80px rgba(0,0,0,.95),0 0 40px rgba(0,0,0,.6);opacity:0}
+.wai-text.wai-anim{animation:wai-enter 4s ease forwards}
+@keyframes wai-enter{0%{top:50%;left:50%;transform:translate(-50%,-50%) scale(1.7);letter-spacing:.25em;opacity:0}10%{top:50%;left:50%;transform:translate(-50%,-50%) scale(.93);letter-spacing:-.02em;opacity:1}16%{top:50%;left:50%;transform:translate(-50%,-50%) scale(1);letter-spacing:-.02em;opacity:1}55%{top:50%;left:50%;transform:translate(-50%,-50%) scale(1);letter-spacing:-.02em;opacity:1}82%{top:10%;left:50%;transform:translate(-50%,-50%) scale(.42);letter-spacing:-.02em;opacity:1}100%{top:10%;left:50%;transform:translate(-50%,-50%) scale(.42);letter-spacing:-.02em;opacity:1}}
 /* === LAYOUT: BIG (full-slide statement text) === */
 .case-slide.layout-big{flex-direction:column;text-align:center;padding:clamp(50px,5vw,110px);justify-content:center;align-items:center}
 .case-slide.layout-big .big-stack{display:flex;flex-direction:column;gap:clamp(18px,2.5vw,40px);align-items:center;max-width:1300px}
@@ -4386,6 +4391,17 @@ if(_notesParam){
   // Exit fullscreen if slide changes underneath us
   const _ogGoTo=window.goTo;
   if(_ogGoTo){window.goTo=function(){if(activeFs)exitFs();return _ogGoTo.apply(this,arguments);};}
+})();
+
+// ── "What about AI?" entrance title — slide 46 ──────────────────────────────
+(function(){
+  const s=allSlides[46];if(!s)return;
+  const wrap=document.createElement('div');wrap.className='wai-wrap';
+  const t=document.createElement('div');t.className='wai-text';t.textContent='What about AI?';
+  wrap.appendChild(t);s.appendChild(wrap);
+  function startAnim(){t.classList.remove('wai-anim');void t.offsetWidth;t.classList.add('wai-anim');}
+  new MutationObserver(()=>{if(s.classList.contains('active'))startAnim();}).observe(s,{attributes:true,attributeFilter:['class']});
+  if(s.classList.contains('active'))startAnim();
 })();
 
 // Init — ?edit with no hash → land on slide 0 (settings) so user can configure first
