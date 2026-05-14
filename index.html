@@ -64,7 +64,7 @@ const SECTIONS = [
         eyebrow:'Who We Are?',
         title:'Agile Lens',
         sub:'Architects turned XR-chitects building spatial experiences for the world\u2019s most ambitious clients.',
-        subUE5:'Authorized UE5 instructors with Training Center. Organizers of Unreal NYC and frequent Unreal Fest speakers.',
+        subUE5:'Authorized UE5 instructors with Training Center.\nOrganizers of Unreal NYC and frequent Unreal Fest',
         duo:{
           alex:{ name:'Alex Coulombe', role:'CEO',
                  sprite:{ withBeard:true, withGlasses:false } },
@@ -152,9 +152,9 @@ const SECTIONS = [
     lesson: { title:'Floor Tour.', short:'FLOOR TOUR', tagline:'\u201cWill this space fit our needs?\u201d', tags:'Product 1 of 4' },
     cases: [
       // chapter intro \u2014 announces the Floor Tour product before content slides
-      { layout:'big', title:'Floor Tour',
+      { layout:'big', title:'Floor Tour', pill:true,
         bigText:'\u201cWill this space fit our needs?\u201d',
-        bigCaption:'Product 1 of 4 \u2014 VR walkthroughs of unbuilt spaces, generated from a floor plan.',
+        bigCaption:'Product 1 of 4 \u2014 VR walkthroughs of unbuilt spaces, all from a floor plan.',
         deckTarget:'p38 (intro)' },
       // slide 26 \u2014 NOTE: floor plan \u2192 VR experience.
       // Source filenames are swapped vs. their contents: floor-26-vr.png is the actual 2D floor plan,
@@ -200,8 +200,8 @@ const SECTIONS = [
     lesson: { title:'Blueprint Immersive.', short:'BLUEPRINT', tagline:'“Does this layout work best?”', tags:'Product 2 of 4' },
     cases: [
       // chapter intro — announces Blueprint Immersive
-      { layout:'big', title:'Blueprint Immersive',
-        bigText:'“Which layout works best?”',
+      { layout:'big', title:'Blueprint Immersive', pill:true,
+        bigText:'”Which layout works best?”',
         bigCaption:'Product 2 of 4 — runtime Datasmith importing of design options for instant in-VR comparison.',
         deckTarget:'p44' },
       // slide 33 (p45) — 5-image collage; "Grew out of dozens of similar projects from 2013-2023"
@@ -239,8 +239,8 @@ const SECTIONS = [
     lesson: { title:'Hyperreal Estate.', short:'HYPERREAL', tagline:'“Does this design feel complete?”', tags:'Product 3 of 4' },
     cases: [
       // chapter intro — announces Hyperreal Estate before content slides (not yet built)
-      { layout:'big', title:'Hyperreal Estate',
-        bigText:'“Does this design feel complete?”',
+      { layout:'big', title:'Hyperreal Estate', pill:true,
+        bigText:'”Does this design feel complete?”',
         bigCaption:'Product 3 of 4 — architectural rendering that answers questions: what if sunset? walnut? winter?',
         deckTarget:'p67' },
     ] },
@@ -249,8 +249,8 @@ const SECTIONS = [
     lesson: { title:'Holodeck Anywhere.', short:'HOLODECK', tagline:'“Does this emotionally connect?”', tags:'Product 4 of 4' },
     cases: [
       // chapter intro — announces Holodeck Anywhere before content slides (not yet built)
-      { layout:'big', title:'Holodeck Anywhere',
-        bigText:'“Does this emotionally connect?”',
+      { layout:'big', title:'Holodeck Anywhere', pill:true,
+        bigText:'”Does this emotionally connect?”',
         bigCaption:'Product 4 of 4 — co-located multiplayer VR tours for VIP buyers and stakeholders.',
         deckTarget:'p88' },
     ] },
@@ -524,6 +524,11 @@ body.split-view .nav-arrows{bottom:calc(42vh + 4px)!important}
 .accent-purple .case-slide.layout-big .big-text,.accent-purple.case-slide.layout-big .big-text{background:linear-gradient(135deg,#fff 30%,#ddd2ff 70%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .accent-rose .case-slide.layout-big .big-text,.accent-rose.case-slide.layout-big .big-text{background:linear-gradient(135deg,#fff 30%,#ffd6e1 70%,#f43f5e 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .accent-teal .case-slide.layout-big .big-text,.accent-teal.case-slide.layout-big .big-text{background:linear-gradient(135deg,#fff 30%,#a5e8ff 70%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.big-pill{display:inline-flex;align-items:center;padding:6px 22px;border-radius:999px;border:1.5px solid;font-size:clamp(.65rem,.85vw,.8rem);font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:4px}
+.big-pill.accent-amber{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.55);color:var(--amber)}
+.big-pill.accent-teal{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.55);color:var(--teal)}
+.big-pill.accent-rose{background:rgba(244,63,94,.12);border-color:rgba(244,63,94,.55);color:var(--rose)}
+.big-pill.accent-purple{background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.55);color:var(--purple)}
 /* === LAYOUT GRID OVERLAY === */
 .layout-grid{position:absolute;inset:0;z-index:50;pointer-events:none;display:grid;grid-template:repeat(3,1fr)/repeat(4,1fr)}
 .layout-grid-cell{border:1px dashed rgba(0,212,255,.2);display:flex;align-items:center;justify-content:center;font:700 1.2rem 'Space Grotesk',sans-serif;color:rgba(0,212,255,.25);letter-spacing:.1em}
@@ -1078,7 +1083,7 @@ SECTIONS.forEach((sec,si)=>{
     const altBadge=c.alt?`<div class="alt-badge">[ALT] ${c.alt===true?'':c.alt}</div>`:'';
     // layout: 'big' — full-slide statement text (bigText, optional title/subtitle/bigCaption)
     if(c.layout==='big'){
-      s.innerHTML=`<div class="big-stack">${c.title?`<h2 class="big-eyebrow">${c.title.replace(/\n/g,'<br>')}</h2>`:''}${c.subtitle?`<div class="big-sub">${c.subtitle}</div>`:''}${c.bigText?`<h1 class="big-text">${c.bigText.replace(/\n/g,'<br>')}</h1>`:''}${c.bigCaption?`<p class="big-caption">${c.bigCaption}</p>`:''}</div>${altBadge}`;
+      s.innerHTML=`<div class="big-stack">${c.pill&&c.title?`<div class="big-pill accent-${sec.accent||'teal'}">${c.title}</div>`:c.title?`<h2 class="big-eyebrow">${c.title.replace(/\n/g,'<br>')}</h2>`:''} ${c.subtitle?`<div class="big-sub">${c.subtitle}</div>`:''}${c.bigText?`<h1 class="big-text">${c.bigText.replace(/\n/g,'<br>')}</h1>`:''}${c.bigCaption?`<p class="big-caption">${c.bigCaption}</p>`:''}</div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
     }
     // layout: 'intro-hxr' — duo intro port from FMX/HXR. Two pixel-art walkers
@@ -1086,7 +1091,7 @@ SECTIONS.forEach((sec,si)=>{
     // reveal in slideSteps. See the duo intro IIFE below for the choreography.
     if(c.layout==='intro-hxr'&&c.duo){
       const statHTML=(c.stats||[]).map(st=>`<div class="intro-stat"><span class="num">${st.n}</span><span class="lbl">${st.l}</span></div>`).join('');
-      s.innerHTML=`<div class="intro-grid intro-grid-duo"><div class="intro-stage"><svg viewBox="0 0 400 400" id="intro-duo-svg"></svg></div><div class="intro-content"><div class="intro-eyebrow" id="intro-eyebrow" style="opacity:0;transition:opacity .6s">${c.eyebrow||'Speakers'}</div><h1 class="intro-title" id="intro-title" style="opacity:0;transition:opacity .6s">${(c.title||'').replace(/\n/g,'<br>')}</h1><p class="intro-sub" id="intro-sub" style="opacity:0;transition:opacity .6s">${c.sub||''}</p>${c.subUE5?`<p class="intro-sub" id="intro-sub-ue5" style="opacity:0;transition:opacity .6s;margin-top:.6em">${c.subUE5}</p>`:''}<div class="intro-duo-names" id="intro-duo-names" style="opacity:0;transition:opacity .6s"><div class="intro-duo-name"><span class="dot dot-alex"></span>${c.duo.alex.name} · <em>${c.duo.alex.role}</em></div><div class="intro-duo-name"><span class="dot dot-jun"></span>${c.duo.jun.name} · <em>${c.duo.jun.role}</em></div></div><div class="intro-stats" id="intro-stats-row" style="opacity:0;transition:opacity .6s">${statHTML}</div></div></div>${altBadge}`;
+      s.innerHTML=`<div class="intro-grid intro-grid-duo"><div class="intro-stage"><svg viewBox="0 0 400 400" id="intro-duo-svg"></svg></div><div class="intro-content"><div class="intro-eyebrow" id="intro-eyebrow" style="opacity:0;transition:opacity .6s">${c.eyebrow||'Speakers'}</div><h1 class="intro-title" id="intro-title" style="opacity:0;transition:opacity .6s">${(c.title||'').replace(/\n/g,'<br>')}</h1><p class="intro-sub" id="intro-sub" style="opacity:0;transition:opacity .6s">${c.sub||''}</p>${c.subUE5?`<p class="intro-sub" id="intro-sub-ue5" style="opacity:0;transition:opacity .6s;margin-top:.6em">${c.subUE5.replace(/\n/g,'<br>')}</p>`:''}<div class="intro-duo-names" id="intro-duo-names" style="opacity:0;transition:opacity .6s"><div class="intro-duo-name"><span class="dot dot-alex"></span>${c.duo.alex.name} · <em>${c.duo.alex.role}</em></div><div class="intro-duo-name"><span class="dot dot-jun"></span>${c.duo.jun.name} · <em>${c.duo.jun.role}</em></div></div><div class="intro-stats" id="intro-stats-row" style="opacity:0;transition:opacity .6s">${statHTML}</div></div></div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);
       // Animation is wired by the duo intro IIFE further down (runs after this).
       return;
@@ -1338,6 +1343,16 @@ deck.appendChild(bon);allSlides.push(bon);
 const mapS=document.createElement('div');mapS.className='slide slide-map';mapS.dataset.type='map';
 mapS.innerHTML=`<div class="map-label">The Journey, Mapped</div><svg id="map-svg" viewBox="0 0 1000 600"></svg>`;
 deck.appendChild(mapS);allSlides.push(mapS);
+
+// ── Toolbox: apply move-mode transforms (video scale) ──
+(function(){
+  const tb=allSlides.find(s=>s.querySelector?.('.toolbox-grid'));
+  if(!tb)return;
+  const cards=tb.querySelectorAll('.toolbox-card');
+  if(cards.length<3)return;
+  const vid=cards[2].querySelector('video');
+  if(vid){vid.style.transformBox='fill-box';vid.style.transformOrigin='center center';vid.style.transform='scale(1.20)';}
+})();
 
 // ── Trilogy QR: apply move-mode transforms (scale + translate) ──
 (function(){
@@ -2183,7 +2198,7 @@ document.getElementById('anno-export').addEventListener('click',()=>{
     navigator.clipboard.writeText(md).then(()=>annoToast(`Copied settings only (no annotations)`));
     return;
   }
-  const md='# Annotations\n\n'+settingsMd+'\n'+arr.map((a,i)=>`## ${i+1}. ${a.context||''}\n**Selector:** \`${a.selector}\`\n${a.position?'**'+a.position+'**\n':''}${a.transform?'**'+a.transform+'**\n':''}**Note:** ${a.text}\n`).join('\n');
+  const md='# Annotations\n\n'+settingsMd+'\n'+arr.map((a,i)=>`## ${i+1}. ${a.context||''}\n**Selector:** \`${a.selector}\`\n${a.position?'**'+a.position+'**\n':''}${a.transform?'**'+a.transform+'**\n':''}**Note:** ${a.text}\n${a.type==='text-edit'&&a.newText?'**Full text:** '+a.newText.replace(/\n/g,'↵')+'\n':''}`).join('\n');
   navigator.clipboard.writeText(md).then(()=>annoToast(`Copied ${arr.length} annotations + settings`));
 });
 document.getElementById('anno-clear').addEventListener('click',()=>{if(!confirm('Clear all?'))return;aS([]);aRender();annoToast('Cleared');});
@@ -2227,7 +2242,7 @@ document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(documen
 document.addEventListener('click',e=>{if(!window._moveMode)return;const a=e.target.closest('a');if(a&&!a.closest('#move-hud,#anno-panel,#anim-scrub-bar')){e.preventDefault();e.stopPropagation();}},true);
 // Text editing
 let editEl=null;
-function endEdit(save){if(!editEl)return;const el=editEl;const newText=el.innerText;const origText=el.dataset.origText??'';editEl=null;el.removeAttribute('contenteditable');delete el.dataset.origText;el.blur();document.body.classList.remove('edit-text');if(save&&newText!==origText){const sel=aSel(el),ctx=aCtx(el);const sl=el.closest('.slide');let posInfo='';if(sl){const sr=sl.getBoundingClientRect(),er=el.getBoundingClientRect();const pctL=((er.left-sr.left)/sr.width*100).toFixed(1);const pctT=((er.top-sr.top)/sr.height*100).toFixed(1);const idx=[...document.querySelectorAll('#deck > .slide')].indexOf(sl);posInfo=`left:${pctL}%, top:${pctT}% on slide #${idx+1}`;}const arr=aL();const existing=arr.findIndex(a=>a.type==='text-edit'&&a.selector===sel);const entry={selector:sel,context:ctx||'',text:`TEXT EDIT: "${origText.slice(0,60).replace(/\n/g,' ')}…" → "${newText.slice(0,60).replace(/\n/g,' ')}"`,newText,origText,timestamp:new Date().toISOString(),type:'text-edit'};if(posInfo)entry.position=posInfo;if(existing>=0)arr[existing]=entry;else arr.push(entry);aS(arr);aRender();annoToast('Text edit saved');}else if(save){annoToast('Text saved');}}
+function endEdit(save){if(!editEl)return;const el=editEl;const newText=el.innerText;const origText=el.dataset.origText??'';editEl=null;el.removeAttribute('contenteditable');delete el.dataset.origText;el.blur();document.body.classList.remove('edit-text');if(save&&newText!==origText){const sel=aSel(el),ctx=aCtx(el);const sl=el.closest('.slide');let posInfo='';if(sl){const sr=sl.getBoundingClientRect(),er=el.getBoundingClientRect();const pctL=((er.left-sr.left)/sr.width*100).toFixed(1);const pctT=((er.top-sr.top)/sr.height*100).toFixed(1);const idx=[...document.querySelectorAll('#deck > .slide')].indexOf(sl);posInfo=`left:${pctL}%, top:${pctT}% on slide #${idx+1}`;}const arr=aL();const existing=arr.findIndex(a=>a.type==='text-edit'&&a.selector===sel);const entry={selector:sel,context:ctx||'',text:`TEXT EDIT: "${origText.slice(0,60).replace(/\n/g,'↵')}…" → "${newText.slice(0,60).replace(/\n/g,'↵')}"`,newText,origText,timestamp:new Date().toISOString(),type:'text-edit'};if(posInfo)entry.position=posInfo;if(existing>=0)arr[existing]=entry;else arr.push(entry);aS(arr);aRender();annoToast('Text edit saved');}else if(save){annoToast('Text saved');}}
 document.addEventListener('dblclick',e=>{if(!window._moveMode)return;if(e.target.closest('#move-hud,#anno-panel,#anim-scrub-bar,#slide-grid,#move-toggle,#anno-toggle'))return;const el=e.target;if(el.closest('svg')){annoToast('SVG not editable');return;}e.preventDefault();e.stopPropagation();if(editEl&&editEl!==el)endEdit(true);editEl=el;el.dataset.origText=el.innerText;el.setAttribute('contenteditable','true');document.body.classList.add('edit-text');el.focus();const r=document.createRange();r.selectNodeContents(el);const s=window.getSelection();s.removeAllRanges();s.addRange(r);},true);
 document.addEventListener('keydown',e=>{if(!editEl)return;if(e.key==='Escape'){e.preventDefault();endEdit(false);}if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();endEdit(true);}if(e.key==='Enter'&&e.shiftKey&&!e.metaKey&&!e.ctrlKey){e.preventDefault();document.execCommand('insertLineBreak');return;}if(e.key==='Enter'&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&editEl.tagName==='LI'){e.preventDefault();endEdit(true);const li=document.createElement('li');li.textContent='';editEl.after(li);editEl=li;li.setAttribute('contenteditable','true');document.body.classList.add('edit-text');li.focus();}if(e.key==='Backspace'&&editEl.tagName==='LI'&&editEl.innerText.trim()===''){e.preventDefault();const prev=editEl.previousElementSibling;editEl.removeAttribute('contenteditable');editEl.parentElement?.removeChild(editEl);editEl=null;if(prev){editEl=prev;prev.setAttribute('contenteditable','true');document.body.classList.add('edit-text');prev.focus();}else document.body.classList.remove('edit-text');}},true);
 document.addEventListener('mousedown',e=>{if(editEl&&!e.target.closest('[contenteditable="true"]'))endEdit(true);},true);
