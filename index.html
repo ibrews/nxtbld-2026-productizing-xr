@@ -532,12 +532,17 @@ body.vertical-mode .bg{position:fixed}
 .slide-bonus .ey-badge{color:var(--amber)}.slide-bonus .lesson-rule{background:var(--amber)}.slide-bonus .year-ghost{color:rgba(245,158,11,.04)}
 .slide-bonus .lesson-title{margin-bottom:18px}
 .slide-bonus .lesson-tagline{max-width:1100px}
-.bonus-meta{position:absolute;left:50%;bottom:clamp(36px,5vh,72px);transform:translateX(-50%);display:flex;align-items:center;gap:clamp(28px,3.5vw,64px);z-index:3}
+/* Push the text content way up so the meta row below has room for properly-sized images */
+.slide-bonus{padding-bottom:clamp(380px,46vh,520px)}
+.bonus-meta{position:absolute;left:50%;bottom:clamp(48px,6vh,88px);transform:translateX(-50%);display:flex;align-items:flex-end;gap:clamp(28px,3.5vw,64px);z-index:3}
 .bonus-meta .qr-card{flex-shrink:0;background:rgba(255,255,255,.04);border:1px solid rgba(245,158,11,.3);border-radius:14px;padding:18px 18px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 8px 28px rgba(0,0,0,.4)}
 .bonus-meta .qr-card img{width:clamp(140px,11vw,180px);height:auto;display:block;border-radius:8px;background:#fff;padding:6px}
 .bonus-meta .qr-card .qr-label{font-size:clamp(.7rem,.95vw,.9rem);font-weight:600;color:rgba(240,244,255,.85);letter-spacing:.04em}
 .bonus-meta .qr-card .qr-badge{font-size:clamp(.55rem,.7vw,.7rem);font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:3px 8px}
-.bonus-meta-shot{flex-shrink:0;width:clamp(220px,22vw,400px);max-height:38vh;height:auto;object-fit:contain;border-radius:10px;border:1px solid rgba(245,158,11,.25);box-shadow:0 8px 32px rgba(0,0,0,.5);opacity:.92}
+/* Default bonus-meta shot — the github page screenshot. Sized to be substantial without dominating. */
+.bonus-meta-shot{flex-shrink:0;width:clamp(260px,26vw,500px);height:auto;object-fit:contain;border-radius:10px;border:1px solid rgba(245,158,11,.25);box-shadow:0 8px 32px rgba(0,0,0,.5);opacity:.92}
+/* Settings shot (right-most) is the hero of the row — wider since it's the actual presentation app and 16:9 lets it scale without becoming too tall. */
+.bonus-meta-shot--settings{width:clamp(360px,38vw,720px)}
 .slide-settings{background:rgba(3,5,12,.98)}
 .cfg-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:52px 64px;max-width:960px;width:90%;backdrop-filter:blur(20px)}
 body[data-bg-style]:not([data-bg-style="none"]) .cfg-panel{background:rgba(8,10,20,.32);backdrop-filter:blur(6px)}
@@ -1761,7 +1766,7 @@ SECTIONS.forEach((sec,si)=>{
 const bon=document.createElement('div');bon.className='slide slide-lesson slide-bonus';bon.dataset.type='bonus';bon.dataset.year=BONUS.year;
 {const qrSrc='https://api.qrserver.com/v1/create-qr-code/?size=240x240&data='+encodeURIComponent(BONUS.repoUrl);
 bon.innerHTML=`<div class="year-ghost">${BONUS.year}</div><div class="lesson-ey"><span class="ey-yr" style="color:var(--amber)">BONUS PRODUCT</span><span class="ey-sep">&middot;</span><span class="ey-badge" style="color:var(--amber)">5 / 4</span></div><h2 class="lesson-title">${BONUS.title}</h2><p class="lesson-tagline">${BONUS.tagline.replace(/<br><br>/g,'<br><span class="para-gap"></span>')}</p><div class="lesson-rule" style="background:var(--amber)"></div>
-<div class="bonus-meta"><div class="qr-card"><img src="${qrSrc}" alt="QR Spatial Deck"><div class="qr-label">Spatial Deck on GitHub</div><div class="qr-badge b-amber">github.com/ibrews/spatial-deck</div></div><img class="bonus-meta-shot" src="media/nxtbld/spatial-deck-github.jpg" alt="Spatial Deck on GitHub"><img class="bonus-meta-shot" src="media/nxtbld/spatial-deck-settings.jpg" alt="Spatial Deck Creator — Presentation Settings"></div>`;}
+<div class="bonus-meta"><div class="qr-card"><img src="${qrSrc}" alt="QR Spatial Deck"><div class="qr-label">Spatial Deck on GitHub</div><div class="qr-badge b-amber">github.com/ibrews/spatial-deck</div></div><img class="bonus-meta-shot" src="media/nxtbld/spatial-deck-github.jpg" alt="Spatial Deck on GitHub"><img class="bonus-meta-shot bonus-meta-shot--settings" src="media/nxtbld/spatial-deck-settings.jpg" alt="Spatial Deck Creator — Presentation Settings"></div>`;}
 deck.appendChild(bon);allSlides.push(bon);
 
 // 3D Monocle on Bonus slide
