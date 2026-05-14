@@ -218,14 +218,15 @@ const SECTIONS = [
         deckTarget:'p44' },
       // slide 33 (p45) — 5-image collage; "Grew out of dozens of similar projects from 2013-2023"
       { layout:'placed', title:'Blueprint Immersive', subtitle:'Grew out of dozens of similar projects from 2013–2023',
-        fadeDelay:300, fadeStagger:500, fadeDuration:700,
+        fadeDelay:1500, fadeStagger:500, fadeDuration:700,
         placedItems:[
-          { type:'img', src:'media/nxtbld/bp-33-a.png', x:2,  y:6,  w:32, h:32, fadeOrder:1 },
-          { type:'img', src:'media/nxtbld/bp-33-b.png', x:36, y:6,  w:32, h:34, fadeOrder:2 },
-          { type:'img', src:'media/nxtbld/bp-33-c.png', x:70, y:8,  w:28, h:32, fadeOrder:3 },
-          { type:'img', src:'media/nxtbld/bp-33-d.png', x:8,  y:42, w:42, h:34, fadeOrder:4 },
-          { type:'img', src:'media/nxtbld/bp-33-e.jpg', x:54, y:42, w:42, h:34, fadeOrder:5 },
-          { type:'text', plain:true, html:'<h1 class="placed-origins">Origins.</h1>', x:5, y:78, w:90, h:18 },
+          { type:'img', src:'media/nxtbld/bp-33-a.png', x:2,  y:8,  w:32, h:36, fadeOrder:1 },
+          { type:'img', src:'media/nxtbld/bp-33-b.png', x:36, y:8,  w:32, h:40, fadeOrder:2 },
+          { type:'img', src:'media/nxtbld/bp-33-c.png', x:70, y:10, w:28, h:38, fadeOrder:3 },
+          { type:'img', src:'media/nxtbld/bp-33-d.png', x:8,  y:54, w:42, h:40, fadeOrder:4 },
+          { type:'img', src:'media/nxtbld/bp-33-e.jpg', x:54, y:54, w:42, h:40, fadeOrder:5 },
+          // "Origins." headline centered on the slide, painted last so it sits on top of every image
+          { type:'text', plain:true, html:'<h1 class="placed-origins">Origins.</h1>', x:15, y:38, w:70, h:24 },
         ],
         deckTarget:'p45' },
       // slide 34 (p46) — Origins bullets formerly lived here as a standalone slide; merged into the asset-belt overlay below.
