@@ -306,11 +306,14 @@ const SECTIONS = [
   { year: 'HYPERREAL ESTATE', accent: 'rose',
     lesson: { title:'Hyperreal Estate.', short:'HYPERREAL', tagline:'“Does this design feel complete?”', tags:'Product 3 of 4' },
     cases: [
-      // chapter intro — announces Hyperreal Estate before content slides (not yet built)
+      // chapter intro — announces Hyperreal Estate before content slides
       { layout:'big', title:'Hyperreal Estate', pill:true,
         bigText:'”Does this design\nfeel complete?”',
         bigCaption:'Product 3 of 4 — architectural rendering in two eyes at 90fps\nthat typically only happens on a render farm.',
         deckTarget:'p67' },
+      { layout:'placed', title:'Hyperreal Estate', subtitle:'Lumen Lighting + Reflections',
+        placedItems:[ { type:'mp4', src:'media/nxtbld/hyperreal-reflect.mp4', x:8, y:12, w:84, h:76 } ],
+        deckTarget:'reflect_light' },
     ] },
 
   { year: 'HOLODECK ANYWHERE', accent: 'purple',
