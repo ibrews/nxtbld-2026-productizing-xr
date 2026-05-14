@@ -84,6 +84,12 @@ Spatial Deck is a single-file HTML presentation framework. Everything lives in `
 - Two or more keyframes on the same element automatically build a WAAPI animation.
 - When adding custom animations, prefer the keyframe system over manual `slideSteps` for transform-based motion.
 
+### Text Sizing
+- **Lean toward larger text when space allows.** Presentation slides should be readable from a distance. Avoid small text.
+- `placed-text-h` heading: target `clamp(1.6rem, 3vw, 2.8rem)` or larger for slides with generous text-box area.
+- `placed-text-list li` bullets: target `clamp(1.05rem, 1.8vw, 1.6rem)` or larger; never below `clamp(.9rem, 1.4vw, 1.25rem)`.
+- When a text box occupies ≥40% of slide width and ≥50% of slide height, push to the upper end of these ranges.
+
 ### Settings Slide (slide 0)
 - Shows "Spatial Deck Creator v0.0.5" header.
 - Counter shows "00" for settings, "01" for cover.
