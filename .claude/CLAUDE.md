@@ -124,10 +124,10 @@ When the user pastes a `# Annotations` block (exported from the deck's annotatio
 - When adding custom animations, prefer the keyframe system over manual `slideSteps` for transform-based motion.
 
 ### Text Sizing
-- **Lean toward larger text when space allows.** Presentation slides should be readable from a distance. Avoid small text.
-- `placed-text-h` heading: target `clamp(1.6rem, 3vw, 2.8rem)` or larger for slides with generous text-box area.
-- `placed-text-list li` bullets: target `clamp(1.05rem, 1.8vw, 1.6rem)` or larger; never below `clamp(.9rem, 1.4vw, 1.25rem)`.
-- When a text box occupies ≥40% of slide width and ≥50% of slide height, push to the upper end of these ranges.
+- **Lean toward larger text when space allows.** Presentation slides should be readable from a distance. Err large, not small.
+- `placed-text-h` heading: `6rem` (fixed) or `clamp(3rem, 5vw, 6rem)` for responsive scaling. Prior sessions used clamp maxes around 2–3rem and they were visually imperceptible — don't repeat that mistake.
+- `placed-text-list li` bullets: `4rem` or `clamp(2rem, 3.3vw, 4rem)`. Prior sessions used ~1.6rem which looked tiny.
+- When in doubt, test with an obviously large value (6rem/4rem) to confirm CSS is taking effect, then dial in from there. Small increments are hard to see.
 
 ### Settings Slide (slide 0)
 - Shows "Spatial Deck Creator v0.0.5" header.
