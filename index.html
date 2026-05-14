@@ -153,7 +153,7 @@ const SECTIONS = [
     cases: [
       // chapter intro \u2014 announces the Floor Tour product before content slides
       { layout:'big', title:'Floor Tour', pill:true,
-        bigText:'\u201cWill this space fit our needs?\u201d',
+        bigText:'\u201cWill this space\nfit our needs?\u201d',
         bigCaption:'Product 1 of 4 \u2014 VR walkthroughs of unbuilt spaces, all from a floor plan.',
         deckTarget:'p38 (intro)' },
       // slide 26 \u2014 NOTE: floor plan \u2192 VR experience.
@@ -1608,6 +1608,14 @@ deck.appendChild(mapS);allSlides.push(mapS);
   if(cards.length<3)return;
   const vid=cards[2].querySelector('video');
   if(vid){vid.style.transformBox='fill-box';vid.style.transformOrigin='center center';vid.style.transform='scale(1.20)';}
+})();
+
+// ── Floor Tour intro: scale pill ──
+(function(){
+  const s=allSlides.find(s=>s.dataset.year==='FLOOR TOUR'&&s.querySelector?.('.big-pill'));
+  if(!s)return;
+  const pill=s.querySelector('.big-pill');
+  if(pill){pill.style.transformBox='fill-box';pill.style.transformOrigin='center center';pill.style.transform='scale(2.37)';}
 })();
 
 // ── Trilogy QR: apply move-mode transforms (scale + translate) ──
