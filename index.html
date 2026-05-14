@@ -376,19 +376,19 @@ const SECTIONS = [
           { type:'mp4', src:'media/nxtbld/holo-prod-c.mp4', x:67, y:14, w:30, h:74, fadeOrder:3 },
         ],
         deckTarget:'p78-87 selection' },
-      // slide 78 (p90) — 4 locations (57th Street / DBox Office / Aspen / Austin) with static labels + sequentially fading images
+      // slide 78 (p90) — 4 locations (57th Street / DBOX Office / Aspen / Austin) with static labels + sequentially fading images
       { layout:'placed', title:'Holodeck Anywhere',
         fadeDelay:1500, fadeStagger:700, fadeDuration:1000,
         placedItems:[
           // Static labels — y:3 h:16 so "Aspen Holodeck" / "Austin Holodeck" wrap to 2 lines without getting clipped
           { type:'text', plain:true, heading:'57th Street',     x:1,    y:3, w:23, h:16 },
-          { type:'text', plain:true, heading:'DBox Office',     x:25.5, y:3, w:23, h:16 },
+          { type:'text', plain:true, heading:'DBOX Office',     x:25.5, y:3, w:23, h:16 },
           { type:'text', plain:true, heading:'Aspen Holodeck',  x:50,   y:3, w:23, h:16 },
           { type:'text', plain:true, heading:'Austin Holodeck', x:74.5, y:3, w:23, h:16 },
           // Col 1 — 57th Street: a + b
           { type:'img', src:'media/nxtbld/ha-78-a.jpg',    x:1,    y:22, w:23, h:36, fadeOrder:1 },
           { type:'img', src:'media/nxtbld/ha-78-b.jpg',    x:1,    y:60, w:23, h:36, fadeOrder:2 },
-          // Col 2 — DBox Office: c + new ha-78-dbox (iPad / VR demo)
+          // Col 2 — DBOX Office: c + new ha-78-dbox (iPad / VR demo)
           { type:'img', src:'media/nxtbld/ha-78-c.jpg',    x:25.5, y:22, w:23, h:36, fadeOrder:3 },
           { type:'img', src:'media/nxtbld/ha-78-dbox.jpg', x:25.5, y:60, w:23, h:36, fadeOrder:4 },
           // Col 3 — Aspen Holodeck: d + new ha-78-aspen (ballroom under setup)
