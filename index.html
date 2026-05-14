@@ -341,13 +341,14 @@ const SECTIONS = [
           { type:'mp4', src:'media/nxtbld/hyperreal-mirror.mp4',  x:51, y:20, w:48, h:48 },
         ],
         deckTarget:'reflect_light' },
-      // slides 59-62 (p71-p74) — conveyor belt of finished Hyperreal renders
+      // slides 59-62 (p71-p74) — conveyor belt of finished Hyperreal renders, scrolls immediately
       { layout:'asset-belt', title:'Hyperreal Estate', bigText:'Productized',
+        beltDelay:0, overlayDelay:0,
         beltItems:[
-          { type:'img', src:'media/nxtbld/hr-prod-a.jpg', w:2048, h:1222 },
-          { type:'img', src:'media/nxtbld/hr-prod-b.jpg', w:2048, h:1222 },
-          { type:'img', src:'media/nxtbld/hr-prod-c.jpg', w:1031, h:580  },
-          { type:'img', src:'media/nxtbld/hr-prod-d.jpg', w:1031, h:580  },
+          { type:'img', src:'media/nxtbld/hr-prod-a.jpg', w:1500, h:844 },
+          { type:'img', src:'media/nxtbld/hr-prod-b.jpg', w:1500, h:844 },
+          { type:'img', src:'media/nxtbld/hr-prod-c.jpg', w:1500, h:844 },
+          { type:'img', src:'media/nxtbld/hr-prod-d.jpg', w:1500, h:844 },
         ],
         deckTarget:'p71+p72+p73+p74' },
       // slide 63 (p75) — Why this ROI works (mirrors Blueprint ROI slide format)
@@ -1475,12 +1476,13 @@ SECTIONS.forEach((sec,si)=>{
           const trackShift=Math.min(centerShift,exitShift);
           const dur=40000;
           // Track animation: pans the whole row from off-right to exitShift (linear)
-          beltAnim=track.animate([{transform:'translateX(0)'},{transform:`translateX(${trackShift}px)`}],{duration:dur,delay:3500,easing:'linear',fill:'forwards'});
+          const bDly=c.beltDelay!=null?c.beltDelay:3500;const oDly=c.overlayDelay!=null?c.overlayDelay:1500;
+          beltAnim=track.animate([{transform:'translateX(0)'},{transform:`translateX(${trackShift}px)`}],{duration:dur,delay:bDly,easing:'linear',fill:'forwards'});
           // Last-item COUNTER animation: stays at translateX(0) until track passes centerShift, then counter-translates to keep it at center
           const tCenter=trackShift!==0?Math.min(1,centerShift/trackShift):1;
           const counter=centerShift-trackShift;
-          lastAnim=last.animate([{offset:0,transform:'translateX(0)'},{offset:tCenter,transform:'translateX(0)'},{offset:1,transform:`translateX(${counter}px)`}],{duration:dur,delay:3500,easing:'linear',fill:'forwards'});
-          if(ovl)ovlAnim=ovl.animate([{opacity:1},{opacity:.5}],{duration:2000,delay:1500,easing:'ease-in',fill:'forwards'});
+          lastAnim=last.animate([{offset:0,transform:'translateX(0)'},{offset:tCenter,transform:'translateX(0)'},{offset:1,transform:`translateX(${counter}px)`}],{duration:dur,delay:bDly,easing:'linear',fill:'forwards'});
+          if(ovl)ovlAnim=ovl.animate([{opacity:1},{opacity:.5}],{duration:2000,delay:oDly,easing:'ease-in',fill:'forwards'});
         };
         // Trigger run() on each transition into 'active'
         let wasActive=s.classList.contains('active');if(wasActive)run();
