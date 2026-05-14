@@ -192,27 +192,22 @@ const SECTIONS = [
         ],
         deckTarget:'p40' },
       // slide 29 (p41) \u2014 SKIPPED per source/author. Implementation removed.
-      // slide 30 (p42) \u2014 Productized version. 5 items: hero PNG + 2 mp4s (converted from source gifs) on top row + 2 floor-plan PNGs on bottom row.
+      // slide 30 (p42) \u2014 Productized version. 7 items: 3 on top row + 4 on bottom row (floor-31 media moved here from old slide 31).
       { layout:'placed', title:'Floor Tour', subtitle:'Productized version',
         placedItems:[
           { type:'img', src:'media/nxtbld/floor-30-a.png', x:4,  y:14, w:30, h:42 },
           { type:'mp4', src:'media/nxtbld/floor-30-b.mp4', x:36, y:14, w:30, h:42 },
           { type:'mp4', src:'media/nxtbld/floor-30-c.mp4', x:68, y:14, w:28, h:42 },
-          { type:'img', src:'media/nxtbld/floor-30-d.png', x:18, y:58, w:30, h:38 },
-          { type:'img', src:'media/nxtbld/floor-30-e.png', x:52, y:58, w:30, h:38 },
+          { type:'img', src:'media/nxtbld/floor-30-d.png', x:2,  y:58, w:22, h:38 },
+          { type:'img', src:'media/nxtbld/floor-30-e.png', x:26, y:58, w:22, h:38 },
+          { type:'img', src:'media/nxtbld/floor-31-a.png', x:51, y:58, w:22, h:38 },
+          { type:'mp4', src:'media/nxtbld/floor-31-b.mp4', x:75, y:58, w:23, h:38 },
         ],
         deckTarget:'p42' },
-      // slide 31 (p43) — "Why this ROI works" — 3 bullet ROI summary + supporting screenshot + animation
-      { layout:'placed', title:'Floor Tour', subtitle:'Summary',
-        placedItems:[
-          { type:'text', heading:'Why this ROI works', bullets:[
-              'Gives spatial feedback before you’ve even started any 3D files.',
-              'Works with existing floor plan files, renders, and photos.',
-              'Designed for self-service; lightweight app on a standalone wireless device',
-            ], x:3,  y:14, w:54, h:72 },
-          { type:'img', src:'media/nxtbld/floor-31-a.png', x:60, y:8,  w:38, h:42 },
-          { type:'mp4', src:'media/nxtbld/floor-31-b.mp4', x:65, y:54, w:28, h:42 },
-        ],
+      // slide 31 (p43) — "Why this ROI works" — big layout matching Blueprint/Hyperreal ROI template (slide #29).
+      { layout:'big', title:'Floor Tour',
+        bigText:'Why this ROI works.',
+        bigCaption:'<ul class="agenda-list"><li>Gives spatial feedback before you’ve even started any 3D files.</li><li>Works with existing floor plan files, renders, and photos.</li><li>Designed for self-service; lightweight app on a standalone wireless device.</li></ul>',
         deckTarget:'p43' },
     ] },
 

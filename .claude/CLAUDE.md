@@ -15,6 +15,11 @@ Spatial Deck is a single-file HTML presentation framework. Everything lives in `
 - **Never add npm/webpack/vite/etc.** Zero build process is a core feature.
 - The only external dependency is Three.js via CDN import map (optional, for constellation map).
 
+### Slide Numbering
+- **URL hash = allSlides index (0-indexed).** `#N` in the URL navigates to `allSlides[N]`. When the user says "slide 17" or references `#17`, they mean `allSlides[17]`.
+- `allSlides[0]` = settings, `allSlides[1]` = cover, then SECTIONS cases in order (no lesson slides — NXT BLD skips them).
+- The annotation system displays slide numbers as `idx+1` (1-indexed), so "slide #16" in an annotation dump = `allSlides[15]` = URL `#15`. Don't confuse annotation numbers with URL hashes.
+
 ### Editing SECTIONS
 - The `SECTIONS` array near the top of the second `<script>` block drives all slide content.
 - Changing SECTIONS automatically regenerates slides on page load.
