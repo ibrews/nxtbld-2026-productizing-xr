@@ -217,7 +217,7 @@ const SECTIONS = [
       // chapter intro — announces Blueprint Immersive
       { layout:'big', title:'Blueprint Immersive', pill:true,
         bigText:'”Which layout\nworks best?”',
-        bigCaption:'Product 2 of 4 — runtime Datasmith importing of design options for instant in-VR comparison.',
+        bigCaption:'Product 2 of 4 — runtime Datasmith importing of design options and interactivity for robust custom functionality and review.',
         deckTarget:'p44' },
       // slide 33 (p45) — 6-image collage 3×2; "Grew out of dozens of similar projects from 2013-2023"
       { layout:'placed', title:'Blueprint Immersive', subtitle:'Grew out of dozens of similar projects from 2013–2023',
@@ -361,6 +361,32 @@ const SECTIONS = [
         bigText:'”Does this\nemotionally connect?”',
         bigCaption:'Product 4 of 4 — co-located multiplayer\nXR tours for buyers and stakeholders.',
         deckTarget:'p88' },
+      // First Tests — wide BTS diagram from earliest Holodeck experiments
+      { layout:'placed', title:'Holodeck Anywhere', subtitle:'First Tests',
+        placedItems:[ { type:'img', src:'media/nxtbld/holo-first.jpg', x:8, y:16, w:84, h:68 } ],
+        deckTarget:'first-tests' },
+      // slides 78-87 (selected) — 3×2 photo grid: VR users, venue, tracking, aerial pop-up, headsets, VR content
+      { layout:'placed', title:'Holodeck Anywhere', subtitle:'In Production',
+        fadeDelay:800, fadeStagger:500, fadeDuration:700,
+        placedItems:[
+          { type:'img', src:'media/nxtbld/holo-a.jpg', x:1,  y:4,  w:31, h:43, fadeOrder:1 },
+          { type:'img', src:'media/nxtbld/holo-b.jpg', x:34, y:4,  w:31, h:43, fadeOrder:2 },
+          { type:'img', src:'media/nxtbld/holo-c.jpg', x:67, y:4,  w:31, h:43, fadeOrder:3 },
+          { type:'img', src:'media/nxtbld/holo-d.jpg', x:1,  y:52, w:31, h:43, fadeOrder:4 },
+          { type:'img', src:'media/nxtbld/holo-e.jpg', x:34, y:52, w:31, h:43, fadeOrder:5 },
+          { type:'img', src:'media/nxtbld/holo-f.jpg', x:67, y:52, w:31, h:43, fadeOrder:6 },
+        ],
+        deckTarget:'p78-87 selection' },
+      // slide 96 (p96) — Why this ROI works
+      { layout:'big', title:'Holodeck Anywhere',
+        bigText:'Why this ROI works.',
+        bigCaption:'<ul class="agenda-list"><li>Conduct tours in a multi-user, colocated experience that tells the story of the final building in unparalleled fidelity.</li><li>Utilizes lessons from theatre stagecraft.</li><li>Setup at a permanent location, or pop-up within a few hours.</li></ul>',
+        deckTarget:'p96' },
+      // slide 97 (p97) — The result: Four Seasons numbers
+      { layout:'big', title:'Holodeck Anywhere',
+        bigText:'The result.',
+        bigCaption:'<ul class="agenda-list"><li><strong>Four Seasons</strong></li><li>$500M+ presales</li><li>$700M+ investment</li></ul>',
+        deckTarget:'p97' },
     ] },
 
   { year: 'THE PIPELINE', accent: 'teal',
@@ -376,6 +402,26 @@ const SECTIONS = [
           { type:'img', src:'media/nxtbld/pipeline-diagram-alpha.png', x:8, y:18, w:84, h:64 },
         ],
         deckTarget:'p111' },
+    ] },
+
+  { year: 'AI', accent: 'amber',
+    lesson: { title:'AI.', short:'AI', tagline:'Compressing the ladder.', tags:'Synthesis · forward look' },
+    cases: [
+      // slide 100 (p112) — AI is compressing the ladder, supercharge demo video
+      { layout:'placed', title:'AI is compressing the ladder', subtitle:'Previous floor tour budget can now get a Blueprint Immersive outcome.',
+        placedItems:[ { type:'mp4', src:'media/nxtbld/ai-supercharge.mp4', x:29, y:19, w:42, h:62 } ],
+        deckTarget:'p112' },
+      // slide 101 (p113) — What AI has changed / What it hasn’t (two-column placed-text)
+      { layout:'placed', title:'AI', subtitle:'What AI has changed / What it hasn’t',
+        placedItems:[
+          { type:'text', heading:'AI accelerates:',
+            bullets:['parsing','debugging','materials','boilerplate','iteration'],
+            x:5, y:20, w:42, h:70 },
+          { type:'text', heading:'Humans still matter:',
+            bullets:['lighting','taste','facilitation','approvals','storytelling'],
+            x:53, y:20, w:42, h:70 },
+        ],
+        deckTarget:'p113' },
     ] },
 ];
 
