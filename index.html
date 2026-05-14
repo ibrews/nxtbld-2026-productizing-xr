@@ -377,6 +377,12 @@ const SECTIONS = [
           { type:'img', src:'media/nxtbld/holo-f.jpg', x:67, y:52, w:31, h:43, fadeOrder:6 },
         ],
         deckTarget:'p78-87 selection' },
+      // Aspen Pop-Up — embedded YouTube of the full project video
+      { layout:'placed', title:'Holodeck Anywhere', subtitle:'Aspen Pop-Up — full video',
+        placedItems:[
+          { type:'iframe', src:'https://www.youtube.com/embed/27IbNmiMva8?rel=0&modestbranding=1', x:13, y:13, w:74, h:74 },
+        ],
+        deckTarget:'aspen-popup-video' },
       // slide 96 (p96) — Why this ROI works
       { layout:'big', title:'Holodeck Anywhere',
         bigText:'Why this ROI works.',
@@ -1583,6 +1589,9 @@ SECTIONS.forEach((sec,si)=>{
           if(it.type==='text'){
             const plainCls=it.plain?' placed-text--plain':'';
             return `<div class="placed-item placed-text${plainCls}" ${st}${(it.fadeOrder!=null)?` data-fade-order="${it.fadeOrder}"`:''}><div class="placed-text-inner">${it.heading?`<h3 class="placed-text-h">${it.heading}</h3>`:''}${it.bullets?`<ul class="placed-text-list">${it.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`:(it.html||'')}</div></div>`;
+          }
+          if(it.type==='iframe'){
+            return `<div class="placed-item" ${st}${(it.fadeOrder!=null)?` data-fade-order="${it.fadeOrder}"`:''}><iframe src="${it.src}" style="width:100%;height:100%;border:none;display:block" allow="autoplay;fullscreen;encrypted-media;picture-in-picture;xr-spatial-tracking" allowfullscreen></iframe></div>`;
           }
           const fo=(it.fadeOrder!=null)?` data-fade-order="${it.fadeOrder}"`:'';
           if(it.type==='mp4'||(it.src&&(it.src.endsWith('.mp4')||it.src.endsWith('.webm')))){
