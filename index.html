@@ -329,8 +329,11 @@ const SECTIONS = [
       { layout:'big', title:'The Pipeline',
         bigText:'This only works if the pipeline compounds.',
         deckTarget:'p110' },
-      // slide 99 (p111) — shared infrastructure diagram (animated SVG blob version)
-      { layout:'pipeline-diagram', title:'The Pipeline', subtitle:'Shared infrastructure — ingestion, colocation, etc.',
+      // slide 99 (p111) — shared infrastructure diagram (source image97.png as-is)
+      { layout:'placed', title:'The Pipeline', subtitle:'Shared infrastructure — ingestion, colocation, etc.',
+        placedItems:[
+          { type:'img', src:'media/nxtbld/pipeline-diagram.png', x:8, y:18, w:84, h:64 },
+        ],
         deckTarget:'p111' },
     ] },
 ];
@@ -585,14 +588,6 @@ body.split-view .nav-arrows{bottom:calc(42vh + 4px)!important}
 .pipeline-svg .pipe-product{font-size:22px;font-weight:700;letter-spacing:.005em}
 .pipeline-svg .pipe-cap{font-size:14px;font-weight:600;fill:rgba(240,244,255,.88);letter-spacing:.06em;text-transform:uppercase}
 .pipeline-svg .pipe-cap-dot{fill:rgba(240,244,255,.5)}
-@keyframes blobBreathe{0%,100%{transform:scale(1);opacity:.82}50%{transform:scale(1.028);opacity:1}}
-@keyframes capFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-.pipe-blob{transform-box:fill-box;transform-origin:center;animation:blobBreathe ease-in-out infinite}
-.pipe-blob-ft{animation-duration:7.8s;animation-delay:0s}
-.pipe-blob-bp{animation-duration:8.6s;animation-delay:-2.2s}
-.pipe-blob-hr{animation-duration:7.3s;animation-delay:-4.6s}
-.pipe-blob-hd{animation-duration:9.2s;animation-delay:-1.4s}
-.pipe-cap-group{animation:capFloat 6s ease-in-out infinite}
 /* === LAYOUT: TYPEWRITER (2-column, types items left→right and top→bottom) === */
 .case-slide.layout-typewriter{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,2.5vw,40px);padding:clamp(50px,5vw,110px)}
 .typewriter-header{text-align:center}
@@ -1302,37 +1297,30 @@ SECTIONS.forEach((sec,si)=>{
         <defs>
           <filter id="pipe-soften" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="2.2"/></filter>
         </defs>
-        <!-- Holodeck Anywhere (purple) — wide body + small head, both in same pulse group -->
-        <g class="pipe-blob pipe-blob-hd">
-          <path d="M 60 380 C 60 330 200 320 400 318 C 480 318 510 320 528 340 C 542 380 558 442 580 462 C 604 442 620 382 632 340 C 650 322 720 318 760 318 C 1000 318 1130 340 1140 340 C 1180 380 1180 470 1140 492 C 970 512 620 512 280 506 C 80 500 22 484 28 440 C 28 410 44 390 60 380 Z" fill="rgba(167,139,250,.22)" filter="url(#pipe-soften)"/>
-          <path d="M 60 380 C 60 330 200 320 400 318 C 480 318 510 320 528 340 C 542 380 558 442 580 462 C 604 442 620 382 632 340 C 650 322 720 318 760 318 C 1000 318 1130 340 1140 340 C 1180 380 1180 470 1140 492 C 970 512 620 512 280 506 C 80 500 22 484 28 440 C 28 410 44 390 60 380 Z" fill="none" stroke="rgba(167,139,250,.65)" stroke-width="1.6"/>
-          <path d="M 920 70 C 925 22 1100 22 1108 70 C 1142 108 1150 178 1110 202 C 1058 218 950 218 912 198 C 876 168 870 100 920 70 Z" fill="rgba(167,139,250,.22)" filter="url(#pipe-soften)"/>
-          <path d="M 920 70 C 925 22 1100 22 1108 70 C 1142 108 1150 178 1110 202 C 1058 218 950 218 912 198 C 876 168 870 100 920 70 Z" fill="none" stroke="rgba(167,139,250,.65)" stroke-width="1.6"/>
-        </g>
-        <!-- Floor Tour (amber) -->
-        <g class="pipe-blob pipe-blob-ft">
-          <path d="M 72 78 C 78 22 240 22 244 78 C 268 162 296 244 308 304 C 392 332 472 362 488 412 C 498 466 444 484 380 478 C 220 494 80 494 26 478 C -10 450 -16 394 0 354 C 22 280 42 198 56 140 C 50 100 60 82 72 78 Z" fill="rgba(245,158,11,.22)" filter="url(#pipe-soften)"/>
-          <path d="M 72 78 C 78 22 240 22 244 78 C 268 162 296 244 308 304 C 392 332 472 362 488 412 C 498 466 444 484 380 478 C 220 494 80 494 26 478 C -10 450 -16 394 0 354 C 22 280 42 198 56 140 C 50 100 60 82 72 78 Z" fill="none" stroke="rgba(245,158,11,.65)" stroke-width="1.6"/>
-        </g>
-        <!-- Blueprint Immersive (teal) -->
-        <g class="pipe-blob pipe-blob-bp">
-          <path d="M 308 78 C 316 22 478 22 486 78 C 510 162 540 244 560 312 C 614 340 658 392 660 442 C 660 482 600 496 540 490 C 462 496 372 496 322 476 C 292 442 290 380 306 342 C 282 262 282 172 296 112 C 296 92 304 80 308 78 Z" fill="rgba(0,212,255,.22)" filter="url(#pipe-soften)"/>
-          <path d="M 308 78 C 316 22 478 22 486 78 C 510 162 540 244 560 312 C 614 340 658 392 660 442 C 660 482 600 496 540 490 C 462 496 372 496 322 476 C 292 442 290 380 306 342 C 282 262 282 172 296 112 C 296 92 304 80 308 78 Z" fill="none" stroke="rgba(0,212,255,.65)" stroke-width="1.6"/>
-        </g>
-        <!-- Hyperreal Estate (rose) -->
-        <g class="pipe-blob pipe-blob-hr">
-          <path d="M 668 78 C 676 22 852 22 858 78 C 878 152 906 232 934 290 C 1010 318 1100 358 1142 400 C 1176 460 1142 488 1080 488 C 950 494 800 494 706 478 C 670 452 660 396 690 350 C 660 260 644 172 658 112 C 658 92 664 80 668 78 Z" fill="rgba(244,63,94,.22)" filter="url(#pipe-soften)"/>
-          <path d="M 668 78 C 676 22 852 22 858 78 C 878 152 906 232 934 290 C 1010 318 1100 358 1142 400 C 1176 460 1142 488 1080 488 C 950 494 800 494 706 478 C 670 452 660 396 690 350 C 660 260 644 172 658 112 C 658 92 664 80 668 78 Z" fill="none" stroke="rgba(244,63,94,.65)" stroke-width="1.6"/>
-        </g>
-        <!-- Product labels -->
+        <!-- Holodeck Anywhere: wide bottom body, with a downward NOTCH at x≈580 so Save / Load sits ABOVE (excluded from) the blob -->
+        <path d="M 60 380 C 60 330 200 320 400 318 C 480 318 510 320 528 340 C 542 380 558 442 580 462 C 604 442 620 382 632 340 C 650 322 720 318 760 318 C 1000 318 1130 340 1140 340 C 1180 380 1180 470 1140 492 C 970 512 620 512 280 506 C 80 500 22 484 28 440 C 28 410 44 390 60 380 Z" fill="rgba(167,139,250,.22)" filter="url(#pipe-soften)"/>
+        <path d="M 60 380 C 60 330 200 320 400 318 C 480 318 510 320 528 340 C 542 380 558 442 580 462 C 604 442 620 382 632 340 C 650 322 720 318 760 318 C 1000 318 1130 340 1140 340 C 1180 380 1180 470 1140 492 C 970 512 620 512 280 506 C 80 500 22 484 28 440 C 28 410 44 390 60 380 Z" fill="none" stroke="rgba(167,139,250,.6)" stroke-width="1.4"/>
+        <!-- Holodeck Anywhere: small head over product label (top-right) -->
+        <path d="M 920 70 C 925 22 1100 22 1108 70 C 1142 108 1150 178 1110 202 C 1058 218 950 218 912 198 C 876 168 870 100 920 70 Z" fill="rgba(167,139,250,.22)" filter="url(#pipe-soften)"/>
+        <path d="M 920 70 C 925 22 1100 22 1108 70 C 1142 108 1150 178 1110 202 C 1058 218 950 218 912 198 C 876 168 870 100 920 70 Z" fill="none" stroke="rgba(167,139,250,.6)" stroke-width="1.4"/>
+        <!-- Floor Tour blob (amber): product (x≈155) + caps Colocation, Location-Based, Multi-User -->
+        <path d="M 72 78 C 78 22 240 22 244 78 C 268 162 296 244 308 304 C 392 332 472 362 488 412 C 498 466 444 484 380 478 C 220 494 80 494 26 478 C -10 450 -16 394 0 354 C 22 280 42 198 56 140 C 50 100 60 82 72 78 Z" fill="rgba(245,158,11,.22)" filter="url(#pipe-soften)"/>
+        <path d="M 72 78 C 78 22 240 22 244 78 C 268 162 296 244 308 304 C 392 332 472 362 488 412 C 498 466 444 484 380 478 C 220 494 80 494 26 478 C -10 450 -16 394 0 354 C 22 280 42 198 56 140 C 50 100 60 82 72 78 Z" fill="none" stroke="rgba(245,158,11,.6)" stroke-width="1.4"/>
+        <!-- Blueprint Immersive blob (teal): product (x≈390) + caps Multi-User, Save/Load -->
+        <path d="M 308 78 C 316 22 478 22 486 78 C 510 162 540 244 560 312 C 614 340 658 392 660 442 C 660 482 600 496 540 490 C 462 496 372 496 322 476 C 292 442 290 380 306 342 C 282 262 282 172 296 112 C 296 92 304 80 308 78 Z" fill="rgba(0,212,255,.22)" filter="url(#pipe-soften)"/>
+        <path d="M 308 78 C 316 22 478 22 486 78 C 510 162 540 244 560 312 C 614 340 658 392 660 442 C 660 482 600 496 540 490 C 462 496 372 496 322 476 C 292 442 290 380 306 342 C 282 262 282 172 296 112 C 296 92 304 80 308 78 Z" fill="none" stroke="rgba(0,212,255,.6)" stroke-width="1.4"/>
+        <!-- Hyperreal Estate blob (rose): product (x≈755) + caps 3D Data, Optimization, Photorealistic -->
+        <path d="M 668 78 C 676 22 852 22 858 78 C 878 152 906 232 934 290 C 1010 318 1100 358 1142 400 C 1176 460 1142 488 1080 488 C 950 494 800 494 706 478 C 670 452 660 396 690 350 C 660 260 644 172 658 112 C 658 92 664 80 668 78 Z" fill="rgba(244,63,94,.22)" filter="url(#pipe-soften)"/>
+        <path d="M 668 78 C 676 22 852 22 858 78 C 878 152 906 232 934 290 C 1010 318 1100 358 1142 400 C 1176 460 1142 488 1080 488 C 950 494 800 494 706 478 C 670 452 660 396 690 350 C 660 260 644 172 658 112 C 658 92 664 80 668 78 Z" fill="none" stroke="rgba(244,63,94,.6)" stroke-width="1.4"/>
+        <!-- PRODUCT labels (top row) — rendered above blobs so they're crisp and readable -->
         <g class="pipe-product">
-          <text x="155"  y="128" text-anchor="middle" fill="#f59e0b">Floor Tour</text>
-          <text x="395"  y="128" text-anchor="middle" fill="#00d4ff">Blueprint Immersive</text>
-          <text x="763"  y="128" text-anchor="middle" fill="#f43f5e">Hyperreal Estate</text>
+          <text x="155" y="128" text-anchor="middle" fill="#f59e0b">Floor Tour</text>
+          <text x="395" y="128" text-anchor="middle" fill="#00d4ff">Blueprint Immersive</text>
+          <text x="763" y="128" text-anchor="middle" fill="#f43f5e">Hyperreal Estate</text>
           <text x="1010" y="128" text-anchor="middle" fill="#a78bfa">Holodeck Anywhere</text>
         </g>
-        <!-- Capability labels — float gently to feel alive -->
-        <g class="pipe-cap pipe-cap-group">
+        <!-- CAPABILITY labels (bottom row) — inside Holodeck's wide body -->
+        <g class="pipe-cap">
           <text x="100"  y="442" text-anchor="middle">Colocation</text>
           <text x="260"  y="442" text-anchor="middle">Location-Based</text>
           <text x="420"  y="442" text-anchor="middle">Multi-User</text>
