@@ -2707,6 +2707,18 @@ const CL=[];for(let i=0;i<SECTIONS.length;i++)CL.push([i,(i+2)%SECTIONS.length])
 const CA=mPos(SECTIONS.length-1),CB={x:MX+MR*1.35,y:MY+MR*0.85};
 function startMap(){if(mapDone)return;mapDone=true;const svg=document.getElementById('map-svg');svg.innerHTML='';const CIRC=2*Math.PI*MR;
 const defs=svgE('defs');const f=svgE('filter',{id:'gl',x:'-40%',y:'-40%',width:'180%',height:'180%'});f.appendChild(svgE('feGaussianBlur',{stdDeviation:'3',result:'b'}));const mg=svgE('feMerge');mg.appendChild(svgE('feMergeNode',{in:'b'}));mg.appendChild(svgE('feMergeNode',{in:'SourceGraphic'}));f.appendChild(mg);defs.appendChild(f);svg.appendChild(defs);
+// — Agile Lens monocle skin: same construction as slide 4 (orbit), scaled to MR. Sits behind the constellation ring so the existing nodes/cord/eyepiece read as the lens, hinges, and bonus-tail eyepiece. —
+const mScaleM=MR/374;
+// Thick faint outer ring — matches slide 4's layered white strokes
+svg.appendChild(svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(255,255,255,.10)','stroke-width':String(28*mScaleM).slice(0,6)}));
+svg.appendChild(svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(255,255,255,.05)','stroke-width':String(34*mScaleM).slice(0,6)}));
+// Hinge nubs at upper-right shoulders (angles −1.41 and −0.2, copied from slide 4 so alignment matches)
+const hrM=MR+16*mScaleM;[-1.41,-0.2].forEach(a=>{const hx=MX+hrM*Math.cos(a),hy=MY+hrM*Math.sin(a);svg.appendChild(svgE('circle',{cx:hx,cy:hy,r:String(8*mScaleM).slice(0,5),fill:'none',stroke:'rgba(255,255,255,.18)','stroke-width':String(5*mScaleM).slice(0,5)}));});
+// Pulsing white-monocle PNG aligned to the ring (subtle so the constellation reads on top)
+const imgWM=852,imgHM=877,rcxM=407,rcyM=432,mwM=imgWM*mScaleM,mhM=imgHM*mScaleM,mxM=MX-rcxM*mScaleM,myM=MY-rcyM*mScaleM;
+const pulseM=svgE('image',{href:'monocle-white.png',x:mxM+1,y:myM-3,width:mwM,height:mhM,opacity:'0'});svg.appendChild(pulseM);
+let _pmT=0;(function pm(){_pmT+=.02;pulseM.setAttribute('opacity',(0.05+0.05*Math.sin(_pmT)).toFixed(3));if(mapS.classList.contains('active'))requestAnimationFrame(pm);})();
+// Now the slim teal navigation ring (existing) on top of the brand skin
 svg.appendChild(svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(0,212,255,.12)','stroke-width':'1.5'}));
 CL.forEach(([a,b])=>{const pa=mPos(a),pb=mPos(b);const l=svgE('line',{x1:pa.x,y1:pa.y,x2:pb.x,y2:pb.y,stroke:'rgba(0,212,255,.10)','stroke-width':'0.7',opacity:'0'});l.style.transition='opacity .6s';svg.appendChild(l);setTimeout(()=>l.setAttribute('opacity','1'),1800+a*200);});
 const ring=svgE('circle',{cx:MX,cy:MY,r:MR,fill:'none',stroke:'rgba(0,212,255,.85)','stroke-width':'3','stroke-dasharray':CIRC,'stroke-dashoffset':CIRC,'stroke-linecap':'round',transform:`rotate(90 ${MX} ${MY})`,filter:'url(#gl)'});svg.appendChild(ring);
@@ -4036,6 +4048,19 @@ if(_notesParam){
   .pipe-a { background:radial-gradient(ellipse at 50% 60%, rgba(20,28,48,.55), rgba(6,8,16,1) 80%); }
   .pipe-d { background:radial-gradient(ellipse at 25% 30%, rgba(20,28,48,.5), rgba(6,8,16,1) 80%); padding:4.5% 5%; box-sizing:border-box; }
 
+  /* Mouse-reactive translation. JS sets --mx/--my on .pipe-a from cursor position (range -0.5..0.5). The translate CSS property composes with the animation transform, so this layers on top of drift + engulf cleanly. */
+  .pipe-a { --mx:0; --my:0; }
+  .pipe-a .ab-wrap { translate:calc(var(--mx) * 5vw) calc(var(--my) * 4vh); transition:translate .55s ease-out; }
+  .pipe-a .pw-o    { translate:calc(var(--mx) * 7vw) calc(var(--my) * 5vh); transition:translate .50s ease-out; }
+  .pipe-a .cg      { translate:calc(var(--mx) * 9vw) calc(var(--my) * 7vh); transition:translate .45s ease-out; }
+
+  /* Edge vignette — makes blobs feel like they are compressing against a dark boundary */
+  .pipe-a::after { content:''; position:absolute; inset:0; box-shadow:inset 0 0 110px 35px rgba(6,8,16,.85); pointer-events:none; z-index:6; border-radius:6px; }
+
+  /* Click ripple — temporary glowing bubble at click point */
+  .pipe-a .pa-ripple { position:absolute; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,.55) 0%, rgba(255,255,255,.18) 30%, transparent 70%); transform:translate(-50%,-50%) scale(0); mix-blend-mode:screen; filter:blur(10px); pointer-events:none; z-index:7; animation:pa-ripple 1.4s ease-out forwards; }
+  @keyframes pa-ripple { 0% { transform:translate(-50%,-50%) scale(0); opacity:1; } 100% { transform:translate(-50%,-50%) scale(4); opacity:0; } }
+
   /* ── Variant tag (top-left pill) ── */
   .pipe-tag { position:absolute; left:24px; top:18px; z-index:6; font-family:'Space Grotesk',sans-serif; font-size:.7rem; font-weight:600; letter-spacing:.18em; padding:5px 11px; border-radius:999px; background:rgba(6,8,16,.7); border:1px solid rgba(255,255,255,.18); color:rgba(240,244,255,.82); text-transform:uppercase; backdrop-filter:blur(6px); }
 
@@ -4065,11 +4090,11 @@ if(_notesParam){
   .pipe-a .pw-o-3 { left:52%; top:21%; }
   .pipe-a .pw-o-4 { left:74%; top:25%; }
   .pipe-a .pw-i { position:relative; transform-origin:left center; }
-  .pipe-a .prod { font-family:'Space Grotesk',sans-serif; font-size:clamp(1rem,1.55vw,1.75rem); font-weight:600; letter-spacing:-.01em; opacity:0; white-space:nowrap; text-shadow:0 0 18px rgba(0,0,0,.6); }
-  .pipe-a .prod-1 { color:#fde68a; }
-  .pipe-a .prod-2 { color:#a5f3fc; }
-  .pipe-a .prod-3 { color:#fda4af; }
-  .pipe-a .prod-4 { color:#c4b5fd; }
+  .pipe-a .prod { display:inline-flex; align-items:center; padding:6px 18px; border-radius:999px; border:1.8px solid; font-family:'Space Grotesk',sans-serif; font-size:clamp(.75rem,1.05vw,1.2rem); font-weight:700; letter-spacing:.16em; text-transform:uppercase; opacity:0; white-space:nowrap; backdrop-filter:blur(8px); box-shadow:0 0 24px rgba(0,0,0,.35); }
+  .pipe-a .prod-1 { color:#fde68a; background:rgba(245,158,11,.18); border-color:rgba(245,158,11,.65); }
+  .pipe-a .prod-2 { color:#a5f3fc; background:rgba(0,212,255,.16);  border-color:rgba(0,212,255,.60); }
+  .pipe-a .prod-3 { color:#fda4af; background:rgba(244,63,94,.18);  border-color:rgba(244,63,94,.60); }
+  .pipe-a .prod-4 { color:#c4b5fd; background:rgba(167,139,250,.18); border-color:rgba(167,139,250,.65); }
 
   /* Cap groups — 2 layers: cg (drifts) holds ghost-blob + cap text. Ghost = colored glow that drags with the text. */
   .pipe-a .cg { position:absolute; pointer-events:none; z-index:4; }
@@ -4204,8 +4229,6 @@ if(_notesParam){
   // Blob centers mapped so each blob covers the caps it actually uses.
   const aHTML=`
   <div class="placed-stage pipe-a">
-    <span class="pipe-tag">Prototype · A — Amorphous</span>
-
     <div class="pa-hero">
       <h2>The Pipeline</h2>
       <p>Shared capabilities. Always shifting. Always shared.</p>
@@ -4253,6 +4276,26 @@ if(_notesParam){
     <div class="pd-foot">Shared infrastructure — colocation · ingestion · photoreal rendering · multi-user state.</div>
   </div>`;
 
+  function attachMouse(slide){
+    const stage=slide.querySelector('.pipe-a'); if(!stage) return;
+    slide.addEventListener('mousemove',e=>{
+      const r=stage.getBoundingClientRect(); if(!r.width||!r.height) return;
+      const mx=(e.clientX-r.left)/r.width - 0.5;
+      const my=(e.clientY-r.top)/r.height - 0.5;
+      stage.style.setProperty('--mx', mx.toFixed(3));
+      stage.style.setProperty('--my', my.toFixed(3));
+    });
+    slide.addEventListener('mouseleave',()=>{ stage.style.setProperty('--mx',0); stage.style.setProperty('--my',0); });
+    slide.addEventListener('click',e=>{
+      if(e.target.closest('#btn-prev,#btn-next,#mobile-ui-toggle,#anno-panel,#move-hud,#slide-grid,#anno-toggle,#move-toggle,.pa-hero,.prod')) return;
+      const r=stage.getBoundingClientRect();
+      const rip=document.createElement('div'); rip.className='pa-ripple';
+      rip.style.cssText='left:'+(e.clientX-r.left)+'px;top:'+(e.clientY-r.top)+'px;';
+      stage.appendChild(rip);
+      setTimeout(()=>rip.remove(),1500);
+    });
+  }
+
   function attachReanim(slide){
     // Replay CSS animations on every re-entry into the slide.
     const obs=new MutationObserver(muts=>{
@@ -4273,7 +4316,7 @@ if(_notesParam){
 
   const slA=allSlides.find(s=>s.dataset.deckTarget==='p111a');
   const slD=allSlides.find(s=>s.dataset.deckTarget==='p111d');
-  if(slA){ slA.innerHTML=aHTML; slA.dataset.year='THE PIPELINE'; attachReanim(slA); }
+  if(slA){ slA.innerHTML=aHTML; slA.dataset.year='THE PIPELINE'; attachReanim(slA); attachMouse(slA); }
   if(slD){ slD.innerHTML=dHTML; slD.dataset.year='THE PIPELINE'; attachReanim(slD); }
 
   // Hide the original pipeline (p111) and Option D (p111d) — Option A is the new canonical pipeline slide.
