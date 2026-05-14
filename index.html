@@ -656,7 +656,6 @@ body.split-view .nav-arrows{bottom:calc(42vh + 4px)!important}
 .big-pill.accent-teal{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.55);color:var(--teal)}
 .big-pill.accent-rose{background:rgba(244,63,94,.12);border-color:rgba(244,63,94,.55);color:var(--rose)}
 .big-pill.accent-purple{background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.55);color:var(--purple)}
-.big-stack .big-pill{align-self:flex-start}
 /* === LAYOUT GRID OVERLAY === */
 .layout-grid{position:absolute;inset:0;z-index:50;pointer-events:none;display:grid;grid-template:repeat(3,1fr)/repeat(4,1fr)}
 .layout-grid-cell{border:1px dashed rgba(0,212,255,.2);display:flex;align-items:center;justify-content:center;font:700 1.2rem 'Space Grotesk',sans-serif;color:rgba(0,212,255,.25);letter-spacing:.1em}
@@ -1626,12 +1625,14 @@ deck.appendChild(mapS);allSlides.push(mapS);
   }
 })();
 
-// ── Floor Tour intro: scale pill ──
+// ── Chapter intro pills: scale 2.37 on all four product sections ──
 (function(){
-  const s=allSlides.find(s=>s.dataset.year==='FLOOR TOUR'&&s.querySelector?.('.big-pill'));
-  if(!s)return;
-  const pill=s.querySelector('.big-pill');
-  if(pill){pill.style.transformBox='fill-box';pill.style.transformOrigin='center center';pill.style.transform='scale(2.37)';}
+  ['FLOOR TOUR','BLUEPRINT IMMERSIVE','HYPERREAL ESTATE','HOLODECK ANYWHERE'].forEach(yr=>{
+    const s=allSlides.find(sl=>sl.dataset.year===yr&&sl.querySelector?.('.big-pill'));
+    if(!s)return;
+    const pill=s.querySelector('.big-pill');
+    if(pill){pill.style.transformBox='fill-box';pill.style.transformOrigin='center center';pill.style.transform='scale(2.37)';}
+  });
 })();
 
 // ── Trilogy QR: apply move-mode transforms (scale + translate) ──
