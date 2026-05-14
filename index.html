@@ -323,10 +323,11 @@ const SECTIONS = [
       { layout:'big', title:'The Pipeline',
         bigText:'This only works if the pipeline compounds.',
         deckTarget:'p110' },
-      // slide 99 (p111) — shared infrastructure diagram. Original PNG (image97.png) was a hand-drawn blob chart;
-      // this is a re-drawn SVG version mapped to the deck's accent colors. PNG kept on disk for reference.
-      { layout:'pipeline-diagram', title:'The Pipeline', subtitle:'Shared infrastructure across the four products',
-        refImage:'media/nxtbld/pipeline-diagram.png',
+      // slide 99 (p111) — shared infrastructure diagram (source image97.png as-is)
+      { layout:'placed', title:'The Pipeline', subtitle:'Shared infrastructure — ingestion, colocation, etc.',
+        placedItems:[
+          { type:'img', src:'media/nxtbld/pipeline-diagram.png', x:8, y:18, w:84, h:64 },
+        ],
         deckTarget:'p111' },
     ] },
 ];
