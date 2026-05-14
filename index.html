@@ -402,6 +402,11 @@ const SECTIONS = [
           { type:'img', src:'media/nxtbld/pipeline-diagram-alpha.png', x:8, y:18, w:84, h:64 },
         ],
         deckTarget:'p111' },
+      // ── LOCAL PROTOTYPES (not for sync) ───────────────────────────────────
+      // #39 — Option A: animated SVG Venn (motion + crispness)
+      { layout:'placed', placedItems:[], deckTarget:'p111a' },
+      // #40 — Option D: hero title + side legend + staged reveal (composition + hierarchy)
+      { layout:'placed', placedItems:[], deckTarget:'p111d' },
     ] },
 
   { year: 'AI', accent: 'amber',
@@ -415,10 +420,10 @@ const SECTIONS = [
       { layout:'placed', title:'AI', subtitle:'What AI has changed / What it hasn’t',
         placedItems:[
           { type:'text', heading:'AI accelerates:',
-            bullets:['parsing','debugging','materials','boilerplate','iteration'],
+            html:'<ul class="agenda-list"><li>parsing</li><li>debugging</li><li>materials</li><li>boilerplate</li><li>iteration</li></ul>',
             x:5, y:8, w:42, h:74 },
           { type:'text', heading:'Humans still matter:',
-            bullets:['lighting','taste','facilitation','approvals','storytelling'],
+            html:'<ul class="agenda-list"><li>lighting</li><li>taste</li><li>facilitation</li><li>approvals</li><li>storytelling</li></ul>',
             x:53, y:8, w:42, h:74 },
         ],
         deckTarget:'p113' },
@@ -1065,12 +1070,24 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .toolbox-stage{position:absolute;inset:0;padding:80px 50px 40px;display:flex;flex-direction:column;align-items:center;gap:28px}
 .toolbox-title{font-size:clamp(1.6rem,2.8vw,2.4rem);color:#f0f4ff;font-weight:700;text-align:center;letter-spacing:-.01em}
 .toolbox-grid{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;width:100%;max-width:1500px;min-height:0}
-.toolbox-card{background:rgba(255,255,255,.04);border:1px solid rgba(167,139,250,.25);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;transition:transform .3s,border-color .3s;overflow:hidden;min-height:0}
-.toolbox-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.6)}
+.toolbox-card{--acc:167,139,250;background:rgba(255,255,255,.04);border:1px solid rgba(var(--acc),.28);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;transition:transform .45s cubic-bezier(.2,.8,.2,1.05),border-color .35s,background .35s,box-shadow .45s;overflow:hidden;min-height:0;cursor:pointer;position:relative;will-change:transform;outline:none}
+.toolbox-card.tb-amber{--acc:245,158,11}
+.toolbox-card.tb-teal{--acc:0,212,255}
+.toolbox-card.tb-rose{--acc:244,63,94}
+.toolbox-card.tb-purple{--acc:167,139,250}
+.toolbox-card::after{content:'';position:absolute;inset:0;border-radius:14px;pointer-events:none;background:radial-gradient(120% 80% at 50% 0%,rgba(var(--acc),.18),transparent 60%);opacity:0;transition:opacity .4s}
+.toolbox-card:not(.tb-flying):hover,.toolbox-card:not(.tb-flying):focus-visible{transform:translateY(-10px) scale(1.045);border-color:rgba(var(--acc),.85);background:rgba(var(--acc),.07);box-shadow:0 16px 38px rgba(0,0,0,.5),0 0 32px rgba(var(--acc),.4),0 0 0 1px rgba(var(--acc),.4) inset;z-index:2}
+.toolbox-card:not(.tb-flying):hover::after,.toolbox-card:not(.tb-flying):focus-visible::after{opacity:1}
+.toolbox-card:not(.tb-flying):hover .toolbox-img img,.toolbox-card:not(.tb-flying):hover .toolbox-img video,.toolbox-card:not(.tb-flying):focus-visible .toolbox-img img,.toolbox-card:not(.tb-flying):focus-visible .toolbox-img video{transform:scale(1.07)}
+.toolbox-card:not(.tb-flying):hover .toolbox-name,.toolbox-card:not(.tb-flying):focus-visible .toolbox-name{color:rgb(var(--acc));text-shadow:0 0 18px rgba(var(--acc),.45)}
+.toolbox-card:not(.tb-flying):hover .toolbox-q,.toolbox-card:not(.tb-flying):focus-visible .toolbox-q{color:rgba(var(--acc),1)}
+.toolbox-card:not(.tb-flying):active{transform:translateY(-6px) scale(1.02);transition:transform .12s}
+@keyframes tb-click-pulse{0%{box-shadow:0 16px 38px rgba(0,0,0,.5),0 0 32px rgba(var(--acc),.4),0 0 0 1px rgba(var(--acc),.4) inset}45%{box-shadow:0 22px 52px rgba(0,0,0,.6),0 0 80px rgba(var(--acc),.95),0 0 0 2px rgba(var(--acc),.9) inset}100%{box-shadow:0 16px 38px rgba(0,0,0,.5),0 0 32px rgba(var(--acc),.4),0 0 0 1px rgba(var(--acc),.4) inset}}
+.toolbox-card.tb-clicked{animation:tb-click-pulse .55s ease}
 .toolbox-img{flex:none;aspect-ratio:4/3;border-radius:8px;overflow:hidden;background:rgba(0,0,0,.4)}
-.toolbox-img img,.toolbox-img video{width:100%;height:100%;object-fit:cover;object-position:center top}
-.toolbox-name{font-size:clamp(.95rem,1.3vw,1.2rem);font-weight:700;color:#f0f4ff}
-.toolbox-q{font-size:clamp(.8rem,1.05vw,.95rem);color:rgba(167,139,250,.95);font-style:italic;line-height:1.35}
+.toolbox-img img,.toolbox-img video{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.toolbox-name{font-size:clamp(.95rem,1.3vw,1.2rem);font-weight:700;color:#f0f4ff;transition:color .35s,text-shadow .35s}
+.toolbox-q{font-size:clamp(.8rem,1.05vw,.95rem);color:rgba(167,139,250,.95);font-style:italic;line-height:1.35;transition:color .35s}
 /* Toolbox-morph substep — cards fly INTO an actual toolbox */
 .toolbox-morph-mode .toolbox-title{opacity:0;transition:opacity .5s}
 .toolbox-card.tb-flying{transition:transform .65s cubic-bezier(.5,-.2,.6,1.4),opacity .5s ease;pointer-events:none;z-index:5}
@@ -3815,6 +3832,213 @@ if(_notesParam){
   // Hook _onSlideChange even on laptop so adaptive WPM data can be gathered if you ever switch to ?notes mid-talk
   const _origUH2=updateHUD;updateHUD=function(){_origUH2();_onSlideChange(current);};
 }
+
+// ── PIPELINE SLIDE PROTOTYPES (Option A & Option D) ────────────────────────
+// Local-only review variants for slide #38 (p111). Inserted as slides #39/#40.
+(function(){
+  const css = `
+  .pipe-a, .pipe-d { position:relative; display:block; width:100%; height:100%; aspect-ratio:auto; overflow:hidden; }
+  .pipe-a { background:radial-gradient(ellipse at 50% 60%, rgba(20,28,48,.55), rgba(6,8,16,1) 80%); }
+  .pipe-d { background:radial-gradient(ellipse at 25% 30%, rgba(20,28,48,.5), rgba(6,8,16,1) 80%); padding:4.5% 5%; box-sizing:border-box; }
+
+  /* ── Variant tag (top-left pill) ── */
+  .pipe-tag { position:absolute; left:24px; top:18px; z-index:6; font-family:'Space Grotesk',sans-serif; font-size:.7rem; font-weight:600; letter-spacing:.18em; padding:5px 11px; border-radius:999px; background:rgba(6,8,16,.7); border:1px solid rgba(255,255,255,.18); color:rgba(240,244,255,.82); text-transform:uppercase; backdrop-filter:blur(6px); }
+
+  /* ─────────── OPTION A: Animated SVG Venn ─────────── */
+  .pipe-a .pa-venn { position:absolute; inset:0; width:100%; height:100%; }
+  .pipe-a .pa-hero { position:absolute; left:50%; top:6%; transform:translateX(-50%); text-align:center; opacity:0; z-index:5; pointer-events:none; }
+  .pipe-a .pa-hero h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,3vw,3.4rem); font-weight:600; letter-spacing:-.02em; margin:0; background:linear-gradient(180deg,#fff 28%, rgba(34,211,238,.55)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; color:transparent; }
+  .pipe-a .pa-hero p { font-family:'Space Grotesk',sans-serif; font-size:clamp(.8rem,1.05vw,1.15rem); color:rgba(240,244,255,.62); margin:6px 0 0; font-style:italic; letter-spacing:.01em; }
+
+  .pipe-a .pa-blob { transform-box:fill-box; transform-origin:center; opacity:0; }
+  .pipe-a .pa-pname { font-family:'Space Grotesk',sans-serif; font-size:34px; font-weight:600; letter-spacing:-.01em; opacity:0; }
+  .pipe-a text.pn-bf { fill:#fde68a; }
+  .pipe-a text.pn-bp { fill:#a5f3fc; }
+  .pipe-a text.pn-bh { fill:#fda4af; }
+  .pipe-a text.pn-bd { fill:#c4b5fd; }
+  .pipe-a .pa-cap { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:500; fill:rgba(240,244,255,.88); opacity:0; }
+  .pipe-a .pa-cap-tag { font-size:13px; font-weight:500; fill:rgba(34,211,238,.65); letter-spacing:.18em; opacity:0; }
+
+  /* reveal: hero → caps tick L-R → blobs swell in with stagger → names */
+  .slide.active .pipe-a .pa-hero { animation: pa-fadeIn .9s .15s forwards; }
+  .slide.active .pipe-a .pa-cap-tag { animation: pa-capIn .5s .55s forwards; }
+  .slide.active .pipe-a .pa-c1 { animation: pa-capIn .55s .70s forwards; }
+  .slide.active .pipe-a .pa-c2 { animation: pa-capIn .55s .82s forwards; }
+  .slide.active .pipe-a .pa-c3 { animation: pa-capIn .55s .94s forwards; }
+  .slide.active .pipe-a .pa-c4 { animation: pa-capIn .55s 1.06s forwards; }
+  .slide.active .pipe-a .pa-c5 { animation: pa-capIn .55s 1.18s forwards; }
+  .slide.active .pipe-a .pa-c6 { animation: pa-capIn .55s 1.30s forwards; }
+  .slide.active .pipe-a .pa-c7 { animation: pa-capIn .55s 1.42s forwards; }
+  .slide.active .pipe-a .pa-bf { animation: pa-blobIn 1.1s 1.7s forwards, pa-blobPulse 7s 3.0s infinite; }
+  .slide.active .pipe-a .pa-bp { animation: pa-blobIn 1.1s 2.0s forwards, pa-blobPulse 7s 3.4s infinite; }
+  .slide.active .pipe-a .pa-bh { animation: pa-blobIn 1.1s 2.3s forwards, pa-blobPulse 7s 3.8s infinite; }
+  .slide.active .pipe-a .pa-bd { animation: pa-blobIn 1.1s 2.6s forwards, pa-blobPulse 7s 4.2s infinite; }
+  .slide.active .pipe-a text.pn-bf { animation: pa-nameIn .8s 2.1s forwards; }
+  .slide.active .pipe-a text.pn-bp { animation: pa-nameIn .8s 2.4s forwards; }
+  .slide.active .pipe-a text.pn-bh { animation: pa-nameIn .8s 2.7s forwards; }
+  .slide.active .pipe-a text.pn-bd { animation: pa-nameIn .8s 3.0s forwards; }
+
+  @keyframes pa-fadeIn { from { opacity:0; transform:translateX(-50%) translateY(-10px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
+  @keyframes pa-capIn  { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes pa-blobIn { from { opacity:0; transform:scale(.45); } to { opacity:.95; transform:scale(1); } }
+  @keyframes pa-blobPulse { 0%,100% { transform:scale(1); opacity:.92; } 50% { transform:scale(1.035); opacity:1; } }
+  @keyframes pa-nameIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ─────────── OPTION D: Hero + Side Legend ─────────── */
+  .pipe-d .pd-hero { opacity:0; margin:0 0 3.5% 0; }
+  .pipe-d .pd-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(2.4rem,4.6vw,5.2rem); font-weight:700; letter-spacing:-.035em; line-height:.95; margin:0; background:linear-gradient(180deg,#fff 18%, rgba(34,211,238,.45)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; color:transparent; }
+  .pipe-d .pd-hero .pd-tag { font-family:'Space Grotesk',sans-serif; font-size:clamp(.7rem,.95vw,1rem); font-weight:500; color:rgba(34,211,238,.75); letter-spacing:.22em; text-transform:uppercase; margin:0 0 .6em; opacity:0; }
+  .pipe-d .pd-hero p { font-family:'Space Grotesk',sans-serif; font-size:clamp(.95rem,1.5vw,1.55rem); color:rgba(240,244,255,.72); margin:.5em 0 0; font-style:italic; letter-spacing:.01em; }
+
+  .pipe-d .pd-grid { display:grid; grid-template-columns: 1fr 1fr; gap:3.5%; align-items:center; height:62%; }
+  .pipe-d .pd-diagram { opacity:0; position:relative; }
+  .pipe-d .pd-diagram img { width:100%; display:block; border-radius:10px; }
+
+  .pipe-d .pd-legend { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .pipe-d .pd-card { position:relative; display:block; padding:14px 18px 14px 26px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10); border-radius:10px; backdrop-filter:blur(8px); opacity:0; transform:translateX(40px); }
+  .pipe-d .pd-bar { position:absolute; left:0; top:10%; bottom:10%; width:5px; border-radius:3px; box-shadow:0 0 14px currentColor; }
+  .pipe-d .pd-card h3 { font-family:'Space Grotesk',sans-serif; font-size:clamp(.9rem,1.25vw,1.4rem); font-weight:600; letter-spacing:-.01em; margin:0 0 4px; }
+  .pipe-d .pd-card p { font-family:'Space Grotesk',sans-serif; font-size:clamp(.65rem,.9vw,1rem); color:rgba(240,244,255,.72); margin:0; line-height:1.35; }
+  .pipe-d .pd-c1 .pd-bar { background:#fbbf24; color:#fbbf24; } .pipe-d .pd-c1 h3 { color:#fde68a; }
+  .pipe-d .pd-c2 .pd-bar { background:#22d3ee; color:#22d3ee; } .pipe-d .pd-c2 h3 { color:#a5f3fc; }
+  .pipe-d .pd-c3 .pd-bar { background:#fb7185; color:#fb7185; } .pipe-d .pd-c3 h3 { color:#fda4af; }
+  .pipe-d .pd-c4 .pd-bar { background:#a78bfa; color:#a78bfa; } .pipe-d .pd-c4 h3 { color:#c4b5fd; }
+
+  .pipe-d .pd-foot { position:absolute; left:5%; bottom:4%; font-family:'Space Grotesk',sans-serif; font-size:clamp(.7rem,.9vw,1rem); color:rgba(240,244,255,.55); font-style:italic; letter-spacing:.04em; opacity:0; }
+
+  .slide.active .pipe-d .pd-tag { animation: pd-fadeIn .7s .2s forwards; }
+  .slide.active .pipe-d .pd-hero { animation: pd-heroIn 1s .35s forwards; }
+  .slide.active .pipe-d .pd-diagram { animation: pd-fadeIn 1.1s 1.2s forwards; }
+  .slide.active .pipe-d .pd-c1 { animation: pd-cardIn .6s 1.7s forwards; }
+  .slide.active .pipe-d .pd-c2 { animation: pd-cardIn .6s 1.9s forwards; }
+  .slide.active .pipe-d .pd-c3 { animation: pd-cardIn .6s 2.1s forwards; }
+  .slide.active .pipe-d .pd-c4 { animation: pd-cardIn .6s 2.3s forwards; }
+  .slide.active .pipe-d .pd-foot { animation: pd-fadeIn .8s 2.9s forwards; }
+
+  @keyframes pd-heroIn { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes pd-fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes pd-cardIn { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+  `;
+  const styleEl=document.createElement('style');
+  styleEl.id='pipeline-prototype-styles';
+  styleEl.textContent=css;
+  document.head.appendChild(styleEl);
+
+  // ── Option A HTML ───────────────────────────────────────────────────────
+  // Capability x-coords (viewBox 0..1600): 7 cols at 112, 352, 576, 800, 1024, 1248, 1472
+  // Blob centers mapped so each blob covers the caps it actually uses.
+  const aHTML=`
+  <div class="placed-stage pipe-a">
+    <span class="pipe-tag">Prototype · A — Animated Venn</span>
+    <svg class="pa-venn" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <filter id="pa-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="18"/></filter>
+        <radialGradient id="pa-gf"><stop offset="0" stop-color="#fbbf24" stop-opacity=".85"/><stop offset="1" stop-color="#fbbf24" stop-opacity=".10"/></radialGradient>
+        <radialGradient id="pa-gp"><stop offset="0" stop-color="#22d3ee" stop-opacity=".80"/><stop offset="1" stop-color="#22d3ee" stop-opacity=".08"/></radialGradient>
+        <radialGradient id="pa-gh"><stop offset="0" stop-color="#fb7185" stop-opacity=".80"/><stop offset="1" stop-color="#fb7185" stop-opacity=".08"/></radialGradient>
+        <radialGradient id="pa-gd"><stop offset="0" stop-color="#a78bfa" stop-opacity=".85"/><stop offset="1" stop-color="#a78bfa" stop-opacity=".10"/></radialGradient>
+      </defs>
+
+      <!-- subtle vertical guide lines (capability columns rising to the blob layer) -->
+      <g opacity=".07">
+        <line x1="112" y1="690" x2="112" y2="260" stroke="white" stroke-dasharray="2 6"/>
+        <line x1="352" y1="690" x2="352" y2="220" stroke="white" stroke-dasharray="2 6"/>
+        <line x1="576" y1="690" x2="576" y2="220" stroke="white" stroke-dasharray="2 6"/>
+        <line x1="800" y1="690" x2="800" y2="220" stroke="white" stroke-dasharray="2 6"/>
+        <line x1="1024" y1="690" x2="1024" y2="220" stroke="white" stroke-dasharray="2 6"/>
+        <line x1="1248" y1="690" x2="1248" y2="220" stroke="white" stroke-dasharray="2 6"/>
+        <line x1="1472" y1="690" x2="1472" y2="260" stroke="white" stroke-dasharray="2 6"/>
+      </g>
+
+      <!-- Product blobs (each = outer-blurred glow + inner crisp ellipse) -->
+      <g class="pa-blob pa-bf">
+        <ellipse cx="232" cy="430" rx="220" ry="155" fill="url(#pa-gf)" transform="rotate(-7 232 430)" filter="url(#pa-blur)"/>
+        <ellipse cx="232" cy="430" rx="210" ry="145" fill="rgba(245,158,11,.30)" stroke="rgba(251,191,36,.55)" stroke-width="1.2" transform="rotate(-7 232 430)"/>
+      </g>
+      <g class="pa-blob pa-bp">
+        <ellipse cx="480" cy="410" rx="260" ry="170" fill="url(#pa-gp)" transform="rotate(4 480 410)" filter="url(#pa-blur)"/>
+        <ellipse cx="480" cy="410" rx="250" ry="160" fill="rgba(34,211,238,.22)" stroke="rgba(34,211,238,.5)" stroke-width="1.2" transform="rotate(4 480 410)"/>
+      </g>
+      <g class="pa-blob pa-bh">
+        <ellipse cx="912" cy="410" rx="270" ry="170" fill="url(#pa-gh)" transform="rotate(-3 912 410)" filter="url(#pa-blur)"/>
+        <ellipse cx="912" cy="410" rx="260" ry="160" fill="rgba(244,63,94,.22)" stroke="rgba(251,113,133,.55)" stroke-width="1.2" transform="rotate(-3 912 410)"/>
+      </g>
+      <g class="pa-blob pa-bd">
+        <ellipse cx="1360" cy="430" rx="220" ry="155" fill="url(#pa-gd)" transform="rotate(8 1360 430)" filter="url(#pa-blur)"/>
+        <ellipse cx="1360" cy="430" rx="210" ry="145" fill="rgba(167,139,250,.30)" stroke="rgba(196,181,253,.55)" stroke-width="1.2" transform="rotate(8 1360 430)"/>
+      </g>
+
+      <!-- Product name labels (positioned above each blob) -->
+      <text class="pa-pname pn-bf" x="232" y="285" text-anchor="middle">Floor Tour</text>
+      <text class="pa-pname pn-bp" x="480" y="265" text-anchor="middle">Blueprint Immersive</text>
+      <text class="pa-pname pn-bh" x="912" y="265" text-anchor="middle">Hyperreal Estate</text>
+      <text class="pa-pname pn-bd" x="1360" y="285" text-anchor="middle">Holodeck Anywhere</text>
+
+      <!-- Section tag for capabilities row -->
+      <text class="pa-cap-tag" x="800" y="610" text-anchor="middle">— THE PIPELINE —</text>
+
+      <!-- Capability labels (bottom row) -->
+      <text class="pa-cap pa-c1" x="112"  y="720" text-anchor="middle">Colocation</text>
+      <text class="pa-cap pa-c2" x="352"  y="720" text-anchor="middle">Location-based</text>
+      <text class="pa-cap pa-c3" x="576"  y="720" text-anchor="middle">Multi-user</text>
+      <text class="pa-cap pa-c4" x="800"  y="720" text-anchor="middle">Save / Load</text>
+      <text class="pa-cap pa-c5" x="1024" y="720" text-anchor="middle">3D Data Ingestion</text>
+      <text class="pa-cap pa-c6" x="1248" y="720" text-anchor="middle">Optimization</text>
+      <text class="pa-cap pa-c7" x="1472" y="720" text-anchor="middle">Photorealistic</text>
+    </svg>
+
+    <div class="pa-hero">
+      <h2>The Pipeline</h2>
+      <p>Each new product reuses what came before. The investment compounds.</p>
+    </div>
+  </div>`;
+
+  // ── Option D HTML ───────────────────────────────────────────────────────
+  const dHTML=`
+  <div class="placed-stage pipe-d">
+    <span class="pipe-tag">Prototype · D — Hero + Legend</span>
+    <header class="pd-hero">
+      <div class="pd-tag">— SYNTHESIS —</div>
+      <h1>The Pipeline.</h1>
+      <p>It only works if it compounds.</p>
+    </header>
+    <div class="pd-grid">
+      <div class="pd-diagram">
+        <img src="media/nxtbld/pipeline-diagram-alpha.png" alt="Pipeline diagram"/>
+      </div>
+      <ul class="pd-legend">
+        <li class="pd-card pd-c1"><span class="pd-bar"></span><h3>Floor Tour</h3><p>Colocation · Location-based</p></li>
+        <li class="pd-card pd-c2"><span class="pd-bar"></span><h3>Blueprint Immersive</h3><p>Location-based · Multi-user · Save / Load</p></li>
+        <li class="pd-card pd-c3"><span class="pd-bar"></span><h3>Hyperreal Estate</h3><p>Save / Load · 3D Data Ingestion · Optimization</p></li>
+        <li class="pd-card pd-c4"><span class="pd-bar"></span><h3>Holodeck Anywhere</h3><p>Optimization · Photorealistic</p></li>
+      </ul>
+    </div>
+    <div class="pd-foot">Shared infrastructure — colocation · ingestion · photoreal rendering · multi-user state.</div>
+  </div>`;
+
+  function attachReanim(slide){
+    // Replay CSS animations on every re-entry into the slide.
+    const obs=new MutationObserver(muts=>{
+      muts.forEach(m=>{
+        if(m.attributeName!=='class')return;
+        if(!slide.classList.contains('active'))return;
+        const sel='.pa-hero,.pa-cap-tag,.pa-cap,.pa-pname,.pa-blob,.pd-hero,.pd-tag,.pd-diagram,.pd-card,.pd-foot';
+        slide.querySelectorAll(sel).forEach(el=>{
+          const a=el.style.animation;
+          el.style.animation='none';
+          void el.offsetHeight;          // force reflow
+          el.style.animation=a||'';
+        });
+      });
+    });
+    obs.observe(slide,{attributes:true,attributeFilter:['class']});
+  }
+
+  const slA=allSlides.find(s=>s.dataset.deckTarget==='p111a');
+  const slD=allSlides.find(s=>s.dataset.deckTarget==='p111d');
+  if(slA){ slA.innerHTML=aHTML; slA.dataset.year='THE PIPELINE'; attachReanim(slA); }
+  if(slD){ slD.innerHTML=dHTML; slD.dataset.year='THE PIPELINE'; attachReanim(slD); }
+})();
 
 // Init — ?edit with no hash → land on slide 0 (settings) so user can configure first
 updateHUD();
