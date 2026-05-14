@@ -1773,7 +1773,7 @@ deck.appendChild(bon);allSlides.push(bon);
 (function(){
   const container=document.createElement('div');
   // Fade + sweep on slide enter (matches the orbit slide treatment)
-  container.style.cssText='position:absolute;left:73.5%;top:24%;width:380px;height:380px;pointer-events:auto;z-index:2;opacity:0;transform:translateX(40px) rotate(-12deg);transition:opacity 1.4s ease-out,transform 1.4s cubic-bezier(.65,0,.35,1)';
+  container.style.cssText='position:absolute;left:73.5%;top:6%;width:380px;height:380px;pointer-events:auto;z-index:5;opacity:0;transform:translateX(40px) rotate(-12deg);transition:opacity 1.4s ease-out,transform 1.4s cubic-bezier(.65,0,.35,1)';
   new MutationObserver(()=>{const on=bon.classList.contains('active');container.style.opacity=on?'1':'0';container.style.transform=on?'translateX(0) rotate(0deg)':'translateX(40px) rotate(-12deg)';}).observe(bon,{attributes:true,attributeFilter:['class']});
   if(bon.classList.contains('active')){container.style.opacity='1';container.style.transform='translateX(0) rotate(0deg)';}
   bon.appendChild(container);
