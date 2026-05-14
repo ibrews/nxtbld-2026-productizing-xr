@@ -377,10 +377,10 @@ const SECTIONS = [
           { type:'img', src:'media/nxtbld/holo-f.jpg', x:67, y:52, w:31, h:43, fadeOrder:6 },
         ],
         deckTarget:'p78-87 selection' },
-      // Aspen Pop-Up — embedded YouTube of the full project video
-      { layout:'placed', title:'Holodeck Anywhere', subtitle:'Aspen Pop-Up — full video',
+      // Aspen Pop-Up — local mp4 download of the Aspen showcase (presents offline; speaker controls playback w/ audio)
+      { layout:'placed', title:'Holodeck Anywhere', subtitle:'Aspen Pop-Up',
         placedItems:[
-          { type:'iframe', src:'https://www.youtube.com/embed/27IbNmiMva8?rel=0&modestbranding=1', x:13, y:13, w:74, h:74 },
+          { type:'mp4', src:'media/nxtbld/holo-aspen.mp4', controls:true, x:13, y:13, w:74, h:74 },
         ],
         deckTarget:'aspen-popup-video' },
       // slide 96 (p96) — Why this ROI works
@@ -1098,21 +1098,37 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .toolbox-morph-mode .toolbox-title{opacity:0;transition:opacity .5s}
 .toolbox-card.tb-flying{transition:transform .65s cubic-bezier(.5,-.2,.6,1.4),opacity .5s ease;pointer-events:none;z-index:5}
 .toolbox-card.tb-gone{opacity:0;transform:translate(var(--tbx,0),var(--tby,420px)) scale(.05) rotate(var(--tbr,8deg))}
-.toolbox-icon{position:absolute;left:50%;bottom:10%;transform:translate(-50%,40%) scale(.6);opacity:0;width:520px;height:340px;pointer-events:none;z-index:3;transition:transform .55s cubic-bezier(.2,.8,.3,1.1),opacity .5s}
-.toolbox-morph-mode .toolbox-icon{transform:translate(-50%,0) scale(1);opacity:1}
-.toolbox-icon svg{width:100%;height:100%;display:block;filter:drop-shadow(0 18px 28px rgba(0,0,0,.55))}
+.toolbox-icon{position:absolute;left:50%;bottom:10%;transform:translate(-50%,40%) scale(.6);opacity:0;width:520px;height:340px;pointer-events:none;z-index:3;transition:transform .55s cubic-bezier(.2,.8,.3,1.1),opacity .5s,filter .35s;outline:none}
+.toolbox-morph-mode .toolbox-icon{transform:translate(-50%,0) scale(1);opacity:1;pointer-events:auto;cursor:pointer}
+.toolbox-morph-mode .toolbox-icon:hover,.toolbox-morph-mode .toolbox-icon:focus-visible{transform:translate(-50%,-6px) scale(1.035);filter:drop-shadow(0 0 28px rgba(245,158,11,.45))}
+.toolbox-icon svg{width:100%;height:100%;display:block;filter:drop-shadow(0 18px 28px rgba(0,0,0,.55));transform-origin:50% 70%;transition:transform .35s}
 .toolbox-icon .tb-lid{transform-origin:50% 78px;transform:rotate(0deg);transition:transform .5s cubic-bezier(.3,.9,.4,1.2)}
 .toolbox-morph-mode .toolbox-icon .tb-lid{transform:rotate(-22deg)}
+.toolbox-morph-mode .toolbox-icon:hover .tb-lid,.toolbox-morph-mode .toolbox-icon:focus-visible .tb-lid{transform:rotate(-32deg)}
 .tb-handle{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform .5s cubic-bezier(.34,1.56,.64,1) .15s}
 .toolbox-morph-mode .toolbox-icon .tb-handle{transform:scaleY(1)}
-.toolbox-chip{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) translateY(40px) scale(.5);opacity:0;background:rgba(8,12,24,.92);border:1.5px solid currentColor;border-radius:999px;padding:14px 26px 14px 22px;display:flex;flex-direction:column;gap:4px;min-width:280px;max-width:360px;pointer-events:none;z-index:4;box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04) inset;transition:transform .55s cubic-bezier(.2,.8,.2,1.3),opacity .45s}
-.toolbox-chip.in{opacity:1}
-.toolbox-chip .tc-name{font-size:1.55rem;font-weight:700;color:#f0f4ff;letter-spacing:.02em;line-height:1.1}
-.toolbox-chip .tc-q{font-size:1.05rem;font-style:italic;color:rgba(240,244,255,.72);line-height:1.2}
+@keyframes tb-shake{0%,100%{transform:rotate(0)}15%{transform:rotate(-4deg)}30%{transform:rotate(4deg)}45%{transform:rotate(-3deg)}60%{transform:rotate(2deg)}80%{transform:rotate(-1deg)}}
+.toolbox-icon.tb-shake svg{animation:tb-shake .6s ease}
+@keyframes tb-chip-bounce{0%,100%{transform:translate(-50%,-50%) translate(var(--cx),var(--cy)) scale(1)}50%{transform:translate(-50%,-50%) translate(var(--cx),var(--cy)) translateY(-10px) scale(1.05)}}
+.toolbox-chip.in.tc-bounce{animation:tb-chip-bounce .45s cubic-bezier(.2,.8,.2,1.05)}
+.toolbox-chip{--cx:0px;--cy:0px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) translateY(40px) scale(.5);opacity:0;background:rgba(8,12,24,.92);border:1.5px solid currentColor;border-radius:999px;padding:14px 26px 14px 22px;display:flex;flex-direction:column;gap:4px;min-width:280px;max-width:360px;pointer-events:none;z-index:4;box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04) inset;transition:transform .55s cubic-bezier(.2,.8,.2,1.3),opacity .45s,box-shadow .35s;outline:none}
+.toolbox-chip.in{opacity:1;pointer-events:auto;cursor:pointer;transform:translate(-50%,-50%) translate(var(--cx),var(--cy)) scale(1)}
+.toolbox-chip.in:hover,.toolbox-chip.in:focus-visible{transform:translate(-50%,-50%) translate(var(--cx),var(--cy)) translateY(-5px) scale(1.07);z-index:6}
+.toolbox-chip.in:active{transform:translate(-50%,-50%) translate(var(--cx),var(--cy)) translateY(-2px) scale(1.03);transition:transform .12s}
+.toolbox-chip .tc-name{font-size:1.55rem;font-weight:700;color:#f0f4ff;letter-spacing:.02em;line-height:1.1;transition:text-shadow .35s}
+.toolbox-chip .tc-q{font-size:1.05rem;font-style:italic;color:rgba(240,244,255,.72);line-height:1.2;transition:color .35s}
+.toolbox-chip.in:hover .tc-name,.toolbox-chip.in:focus-visible .tc-name{text-shadow:0 0 18px currentColor}
+.toolbox-chip.in:hover .tc-q,.toolbox-chip.in:focus-visible .tc-q{color:rgba(240,244,255,.95)}
 .toolbox-chip.c-amber{color:var(--amber);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 24px rgba(245,158,11,.25)}
 .toolbox-chip.c-teal{color:var(--teal);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 24px rgba(0,212,255,.25)}
 .toolbox-chip.c-rose{color:var(--rose);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 24px rgba(244,63,94,.25)}
 .toolbox-chip.c-purple{color:var(--purple);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 24px rgba(167,139,250,.25)}
+.toolbox-chip.c-amber.in:hover,.toolbox-chip.c-amber.in:focus-visible{box-shadow:0 14px 34px rgba(0,0,0,.6),0 0 60px rgba(245,158,11,.65),0 0 0 1px rgba(245,158,11,.4) inset;background:rgba(245,158,11,.08)}
+.toolbox-chip.c-teal.in:hover,.toolbox-chip.c-teal.in:focus-visible{box-shadow:0 14px 34px rgba(0,0,0,.6),0 0 60px rgba(0,212,255,.65),0 0 0 1px rgba(0,212,255,.4) inset;background:rgba(0,212,255,.08)}
+.toolbox-chip.c-rose.in:hover,.toolbox-chip.c-rose.in:focus-visible{box-shadow:0 14px 34px rgba(0,0,0,.6),0 0 60px rgba(244,63,94,.65),0 0 0 1px rgba(244,63,94,.4) inset;background:rgba(244,63,94,.08)}
+.toolbox-chip.c-purple.in:hover,.toolbox-chip.c-purple.in:focus-visible{box-shadow:0 14px 34px rgba(0,0,0,.6),0 0 60px rgba(167,139,250,.65),0 0 0 1px rgba(167,139,250,.4) inset;background:rgba(167,139,250,.08)}
+@keyframes tc-click-pulse{0%{filter:drop-shadow(0 0 0 currentColor)}45%{filter:drop-shadow(0 0 28px currentColor)}100%{filter:drop-shadow(0 0 0 currentColor)}}
+.toolbox-chip.tc-clicked{animation:tc-click-pulse .55s ease}
 .toolbox-tagline{position:absolute;left:50%;top:6%;transform:translate(-50%,-20px);opacity:0;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:#f0f4ff;text-align:center;letter-spacing:-.005em;pointer-events:none;transition:opacity .55s .6s,transform .55s .6s;z-index:4}
 .toolbox-tagline em{color:var(--amber);font-style:italic;font-weight:600}
 .toolbox-morph-mode .toolbox-tagline{opacity:1;transform:translate(-50%,0)}
@@ -1535,7 +1551,7 @@ SECTIONS.forEach((sec,si)=>{
         let beltAnim=null,lastAnim=null,ovlAnim=null;
         const run=()=>{
           if(beltAnim)beltAnim.cancel();if(lastAnim)lastAnim.cancel();if(ovlAnim)ovlAnim.cancel();
-          track.style.transform='translateX(0)';last.style.transform='translateX(0)';if(ovl){ovl.style.opacity='1';if(c.overlayFront)ovl.style.zIndex='20';}track.offsetWidth;
+          track.style.transform='translateX(0)';last.style.transform='translateX(0)';last.style.transition='';if(penult){penult.style.opacity='';penult.style.transition='';}if(ovl){ovl.style.opacity='1';if(c.overlayFront)ovl.style.zIndex='20';}track.offsetWidth;
           const bDly=c.beltDelay!=null?c.beltDelay:3500;const oDly=c.overlayDelay!=null?c.overlayDelay:1500;
           if(c.beltLoop){
             // Continuous infinite scroll. Items are duplicated; cycle = distance from item[0] to item[N] (first of the duplicate set).
@@ -1560,6 +1576,7 @@ SECTIONS.forEach((sec,si)=>{
           const tCenter=trackShift!==0?Math.min(1,centerShift/trackShift):1;
           const counter=centerShift-trackShift;
           lastAnim=last.animate([{offset:0,transform:'translateX(0)'},{offset:tCenter,transform:'translateX(0)'},{offset:1,transform:`translateX(${counter}px)`}],{duration:dur,delay:bDly,easing:'linear',fill:'forwards'});
+          beltAnim.onfinish=()=>{const cx=new DOMMatrix(getComputedStyle(last).transform).m41;if(lastAnim)lastAnim.cancel();last.style.transform=`translateX(${cx}px)`;requestAnimationFrame(()=>{const sr2=stage.getBoundingClientRect();const lr2=last.getBoundingClientRect();const snap=(sr2.left+sr2.width/2)-(lr2.left+lr2.width/2);if(Math.abs(snap)>1){last.style.transition='transform 0.5s ease-out';last.style.transform=`translateX(${cx+snap}px)`;setTimeout(()=>{last.style.transition='';},500);}if(penult){penult.style.transition='opacity 0.4s';penult.style.opacity='0';}});};
           if(ovl){const _tgt=c.overlayFront?0:.5;ovlAnim=ovl.animate([{opacity:1},{opacity:_tgt}],{duration:2000,delay:oDly,easing:'ease-in',fill:'forwards'});if(c.overlayFront)ovlAnim.onfinish=()=>{ovl.style.zIndex='1';};}
         };
         // Trigger run() on each transition into 'active'
@@ -1597,7 +1614,9 @@ SECTIONS.forEach((sec,si)=>{
           if(it.type==='mp4'||(it.src&&(it.src.endsWith('.mp4')||it.src.endsWith('.webm')))){
             const lbl=it.label?`<div class="placed-item-label">${it.label}</div>`:'';
             const rate=it.rate?` data-rate="${it.rate}"`:'';
-            return `<div class="placed-item" ${st}${fo}><video src="${it.src}" autoplay loop muted playsinline${rate}></video>${lbl}</div>`;
+            // controls:true → speaker plays manually with audio (no autoplay/loop/muted); default is silent autoplay loop
+            const attrs=it.controls?'controls preload="metadata" playsinline':'autoplay loop muted playsinline';
+            return `<div class="placed-item" ${st}${fo}><video src="${it.src}" ${attrs}${rate}></video>${lbl}</div>`;
           }
           const lbl=it.label?`<div class="placed-item-label">${it.label}</div>`:'';
           return `<div class="placed-item" ${st}${fo}><img src="${it.src}" loading="lazy">${lbl}</div>`;
@@ -2384,11 +2403,39 @@ function shootFireball(svg,startX,startY,dir){
     }
     function popChip(chip,i,delay){
       const p=chipPos[i];
-      setTimeout(function(){
-        chip.style.transform='translate(-50%,-50%) translate('+p.x+'px,'+p.y+'px) scale(1)';
-        chip.classList.add('in');
-      },delay);
+      // Position via CSS vars so :hover transform can compose scale on top
+      chip.style.setProperty('--cx',p.x+'px');
+      chip.style.setProperty('--cy',p.y+'px');
+      setTimeout(function(){chip.classList.add('in');},delay);
     }
+    // Wire chip clicks: same jump destinations as the cards (by index).
+    // Tabindex set on .in so it's only focusable once visible.
+    chips.forEach(function(chip,i){
+      chip.setAttribute('tabindex','0');
+      const go=function(){
+        if(window._moveMode)return;
+        chip.classList.remove('tc-clicked');void chip.offsetWidth;chip.classList.add('tc-clicked');
+        const target=allSlides.findIndex(function(sl){return sl.dataset.type==='case'&&sl.dataset.year===cardJumps[i];});
+        if(target>=0)setTimeout(function(){goTo(target);},280);
+      };
+      chip.addEventListener('click',go);
+      chip.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+    });
+    // Wire the toolbox itself: click → shake + bounce all chips. Pure flourish,
+    // no navigation. Only active after morph (CSS gates pointer-events).
+    tbx.setAttribute('tabindex','0');
+    const tbxShake=function(){
+      if(window._moveMode)return;
+      tbx.classList.remove('tb-shake');void tbx.offsetWidth;tbx.classList.add('tb-shake');
+      chips.forEach(function(chip,i){
+        setTimeout(function(){
+          chip.classList.remove('tc-bounce');void chip.offsetWidth;chip.classList.add('tc-bounce');
+        },80+i*70);
+      });
+      try{playToolboxThud();}catch(e){}
+    };
+    tbx.addEventListener('click',tbxShake);
+    tbx.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tbxShake();}});
     function step1(){
       stage.classList.add('toolbox-morph-mode');
       stage.style.transform='translate(2px,10px)';
@@ -2410,9 +2457,10 @@ function shootFireball(svg,startX,startY,dir){
         card.style.removeProperty('--tbx');card.style.removeProperty('--tby');card.style.removeProperty('--tbr');
       });
       chips.forEach(function(chip){
-        chip.classList.remove('in');
+        chip.classList.remove('in','tc-clicked','tc-bounce');
         chip.style.transform='';
       });
+      tbx.classList.remove('tb-shake');
     }
     slideSteps.set(tbSlide,{current:0,steps:[step1],reset:resetToolboxMorph});
   },0);
@@ -3872,45 +3920,78 @@ if(_notesParam){
   /* ── Variant tag (top-left pill) ── */
   .pipe-tag { position:absolute; left:24px; top:18px; z-index:6; font-family:'Space Grotesk',sans-serif; font-size:.7rem; font-weight:600; letter-spacing:.18em; padding:5px 11px; border-radius:999px; background:rgba(6,8,16,.7); border:1px solid rgba(255,255,255,.18); color:rgba(240,244,255,.82); text-transform:uppercase; backdrop-filter:blur(6px); }
 
-  /* ─────────── OPTION A: Animated SVG Venn ─────────── */
-  .pipe-a .pa-venn { position:absolute; inset:0; width:100%; height:100%; }
-  .pipe-a .pa-hero { position:absolute; left:50%; top:6%; transform:translateX(-50%); text-align:center; opacity:0; z-index:5; pointer-events:none; }
+  /* ─────────── OPTION A: Amorphous drifting blobs ─────────── */
+  .pipe-a .pa-hero { position:absolute; left:50%; top:6%; transform:translateX(-50%); text-align:center; opacity:0; z-index:6; pointer-events:none; }
   .pipe-a .pa-hero h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,3vw,3.4rem); font-weight:600; letter-spacing:-.02em; margin:0; background:linear-gradient(180deg,#fff 28%, rgba(34,211,238,.55)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; color:transparent; }
   .pipe-a .pa-hero p { font-family:'Space Grotesk',sans-serif; font-size:clamp(.8rem,1.05vw,1.15rem); color:rgba(240,244,255,.62); margin:6px 0 0; font-style:italic; letter-spacing:.01em; }
 
-  .pipe-a .pa-blob { transform-box:fill-box; transform-origin:center; opacity:0; }
-  .pipe-a .pa-pname { font-family:'Space Grotesk',sans-serif; font-size:34px; font-weight:600; letter-spacing:-.01em; opacity:0; }
-  .pipe-a text.pn-bf { fill:#fde68a; }
-  .pipe-a text.pn-bp { fill:#a5f3fc; }
-  .pipe-a text.pn-bh { fill:#fda4af; }
-  .pipe-a text.pn-bd { fill:#c4b5fd; }
-  .pipe-a .pa-cap { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:500; fill:rgba(240,244,255,.88); opacity:0; }
-  .pipe-a .pa-cap-tag { font-size:13px; font-weight:500; fill:rgba(34,211,238,.65); letter-spacing:.18em; opacity:0; }
+  /* Amoeba blobs — solid rgba with heavy blur so morphing border-radius is visible */
+  .pipe-a .ab { position:absolute; opacity:0; mix-blend-mode:screen; pointer-events:none; filter:blur(38px); }
+  .pipe-a .ab-1 { left:-3%; top:24%; width:42%; height:58%; background:rgba(251,191,36,.78); }
+  .pipe-a .ab-2 { left:18%; top:20%; width:44%; height:64%; background:rgba(34,211,238,.72); }
+  .pipe-a .ab-3 { left:38%; top:20%; width:44%; height:64%; background:rgba(251,113,133,.72); }
+  .pipe-a .ab-4 { left:60%; top:24%; width:42%; height:58%; background:rgba(167,139,250,.78); }
 
-  /* reveal: hero → caps tick L-R → blobs swell in with stagger → names */
+  /* Product name labels — drift with their blob via shared drift-N keyframes */
+  .pipe-a .prod { position:absolute; font-family:'Space Grotesk',sans-serif; font-size:clamp(1rem,1.55vw,1.75rem); font-weight:600; letter-spacing:-.01em; opacity:0; pointer-events:none; white-space:nowrap; text-shadow:0 0 18px rgba(0,0,0,.55); z-index:3; }
+  .pipe-a .prod-1 { left:7%;  top:25%; color:#fde68a; }
+  .pipe-a .prod-2 { left:24%; top:21%; color:#a5f3fc; }
+  .pipe-a .prod-3 { left:52%; top:21%; color:#fda4af; }
+  .pipe-a .prod-4 { left:74%; top:25%; color:#c4b5fd; }
+
+  /* Capability labels — float independently */
+  .pipe-a .cap { position:absolute; font-family:'Space Grotesk',sans-serif; font-size:clamp(.85rem,1.15vw,1.3rem); font-weight:500; color:rgba(255,255,255,.96); opacity:0; pointer-events:none; white-space:nowrap; text-shadow:0 0 14px rgba(6,8,16,.85), 0 0 28px rgba(6,8,16,.6); z-index:4; }
+  .pipe-a .cap-1 { left:7%;  top:60%; }
+  .pipe-a .cap-2 { left:21%; top:50%; }
+  .pipe-a .cap-3 { left:34%; top:66%; }
+  .pipe-a .cap-4 { left:48%; top:52%; }
+  .pipe-a .cap-5 { left:60%; top:68%; }
+  .pipe-a .cap-6 { left:75%; top:52%; }
+  .pipe-a .cap-7 { left:88%; top:62%; }
+
+  /* Reveal staging — hero, then caps tick L→R, then blobs fade in, then product names.
+     After each fade-in, the element transitions into its drift loop. */
   .slide.active .pipe-a .pa-hero { animation: pa-fadeIn .9s .15s forwards; }
-  .slide.active .pipe-a .pa-cap-tag { animation: pa-capIn .5s .55s forwards; }
-  .slide.active .pipe-a .pa-c1 { animation: pa-capIn .55s .70s forwards; }
-  .slide.active .pipe-a .pa-c2 { animation: pa-capIn .55s .82s forwards; }
-  .slide.active .pipe-a .pa-c3 { animation: pa-capIn .55s .94s forwards; }
-  .slide.active .pipe-a .pa-c4 { animation: pa-capIn .55s 1.06s forwards; }
-  .slide.active .pipe-a .pa-c5 { animation: pa-capIn .55s 1.18s forwards; }
-  .slide.active .pipe-a .pa-c6 { animation: pa-capIn .55s 1.30s forwards; }
-  .slide.active .pipe-a .pa-c7 { animation: pa-capIn .55s 1.42s forwards; }
-  .slide.active .pipe-a .pa-bf { animation: pa-blobIn 1.1s 1.7s forwards, pa-blobPulse 7s 3.0s infinite; }
-  .slide.active .pipe-a .pa-bp { animation: pa-blobIn 1.1s 2.0s forwards, pa-blobPulse 7s 3.4s infinite; }
-  .slide.active .pipe-a .pa-bh { animation: pa-blobIn 1.1s 2.3s forwards, pa-blobPulse 7s 3.8s infinite; }
-  .slide.active .pipe-a .pa-bd { animation: pa-blobIn 1.1s 2.6s forwards, pa-blobPulse 7s 4.2s infinite; }
-  .slide.active .pipe-a text.pn-bf { animation: pa-nameIn .8s 2.1s forwards; }
-  .slide.active .pipe-a text.pn-bp { animation: pa-nameIn .8s 2.4s forwards; }
-  .slide.active .pipe-a text.pn-bh { animation: pa-nameIn .8s 2.7s forwards; }
-  .slide.active .pipe-a text.pn-bd { animation: pa-nameIn .8s 3.0s forwards; }
+  .slide.active .pipe-a .cap-1 { animation: pa-fade .55s .70s forwards, cap-drift-1 9s 1.30s ease-in-out infinite; }
+  .slide.active .pipe-a .cap-2 { animation: pa-fade .55s .85s forwards, cap-drift-2 11s 1.45s ease-in-out infinite; }
+  .slide.active .pipe-a .cap-3 { animation: pa-fade .55s 1.00s forwards, cap-drift-3 8s 1.60s ease-in-out infinite; }
+  .slide.active .pipe-a .cap-4 { animation: pa-fade .55s 1.15s forwards, cap-drift-4 12s 1.75s ease-in-out infinite; }
+  .slide.active .pipe-a .cap-5 { animation: pa-fade .55s 1.30s forwards, cap-drift-5 10s 1.90s ease-in-out infinite; }
+  .slide.active .pipe-a .cap-6 { animation: pa-fade .55s 1.45s forwards, cap-drift-6 11s 2.05s ease-in-out infinite; }
+  .slide.active .pipe-a .cap-7 { animation: pa-fade .55s 1.60s forwards, cap-drift-7 9s 2.20s ease-in-out infinite; }
+  .slide.active .pipe-a .ab-1 { animation: pa-blob-fade 1.2s 1.7s forwards, morph-1 9s 2.9s ease-in-out infinite, drift-1 14s 2.9s ease-in-out infinite; }
+  .slide.active .pipe-a .ab-2 { animation: pa-blob-fade 1.2s 2.0s forwards, morph-2 10s 3.2s ease-in-out infinite, drift-2 16s 3.2s ease-in-out infinite; }
+  .slide.active .pipe-a .ab-3 { animation: pa-blob-fade 1.2s 2.3s forwards, morph-3 8s 3.5s ease-in-out infinite, drift-3 15s 3.5s ease-in-out infinite; }
+  .slide.active .pipe-a .ab-4 { animation: pa-blob-fade 1.2s 2.6s forwards, morph-4 11s 3.8s ease-in-out infinite, drift-4 17s 3.8s ease-in-out infinite; }
+  .slide.active .pipe-a .prod-1 { animation: pa-fade .8s 2.1s forwards, drift-1 14s 2.9s ease-in-out infinite; }
+  .slide.active .pipe-a .prod-2 { animation: pa-fade .8s 2.4s forwards, drift-2 16s 3.2s ease-in-out infinite; }
+  .slide.active .pipe-a .prod-3 { animation: pa-fade .8s 2.7s forwards, drift-3 15s 3.5s ease-in-out infinite; }
+  .slide.active .pipe-a .prod-4 { animation: pa-fade .8s 3.0s forwards, drift-4 17s 3.8s ease-in-out infinite; }
 
   @keyframes pa-fadeIn { from { opacity:0; transform:translateX(-50%) translateY(-10px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
-  @keyframes pa-capIn  { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes pa-blobIn { from { opacity:0; transform:scale(.45); } to { opacity:.95; transform:scale(1); } }
-  @keyframes pa-blobPulse { 0%,100% { transform:scale(1); opacity:.92; } 50% { transform:scale(1.035); opacity:1; } }
-  @keyframes pa-nameIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes pa-fade { from { opacity:0; } to { opacity:1; } }
+  @keyframes pa-blob-fade { from { opacity:0; } to { opacity:.85; } }
+
+  /* Shape morphing — dramatic border-radius cycles for amoeba-like deformation */
+  @keyframes morph-1 { 0%,100% { border-radius:55% 45% 50% 50% / 50% 55% 45% 50%; } 25% { border-radius:30% 70% 70% 30% / 65% 30% 70% 35%; } 50% { border-radius:72% 28% 35% 65% / 30% 70% 30% 70%; } 75% { border-radius:45% 55% 70% 30% / 60% 40% 30% 70%; } }
+  @keyframes morph-2 { 0%,100% { border-radius:48% 52% 55% 45% / 55% 50% 50% 45%; } 25% { border-radius:70% 30% 30% 70% / 30% 65% 35% 70%; } 50% { border-radius:32% 68% 70% 30% / 70% 32% 65% 35%; } 75% { border-radius:60% 40% 35% 65% / 35% 70% 40% 60%; } }
+  @keyframes morph-3 { 0%,100% { border-radius:52% 48% 45% 55% / 50% 45% 55% 50%; } 25% { border-radius:28% 72% 65% 35% / 70% 28% 70% 30%; } 50% { border-radius:70% 30% 32% 68% / 30% 72% 28% 70%; } 75% { border-radius:55% 45% 70% 30% / 30% 70% 35% 65%; } }
+  @keyframes morph-4 { 0%,100% { border-radius:50% 50% 50% 50% / 55% 45% 50% 50%; } 25% { border-radius:70% 30% 65% 35% / 30% 70% 28% 72%; } 50% { border-radius:30% 70% 30% 70% / 70% 30% 70% 30%; } 75% { border-radius:35% 65% 70% 30% / 70% 30% 65% 35%; } }
+
+  /* Position drift — bigger translate + scale "breathing". Bounded ±5% so blob union still covers caps. */
+  @keyframes drift-1 { 0%,100% { transform:translate(0,0) scale(1); } 25% { transform:translate(-4%,2.5%) scale(1.06); } 50% { transform:translate(2.5%,-3.5%) scale(.94); } 75% { transform:translate(-2%,4%) scale(1.04); } }
+  @keyframes drift-2 { 0%,100% { transform:translate(0,0) scale(1); } 25% { transform:translate(3.5%,-4%) scale(1.05); } 50% { transform:translate(-4%,2.5%) scale(.95); } 75% { transform:translate(4%,-1.5%) scale(1.03); } }
+  @keyframes drift-3 { 0%,100% { transform:translate(0,0) scale(1); } 25% { transform:translate(-3%,-3.5%) scale(.95); } 50% { transform:translate(4%,4%) scale(1.06); } 75% { transform:translate(-4%,2.5%) scale(1.03); } }
+  @keyframes drift-4 { 0%,100% { transform:translate(0,0) scale(1); } 25% { transform:translate(4%,2.5%) scale(1.05); } 50% { transform:translate(-2.5%,-4%) scale(.94); } 75% { transform:translate(2.5%,4%) scale(1.03); } }
+
+  /* Capability label drift — bounded ±4% so labels visibly float but stay inside blob union */
+  @keyframes cap-drift-1 { 0%,100% { transform:translate(0,0); } 25% { transform:translate(4%,-2.5%); } 50% { transform:translate(-3%,3%); } 75% { transform:translate(2%,-3.5%); } }
+  @keyframes cap-drift-2 { 0%,100% { transform:translate(0,0); } 25% { transform:translate(-3%,3.5%); } 50% { transform:translate(4%,-2%); } 75% { transform:translate(-2%,3%); } }
+  @keyframes cap-drift-3 { 0%,100% { transform:translate(0,0); } 25% { transform:translate(3%,2.5%); } 50% { transform:translate(-4%,-3%); } 75% { transform:translate(3.5%,2%); } }
+  @keyframes cap-drift-4 { 0%,100% { transform:translate(0,0); } 25% { transform:translate(-3%,-3.5%); } 50% { transform:translate(3.5%,3%); } 75% { transform:translate(-2.5%,2.5%); } }
+  @keyframes cap-drift-5 { 0%,100% { transform:translate(0,0); } 25% { transform:translate(4%,1.5%); } 50% { transform:translate(-3%,-3.5%); } 75% { transform:translate(2.5%,3%); } }
+  @keyframes cap-drift-6 { 0%,100% { transform:translate(0,0); } 25% { transform:translate(-3.5%,2.5%); } 50% { transform:translate(3%,-3.5%); } 75% { transform:translate(-2.5%,3%); } }
+  @keyframes cap-drift-7 { 0%,100% { transform:translate(0,0); } 25% { transform:translate(-3%,-2.5%); } 50% { transform:translate(3.5%,3%); } 75% { transform:translate(-2%,-3.5%); } }
 
   /* ─────────── OPTION D: Hero + Side Legend ─────────── */
   .pipe-d .pd-hero { opacity:0; margin:0 0 3.5% 0; }
@@ -3957,68 +4038,30 @@ if(_notesParam){
   // Blob centers mapped so each blob covers the caps it actually uses.
   const aHTML=`
   <div class="placed-stage pipe-a">
-    <span class="pipe-tag">Prototype · A — Animated Venn</span>
-    <svg class="pa-venn" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <filter id="pa-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="18"/></filter>
-        <radialGradient id="pa-gf"><stop offset="0" stop-color="#fbbf24" stop-opacity=".85"/><stop offset="1" stop-color="#fbbf24" stop-opacity=".10"/></radialGradient>
-        <radialGradient id="pa-gp"><stop offset="0" stop-color="#22d3ee" stop-opacity=".80"/><stop offset="1" stop-color="#22d3ee" stop-opacity=".08"/></radialGradient>
-        <radialGradient id="pa-gh"><stop offset="0" stop-color="#fb7185" stop-opacity=".80"/><stop offset="1" stop-color="#fb7185" stop-opacity=".08"/></radialGradient>
-        <radialGradient id="pa-gd"><stop offset="0" stop-color="#a78bfa" stop-opacity=".85"/><stop offset="1" stop-color="#a78bfa" stop-opacity=".10"/></radialGradient>
-      </defs>
-
-      <!-- subtle vertical guide lines (capability columns rising to the blob layer) -->
-      <g opacity=".07">
-        <line x1="112" y1="690" x2="112" y2="260" stroke="white" stroke-dasharray="2 6"/>
-        <line x1="352" y1="690" x2="352" y2="220" stroke="white" stroke-dasharray="2 6"/>
-        <line x1="576" y1="690" x2="576" y2="220" stroke="white" stroke-dasharray="2 6"/>
-        <line x1="800" y1="690" x2="800" y2="220" stroke="white" stroke-dasharray="2 6"/>
-        <line x1="1024" y1="690" x2="1024" y2="220" stroke="white" stroke-dasharray="2 6"/>
-        <line x1="1248" y1="690" x2="1248" y2="220" stroke="white" stroke-dasharray="2 6"/>
-        <line x1="1472" y1="690" x2="1472" y2="260" stroke="white" stroke-dasharray="2 6"/>
-      </g>
-
-      <!-- Product blobs (each = outer-blurred glow + inner crisp ellipse) -->
-      <g class="pa-blob pa-bf">
-        <ellipse cx="232" cy="430" rx="220" ry="155" fill="url(#pa-gf)" transform="rotate(-7 232 430)" filter="url(#pa-blur)"/>
-        <ellipse cx="232" cy="430" rx="210" ry="145" fill="rgba(245,158,11,.30)" stroke="rgba(251,191,36,.55)" stroke-width="1.2" transform="rotate(-7 232 430)"/>
-      </g>
-      <g class="pa-blob pa-bp">
-        <ellipse cx="480" cy="410" rx="260" ry="170" fill="url(#pa-gp)" transform="rotate(4 480 410)" filter="url(#pa-blur)"/>
-        <ellipse cx="480" cy="410" rx="250" ry="160" fill="rgba(34,211,238,.22)" stroke="rgba(34,211,238,.5)" stroke-width="1.2" transform="rotate(4 480 410)"/>
-      </g>
-      <g class="pa-blob pa-bh">
-        <ellipse cx="912" cy="410" rx="270" ry="170" fill="url(#pa-gh)" transform="rotate(-3 912 410)" filter="url(#pa-blur)"/>
-        <ellipse cx="912" cy="410" rx="260" ry="160" fill="rgba(244,63,94,.22)" stroke="rgba(251,113,133,.55)" stroke-width="1.2" transform="rotate(-3 912 410)"/>
-      </g>
-      <g class="pa-blob pa-bd">
-        <ellipse cx="1360" cy="430" rx="220" ry="155" fill="url(#pa-gd)" transform="rotate(8 1360 430)" filter="url(#pa-blur)"/>
-        <ellipse cx="1360" cy="430" rx="210" ry="145" fill="rgba(167,139,250,.30)" stroke="rgba(196,181,253,.55)" stroke-width="1.2" transform="rotate(8 1360 430)"/>
-      </g>
-
-      <!-- Product name labels (positioned above each blob) -->
-      <text class="pa-pname pn-bf" x="232" y="285" text-anchor="middle">Floor Tour</text>
-      <text class="pa-pname pn-bp" x="480" y="265" text-anchor="middle">Blueprint Immersive</text>
-      <text class="pa-pname pn-bh" x="912" y="265" text-anchor="middle">Hyperreal Estate</text>
-      <text class="pa-pname pn-bd" x="1360" y="285" text-anchor="middle">Holodeck Anywhere</text>
-
-      <!-- Section tag for capabilities row -->
-      <text class="pa-cap-tag" x="800" y="610" text-anchor="middle">— THE PIPELINE —</text>
-
-      <!-- Capability labels (bottom row) -->
-      <text class="pa-cap pa-c1" x="112"  y="720" text-anchor="middle">Colocation</text>
-      <text class="pa-cap pa-c2" x="352"  y="720" text-anchor="middle">Location-based</text>
-      <text class="pa-cap pa-c3" x="576"  y="720" text-anchor="middle">Multi-user</text>
-      <text class="pa-cap pa-c4" x="800"  y="720" text-anchor="middle">Save / Load</text>
-      <text class="pa-cap pa-c5" x="1024" y="720" text-anchor="middle">3D Data Ingestion</text>
-      <text class="pa-cap pa-c6" x="1248" y="720" text-anchor="middle">Optimization</text>
-      <text class="pa-cap pa-c7" x="1472" y="720" text-anchor="middle">Photorealistic</text>
-    </svg>
+    <span class="pipe-tag">Prototype · A — Amorphous</span>
 
     <div class="pa-hero">
       <h2>The Pipeline</h2>
-      <p>Each new product reuses what came before. The investment compounds.</p>
+      <p>Shared capabilities. Always shifting. Always shared.</p>
     </div>
+
+    <div class="ab ab-1"></div>
+    <div class="ab ab-2"></div>
+    <div class="ab ab-3"></div>
+    <div class="ab ab-4"></div>
+
+    <div class="prod prod-1">Floor Tour</div>
+    <div class="prod prod-2">Blueprint Immersive</div>
+    <div class="prod prod-3">Hyperreal Estate</div>
+    <div class="prod prod-4">Holodeck Anywhere</div>
+
+    <div class="cap cap-1">Colocation</div>
+    <div class="cap cap-2">Location-based</div>
+    <div class="cap cap-3">Multi-user</div>
+    <div class="cap cap-4">Save / Load</div>
+    <div class="cap cap-5">3D Data Ingestion</div>
+    <div class="cap cap-6">Optimization</div>
+    <div class="cap cap-7">Photorealistic</div>
   </div>`;
 
   // ── Option D HTML ───────────────────────────────────────────────────────
