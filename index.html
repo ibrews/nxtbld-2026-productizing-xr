@@ -72,11 +72,11 @@ const SECTIONS = [
         subUE5:'Authorized UE5 instructors with Training Center.\nOrganizers of Unreal NYC and frequent Unreal Fest speakers.',
         duo:{
           alex:{ name:'Alex Coulombe', role:'CEO',
-                 sprite:{ withBeard:true, withGlasses:false } },
+                 sprite:{ withBeard:true, withGlasses:false, pantsColor:'#eae3d0' } },
           jun: { name:'Yu-Jun Yeh',    role:'Lead Creative Technologist',
                  sprite:{ withBeard:false, withGlasses:false, longHair:true, noBrows:true,
                           hairColor:'#1a1a1a', hairDark:'#0a0a0a', hairLight:'#3a3a3a', hairShadow:'#000',
-                          shirtColor:'#1a1a1a', shirtDark:'#0a0a0a', withDress:true } }
+                          shirtColor:'#1a1a1a', shirtDark:'#0a0a0a', withDress:true, vneck:true } }
         },
         stats:[
           { n:'16',  l:'Years in XR' },
@@ -86,7 +86,8 @@ const SECTIONS = [
         ],
         deckTarget:'p16+p17 (slide 5 folded)' },
       // Agile Lens orbit \u2014 clients revolving around the studio name (ported from FMX slide 11)
-      { layout:'orbit', title:'Agile Lens', deckTarget:'orbit' },
+      { layout:'orbit', title:'Agile Lens', deckTarget:'orbit',
+        notes:'Our whole studio was built on this cycle of upskilling and building on top of and leap frogging previous workflows so we could approach each new project with fresh insight and a solid foundation.' },
       // slide 6 \u2014 Trilogy callback. NOTE: QR codes for the two prior NXT BLD talks.
       // Thumbnails are PPTX-embedded screenshots from the actual talks.
       { layout:'trilogy', title:'NXT BLD: Third in a Trilogy',
@@ -131,6 +132,7 @@ const SECTIONS = [
       { layout:'sg-fragments', title:'The filenames tell the story.',
         fragments:['\u201ctemp\u201d','\u201cv12_finalFINAL\u201d','\u201c0925_Screenshot_D\u201d','\u201cdonotdelete\u201d'],
         punchline:'Every studio has these.',
+        notes:'This is the good stuff. This is where you dig in to all the legos and find the gems that were created in a panic that you didn’t have a chance to really consider the utility of.',
         deckTarget:'p19' },
     ] },
 
@@ -1486,7 +1488,7 @@ SECTIONS.forEach((sec,si)=>{
         <g class="pat-node pat-node-final" transform="translate(620,440)"><rect x="-200" y="-42" width="400" height="84" rx="16" fill="rgba(244,63,94,.10)" stroke="rgba(244,63,94,.85)" stroke-width="2"/><text text-anchor="middle" y="-6" fill="#f0f4ff" font-size="18" font-weight="700">Whole new tool</text><text text-anchor="middle" y="20" fill="rgba(240,244,255,.7)" font-size="13">→ THIS is the productization moment</text></g>
         <path class="pat-flow" d="M250,90 L370,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
         <path class="pat-flow" d="M630,90 L760,90" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
-        <path class="pat-flow pat-flow-dash" style="transform:translate(-22px,16px)" d="M860,126 Q860,200 270,270" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
+        <path class="pat-flow pat-flow-dash" d="M860,126 C860,210 270,160 270,270" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
         <path class="pat-flow" d="M270,270 L350,270" stroke="rgba(167,139,250,.55)" stroke-width="1.8" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
         <path class="pat-flow pat-flow-dash" d="M500,306 Q500,380 270,440" stroke="rgba(167,139,250,.4)" stroke-width="1.6" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="6 4"/>
         <path class="pat-flow" d="M270,440 L420,440" stroke="rgba(244,63,94,.7)" stroke-width="2.2" fill="none" marker-end="url(#pat-arr)" stroke-dasharray="8 6"/>
@@ -1943,8 +1945,8 @@ setTimeout(()=>{(function(){
   const alexSvg=cls.querySelector('.close-sprite-alex');
   const junSvg=cls.querySelector('.close-sprite-jun');
   if(!alexSvg||!junSvg)return;
-  const alexCfg={withBeard:true,withGlasses:false};
-  const junCfg={withBeard:false,withGlasses:false,longHair:true,noBrows:true,hairColor:'#1a1a1a',hairDark:'#0a0a0a',hairLight:'#3a3a3a',hairShadow:'#000',shirtColor:'#1a1a1a',shirtDark:'#0a0a0a',withDress:true};
+  const alexCfg={withBeard:true,withGlasses:false,pantsColor:'#eae3d0'};
+  const junCfg={withBeard:false,withGlasses:false,longHair:true,noBrows:true,hairColor:'#1a1a1a',hairDark:'#0a0a0a',hairLight:'#3a3a3a',hairShadow:'#000',shirtColor:'#1a1a1a',shirtDark:'#0a0a0a',withDress:true,vneck:true};
   buildAvatar(alexSvg,alexCfg);
   buildAvatar(junSvg,junCfg);
   const junBody=junSvg.querySelector('.av-body');if(junBody)paintLongHair(junBody,junCfg);
@@ -1964,7 +1966,7 @@ function buildAvatar(parent,opts={}){
   const scale=opts.scale||1;const withBeard=!!opts.withBeard;const withGlasses=!!opts.withGlasses;
   const root=svgE('g',{class:'avatar',...(opts.id?{id:opts.id}:{})});root.style.shapeRendering='crispEdges';
   if(scale!==1)root.setAttribute('transform',`scale(${scale})`);parent.appendChild(root);
-  const SKIN=opts.skinColor||'#f2c79b',SKIN_DARK='#d9a77a',HAIR_LIGHT=opts.hairLight||'#a8602f',HAIR=opts.hairColor||'#8b4a2a',HAIR_DARK=opts.hairDark||'#5e2f1a',HAIR_SHADOW=opts.hairShadow||'#3a1c08',BEARD=opts.beardColor||'#6e3a1e',BEARD_LIGHT=opts.beardLight||'#8a4f2a',SHIRT=opts.shirtColor||'#6a8fd6',SHIRT_DARK=opts.shirtDark||'#4a6fb8',PANTS='#3f3025',BOOTS='#1f150c',EYE='#1a1a26',FRAME='#1a1520';
+  const SKIN=opts.skinColor||'#f2c79b',SKIN_DARK='#d9a77a',HAIR_LIGHT=opts.hairLight||'#a8602f',HAIR=opts.hairColor||'#8b4a2a',HAIR_DARK=opts.hairDark||'#5e2f1a',HAIR_SHADOW=opts.hairShadow||'#3a1c08',BEARD=opts.beardColor||'#6e3a1e',BEARD_LIGHT=opts.beardLight||'#8a4f2a',SHIRT=opts.shirtColor||'#6a8fd6',SHIRT_DARK=opts.shirtDark||'#4a6fb8',PANTS=opts.pantsColor||'#3f3025',PANTS_CREASE=opts.pantsCrease||(opts.pantsColor?'#bdb39d':'#2a1f18'),BOOTS='#1f150c',EYE='#1a1a26',FRAME='#1a1520';
   const px=(g,x,y,w,h,fill)=>g.appendChild(svgE('rect',{x,y,width:w,height:h,fill}));
   const body=svgE('g',{class:'av-body'});
   px(body,-12,-34,24,22,SKIN);px(body,-12,-16,24,4,SKIN_DARK);
@@ -1990,7 +1992,9 @@ function buildAvatar(parent,opts={}){
   }
   px(body,-4,-12,8,3,SKIN_DARK);
   px(body,-12,-9,24,18,SHIRT);px(body,-12,-9,24,3,SHIRT_DARK);px(body,-12,6,24,3,SHIRT_DARK);
-  if(opts.withDress){px(body,-13,9,26,10,SHIRT);px(body,-15,16,30,7,SHIRT_DARK);}else{px(body,-12,9,12,14,PANTS);px(body,0,9,12,14,PANTS);px(body,-2,9,4,14,'#2a1f18');}
+  if(opts.withDress){px(body,-13,9,26,10,SHIRT);px(body,-15,16,30,7,SHIRT_DARK);}else{px(body,-12,9,12,14,PANTS);px(body,0,9,12,14,PANTS);px(body,-2,9,4,14,PANTS_CREASE);}
+  // V-neck collar — small triangle inset on the shirt/dress top
+  if(opts.vneck){const VN=opts.vneckColor||'#f5f5f5';px(body,-3,-9,6,1,VN);px(body,-2,-8,4,1,VN);px(body,-1,-7,2,1,VN);}
   px(body,-12,23,12,5,BOOTS);px(body,0,23,12,5,BOOTS);
   root.appendChild(body);
   // Arms (down at the sides) — shirt sleeve + skin hand on each side
@@ -2940,8 +2944,8 @@ function getSlideNotes(idx){
   const ty=sl.dataset.type,si=+sl.dataset.section;
   if(ty==='lesson'&&SECTIONS[si])return SECTIONS[si].lesson.notes||'';
   if(ty==='case'&&SECTIONS[si]){
-    // figure out which case within the section
-    let caseIdx=0;for(let j=lessonIdxs[si]+1;j<idx;j++){if(allSlides[j]?.dataset.type==='case')caseIdx++;}
+    // Count case slides of this section that come before idx (works with or without lesson slides).
+    let caseIdx=0;for(let j=0;j<idx;j++){const s=allSlides[j];if(s&&s.dataset.type==='case'&&s.dataset.section===String(si))caseIdx++;}
     return SECTIONS[si].cases[caseIdx]?.notes||'';
   }
   if(ty==='bonus')return'The secret 5th rung is the one already in your pocket. You too have a productizable tool your team has been using and honing - just look at the systems you\'re implementing and see what can be carved out and polished up';
