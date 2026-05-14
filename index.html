@@ -299,7 +299,7 @@ const SECTIONS = [
       // slide 55 (p67) — Why this ROI works (mirrors Floor Tour ROI slide but text-only since source has no media)
       { layout:'big', title:'Blueprint Immersive',
         bigText:'Why this ROI works.',
-        bigCaption:'<ul class="agenda-list"><li>Quick/easy sightline experience, sense of space in VR.</li><li>Uses the Revit files your team is <em>already</em> developing.</li><li>Designed for self-service.</li></ul>',
+        bigCaption:'<ul class="agenda-list"><li>Quick/easy sightline experience, sense of space in VR.</li><li>Uses the Revit files team is <em>already</em> developing.</li><li>Designed for self-service, less hand-holding.</li></ul>',
         deckTarget:'p67' },
     ] },
 
@@ -308,8 +308,8 @@ const SECTIONS = [
     cases: [
       // chapter intro — announces Hyperreal Estate before content slides (not yet built)
       { layout:'big', title:'Hyperreal Estate', pill:true,
-        bigText:'”Does this design feel complete?”',
-        bigCaption:'Product 3 of 4 — architectural rendering that answers questions: what if sunset? walnut? winter?',
+        bigText:'”Does this design\nfeel complete?”',
+        bigCaption:'Product 3 of 4 — architectural rendering in two eyes at 90fps\nthat typically only happens on a render farm.',
         deckTarget:'p67' },
     ] },
 
@@ -318,8 +318,8 @@ const SECTIONS = [
     cases: [
       // chapter intro — announces Holodeck Anywhere before content slides (not yet built)
       { layout:'big', title:'Holodeck Anywhere', pill:true,
-        bigText:'”Does this emotionally connect?”',
-        bigCaption:'Product 4 of 4 — co-located multiplayer VR tours for VIP buyers and stakeholders.',
+        bigText:'”Does this\nemotionally connect?”',
+        bigCaption:'Product 4 of 4 — co-located multiplayer\nXR tours for buyers and stakeholders.',
         deckTarget:'p88' },
     ] },
 
@@ -327,7 +327,7 @@ const SECTIONS = [
     lesson: { title:'The Pipeline.', short:'PIPELINE', tagline:'This only works if the pipeline compounds.', tags:'Synthesis' },
     cases: [
       // slide 98 (p110) — chapter tagline
-      { layout:'big', title:'The Pipeline',
+      { layout:'big', title:'Remember:',
         bigText:'This only works if the pipeline compounds.',
         deckTarget:'p110' },
       // slide 99 (p111) — shared infrastructure diagram (source image97.png as-is)
@@ -339,8 +339,8 @@ const SECTIONS = [
     ] },
 ];
 
-const BONUS = { year:'BONUS', title:'Build it twice?\nMaybe you already have a product.',
-  tagline:'If you\u2019ve started building the same workflow for the third time, you\u2019re not bespoke-ing \u2014 you\u2019re productizing. The Secret Graveyard isn\u2019t failure. It\u2019s the first draft of your toolbox.' };
+const BONUS = { year:'BONUS', title:'Build it twice?\nMaybe you already\nhave a product.',
+  tagline:'If you\u2019ve started building the same workflow for the third time, you\u2019re not bespoke-ing \u2014 you\u2019re productizing.<br>The Secret Graveyard isn\u2019t failure. It\u2019s the first draft of your toolbox.' };
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"}}</script>
 
@@ -1505,7 +1505,7 @@ SECTIONS.forEach((sec,si)=>{
 
 // Bonus
 const bon=document.createElement('div');bon.className='slide slide-lesson slide-bonus';bon.dataset.type='bonus';bon.dataset.year=BONUS.year;
-bon.innerHTML=`<div class="year-ghost">${BONUS.year}</div><div class="lesson-ey"><span class="ey-yr">${BONUS.year}</span><span class="ey-sep">&middot;</span><span class="ey-badge" style="color:var(--amber)">BONUS LESSON</span></div><h2 class="lesson-title">${BONUS.title}</h2><p class="lesson-tagline">${BONUS.tagline.replace(/<br><br>/g,'<br><span class="para-gap"></span>')}</p><div class="lesson-rule" style="background:var(--amber)"></div>`;
+bon.innerHTML=`<div class="year-ghost">${BONUS.year}</div><div class="lesson-ey"><span class="ey-yr">KEY</span><span class="ey-sep">&middot;</span><span class="ey-badge" style="color:var(--amber)">LESSON</span></div><h2 class="lesson-title">${BONUS.title}</h2><p class="lesson-tagline">${BONUS.tagline.replace(/<br><br>/g,'<br><span class="para-gap"></span>')}</p><div class="lesson-rule" style="background:var(--amber)"></div>`;
 deck.appendChild(bon);allSlides.push(bon);
 
 // 3D Monocle on Bonus slide
@@ -2631,7 +2631,7 @@ function getSlideNotes(idx){
     let caseIdx=0;for(let j=lessonIdxs[si]+1;j<idx;j++){if(allSlides[j]?.dataset.type==='case')caseIdx++;}
     return SECTIONS[si].cases[caseIdx]?.notes||'';
   }
-  if(ty==='bonus')return'Bonus lesson: rally the audience. This is the call to action. Build energy and end strong.';
+  if(ty==='bonus')return'The secret 5th rung is the one already in your pocket. You too have a productizable tool your team has been using and honing - just look at the systems you\'re implementing and see what can be carved out and polished up';
   if(ty==='cover')return'Welcome the audience. Wait for stragglers. Introduce yourself and the talk theme.';
   if(ty==='close')return'Wrap up. Point to the QR codes. Thank the audience. Open for questions.';
   if(ty==='map')return'The constellation map is a visual summary of the journey. Let it breathe for a moment before moving on.';
