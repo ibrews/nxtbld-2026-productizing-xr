@@ -1047,13 +1047,25 @@ body[data-bg-style="extreme"] .bg-overlay--extreme{display:block}
 .sg-frag-stage{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px;gap:40px}
 .sg-frag-title{font-size:clamp(1.6rem,3vw,2.6rem);color:rgba(240,244,255,.8);font-weight:600;letter-spacing:-.01em;text-align:center;max-width:1100px}
 .sg-frag-grid{display:grid;grid-template-columns:repeat(2,minmax(280px,500px));gap:clamp(20px,2.5vw,40px);justify-content:center}
-.sg-frag{font-family:'Courier New',monospace;font-size:clamp(1.4rem,3vw,2.4rem);font-weight:700;color:rgba(244,63,94,.95);padding:18px 28px;background:rgba(244,63,94,.06);border-left:4px solid rgba(244,63,94,.6);border-radius:0 4px 4px 0;text-align:left}
+/* Per-fragment --rot and --acc vars so hover can compose scale on top of tilt */
+.sg-frag{--rot:0deg;--acc:244,63,94;font-family:'Courier New',monospace;font-size:clamp(1.4rem,3vw,2.4rem);font-weight:700;color:rgba(var(--acc),.96);padding:18px 28px;background:rgba(var(--acc),.08);border-left:4px solid rgba(var(--acc),.7);border-radius:0 4px 4px 0;text-align:left;transform:rotate(var(--rot));transition:transform .35s cubic-bezier(.2,.8,.2,1.05),box-shadow .35s,background .35s,border-left-width .2s,border-left-color .35s,color .35s;outline:none;cursor:pointer;position:relative}
 /* Each fragment gets a distinct accent + tilt for visual variety */
-.sg-frag-0{transform:rotate(-1.2deg);color:rgba(244,63,94,.96);border-left-color:rgba(244,63,94,.7);background:rgba(244,63,94,.08)}
-.sg-frag-1{transform:rotate(.9deg);color:rgba(245,158,11,.96);border-left-color:rgba(245,158,11,.7);background:rgba(245,158,11,.08)}
-.sg-frag-2{transform:rotate(-.7deg);color:rgba(0,212,255,.96);border-left-color:rgba(0,212,255,.7);background:rgba(0,212,255,.08)}
-.sg-frag-3{transform:rotate(1.4deg);color:rgba(167,139,250,.96);border-left-color:rgba(167,139,250,.7);background:rgba(167,139,250,.08)}
-.sg-frag-punch{font-size:clamp(1.4rem,2.5vw,2.2rem);font-weight:700;color:#f0f4ff;text-align:center;margin-top:20px;letter-spacing:-.01em}
+.sg-frag-0{--rot:-1.2deg;--acc:244,63,94}
+.sg-frag-1{--rot:.9deg;--acc:245,158,11}
+.sg-frag-2{--rot:-.7deg;--acc:0,212,255}
+.sg-frag-3{--rot:1.4deg;--acc:167,139,250}
+@media(hover:hover){
+  .sg-frag:hover,.sg-frag:focus-visible{transform:rotate(var(--rot)) translateY(-6px) scale(1.06);background:rgba(var(--acc),.14);border-left-width:8px;color:rgb(var(--acc));box-shadow:0 16px 36px rgba(0,0,0,.45),0 0 42px rgba(var(--acc),.5),inset 0 0 0 1px rgba(var(--acc),.25);z-index:5;text-shadow:0 0 16px rgba(var(--acc),.6)}
+}
+.sg-frag:active{transform:rotate(var(--rot)) translateY(-2px) scale(1.03);transition:transform .12s}
+@keyframes sg-frag-pop{0%{transform:rotate(var(--rot)) scale(1)}30%{transform:rotate(var(--rot)) translateY(-10px) scale(1.12);box-shadow:0 22px 48px rgba(0,0,0,.5),0 0 72px rgba(var(--acc),.85)}100%{transform:rotate(var(--rot)) scale(1)}}
+.sg-frag.sg-frag-popped{animation:sg-frag-pop .55s cubic-bezier(.2,.7,.3,1.1)}
+.sg-frag-punch{font-size:clamp(1.4rem,2.5vw,2.2rem);font-weight:700;color:#f0f4ff;text-align:center;margin-top:20px;letter-spacing:-.01em;transition:transform .35s cubic-bezier(.2,.8,.2,1.05),text-shadow .35s,color .35s;cursor:pointer;outline:none;display:inline-block}
+@media(hover:hover){
+  .sg-frag-punch:hover,.sg-frag-punch:focus-visible{transform:scale(1.05);text-shadow:0 0 24px rgba(244,63,94,.65),0 0 48px rgba(244,63,94,.35);color:#fff}
+}
+@keyframes sg-punch-pop{0%,100%{transform:scale(1)}40%{transform:scale(1.12);text-shadow:0 0 36px rgba(244,63,94,.9),0 0 72px rgba(244,63,94,.5)}}
+.sg-frag-punch.sg-frag-popped{animation:sg-punch-pop .55s ease}
 
 /* Pattern cycle diagram (slide 23) */
 .pattern-stage{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 40px;gap:24px}
@@ -1456,8 +1468,9 @@ SECTIONS.forEach((sec,si)=>{
     }
     // layout: 'sg-fragments' — typography slide of filename fragments
     if(c.layout==='sg-fragments'&&c.fragments){
-      const frags=c.fragments.map((f,i)=>`<div class="sg-frag sg-frag-${i}">${f}</div>`).join('');
-      s.innerHTML=`<div class="sg-frag-stage">${c.title?`<h2 class="sg-frag-title">${c.title}</h2>`:''}<div class="sg-frag-grid">${frags}</div>${c.punchline?`<div class="sg-frag-punch">${c.punchline}</div>`:''}</div>${altBadge}`;
+      const frags=c.fragments.map((f,i)=>`<div class="sg-frag sg-frag-${i}" tabindex="0">${f}</div>`).join('');
+      const punch=c.punchline?`<div class="sg-frag-punch" tabindex="0">${c.punchline}</div>`:'';
+      s.innerHTML=`<div class="sg-frag-stage">${c.title?`<h2 class="sg-frag-title">${c.title}</h2>`:''}<div class="sg-frag-grid">${frags}</div>${punch}</div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
     }
     // layout: 'pattern-cycle' — diagram of the productizing cycle (NOTE on slide 23)
@@ -4252,6 +4265,31 @@ if(_notesParam){
   const slOrig=allSlides.find(s=>s.dataset.deckTarget==='p111');
   if(slOrig) slOrig.dataset.hidden='1';
   if(slD)    slD.dataset.hidden='1';
+})();
+
+// ── sg-fragments + punchline click pop ───────────────────────────────────
+// Click any filename fragment (or the punchline) to emphasise it: brief pop
+// + glow flash. No navigation — pure visual flourish for talking about each.
+(function(){
+  function pop(el,cls){
+    el.classList.remove(cls);void el.offsetWidth;el.classList.add(cls);
+    setTimeout(function(){el.classList.remove(cls);},600);
+  }
+  document.addEventListener('click',function(e){
+    if(window._moveMode)return;
+    if(document.body.classList.contains('annotate-mode'))return;
+    const frag=e.target.closest('.sg-frag');
+    if(frag){pop(frag,'sg-frag-popped');return;}
+    const punch=e.target.closest('.sg-frag-punch');
+    if(punch){pop(punch,'sg-frag-popped');return;}
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ')return;
+    const t=document.activeElement;
+    if(!t)return;
+    if(t.classList.contains('sg-frag')){e.preventDefault();pop(t,'sg-frag-popped');}
+    else if(t.classList.contains('sg-frag-punch')){e.preventDefault();pop(t,'sg-frag-popped');}
+  });
 })();
 
 // ── Fullscreen-on-click for images/videos ──────────────────────────────────
