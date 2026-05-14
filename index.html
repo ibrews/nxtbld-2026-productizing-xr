@@ -338,7 +338,7 @@ const SECTIONS = [
         deckTarget:'reflect_light' },
       // slides 59-62 (p71-p74) — conveyor belt of finished Hyperreal renders, scrolls immediately and loops continuously
       { layout:'asset-belt', title:'Hyperreal Estate', bigText:'Productized',
-        beltDelay:0, overlayDelay:0, beltLoop:true,
+        beltDelay:0, overlayDelay:3000, overlayFront:true, beltLoop:true,
         beltItems:[
           { type:'img', src:'media/nxtbld/hr-prod-a.jpg', w:1031, h:580 },
           { type:'img', src:'media/nxtbld/hr-prod-b.jpg', w:1031, h:580 },
@@ -1388,9 +1388,13 @@ SECTIONS.forEach((sec,si)=>{
       deck.appendChild(s);allSlides.push(s);return;
     }
     // layout: 'toolbox-grid' — 4 products with their questions (slide 25)
+    // Per-card accent classes (tb-amber/tb-teal/tb-rose/tb-purple) match the
+    // section accents and the morph chip palette so hover/click glow color
+    // matches each product's chapter color.
     if(c.layout==='toolbox-grid'&&c.tools){
       const _mt=src=>(src.endsWith('.mp4')||src.endsWith('.webm'))?`<video src="${src}" autoplay loop muted playsinline></video>`:`<img src="${src}" loading="lazy">`;
-      const cards=c.tools.map(t=>`<div class="toolbox-card"><div class="toolbox-img">${_mt(t.img)}</div><div class="toolbox-name">${t.name}</div><div class="toolbox-q">${t.q}</div></div>`).join('');
+      const _tbacc=['tb-amber','tb-teal','tb-rose','tb-purple'];
+      const cards=c.tools.map((t,i)=>`<div class="toolbox-card ${_tbacc[i]||''}" tabindex="0" data-tb-idx="${i}"><div class="toolbox-img">${_mt(t.img)}</div><div class="toolbox-name">${t.name}</div><div class="toolbox-q">${t.q}</div></div>`).join('');
       s.innerHTML=`<div class="toolbox-stage">${c.title?`<h2 class="toolbox-title">${c.title}</h2>`:''}<div class="toolbox-grid">${cards}</div></div>${altBadge}`;
       deck.appendChild(s);allSlides.push(s);return;
     }
@@ -1525,14 +1529,14 @@ SECTIONS.forEach((sec,si)=>{
         let beltAnim=null,lastAnim=null,ovlAnim=null;
         const run=()=>{
           if(beltAnim)beltAnim.cancel();if(lastAnim)lastAnim.cancel();if(ovlAnim)ovlAnim.cancel();
-          track.style.transform='translateX(0)';last.style.transform='translateX(0)';if(ovl)ovl.style.opacity='1';track.offsetWidth;
+          track.style.transform='translateX(0)';last.style.transform='translateX(0)';if(ovl){ovl.style.opacity='1';if(c.overlayFront)ovl.style.zIndex='20';}track.offsetWidth;
           const bDly=c.beltDelay!=null?c.beltDelay:3500;const oDly=c.overlayDelay!=null?c.overlayDelay:1500;
           if(c.beltLoop){
             // Continuous infinite scroll. Items are duplicated; cycle = distance from item[0] to item[N] (first of the duplicate set).
             const half=c.beltItems.length;const firstX=tItems[0].getBoundingClientRect().left;const dupX=tItems[half].getBoundingClientRect().left;const cycle=dupX-firstX;
             const speed=c.beltSpeed||120;const loopDur=Math.max(1000,Math.round(cycle/speed*1000));
             beltAnim=track.animate([{transform:'translateX(0)'},{transform:`translateX(-${cycle}px)`}],{duration:loopDur,iterations:Infinity,easing:'linear',delay:bDly});
-            if(ovl)ovlAnim=ovl.animate([{opacity:1},{opacity:.5}],{duration:2000,delay:oDly,easing:'ease-in',fill:'forwards'});
+            if(ovl){const _tgt=c.overlayFront?0:.5;ovlAnim=ovl.animate([{opacity:1},{opacity:_tgt}],{duration:2000,delay:oDly,easing:'ease-in',fill:'forwards'});if(c.overlayFront)ovlAnim.onfinish=()=>{ovl.style.zIndex='1';};}
             return;
           }
           // Layout is deterministic (aspect-ratio per item) — measure immediately, no rAF/wait
@@ -1550,7 +1554,7 @@ SECTIONS.forEach((sec,si)=>{
           const tCenter=trackShift!==0?Math.min(1,centerShift/trackShift):1;
           const counter=centerShift-trackShift;
           lastAnim=last.animate([{offset:0,transform:'translateX(0)'},{offset:tCenter,transform:'translateX(0)'},{offset:1,transform:`translateX(${counter}px)`}],{duration:dur,delay:bDly,easing:'linear',fill:'forwards'});
-          if(ovl)ovlAnim=ovl.animate([{opacity:1},{opacity:.5}],{duration:2000,delay:oDly,easing:'ease-in',fill:'forwards'});
+          if(ovl){const _tgt=c.overlayFront?0:.5;ovlAnim=ovl.animate([{opacity:1},{opacity:_tgt}],{duration:2000,delay:oDly,easing:'ease-in',fill:'forwards'});if(c.overlayFront)ovlAnim.onfinish=()=>{ovl.style.zIndex='1';};}
         };
         // Trigger run() on each transition into 'active'
         let wasActive=s.classList.contains('active');if(wasActive)run();
@@ -2327,6 +2331,21 @@ function shootFireball(svg,startX,startY,dir){
       chip.innerHTML='<div class="tc-name">'+name+'</div><div class="tc-q">'+q+'</div>';
       stage.appendChild(chip);
       return chip;
+    });
+    // Click-to-jump: each card links to its product's chapter intro slide.
+    // Card order matches SECTIONS year names. Skip when morphed (cards gone)
+    // or in move mode (so dragging the card doesn't navigate).
+    const cardJumps=['FLOOR TOUR','BLUEPRINT IMMERSIVE','HYPERREAL ESTATE','HOLODECK ANYWHERE'];
+    cards.forEach(function(card,i){
+      const go=function(){
+        if(window._moveMode)return;
+        if(stage.classList.contains('toolbox-morph-mode'))return;
+        card.classList.remove('tb-clicked');void card.offsetWidth;card.classList.add('tb-clicked');
+        const target=allSlides.findIndex(function(sl){return sl.dataset.type==='case'&&sl.dataset.year===cardJumps[i];});
+        if(target>=0)setTimeout(function(){goTo(target);},260);
+      };
+      card.addEventListener('click',go);
+      card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
     });
     // Chip target positions: fan above the toolbox (relative to slide center)
     // toolbox sits at left:50% bottom:8% with width 300. Chips fan around upper rim.
