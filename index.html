@@ -1910,15 +1910,6 @@ deck.appendChild(mapS);allSlides.push(mapS);
   if(img){img.style.transformBox='fill-box';img.style.transformOrigin='center center';img.style.transform='translate(42px,-72px) scale(1.39)';}
 })();
 
-// ── Chapter intro pills: scale 2.37 on all four product sections ──
-(function(){
-  ['FLOOR TOUR','BLUEPRINT IMMERSIVE','HYPERREAL ESTATE','HOLODECK ANYWHERE'].forEach(yr=>{
-    const s=allSlides.find(sl=>sl.dataset.year===yr&&sl.querySelector?.('.big-pill'));
-    if(!s)return;
-    const pill=s.querySelector('.big-pill');
-    if(pill){pill.style.transformBox='fill-box';pill.style.transformOrigin='center center';pill.style.transform='scale(2.37)';}
-  });
-})();
 
 // ── Trilogy QR: apply move-mode transforms (scale + translate) ──
 (function(){
