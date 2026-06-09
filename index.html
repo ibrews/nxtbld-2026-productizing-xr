@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){var m=document.querySelector('meta[name="viewport"]');if(m&&window.matchMedia('(pointer:coarse)').matches&&window.innerWidth>window.innerHeight)m.content='width=1280,initial-scale=1.0';}());</script>
 <title>Productizing XR for Architecture — NXT BLD 2026</title>
 <meta name="description" content="Where Are You in the Cycle? — a framework for turning repeated client wins into reusable spatial products. NXT BLD 2026 · Agile Lens.">
 <meta property="og:title" content="Productizing XR for Architecture — NXT BLD 2026">
@@ -622,7 +623,7 @@ body[data-bg-style]:not([data-bg-style="none"]) .cfg-panel{background:rgba(8,10,
 @keyframes closeSpritePop{0%{opacity:0;transform:translateY(-20px) scale(.3)}55%{opacity:1;transform:translateY(4px) scale(1.1)}80%{transform:translateY(0) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
 #counter{position:fixed;top:32px;right:48px;z-index:20;font-size:clamp(.72rem,1vw,.95rem);font-weight:500;letter-spacing:.12em;color:rgba(255,255,255,.25)}
 #brand{position:fixed;bottom:28px;left:48px;z-index:20;font-size:clamp(.68rem,.95vw,.9rem);font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.18)}
-.nav-arrows{position:fixed;bottom:24px;right:160px;z-index:20;display:flex;gap:10px;align-items:center}
+.nav-arrows{position:fixed;bottom:24px;right:160px;z-index:100;display:flex;gap:10px;align-items:center}
 .nav-playing{width:20px;height:20px;border:2px solid rgba(0,212,255,.3);border-top-color:var(--teal);border-radius:50%;opacity:0;transition:opacity .2s;pointer-events:none}
 .nav-playing.active{opacity:1;animation:navSpin .8s linear infinite}
 @keyframes navSpin{to{transform:rotate(360deg)}}
@@ -2547,7 +2548,7 @@ document.addEventListener('keydown',e=>{
 });
 let touchX=0,touchY=0,touchT=0,lastTapT=0;
 document.addEventListener('touchstart',e=>{if(document.body.classList.contains('notes-mode'))return;touchX=e.touches[0].clientX;touchY=e.touches[0].clientY;touchT=Date.now();},{passive:true});
-document.addEventListener('touchend',e=>{if(document.body.classList.contains('notes-mode'))return;const dx=e.changedTouches[0].clientX-touchX;const dy=e.changedTouches[0].clientY-touchY;const dt=Date.now()-touchT;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){lastTapT=0;dx<0?(window._arrowSubstep!==false&&advanceStep()?0:goNext()):goPrev();}else if(Math.abs(dx)<15&&Math.abs(dy)<15&&dt<300){lastTapT=Date.now();if(window._arrowSubstep!==false&&advanceStep())return;goNext();}},{passive:true});
+document.addEventListener('touchend',e=>{if(document.body.classList.contains('notes-mode'))return;const dx=e.changedTouches[0].clientX-touchX;const dy=e.changedTouches[0].clientY-touchY;const dt=Date.now()-touchT;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){lastTapT=0;dx<0?(window._arrowSubstep!==false&&advanceStep()?0:goNext()):goPrev();}else if(Math.abs(dx)<15&&Math.abs(dy)<15&&dt<300){const now=Date.now();const dbl=now-lastTapT<300;lastTapT=now;if(dbl){lastTapT=0;goNext();}else if(window._arrowSubstep!==false&&advanceStep())return;else goNext();}},{passive:true});
 // Double-click (desktop): advance substep or next event — same as arrow/tap
 document.addEventListener('dblclick',e=>{
   if(window._moveMode)return;
@@ -2577,6 +2578,7 @@ document.getElementById('mobile-ui-toggle')?.addEventListener('click',e=>{e.stop
 _mobileBtn();
 if(_paramMode!=='edit'){const at=document.getElementById('anno-toggle');if(at)at.style.display='none';const mt=document.getElementById('move-toggle');if(mt)mt.style.display='none';}
 if(_wantLandscape){const lo=document.createElement('div');lo.id='landscape-prompt';lo.innerHTML='<div style="text-align:center"><div style="font-size:2.5rem;margin-bottom:12px">\ud83d\udcf1\u2194\ufe0f</div><div style="font-size:1.1rem;font-weight:600;letter-spacing:.1em">Please rotate your device<br>to landscape mode</div></div>';lo.style.cssText='position:fixed;inset:0;z-index:9999;background:var(--bg,#060810);color:var(--text,#f0f4ff);display:none;align-items:center;justify-content:center;font-family:var(--font)';document.body.appendChild(lo);function checkO(){lo.style.display=window.innerHeight>window.innerWidth?'flex':'none';}checkO();window.addEventListener('resize',checkO);screen.orientation?.addEventListener('change',checkO);}
+(function(){const m=document.querySelector('meta[name="viewport"]');if(!m||!window.matchMedia('(pointer:coarse)').matches)return;function u(){m.content=window.innerWidth>window.innerHeight?'width=1280,initial-scale=1.0':'width=device-width,initial-scale=1.0';}window.addEventListener('resize',u);screen.orientation?.addEventListener('change',()=>setTimeout(u,120));})();
 
 // Slide grid
 function buildGrid(){const g=document.getElementById('slide-grid');g.innerHTML='';allSlides.forEach((s,i)=>{const t=document.createElement('div');const ty=s.dataset.type||'slide';let c='sg-thumb';if(i===current)c+=' active';if(s.dataset.hidden==='1')c+=' slide-hidden';if(ty==='bonus')c+=' sg-bonus';t.className=c;const lb=ty==='lesson'?(s.dataset.ln?`L${s.dataset.ln}`:'LESSON'):ty==='case'?`${s.dataset.year}`:ty.toUpperCase();t.innerHTML=`<span class="sg-num">${String(i).padStart(2,'0')}</span><span class="sg-label">${lb}</span>`;t.addEventListener('click',e=>{if(e.ctrlKey||e.metaKey){s.dataset.hidden=s.dataset.hidden==='1'?'':'1';buildGrid();return;}goTo(i);});g.appendChild(t);});const a=g.querySelector('.active');if(a)a.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
